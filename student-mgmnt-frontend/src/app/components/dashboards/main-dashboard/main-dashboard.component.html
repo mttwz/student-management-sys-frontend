@@ -1,0 +1,19 @@
+<section class="h-100" id="mainSection">
+    <nav id="navBar" class="navbar navbar-dark bg-dark">
+        <div id="titleText" class=".text-monospace font-weight-bold">{{this.currentUserRole}}  panel</div>
+        <button id="logoutButton" type="button" class="btn btn-dark" (click)="this.logOut()">Logout</button>
+      </nav>
+    <div id="mainContainer">
+        <div id="superadminDashboard" *ngIf="this.currentUserRole == 'superadmin'">
+            <app-superadmin-dashboard></app-superadmin-dashboard>
+        </div>
+        <div id="adminDashboard" *ngIf="this.currentUserRole == 'admin'">
+            <app-admin-dashboard></app-admin-dashboard>
+        </div>
+        <div id="studentDashboard" *ngIf="this.currentUserRole == 'student'">
+            <app-student-dashboard></app-student-dashboard>
+        </div>
+    </div>
+    
+
+</section>

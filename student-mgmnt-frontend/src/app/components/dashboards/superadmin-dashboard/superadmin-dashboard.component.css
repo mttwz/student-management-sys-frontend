@@ -1,0 +1,199 @@
+#main {
+    width: 80%;
+    margin: auto;
+    display: grid;
+    
+
+}
+
+
+
+
+th {
+    font-size: 16px;
+    font-weight: bold;
+    width: 1000px;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+
+
+}
+
+th:last-child {
+    width: 10px;
+
+}
+
+
+
+td:last-child {
+    width: 10px;
+
+}
+
+th:nth-child(1),th:nth-child(2) {
+    width: 10px;
+
+}
+
+th:nth-child(1),td:nth-child(2) {
+    width: 10px;
+
+}
+
+td {
+    height: 60px;
+   
+}
+
+tr td {
+    font-size: 14px;
+}
+
+
+#bulkButtonContainer button{
+    border-radius: 0;
+    height: 40px;
+   
+}
+
+#bulkButtonContainer button:first-child{
+    
+    border-top-left-radius: 10px;
+   
+}
+
+#bulkButtonContainer button:last-child{
+    
+    border-top-right-radius: 10px;
+   
+}
+
+
+
+
+#bulkButtonContainer{
+    height: 40px;
+}
+
+.checkboxContainer{
+    display: flex;
+    align-items: center; 
+  justify-content: center;
+
+
+}
+
+#mainTable {
+    width: 100%;
+    
+    position: relative;
+    height: auto;
+    
+    display: block;
+
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    background-color: #475059;
+
+
+}
+
+#mainTable::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+#listMenu {
+    height: 16px;
+    width: 32px;
+    display: flex;
+
+}
+
+.listMenuImage {
+    height: 16px;
+    width: 32px;
+    display: block;
+    filter: invert(1);
+    flex-direction: row-reverse;
+}
+
+.listMenuImageClicked {
+    height: 16px;
+    width: 32px;
+    display: block;
+    filter: invert(0);
+}
+
+.dropdown-menu {
+
+    background-color: #212529;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+    cursor: pointer;
+   
+   
+
+}
+
+.dropdown-item {
+    color: white;
+    
+
+
+}
+
+.dropdown-item:hover {
+    background-color: #2c3034;
+
+
+}
+
+
+#moreInfoModal{
+    margin: auto;
+    background: linear-gradient(144deg, rgba(2, 0, 36, 0.121) 0%, rgba(255, 6, 238, 0.199) 0%, rgba(30, 0, 255, 0.267) 100%);
+    
+
+   
+}
+#moreInfoModalBox{
+    background-color: #212529;
+    height: 500px;
+    
+   
+   
+   
+}
+
+.modal-deader{
+    max-height: 30px;
+    padding: 0;
+}
+
+.modal-dialog{
+    max-width: 120vh;
+    min-width: 350px;
+    display: block;
+    
+}
+.modal-title{
+    color: white;
+}
+
+
+@media only screen and (max-width: 500px) {
+    #mainTable {
+      overflow: scroll;
+    }
+  }
