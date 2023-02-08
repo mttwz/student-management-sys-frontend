@@ -27,9 +27,6 @@ export class MainDashboardComponent implements OnInit {
     
   }
 
-  logOut(){
-    this.authService.logOut();
-    window.location.reload();
-  }
+  
 
 }

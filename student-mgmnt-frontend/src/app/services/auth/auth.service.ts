@@ -32,6 +32,7 @@ export class AuthService {
 
   logOut() {
    localStorage.removeItem('credentials'); 
+   window.location.reload();
   }
 
   validateJwt(){

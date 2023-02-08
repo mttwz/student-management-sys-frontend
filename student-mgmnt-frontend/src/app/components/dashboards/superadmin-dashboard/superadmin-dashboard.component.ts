@@ -1,5 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class SuperadminDashboardComponent implements OnInit {
 
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private authService: AuthService) { }
   checkedUsers: Array<Number> = [];
   isLoading: Boolean = true;
   isUsersLoading = true;
@@ -29,6 +30,12 @@ export class SuperadminDashboardComponent implements OnInit {
     this.getAllUser();
 
   }
+
+  logOut(){
+    this.authService.logOut();
+  }
+
+  
 
 
   getAllUser() {
@@ -165,6 +172,9 @@ export class SuperadminDashboardComponent implements OnInit {
     }
     
   }
+
+
+
 
   
 

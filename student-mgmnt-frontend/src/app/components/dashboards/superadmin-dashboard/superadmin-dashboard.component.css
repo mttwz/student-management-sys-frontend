@@ -2,8 +2,32 @@
     width: 80%;
     margin: auto;
     display: grid;
-    
 
+}
+
+#navBar{
+    height: auto;
+    display: grid;
+    grid-template-columns: auto 100px;
+    margin-bottom: 50px;
+}
+
+#navbarLeft{
+    grid-column: 1;
+}
+#navbarRight{
+    grid-column: 2;
+}
+
+#logoutButton{
+
+    
+    background-color: #373e44;
+    width: 100px;
+}
+
+#titleText{
+    color: white;
 }
 
 
@@ -190,6 +214,26 @@ tr td {
 .modal-title{
     color: white;
 }
+
+#tableSwitchContainer{
+    width: 100%;
+    padding-bottom: 10px;
+   
+}
+
+#tableSwitchHolder{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+
 
 
 @media only screen and (max-width: 500px) {
