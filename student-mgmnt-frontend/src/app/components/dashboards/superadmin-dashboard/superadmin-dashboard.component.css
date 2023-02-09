@@ -31,7 +31,13 @@
 }
 
 
+#tableContent{
+    padding-top: 100px;
+}
 
+thead{
+    z-index: 1;
+}
 
 th {
     font-size: 16px;
@@ -123,6 +129,7 @@ tr td {
     scrollbar-width: none;
     /* Firefox */
     background-color: #475059;
+    
 
 
 }
@@ -227,7 +234,7 @@ label{
 
 
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
     #mainTable {
       overflow: scroll;
     }

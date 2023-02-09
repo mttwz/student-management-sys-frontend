@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -8,11 +8,30 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private http: HttpClient,private router: Router, private formBuilder: FormBuilder) { }
 
+  public registerForm !: FormGroup;
 
   saveToken(obj: Object) {
     localStorage.setItem('credentials', JSON.stringify(obj));
+  }
+
+  register(registerForm:FormGroup) {
+    let body = registerForm.value;
+    console.log(body)
+
+    this.http.post<any>("http://127.0.0.1:8080/api/v1/student/registerstudent", body)
+      .subscribe(res => {
+        
+        this.router.navigate(["login"]);
+        return
+      }, err => {
+        
+        console.log(err);
+      })
+
+      
+
   }
 
 
@@ -53,4 +72,6 @@ export class AuthService {
 
     return JSON.parse(jsonPayload);
   }
+
+
 }

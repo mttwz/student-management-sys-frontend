@@ -1,1 +1,75 @@
-<p>register works!</p>
+<section class="h-100" id="mainSection">
+
+    <div class="container py-5" id="loginCardContainer" *ngIf="this.isLoading == false">
+        <div class="card rounded-3 text-black">
+            <div class="row g-0">
+                <div class="col-lg">
+                    <div class="card-body p-md-5 mx-md-4">
+                        <form [formGroup]="registerForm" class="">
+                            <p class="text-center registerText">Register</p>
+                            <div class="inputText formInput">
+
+                                <input class="form-control" formControlName="lastName" type="text" id="lastName"
+                                    placeholder="Last name"><br>
+
+                            </div>
+
+                            <div class="inputText formInput">
+
+                                <input class="form-control" formControlName="firstName" type="text" id="firstName"
+                                    placeholder="First name"><br>
+
+                            </div>
+
+                            <div class="inputText formInput">
+
+                                <input class="form-control" formControlName="phone" type="number" id="phone"
+                                    placeholder="Phone number"><br>
+
+                            </div>
+
+                            <div class="inputText formInput">
+
+                                <input class="form-control" formControlName="birth" type="date" id="birth"><br>
+
+                            </div>
+
+                            <div class="inputText formInput">
+
+                                <input class="form-control" formControlName="email" type="email" id="email"
+                                    placeholder="Email"><br>
+
+                            </div>
+
+                            <div class="inputText formInput">
+                                <input class="form-control" formControlName="password" type="password" id="password"
+                                    placeholder="Password"><br>
+
+                            </div>
+
+                            <div class="form-check d-flex justify-content-center mb-5">
+                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                                <label class="form-check-label" for="form2Example3">
+                                  I agree all statements in <a href="#!" class="text-white">Terms of service</a>
+                                </label>
+                              </div>
+
+                            <div class="d-flex align-items-center justify-content-center pb-4">
+                                <button class="btn  btn-block registerBtn" type="submit"
+                                    (click)="this.register()">Register</button>
+                            </div>
+
+                            
+
+
+                            <div class="d-flex align-items-center justify-content-center pb-4">
+                                <button type="button" class="btn loginButton" routerLink="/login">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -7,15 +7,19 @@ import { last, Observable } from 'rxjs';
 })
 export class TokeninterceptorService implements HttpInterceptor {
 
-  tokenIgnore:[String] = ["login"]
-
+  tokenIgnore: String[] = ["login", "registerstudent", "validatejwt"]
+  
 
   constructor() { }
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let apiPath :String = req.url.toString().split("api")[1];
     let target :String = apiPath.split("/")[apiPath.split("/").length-1];
 
+    console.log(target)
+
     if (!this.tokenIgnore.includes(target)) {
+      console.log(this.tokenIgnore.includes(target))
     
       let localStorageObj = JSON.parse(localStorage.getItem("credentials") || "{ }");
       const userToken = localStorageObj.jwt;
