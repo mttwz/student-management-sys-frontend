@@ -20,8 +20,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
    console.log("a")
     this.authService.validateJwt().subscribe(res => {
-      this.router.navigate(["dashboard"])
-      this.isLoading = false;
+      if(res.valid == true){
+        this.router.navigate(["dashboard"])
+        this.isLoading = false;
+      }else this.isLoading = false;
+
     }, err => {
       this.isLoading = false;
       
@@ -38,6 +41,10 @@ export class LoginComponent implements OnInit {
   login(){
     
     this.authService.login(this.loginFormGroup);
+  }
+
+  register(){
+    this.router.navigate(["/register"]);
   }
 
 }

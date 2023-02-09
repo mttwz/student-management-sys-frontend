@@ -28,9 +28,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AdminDashboardComponent,
     StudentDashboardComponent,
     MainDashboardComponent,
-
-
-
   ],
   imports: [
     BrowserModule,
