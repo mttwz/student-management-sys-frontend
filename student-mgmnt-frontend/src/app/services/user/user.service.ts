@@ -14,8 +14,4 @@ export class UserService {
   getAllUser() {
     return this.http.get<any>("http://127.0.0.1:8080/api/v1/user/getalluser");
   }
-
-  getUserInfo(body:any) {
-    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/getuserinfo",body);
-  }
 }

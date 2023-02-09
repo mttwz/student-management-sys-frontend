@@ -13,7 +13,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokeninterceptorService } from './services/interceptor/tokeninterceptor.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from './components/modal/modal/modal.component';
 
 
 
@@ -29,7 +28,6 @@ import { ModalComponent } from './components/modal/modal/modal.component';
     AdminDashboardComponent,
     StudentDashboardComponent,
     MainDashboardComponent,
-    ModalComponent,
 
 
 

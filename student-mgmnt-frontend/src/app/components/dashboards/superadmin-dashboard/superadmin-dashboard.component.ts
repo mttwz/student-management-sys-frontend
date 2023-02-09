@@ -15,9 +15,7 @@ export class SuperadminDashboardComponent implements OnInit {
   checkedUsers: Array<Number> = [];
   isLoading: Boolean = true;
   isUsersLoading = true;
-  isInfoLoading = true;
   allUsers !: Array<any>;
-  currentUserInfo !: any;
   isAnyChecked!: Boolean;
 
   isOrderedById:Boolean = true;
@@ -38,22 +36,13 @@ export class SuperadminDashboardComponent implements OnInit {
   }
 
   
+
+
   getAllUser() {
     this.userService.getAllUser().subscribe(res => {
       this.allUsers = res;
       console.log(res)
       this.isUsersLoading = false;
-    })
-  }
-
-  getUserInfo(id:Number) {
-    let body = {
-      id: id,
-     
-    }
-    this.userService.getUserInfo(body).subscribe(res => {
-      this.currentUserInfo = res;
-      this.isInfoLoading= false;
     })
   }
 
