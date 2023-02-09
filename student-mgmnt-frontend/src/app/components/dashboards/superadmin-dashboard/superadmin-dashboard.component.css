@@ -193,11 +193,15 @@ tr td {
 }
 #moreInfoModalBox{
     background-color: #212529;
-    height: 500px;
+    height: auto;
     
    
    
    
+}
+
+label{
+    color: white;
 }
 
 .modal-deader{
@@ -215,22 +219,9 @@ tr td {
     color: white;
 }
 
-#tableSwitchContainer{
-    width: 100%;
-    padding-bottom: 10px;
-   
-}
 
-#tableSwitchHolder{
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: space-evenly;
-    overflow-x: scroll;
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
+.btn-close{
+    background-color: wheat;
 }
 
 
@@ -241,3 +232,6 @@ tr td {
       overflow: scroll;
     }
   }
+
+
+
