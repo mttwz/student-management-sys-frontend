@@ -3,12 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
 
+
 @Component({
   selector: 'app-superadmin-dashboard',
   templateUrl: './superadmin-dashboard.component.html',
   styleUrls: ['./superadmin-dashboard.component.css']
 })
 export class SuperadminDashboardComponent implements OnInit {
+
 
 
   constructor(private userService: UserService,private authService: AuthService) { }
@@ -24,10 +26,13 @@ export class SuperadminDashboardComponent implements OnInit {
   isOrderedByLastName:Boolean = false;
   isOrderedByEmail:Boolean = false;
 
+  selectedModal!: String;
+
 
   ngOnInit(): void {
     this.modalFix()
     this.getAllUser();
+    
 
   }
 

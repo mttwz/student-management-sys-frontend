@@ -1,18 +1,20 @@
 
 #mainSection{
     background: rgb(2,0,36);
-    background: linear-gradient(144deg, rgba(2,0,36,1) 0%, rgb(28, 16, 106) 0%, rgb(167, 165, 176) 100%);
+    background: linear-gradient(144deg, rgba(2,0,36,1) 0%, rgba(255,6,237,1) 0%, rgba(29,0,255,1) 100%);
     min-height: 100vh;
 }
 
 #loginCardContainer{
     max-width: 75vh;
     min-width: 300px;
+    
 }
 
 
 .card{
-    background: rgba(255, 255, 255, 0.079);
+    background: #212529;
+    
 }
 
 .registerText{

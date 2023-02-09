@@ -191,14 +191,14 @@ tr td {
 }
 
 
-#moreInfoModal{
+.modal{
     margin: auto;
     background: linear-gradient(144deg, rgba(2, 0, 36, 0.121) 0%, rgba(255, 6, 238, 0.199) 0%, rgba(30, 0, 255, 0.267) 100%);
     
 
    
 }
-#moreInfoModalBox{
+.modal-content{
     background-color: #212529;
     height: 500px;
     
@@ -206,6 +206,8 @@ tr td {
    
    
 }
+
+
 
 .modal-deader{
     max-height: 30px;
@@ -220,6 +222,11 @@ tr td {
 }
 .modal-title{
     color: white;
+}
+
+#secondaryModal{
+    
+
 }
 
 #tableSwitchContainer{
