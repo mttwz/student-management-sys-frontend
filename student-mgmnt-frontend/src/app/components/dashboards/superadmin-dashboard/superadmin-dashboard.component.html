@@ -44,7 +44,55 @@
         </div>
 
 
+        
+
     </div>
+    <div class="btn-group btn-group-toggle searchBtnDiv" data-toggle="buttons">
+        <label class="btn btn-secondary active searchBtn">
+          <input type="radio" name="options" id="option1" autocomplete="off" checked> Workgroup
+        </label>
+        <label class="btn btn-secondary searchBtn">
+          <input type="radio" name="options" id="option2" autocomplete="off"> Student
+        </label>
+        <label class="btn btn-secondary searchBtn">
+          <input type="radio" name="options" id="option3" autocomplete="off"> Admin
+        </label>
+        <label class="btn btn-secondary searchBtn">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Superadmin
+          </label>
+          <label class="btn btn-secondary searchBtn">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Card
+          </label>
+          <label class="btn btn-secondary searchBtn">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Institution
+          </label>
+         
+          
+            <form class="d-flex">
+              <input class="form-control me-1 searchBar" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-primary searchBtn" type="submit">Search</button>
+            </form>
+      </div>
+
+      <!-- <div class="container">
+        <div class="row">
+            <form class="col-md-4">
+                <label>Select</label>
+                <select class="form-control select2">
+                    <label>
+                         <input type="text">
+                    </label>
+                   
+                   <option>Student</option> 
+                   <option>Admin</option> 
+                   <option>Superadmin</option> 
+                   <option>Workgroup</option> 
+                   <option>Institution</option> 
+                   <option>Card</option> 
+                </select>
+            </form>
+         </div>
+    </div> -->
     <table class="table table-xl table-striped table-dark rounded" id="mainTable" *ngIf="this.isUsersLoading == false">
         <thead>
             <tr class="align-middle">

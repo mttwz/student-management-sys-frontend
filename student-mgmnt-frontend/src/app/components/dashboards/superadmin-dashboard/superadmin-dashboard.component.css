@@ -30,6 +30,14 @@
     color: white;
 }
 
+.searchBtn{
+    border-radius: 0px;
+}
+
+.searchBar{
+    border-radius: 0px;
+    width: 280px;
+}
 
 #tableContent{
     padding-top: 100px;
@@ -253,5 +261,12 @@ tr td {
 @media only screen and (max-width: 600px) {
     #mainTable {
       overflow: scroll;
+    }
+
+    .searchBtnDiv{
+        /* display: flex;
+        flex-direction: column;
+        width: 100px; */
+        overflow: scroll;
     }
   }
