@@ -1,1 +1,45 @@
-@import "~bootstrap/dist/css/bootstrap.css"
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+
+
+
+
+.modal{
+    margin: auto;
+    background: linear-gradient(144deg, rgba(2, 0, 36, 0.121) 0%, rgba(255, 6, 238, 0.199) 0%, rgba(30, 0, 255, 0.267) 100%);
+    
+
+   
+}
+.modal-content{
+    background-color: #212529;
+    height: auto;
+    
+   
+   
+   
+}
+
+.btn-close-white{
+
+    font-size: large;
+
+}
+
+
+
+.modal-deader{
+    max-height: 30px;
+    padding: 0;
+}
+
+.modal-dialog{
+    max-width: 60%;
+    min-width: 350px;
+    display: block;
+    
+}
+.modal-title{
+    color: white;
+}
