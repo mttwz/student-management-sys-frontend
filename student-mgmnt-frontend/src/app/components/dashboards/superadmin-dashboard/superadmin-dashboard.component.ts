@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
+declare var $: any;  
 
 
 @Component({
@@ -32,6 +33,7 @@ export class SuperadminDashboardComponent implements OnInit {
 
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent ; 
   ngOnInit(): void {
+
     
     this.modalFix()
     this.getAllUser();

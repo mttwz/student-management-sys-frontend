@@ -24,10 +24,6 @@ export class SuperadminModalComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private userService: UserService) { }
   
   ngOnInit(): void {
-    
-    $('#mainModal').on('hidden.bs.modal',  () => {
-      this.resStatus = 0;
-    })
     this.addUserForm = this.formBuilder.group({
       firstName: ['',Validators.required],
       lastName: ['',Validators.required],
@@ -59,6 +55,7 @@ export class SuperadminModalComponent implements OnInit {
   }
 
   getUserInfo(id:Number){
+
     let body = {
       "id": id
     }
@@ -92,7 +89,6 @@ export class SuperadminModalComponent implements OnInit {
 
   addUser(myForm:FormGroup){
     
-    console.log(myForm)
     this.userService.addUser(myForm.value).subscribe(res=>{
       myForm.reset();
       console.log(res.status)
@@ -105,10 +101,12 @@ export class SuperadminModalComponent implements OnInit {
       this.resStatus = err.status;
       this.isSuccessful = false;
     });
+  }
 
-    
 
-    
+
+  resetStatusCode(){
+    this.resStatus = 0;
   }
 
   
