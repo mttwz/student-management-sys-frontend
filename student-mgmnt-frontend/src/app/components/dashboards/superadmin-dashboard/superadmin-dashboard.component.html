@@ -13,7 +13,7 @@
             User
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <div class="dropdown-item" (click)="this.selectedModal = 'second'" data-toggle="modal" data-target="#mainModal">Add User</div>
+            <div class="dropdown-item" (click)="this.selectedModal = 'addUser'" data-toggle="modal" data-target="#mainModal">Add User</div>
             <div class="dropdown-item" href="#" (click)="this.selectedModal = 'first'" data-toggle="modal" data-target="#mainModal">Another action</div>
             <a class="dropdown-item" href="#">Something else here</a>
             <a class="dropdown-item" href="#">Action</a>
@@ -105,18 +105,9 @@
 <div class="modal" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
-            <div class="modal-header">
-                <h5 class="modal-title" id="mainModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
             <div class="modal-body">
-
-                <app-modal [modalId]="this.selectedModal"></app-modal>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#secondaryModal">
-                    Launch demo modal
-                </button>
+                <app-superadmin-modal [modalId]="this.selectedModal"></app-superadmin-modal>
             </div>
-
         </div>
     </div>
 </div>

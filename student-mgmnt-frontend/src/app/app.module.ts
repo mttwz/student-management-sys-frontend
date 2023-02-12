@@ -14,6 +14,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokeninterceptorService } from './services/interceptor/tokeninterceptor.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './components/modal/modal.component';
+import { SuperadminModalComponent } from './components/modals/superadmin-modal/superadmin-modal.component';
+import { AdminModalComponent } from './components/modals/admin-modal/admin-modal.component';
+import { StudentModalComponent } from './components/modals/student-modal/student-modal.component';
 
 
 
@@ -31,6 +34,9 @@ import { ModalComponent } from './components/modal/modal.component';
     StudentDashboardComponent,
     MainDashboardComponent,
     ModalComponent,
+    SuperadminModalComponent,
+    AdminModalComponent,
+    StudentModalComponent,
 
   ],
   imports: [

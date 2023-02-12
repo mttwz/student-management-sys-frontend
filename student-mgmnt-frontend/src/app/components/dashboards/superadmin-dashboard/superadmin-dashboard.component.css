@@ -191,43 +191,7 @@ tr td {
 }
 
 
-.modal{
-    margin: auto;
-    background: linear-gradient(144deg, rgba(2, 0, 36, 0.121) 0%, rgba(255, 6, 238, 0.199) 0%, rgba(30, 0, 255, 0.267) 100%);
-    
 
-   
-}
-.modal-content{
-    background-color: #212529;
-    height: 500px;
-    
-   
-   
-   
-}
-
-
-
-.modal-deader{
-    max-height: 30px;
-    padding: 0;
-}
-
-.modal-dialog{
-    max-width: 120vh;
-    min-width: 350px;
-    display: block;
-    
-}
-.modal-title{
-    color: white;
-}
-
-#secondaryModal{
-    
-
-}
 
 #tableSwitchContainer{
     width: 100%;

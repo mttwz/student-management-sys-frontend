@@ -1,0 +1,76 @@
+<div id="addUser" *ngIf="this.modalId== 'addUser'">
+    <div class="modal-header">
+        <h5 class="modal-title" id="mainModalLabel">Add user</h5>
+        <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modalContainer">
+        <form [formGroup]="addUserFormForm" (ngSubmit)="submit(addUserFormForm.value)">
+
+
+
+            <div class="inputText formInput">
+
+                <input class="form-control" formControlName="firstName" type="text" id="firstName"
+                    placeholder="First name"><br>
+
+            </div>
+
+            <div class="inputText formInput">
+
+                <input class="form-control" formControlName="lastName" type="text" id="lastName"
+                    placeholder="Last name"><br>
+
+            </div>
+
+            <div class="inputText formInput">
+
+                <input class="form-control" formControlName="phone" type="text" id="phone"
+                    placeholder="Phone number"><br>
+
+            </div>
+
+            <div class="inputText formInput">
+
+                <input class="form-control" formControlName="birth" id="birth" placeholder="Birth date" type="text"
+                    onfocus="(this.type='date')"><br>
+
+            </div>
+
+            <div class="inputText formInput">
+
+                <input class="form-control" formControlName="email" type="email" id="email" placeholder="Email"><br>
+
+            </div>
+
+            <div class="inputText formInput">
+                <input class="form-control" formControlName="password" type="password" id="password"
+                    placeholder="Password"><br>
+
+            </div>
+            <select class="custom-select" formControlName="role" id="roleSelect">
+                <option value="" selected disabled hidden placeholder id="defaultSelected">Select role</option>
+                <option value="superadmin">superadmin</option>
+                <option value="admin">admin</option>
+                <option value="student">student</option>
+            </select>
+        </form>
+        
+        
+    </div>
+    <div class="responseTextContainer">
+        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
+        <div class="unSuccessfulRes"  *ngIf="this.isSuccessful == false">
+            <div *ngIf="this.resStatus == 422">One or more fileds are empty</div>
+            <div *ngIf="this.resStatus == 409">User already exist</div>
+        </div>
+    </div>
+    <div class="modalButtonContainer">
+        <button type="button" class="btn btn-success saveButton" (click)="this.addUser(this.addUserFormForm)">
+            Save
+        </button>
+    </div>
+
+</div>
+
+<div id="second" *ngIf="this.modalId== 'second'">second</div>
