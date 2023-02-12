@@ -1,7 +1,8 @@
 import { JsonPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class SuperadminDashboardComponent implements OnInit {
 
+  
 
 
   constructor(private userService: UserService,private authService: AuthService) { }
@@ -19,7 +21,7 @@ export class SuperadminDashboardComponent implements OnInit {
   isUsersLoading = true;
   allUsers !: Array<any>;
   isAnyChecked!: Boolean;
-
+ 
   isOrderedById:Boolean = true;
   isOrderedByRole:Boolean = false;
   isOrderedByFirstName:Boolean = false;
@@ -28,11 +30,11 @@ export class SuperadminDashboardComponent implements OnInit {
 
   selectedModal!: String;
 
-
+  @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent ; 
   ngOnInit(): void {
+    
     this.modalFix()
     this.getAllUser();
-    
 
   }
 
@@ -40,6 +42,7 @@ export class SuperadminDashboardComponent implements OnInit {
     this.authService.logOut();
   }
 
+  
   
 
 

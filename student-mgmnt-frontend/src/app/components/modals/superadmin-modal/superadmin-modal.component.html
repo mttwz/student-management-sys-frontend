@@ -1,13 +1,64 @@
 <div id="getUserInfo" *ngIf="this.modalId== 'getUserInfo'">
-    
+
     <div class="modal-header">
         <h5 class="modal-title" class="mainModalLabel">Info</h5>
         <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
-        
+
     </div>
-    <div class="modalContainer">
+    <div class="modalContainer" *ngIf="this.isUserInfoLoading == false">
         <form [formGroup]="userInfoForm" >
-           
+            
+
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="id" type="text"><br>
+            </div>
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="roleName" type="text"><br>
+            </div>
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="firstName" type="text"><br>
+            </div>
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="lastName" type="text"><br>
+            </div>
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="phone" type="text"><br>
+            </div>
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="birth" type="text"><br>
+            </div>
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="email" type="text"><br>
+            </div>
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="password" type="text"><br>
+            </div>
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="registeredAt" type="text"><br>
+            </div>
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="activationCode" type="text"><br>
+            </div>
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="activatedAt" type="text"><br>
+            </div>
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="isDeleted" type="text"><br>
+            </div>
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="deletedAt" type="text"><br>
+            </div>
+            <div class="inputText formInput">
+                <input id="idInput" class="form-control" formControlName="jwt" type="text"><br>
+            </div>
+            
+
+            
+
+
+
+
+
 
         </form>
 
@@ -19,11 +70,10 @@
             <div *ngIf="this.resStatus == 422">One or more fileds are empty</div>
             <div *ngIf="this.resStatus == 409">User already exist</div>
         </div>
-        
+
     </div>
-    <div class="modalButtonContainer">
-        <button [disabled]="!addUserForm.valid" type="button" class="btn btn-success saveButton"
-            (click)="this.addUser(this.addUserForm)">
+    <div class="modalButtonContainer"> <button type="button"
+            class="btn btn-success saveButton">
             Save
         </button>
     </div>
@@ -67,7 +117,7 @@
 
             <div class="inputText formInput">
 
-                <input class="form-control" formControlName="email" type="email" id="email" placeholder="Email"><br>
+                <input class="form-control" formControlName="email" type="text" id="email" placeholder="Email"><br>
 
             </div>
 

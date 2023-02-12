@@ -79,7 +79,7 @@
                     <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
                     <td>
                         <div id="listMenu" type="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" data-toggle="modal" data-target="#mainModal" (click)="this.selectedModal = 'getUserInfo'">
+                            aria-expanded="false" data-toggle="modal" data-target="#mainModal" (click)="this.selectedModal = 'getUserInfo'; this.superadminModal.getUserInfo(user.id)">
                             <img class="listMenuImage" src="../../../../assets/info-button-svgrepo-com.svg" alt=""
                                 srcset="">
 
@@ -106,13 +106,13 @@
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
             <div class="modal-body">
-                <app-superadmin-modal [modalId]="this.selectedModal"></app-superadmin-modal>
+                <app-superadmin-modal #superadminModal [modalId]="this.selectedModal"></app-superadmin-modal>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Second nested Modal -->
+
 <div class="modal" id="secondaryModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
     data-bs-backdrop="static">
     <div class="modal-dialog">
