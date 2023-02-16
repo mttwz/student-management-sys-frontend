@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-declare var $: any;  
+
 
 
 
@@ -11,7 +11,6 @@ declare var $: any;
 export class AppComponent {
   title = 'student-mgmnt-frontend';
 }
-
 
 
 

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user/user.service';
-declare var $: any;  
+
 
 
 @Component({
@@ -18,12 +18,16 @@ export class SuperadminModalComponent implements OnInit {
   public resStatus!: Number;
   userInfo!: any
   isUserInfoLoading: Boolean = true;
-  selectedUserId!:Number
+  selectedUserId!:Number;
+  selectedUserRole!:String;
+  isEditingEnabled:Boolean = false;
 
 
   constructor(private formBuilder: FormBuilder,private userService: UserService) { }
   
   ngOnInit(): void {
+    
+    
     this.addUserForm = this.formBuilder.group({
       firstName: ['',Validators.required],
       lastName: ['',Validators.required],
@@ -48,11 +52,11 @@ export class SuperadminModalComponent implements OnInit {
       isDeleted: ['',Validators.required],
       deletedAt: ['',Validators.required],
       jwt: ['',Validators.required],
-      
     })
-
-   
   }
+
+
+  
 
   getUserInfo(id:Number){
 
@@ -70,15 +74,16 @@ export class SuperadminModalComponent implements OnInit {
       this.userInfoForm.controls['phone'].setValue(this.userInfo.phone);
       this.userInfoForm.controls['birth'].setValue(this.userInfo.birth);
       this.userInfoForm.controls['email'].setValue(this.userInfo.email);
-      this.userInfoForm.controls['password'].setValue(this.userInfo.password);
-      this.userInfoForm.controls['registeredAt'].setValue(this.userInfo.registeredAt);
+      this.userInfoForm.controls['registeredAt'].setValue(this.userService.formatDate(this.userInfo.registeredAt));
       this.userInfoForm.controls['activationCode'].setValue(this.userInfo.activationCode);
-      this.userInfoForm.controls['activatedAt'].setValue(this.userInfo.activatedAt);
+      this.userInfoForm.controls['activatedAt'].setValue(this.userService.formatDate(this.userInfo.activatedAt));
       this.userInfoForm.controls['isDeleted'].setValue(this.userInfo.isDeleted);
-      this.userInfoForm.controls['deletedAt'].setValue(this.userInfo.deletedAt);
+      this.userInfoForm.controls['deletedAt'].setValue(this.userService.formatDate(this.userInfo.deletedAt));
       this.userInfoForm.controls['jwt'].setValue(this.userInfo.jwt);
-
-
+      this.selectedUserRole = this.userInfo.roleName;
+      this.userInfoForm.disable();
+      this.isEditingEnabled = false;
+     
     },err=>{
       console.log(err);
     });
@@ -107,6 +112,30 @@ export class SuperadminModalComponent implements OnInit {
 
   resetStatusCode(){
     this.resStatus = 0;
+  }
+
+
+  editUserInfo(){
+    this.isEditingEnabled = true;
+    this.userInfoForm.controls['firstName'].enable();
+    this.userInfoForm.controls['lastName'].enable();
+    this.userInfoForm.controls['birth'].enable();
+    this.userInfoForm.controls['email'].enable();
+    this.userInfoForm.controls['phone'].enable();
+    this.userInfoForm.controls['email'].enable();
+    this.userInfoForm.controls['roleName'].enable();
+  }
+
+  saveUserInfo(){
+    this.userInfoForm.disable();
+    this.isEditingEnabled = false;
+
+  }
+
+  cancelSaveUserInfo(){
+    this.userInfoForm.disable();
+    this.isEditingEnabled = false;
+
   }
 
   

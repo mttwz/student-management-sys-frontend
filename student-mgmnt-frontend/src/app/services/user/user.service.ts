@@ -10,6 +10,17 @@ export class UserService {
 
   users: any;
 
+  formatDate(fullDate: String) {
+
+    if (fullDate != null) {
+      let date = fullDate.split("T")[0];
+      let time = fullDate.split("T")[1].split(".")[0];
+      return date + " " + time;
+    }
+    return "";
+
+  }
+
 
   getAllUser() {
     return this.http.get<any>("http://127.0.0.1:8080/api/v1/user/getalluser");

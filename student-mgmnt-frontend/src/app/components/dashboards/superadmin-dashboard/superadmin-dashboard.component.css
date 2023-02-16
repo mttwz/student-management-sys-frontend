@@ -129,6 +129,9 @@ tr td {
     scrollbar-width: none;
     /* Firefox */
     background-color: #475059;
+
+    height: 80vh;
+    overflow: scroll;
     
 
 
@@ -144,6 +147,8 @@ tr td {
     height: 16px;
     width: 32px;
     display: flex;
+    position: sticky;
+    right: 0;
 
 }
 

@@ -6,60 +6,61 @@
 
     </div>
     <div class="modalContainer" *ngIf="this.isUserInfoLoading == false">
-        <form [formGroup]="userInfoForm" >
-            
+        <form [formGroup]="userInfoForm">
 
             <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="id" type="text"><br>
+                <label>ID:</label>
+                <input class="form-control userId" formControlName="id" type="text">
+            </div>
+            <label for="roleSelect">Role:</label>
+            <select class="custom-select roleSelect" formControlName="roleName">
+                <option value="" selected disabled hidden placeholder id="defaultSelected"></option>
+                <option value="superadmin">superadmin</option>
+                <option value="admin">admin</option>
+                <option value="student">student</option>
+            </select>
+            <div class="inputText formInput">
+                <label>First name:</label>
+                <input class="form-control firstName" formControlName="firstName" type="text">
             </div>
             <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="roleName" type="text"><br>
+                <label>Last name:</label>
+                <input class="form-control lastName" formControlName="lastName" type="text">
             </div>
             <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="firstName" type="text"><br>
+                <label>Birth:</label>
+                <input class="form-control birth" formControlName="birth" type="date">
             </div>
             <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="lastName" type="text"><br>
+                <label>Email:</label>
+                <input class="form-control email" formControlName="email" type="text">
             </div>
             <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="phone" type="text"><br>
+                <label>Phone:</label>
+                <input class="form-control phone" formControlName="phone" type="text">
             </div>
             <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="birth" type="text"><br>
+                <label>Registered at:</label>
+                <input class="form-control registeredAt" formControlName="registeredAt" type="text" >
             </div>
             <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="email" type="text"><br>
+                <label>Activated:</label>
+                <input *ngIf="this.userInfo.isActivated == true" style="background: url(../../../../assets/green-checkmark-icon.webp) no-repeat scroll 7px 7px;  padding-left:40px; background-size: 21px;" class="form-control activated" formControlName="activatedAt" type="text">
+                <input *ngIf="this.userInfo.isActivated == false " style="background: url(../../../../assets/red-x-icon.webp) no-repeat scroll 7px 7px; padding-left:40px; background-size: 21px;" class="form-control activated" formControlName="activatedAt" type="text" >
+                
+                
+                    
+                    
+                
+                
             </div>
             <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="password" type="text"><br>
+                <label>Deleted:</label>
+               
+                <input *ngIf="this.userInfo.isDeleted == true" style="background: url(../../../../assets/green-checkmark-icon.webp) no-repeat scroll 7px 7px;  padding-left:40px; background-size: 21px;" class="form-control isDeleted" formControlName="deletedAt" type="text">
+                <input *ngIf="this.userInfo.isDeleted == false" style="background: url(../../../../assets/red-x-icon.webp) no-repeat scroll 7px 7px;  padding-left:40px; background-size: 21px;"class="form-control isDeleted" formControlName="deletedAt" type="text" >
+               
             </div>
-            <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="registeredAt" type="text"><br>
-            </div>
-            <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="activationCode" type="text"><br>
-            </div>
-            <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="activatedAt" type="text"><br>
-            </div>
-            <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="isDeleted" type="text"><br>
-            </div>
-            <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="deletedAt" type="text"><br>
-            </div>
-            <div class="inputText formInput">
-                <input id="idInput" class="form-control" formControlName="jwt" type="text"><br>
-            </div>
-            
-
-            
-
-
-
-
-
-
         </form>
 
 
@@ -69,15 +70,23 @@
         <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
             <div *ngIf="this.resStatus == 422">One or more fileds are empty</div>
             <div *ngIf="this.resStatus == 409">User already exist</div>
+            <div *ngIf="this.resStatus == 0"></div>
         </div>
-
     </div>
-    <div class="modalButtonContainer"> <button type="button"
-            class="btn btn-success saveButton">
+    <div class="modalButtonContainer"> 
+        <button *ngIf="this.isEditingEnabled == false" type="button" class="btn btn-warning" (click)="this.editUserInfo()">
+            Edit
+        </button>
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success" (click)="this.saveUserInfo()">
             Save
+        </button>
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger" (click)="this.saveUserInfo()">
+            Cancel
         </button>
     </div>
 </div>
+
+
 
 <div id="addUser" *ngIf="this.modalId== 'addUser'">
     <div class="modal-header">
@@ -87,47 +96,47 @@
 
     <div class="modalContainer">
         <form [formGroup]="addUserForm">
-            <div class="inputText formInput">
 
-                <input class="form-control" formControlName="firstName" type="text" id="firstName"
-                    placeholder="First name"><br>
+            <div class="inputText formInput">
+                <label for="firstName">First name:</label>
+                <input class="form-control firstName" formControlName="firstName" type="text">
+
+            </div>
+
+
+            <div class="inputText formInput">
+                <label for="lastName">Last name:</label>
+                <input class="form-control lastName" formControlName="lastName" type="text">
 
             </div>
 
             <div class="inputText formInput">
-
-                <input class="form-control" formControlName="lastName" type="text" id="lastName"
-                    placeholder="Last name"><br>
-
-            </div>
-
-            <div class="inputText formInput">
-
-                <input class="form-control" formControlName="phone" type="text" id="phone"
-                    placeholder="Phone number"><br>
+                <label for="phone">Phone:</label>
+                <input class="form-control phone" formControlName="phone" type="text">
 
             </div>
 
             <div class="inputText formInput">
-
-                <input class="form-control" formControlName="birth" id="birth" placeholder="Birth date" type="text"
-                    onfocus="(this.type='date')"><br>
-
-            </div>
-
-            <div class="inputText formInput">
-
-                <input class="form-control" formControlName="email" type="text" id="email" placeholder="Email"><br>
+                <label for="lastName">Birth:</label>
+                <input class="form-control birth" formControlName="birth" type="date">
 
             </div>
 
             <div class="inputText formInput">
-                <input class="form-control" formControlName="password" type="password" id="password"
-                    placeholder="Password"><br>
+                <label for="email">Email:</label>
+                <input class="form-control email" formControlName="email" type="text">
 
             </div>
-            <select class="custom-select" formControlName="role" id="roleSelect">
-                <option value="" selected disabled hidden placeholder id="defaultSelected">Select role</option>
+
+            <div class="inputText formInput">
+                <label for="password">Password:</label>
+                <input class="form-control password" formControlName="password" type="password">
+
+            </div>
+
+            <label for="roleSelect">Role:</label>
+            <select class="custom-select roleSelect" formControlName="role">
+                <option value="" selected disabled hidden placeholder id="defaultSelected"></option>
                 <option value="superadmin">superadmin</option>
                 <option value="admin">admin</option>
                 <option value="student">student</option>
@@ -145,8 +154,7 @@
         </div>
     </div>
     <div class="modalButtonContainer">
-        <button  type="button" class="btn btn-success saveButton"
-            (click)="this.addUser(this.addUserForm)">
+        <button type="button" class="btn btn-success saveButton" (click)="this.addUser(this.addUserForm)">
             Save
         </button>
     </div>
