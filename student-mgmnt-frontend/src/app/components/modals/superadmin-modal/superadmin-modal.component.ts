@@ -92,10 +92,10 @@ export class SuperadminModalComponent implements OnInit {
 
 
 
-  addUser(myForm:FormGroup){
+  addUser(){
     
-    this.userService.addUser(myForm.value).subscribe(res=>{
-      myForm.reset();
+    this.userService.addUser(this.addUserForm.value).subscribe(res=>{
+      this.addUserForm.reset();
       console.log(res.status)
       this.isSuccessful = true;
       this.resStatus = res.status;
@@ -127,15 +127,27 @@ export class SuperadminModalComponent implements OnInit {
   }
 
   saveUserInfo(){
+    this.userInfoForm.controls['id'].enable();
+    this.userInfoForm.value;
+    
+    this.userService.editUserInfo(this.userInfoForm.value).subscribe(res =>{
+      console.log(res);
+
+    },err=>{
+      console.log(err);
+      this.resStatus = err.status;
+      this.isSuccessful = false;
+    });
+
     this.userInfoForm.disable();
     this.isEditingEnabled = false;
+    
 
   }
 
   cancelSaveUserInfo(){
     this.userInfoForm.disable();
     this.isEditingEnabled = false;
-
   }
 
   

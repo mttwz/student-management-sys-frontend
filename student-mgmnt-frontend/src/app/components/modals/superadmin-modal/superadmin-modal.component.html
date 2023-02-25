@@ -74,15 +74,16 @@
         </div>
     </div>
     <div class="modalButtonContainer"> 
-        <button *ngIf="this.isEditingEnabled == false" type="button" class="btn btn-warning" (click)="this.editUserInfo()">
+        <button *ngIf="this.isEditingEnabled == false" type="button" class="btn btn-warning editButton" (click)="this.editUserInfo()">
             Edit
         </button>
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success" (click)="this.saveUserInfo()">
-            Save
-        </button>
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger" (click)="this.saveUserInfo()">
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton" (click)="this.saveUserInfo()">
             Cancel
         </button>
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton" (click)="this.saveUserInfo()">
+            Save
+        </button>
+
     </div>
 </div>
 
@@ -154,9 +155,13 @@
         </div>
     </div>
     <div class="modalButtonContainer">
-        <button type="button" class="btn btn-success saveButton" (click)="this.addUser(this.addUserForm)">
+        <button type="button" class="btn btn-danger cancelButton">
+            Cancel
+        </button>
+        <button type="button" class="btn btn-success saveButton" (click)="this.addUser()">
             Save
         </button>
+
     </div>
 
 </div>
