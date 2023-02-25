@@ -1,7 +1,9 @@
 import { JsonPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
+declare var $: any;  
 
 
 @Component({
@@ -9,17 +11,19 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './superadmin-dashboard.component.html',
   styleUrls: ['./superadmin-dashboard.component.css']
 })
-export class SuperadminDashboardComponent implements OnInit {
+export class SuperadminDashboardComponent implements OnInit{
 
+  
 
 
   constructor(private userService: UserService,private authService: AuthService) { }
+
   checkedUsers: Array<Number> = [];
   isLoading: Boolean = true;
   isUsersLoading = true;
   allUsers !: Array<any>;
   isAnyChecked!: Boolean;
-
+ 
   isOrderedById:Boolean = true;
   isOrderedByRole:Boolean = false;
   isOrderedByFirstName:Boolean = false;
@@ -27,19 +31,24 @@ export class SuperadminDashboardComponent implements OnInit {
   isOrderedByEmail:Boolean = false;
 
   selectedModal!: String;
+  isAnyModalActive: Boolean = false;
 
-
+  @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent ; 
   ngOnInit(): void {
-    this.modalFix()
+    this.modalFix();
     this.getAllUser();
-    
-
   }
+
+
 
   logOut(){
     this.authService.logOut();
   }
 
+
+
+
+  
   
 
 
@@ -51,16 +60,7 @@ export class SuperadminDashboardComponent implements OnInit {
     })
   }
 
-  formatDate(fullDate: String) {
 
-    if (fullDate != null) {
-      let date = fullDate.split("T")[0];
-      let time = fullDate.split("T")[1].split(".")[0];
-      return date + " " + time;
-    }
-    return "";
-
-  }
 
   getAllCheckedBox() {
     this.checkedUsers = [];
@@ -167,6 +167,7 @@ export class SuperadminDashboardComponent implements OnInit {
 
 
   orderByEmail(){
+    
    
     if(this.isOrderedByEmail){
       this.allUsers.sort((a, b) => b.email.localeCompare(a.email));

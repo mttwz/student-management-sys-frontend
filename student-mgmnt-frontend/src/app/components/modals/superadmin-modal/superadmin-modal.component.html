@@ -1,0 +1,167 @@
+<div id="getUserInfo" *ngIf="this.modalId== 'getUserInfo'">
+
+    <div class="modal-header">
+        <h5 class="modal-title" class="mainModalLabel">Info</h5>
+        <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
+
+    </div>
+    <div class="modalContainer" *ngIf="this.isUserInfoLoading == false">
+        <form [formGroup]="userInfoForm">
+
+            <div class="inputText formInput">
+                <label>ID:</label>
+                <input class="form-control userId" formControlName="id" type="text">
+            </div>
+            <label for="roleSelect">Role:</label>
+            <select class="custom-select roleSelect" formControlName="roleName">
+                <option value="" selected disabled hidden placeholder id="defaultSelected"></option>
+                <option value="superadmin">superadmin</option>
+                <option value="admin">admin</option>
+                <option value="student">student</option>
+            </select>
+            <div class="inputText formInput">
+                <label>First name:</label>
+                <input class="form-control firstName" formControlName="firstName" type="text">
+            </div>
+            <div class="inputText formInput">
+                <label>Last name:</label>
+                <input class="form-control lastName" formControlName="lastName" type="text">
+            </div>
+            <div class="inputText formInput">
+                <label>Birth:</label>
+                <input class="form-control birth" formControlName="birth" type="date">
+            </div>
+            <div class="inputText formInput">
+                <label>Email:</label>
+                <input class="form-control email" formControlName="email" type="text">
+            </div>
+            <div class="inputText formInput">
+                <label>Phone:</label>
+                <input class="form-control phone" formControlName="phone" type="text">
+            </div>
+            <div class="inputText formInput">
+                <label>Registered at:</label>
+                <input class="form-control registeredAt" formControlName="registeredAt" type="text" >
+            </div>
+            <div class="inputText formInput">
+                <label>Activated:</label>
+                <input *ngIf="this.userInfo.isActivated == true" style="background: url(../../../../assets/green-checkmark-icon.webp) no-repeat scroll 7px 7px;  padding-left:40px; background-size: 21px;" class="form-control activated" formControlName="activatedAt" type="text">
+                <input *ngIf="this.userInfo.isActivated == false " style="background: url(../../../../assets/red-x-icon.webp) no-repeat scroll 7px 7px; padding-left:40px; background-size: 21px;" class="form-control activated" formControlName="activatedAt" type="text" >
+                
+                
+                    
+                    
+                
+                
+            </div>
+            <div class="inputText formInput">
+                <label>Deleted:</label>
+               
+                <input *ngIf="this.userInfo.isDeleted == true" style="background: url(../../../../assets/green-checkmark-icon.webp) no-repeat scroll 7px 7px;  padding-left:40px; background-size: 21px;" class="form-control isDeleted" formControlName="deletedAt" type="text">
+                <input *ngIf="this.userInfo.isDeleted == false" style="background: url(../../../../assets/red-x-icon.webp) no-repeat scroll 7px 7px;  padding-left:40px; background-size: 21px;"class="form-control isDeleted" formControlName="deletedAt" type="text" >
+               
+            </div>
+        </form>
+
+
+    </div>
+    <div class="responseTextContainer">
+        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+            <div *ngIf="this.resStatus == 422">One or more fileds are empty</div>
+            <div *ngIf="this.resStatus == 409">User already exist</div>
+            <div *ngIf="this.resStatus == 0"></div>
+        </div>
+    </div>
+    <div class="modalButtonContainer"> 
+        <button *ngIf="this.isEditingEnabled == false" type="button" class="btn btn-warning editButton" (click)="this.editUserInfo()">
+            Edit
+        </button>
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton" (click)="this.saveUserInfo()">
+            Cancel
+        </button>
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton" (click)="this.saveUserInfo()">
+            Save
+        </button>
+
+    </div>
+</div>
+
+
+
+<div id="addUser" *ngIf="this.modalId== 'addUser'">
+    <div class="modal-header">
+        <h5 class="modal-title" class="mainModalLabel">Add user</h5>
+        <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modalContainer">
+        <form [formGroup]="addUserForm">
+
+            <div class="inputText formInput">
+                <label for="firstName">First name:</label>
+                <input class="form-control firstName" formControlName="firstName" type="text">
+
+            </div>
+
+
+            <div class="inputText formInput">
+                <label for="lastName">Last name:</label>
+                <input class="form-control lastName" formControlName="lastName" type="text">
+
+            </div>
+
+            <div class="inputText formInput">
+                <label for="phone">Phone:</label>
+                <input class="form-control phone" formControlName="phone" type="text">
+
+            </div>
+
+            <div class="inputText formInput">
+                <label for="lastName">Birth:</label>
+                <input class="form-control birth" formControlName="birth" type="date">
+
+            </div>
+
+            <div class="inputText formInput">
+                <label for="email">Email:</label>
+                <input class="form-control email" formControlName="email" type="text">
+
+            </div>
+
+            <div class="inputText formInput">
+                <label for="password">Password:</label>
+                <input class="form-control password" formControlName="password" type="password">
+
+            </div>
+
+            <label for="roleSelect">Role:</label>
+            <select class="custom-select roleSelect" formControlName="role">
+                <option value="" selected disabled hidden placeholder id="defaultSelected"></option>
+                <option value="superadmin">superadmin</option>
+                <option value="admin">admin</option>
+                <option value="student">student</option>
+            </select>
+        </form>
+
+
+    </div>
+    <div class="responseTextContainer">
+        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+            <div *ngIf="this.resStatus == 422">One or more fileds are empty</div>
+            <div *ngIf="this.resStatus == 409">User already exist</div>
+            <div *ngIf="this.resStatus == 0"></div>
+        </div>
+    </div>
+    <div class="modalButtonContainer">
+        <button type="button" class="btn btn-danger cancelButton">
+            Cancel
+        </button>
+        <button type="button" class="btn btn-success saveButton" (click)="this.addUser()">
+            Save
+        </button>
+
+    </div>
+
+</div>
