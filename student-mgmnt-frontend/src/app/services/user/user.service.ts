@@ -37,4 +37,8 @@ export class UserService {
   editUserInfo(body:any){
     return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/edituserinfo",body);
   }
+
+  searchSuperadmin(body:any){
+    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/searchsuperadmin",body);
+  }
 }

@@ -6,15 +6,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <div class="nav-link" (click) = "this.searchAllUser()">Link</div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             User
           </a>
           <div class="dropdown-menu fade" aria-labelledby="navbarDropdown">
-            <div class="dropdown-item" (click)="this.selectedModal = 'addUser'; this.SuperadminModalComponent.resetStatusCode()" data-toggle="modal" data-target="#mainModal">Add User</div>
-            <div class="dropdown-item" href="#" (click)="this.selectedModal = 'first'" data-toggle="modal" data-target="#mainModal">Another action</div>
+            <div class="dropdown-item" (click)="this.selectedModal = 'addUser'; this.SuperadminModalComponent.resetStatusCode()" data-bs-toggle="modal" data-bs-target="#mainModal">Add User</div>
             <a class="dropdown-item" href="#">Something else here</a>
             <a class="dropdown-item" href="#">Action</a>
             <a class="dropdown-item" href="#">Another action</a>
@@ -47,96 +46,81 @@
         
 
     </div>
-    <div class="btn-group btn-group-toggle searchBtnDiv" data-toggle="buttons">
-        <label class="btn btn-secondary active searchBtn">
-          <input type="radio" name="options" id="option1" autocomplete="off" checked> Workgroup
-        </label>
-        <label class="btn btn-secondary searchBtn">
-          <input type="radio" name="options" id="option2" autocomplete="off"> Student
-        </label>
-        <label class="btn btn-secondary searchBtn">
-          <input type="radio" name="options" id="option3" autocomplete="off"> Admin
-        </label>
-        <label class="btn btn-secondary searchBtn">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Superadmin
-          </label>
-          <label class="btn btn-secondary searchBtn">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Card
-          </label>
-          <label class="btn btn-secondary searchBtn">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Institution
-          </label>
-         
-          
-            <form class="d-flex">
-              <input class="form-control me-1 searchBar" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-primary searchBtn" type="submit">Search</button>
-            </form>
-      </div>
+    
 
-      <!-- <div class="container">
-        <div class="row">
-            <form class="col-md-4">
-                <label>Select</label>
-                <select class="form-control select2">
-                    <label>
-                         <input type="text">
-                    </label>
-                   
-                   <option>Student</option> 
-                   <option>Admin</option> 
-                   <option>Superadmin</option> 
-                   <option>Workgroup</option> 
-                   <option>Institution</option> 
-                   <option>Card</option> 
-                </select>
-            </form>
-         </div>
-    </div> -->
-    <table class="table table-xl table-striped table-dark rounded" id="mainTable" *ngIf="this.isUsersLoading == false">
-        <thead>
-            <tr class="align-middle">
-                <th scope="col">
-                    <div class="form-check checkboxContainer">
-                        <input class="form-check-input" type="checkbox" value="" id="mainCheckbox"
-                            (click)="this.checkAllBox()">
-                    </div>
-                </th>
-                <th (click)="this.orderById()" scope="col">ID</th>
-                <th (click)="this.orderByRole()" scope="col">Role</th>
-                <th (click)="this.orderByFirstName()" scope="col">First name</th>
-                <th (click)="this.orderByLastName()" scope="col">Last name</th>
-                <th (click)="this.orderByEmail()" scope="col">Email</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <ng-container *ngFor="let user of allUsers">
+    
+    <div class="input-group">
+        <select [(ngModel)]="searchFilter" class="form-control" id="exampleFormControlSelect1">
+            <option>All user</option>
+            <option>Student</option>
+            <option>Admin</option>
+            <option>Superadmin</option>
+            <option>Workgroup</option>
+            <option>Institution</option>
+            <option>Attendance</option>
+            <option>Card</option>
+        </select>
+        <input [(ngModel)]="searchText" (keyup)="searchAllUser()" type="text" class="form-control searchBar" placeholder="Search.."
+            aria-label="Text input with dropdown button">
+        <!-- <div class="input-group-append">
+            <button class="btn btn-secondary searchBtn" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-search">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div> -->
+
+    </div>
+
+    <table class="table table-xl table-striped table-dark" id="mainTable">
+
+            <thead >
                 <tr class="align-middle">
-                    <td>
+                    <th scope="col">
                         <div class="form-check checkboxContainer">
-                            <input class="form-check-input subCheckbox" type="checkbox" value=""
-                                (click)="isAnyCheckedBox()">
+                            <input class="form-check-input" type="checkbox" value="" id="mainCheckbox"
+                                (click)="this.checkAllBox()">
                         </div>
-                    </td>
-                    <td>{{user.id}}</td>
-                    <td>{{user.roleName}}</td>
-                    <td>{{user.firstName}}</td>
-                    <td>{{user.lastName}}</td>
-
-                    <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
-                    <td>
-                        <div id="listMenu" type="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" data-toggle="modal" data-target="#mainModal" (click)="this.selectedModal = 'getUserInfo'; this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
-                            <img class="listMenuImage" src="../../../../assets/info-button-svgrepo-com.svg" alt=""
-                                srcset="">
-
-                        </div>
-                    </td>
+                    </th>
+                    <th (click)="this.orderById()" scope="col">ID</th>
+                    <th (click)="this.orderByRole()" scope="col">Role</th>
+                    <th (click)="this.orderByFirstName()" scope="col">First name</th>
+                    <th (click)="this.orderByLastName()" scope="col">Last name</th>
+                    <th (click)="this.orderByEmail()" scope="col">Email</th>
+                    <th style="min-width: 48px;"></th>
                 </tr>
-            </ng-container>
+            </thead>
+            <tbody  *ngIf="this.isUsersLoading == false">
+                <ng-container *ngFor="let user of allUsers;">
+                    <tr class="align-middle">
+                        <td>
+                            <div class="form-check checkboxContainer">
+                                <input class="form-check-input subCheckbox" type="checkbox" value=""
+                                    (click)="isAnyCheckedBox()">
+                            </div>
+                        </td>
+                        <td>{{user.id}}</td>
+                        <td>{{user.roleName}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+    
+                        <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                        <td>
+                            <div id="listMenu" type="button" 
+                                data-bs-toggle="modal" data-bs-target="#mainModal" (click)="this.selectedModal = 'getUserInfo'; this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
+                                <img class="listMenuImage" src="../../../../assets/info-button-svgrepo-com.svg" alt=""
+                                    srcset="">
+    
+                            </div>
+                        </td>
+                    </tr>
+                </ng-container>
+    
+            </tbody>
 
-        </tbody>
     </table>
     
 </div>
@@ -179,6 +163,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 
 

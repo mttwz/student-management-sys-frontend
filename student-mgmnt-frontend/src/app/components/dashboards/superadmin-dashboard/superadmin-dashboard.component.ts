@@ -1,9 +1,10 @@
 import { JsonPipe } from '@angular/common';
-import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
-declare var $: any;  
+declare var $: any;
+
 
 
 @Component({
@@ -11,45 +12,52 @@ declare var $: any;
   templateUrl: './superadmin-dashboard.component.html',
   styleUrls: ['./superadmin-dashboard.component.css']
 })
-export class SuperadminDashboardComponent implements OnInit{
+export class SuperadminDashboardComponent implements OnInit {
+
+
+
+
+  constructor(private userService: UserService, private authService: AuthService,private changeDetection: ChangeDetectorRef) { 
 
   
-
-
-  constructor(private userService: UserService,private authService: AuthService) { }
+  }
 
   checkedUsers: Array<Number> = [];
   isLoading: Boolean = true;
   isUsersLoading = true;
   allUsers !: Array<any>;
   isAnyChecked!: Boolean;
- 
-  isOrderedById:Boolean = true;
-  isOrderedByRole:Boolean = false;
-  isOrderedByFirstName:Boolean = false;
-  isOrderedByLastName:Boolean = false;
-  isOrderedByEmail:Boolean = false;
+
+  isOrderedById: Boolean = true;
+  isOrderedByRole: Boolean = false;
+  isOrderedByFirstName: Boolean = false;
+  isOrderedByLastName: Boolean = false;
+  isOrderedByEmail: Boolean = false;
+  searchText:String = "";
+  searchFilter:String = "All user";
 
   selectedModal!: String;
   isAnyModalActive: Boolean = false;
 
-  @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent ; 
+  @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   ngOnInit(): void {
+    $(document).on('hidden.bs.modal','#mainModal',  () => {
+      
+      this.searchAllUser();
+      
+    })
     this.modalFix();
     this.getAllUser();
   }
 
 
 
-  logOut(){
+
+
+  logOut() {
     this.authService.logOut();
   }
 
-
-
-
-  
-  
 
 
   getAllUser() {
@@ -94,95 +102,112 @@ export class SuperadminDashboardComponent implements OnInit{
       let currentCheckbox = checkboxList[i] as HTMLInputElement;
       if (mainCheckbox.checked == true) {
         currentCheckbox.checked = true;
-      }else currentCheckbox.checked = false;
-      
+      } else currentCheckbox.checked = false;
+
     }
     this.isAnyCheckedBox();
   }
 
 
-  modalFix(){
+  modalFix() {
     let anoyingBackground = document.getElementsByClassName("modal-backdrop show")[0];
     let anoyingBackground1 = document.getElementsByClassName("modal-backdrop show")[1];
     let anoyingBackground2 = document.getElementsByClassName("modal-open")[0];
     console.log(anoyingBackground2)
-    if(anoyingBackground!= undefined){
+    if (anoyingBackground != undefined) {
       anoyingBackground.classList.remove("modal-backdrop");
       anoyingBackground.classList.remove("show");
-    }if(anoyingBackground1 != undefined){
+    } if (anoyingBackground1 != undefined) {
       anoyingBackground1.classList.remove("modal-backdrop");
       anoyingBackground1.classList.remove("show");
-    }if(anoyingBackground2 != undefined){
+    } if (anoyingBackground2 != undefined) {
       anoyingBackground2.classList.remove("modal-open");
     }
   }
 
 
-  orderById(){
-    if(this.isOrderedById== true){
+  orderById() {
+    if (this.isOrderedById == true) {
       this.allUsers.reverse();
       this.isOrderedById = false;
     }
-    else{
+    else {
       this.allUsers.sort((a, b) => a.id - b.id);
       this.isOrderedById = true;
-    } 
+    }
   }
-  orderByRole(){
-   
-    if(this.isOrderedByRole){
+  orderByRole() {
+
+    if (this.isOrderedByRole) {
       this.allUsers.sort((a, b) => b.roleName.localeCompare(a.roleName));
       this.isOrderedByRole = false;
-    }else {
+    } else {
       this.allUsers.sort((a, b) => a.roleName.localeCompare(b.roleName));
       this.isOrderedByRole = true;
     }
-    
+
   }
 
-  orderByFirstName(){
-   
-    if(this.isOrderedByFirstName){
+  orderByFirstName() {
+
+    if (this.isOrderedByFirstName) {
       this.allUsers.sort((a, b) => b.firstName.localeCompare(a.firstName));
       this.isOrderedByFirstName = false;
-    }else {
+    } else {
       this.allUsers.sort((a, b) => a.firstName.localeCompare(b.firstName));
       this.isOrderedByFirstName = true;
     }
-    
+
   }
 
 
-  orderByLastName(){
-   
-    if(this.isOrderedByLastName){
+  orderByLastName() {
+
+    if (this.isOrderedByLastName) {
       this.allUsers.sort((a, b) => b.lastName.localeCompare(a.lastName));
       this.isOrderedByLastName = false;
-    }else {
+    } else {
       this.allUsers.sort((a, b) => a.lastName.localeCompare(b.lastName));
       this.isOrderedByLastName = true;
     }
-    
+
   }
 
 
-  orderByEmail(){
-    
-   
-    if(this.isOrderedByEmail){
+  orderByEmail() {
+
+
+    if (this.isOrderedByEmail) {
       this.allUsers.sort((a, b) => b.email.localeCompare(a.email));
       this.isOrderedByEmail = false;
-    }else {
+    } else {
       this.allUsers.sort((a, b) => a.email.localeCompare(b.email));
       this.isOrderedByEmail = true;
     }
-    
+
+  }
+
+  searchAllUser() {
+    let body = {
+      "searchText": this.searchText,
+      "searchFilter": this.searchFilter
+    }
+    console.log(this.searchText);
+    this.userService.searchSuperadmin(body).subscribe(res => {
+      this.allUsers = res;
+      this.changeDetection.detectChanges();
+      console.log(res)
+    },err =>{
+      console.log(err);
+    })
+
+    console.log(this.allUsers)
+
   }
 
 
 
 
-  
 
 
 

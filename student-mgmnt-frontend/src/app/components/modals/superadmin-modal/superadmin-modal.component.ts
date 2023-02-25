@@ -132,6 +132,7 @@ export class SuperadminModalComponent implements OnInit {
     
     this.userService.editUserInfo(this.userInfoForm.value).subscribe(res =>{
       console.log(res);
+      
 
     },err=>{
       console.log(err);
@@ -149,6 +150,8 @@ export class SuperadminModalComponent implements OnInit {
     this.userInfoForm.disable();
     this.isEditingEnabled = false;
   }
+
+  
 
   
 

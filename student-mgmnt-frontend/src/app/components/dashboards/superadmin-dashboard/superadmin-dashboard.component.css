@@ -50,11 +50,11 @@ thead{
 th {
     font-size: 16px;
     font-weight: bold;
-    width: 1000px;
+    width: 23%;
     cursor: pointer;
     -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 
 
 }
@@ -76,15 +76,20 @@ th:nth-child(1),th:nth-child(2) {
 
 }
 
-th:nth-child(1),td:nth-child(2) {
+td:nth-child(1),td:nth-child(2) {
     width: 10px;
 
 }
 
-td {
+td, th{
     height: 60px;
    
 }
+
+
+
+
+
 
 tr td {
     font-size: 14px;
@@ -136,7 +141,7 @@ tr td {
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
-    background-color: #475059;
+    background-color: #212529;
 
     height: 80vh;
     overflow: scroll;
@@ -148,6 +153,9 @@ tr td {
 #mainTable::-webkit-scrollbar {
     display: none;
 }
+
+
+
 
 
 
@@ -224,6 +232,40 @@ tr td {
     /* Firefox */
 }
 
+.table{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.searchBar{
+    color: #2c3034;
+   
+}
+
+.form-control:focus {
+  box-shadow: none;
+  
+
+}
+
+.form-control{
+    /* border: none; */
+    border-radius: 0px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-color: #212529;
+    color: aliceblue;
+}
+
+.input-group > .form-control, .input-group > .form-select, .input-group > .form-floating {
+    position: relative;
+    flex: 1 1 auto;
+    width: 30%;
+    min-width: 0;
+}
+
+
+
 
 
 
@@ -232,10 +274,6 @@ tr td {
       overflow: scroll;
     }
 
-    .searchBtnDiv{
-        /* display: flex;
-        flex-direction: column;
-        width: 100px; */
-        overflow: scroll;
-    }
+
+
   }

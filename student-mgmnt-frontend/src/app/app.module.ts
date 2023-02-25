@@ -24,6 +24,7 @@ import { StudentModalComponent } from './components/modals/student-modal/student
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
