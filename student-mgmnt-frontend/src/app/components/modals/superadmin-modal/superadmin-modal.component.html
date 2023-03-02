@@ -1,4 +1,4 @@
-<div id="getUserInfo" *ngIf="this.modalId== 'getUserInfo'">
+<div id="getUserInfo" *ngIf="this.modalId == 'getUserInfo'">
 
     <div class="modal-header">
         <h5 class="modal-title" class="mainModalLabel">Info</h5>
@@ -39,6 +39,17 @@
                 <label>Phone:</label>
                 <input class="form-control phone" formControlName="phone" type="text">
             </div>
+
+            <div *ngIf="this.userInfo.roleName == 'student'" class="inputText formInput">
+                <label>Institution:</label>
+                <input  class="form-control institution" formControlName="institution" type="text" >
+            </div>
+            <div *ngIf="this.userInfo.roleName == 'student'" class="inputText formInput">
+                <label>Workgroup:</label>
+                <input class="form-control workgroup" formControlName="workgroup" type="text" >
+            </div>
+
+
             <div class="inputText formInput">
                 <label>Registered at:</label>
                 <input class="form-control registeredAt" formControlName="registeredAt" type="text" >
@@ -47,11 +58,6 @@
                 <label>Activated:</label>
                 <input *ngIf="this.userInfo.isActivated == true" style="background: url(../../../../assets/green-checkmark-icon.webp) no-repeat scroll 7px 7px;  padding-left:40px; background-size: 21px;" class="form-control activated" formControlName="activatedAt" type="text">
                 <input *ngIf="this.userInfo.isActivated == false " style="background: url(../../../../assets/red-x-icon.webp) no-repeat scroll 7px 7px; padding-left:40px; background-size: 21px;" class="form-control activated" formControlName="activatedAt" type="text" >
-                
-                
-                    
-                    
-                
                 
             </div>
             <div class="inputText formInput">

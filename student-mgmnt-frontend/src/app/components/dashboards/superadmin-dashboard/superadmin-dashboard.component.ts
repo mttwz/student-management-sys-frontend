@@ -34,7 +34,7 @@ export class SuperadminDashboardComponent implements OnInit {
   isOrderedByLastName: Boolean = false;
   isOrderedByEmail: Boolean = false;
   searchText:String = "";
-  searchFilter:String = "All user";
+  searchFilter:String = "All users";
 
   selectedModal!: String;
   isAnyModalActive: Boolean = false;
@@ -43,7 +43,7 @@ export class SuperadminDashboardComponent implements OnInit {
   ngOnInit(): void {
     $(document).on('hidden.bs.modal','#mainModal',  () => {
       
-      this.searchAllUser();
+      this.searchAllUsers();
       
     })
     this.modalFix();
@@ -187,7 +187,7 @@ export class SuperadminDashboardComponent implements OnInit {
 
   }
 
-  searchAllUser() {
+  searchAllUsers() {
     let body = {
       "searchText": this.searchText,
       "searchFilter": this.searchFilter

@@ -52,6 +52,8 @@ export class SuperadminModalComponent implements OnInit {
       isDeleted: ['',Validators.required],
       deletedAt: ['',Validators.required],
       jwt: ['',Validators.required],
+      institution: ['',Validators.required],
+      workgroup: ['',Validators.required]
     })
   }
 
@@ -90,6 +92,28 @@ export class SuperadminModalComponent implements OnInit {
     
   }
 
+  getWorkgroup(id:Number){
+    let body = {
+      "id": id
+    }
+
+    if(this.userInfo.roleName == 'student'){
+        this.userService.getUserFromWorkgroup(body).subscribe(res =>{
+      this.userInfo = res;
+      this.isUserInfoLoading = false;
+      this.userInfoForm.controls['workgroup'].setValue(this.userInfo.workgroup);
+      this.userInfoForm.controls['institution'].setValue(this.userInfo.institution);
+      this.selectedUserRole = this.userInfo.roleName;
+      this.userInfoForm.disable();
+      this.isEditingEnabled = false;
+    }, err=>{
+      console.log(err);
+    })
+    }
+
+  
+  }
+
 
 
   addUser(){
@@ -124,6 +148,8 @@ export class SuperadminModalComponent implements OnInit {
     this.userInfoForm.controls['phone'].enable();
     this.userInfoForm.controls['email'].enable();
     this.userInfoForm.controls['roleName'].enable();
+    this.userInfoForm.controls['workgroup'].enable();
+    this.userInfoForm.controls['institution'].enable();
   }
 
   saveUserInfo(){
