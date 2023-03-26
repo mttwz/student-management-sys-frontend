@@ -17,6 +17,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { SuperadminModalComponent } from './components/modals/superadmin-modal/superadmin-modal.component';
 import { AdminModalComponent } from './components/modals/admin-modal/admin-modal.component';
 import { StudentModalComponent } from './components/modals/student-modal/student-modal.component';
+import { RegisterModalComponent } from './components/modals/register-modal/register-modal.component';
 
 
 
@@ -38,6 +39,7 @@ import { StudentModalComponent } from './components/modals/student-modal/student
     SuperadminModalComponent,
     AdminModalComponent,
     StudentModalComponent,
+    RegisterModalComponent,
 
   ],
   imports: [

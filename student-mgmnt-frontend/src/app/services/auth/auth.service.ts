@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,26 +20,13 @@ export class AuthService {
 
   register(registerForm:FormGroup) {
     let body = registerForm.value;
-    console.log(body)
-
-    this.http.post<any>("http://127.0.0.1:8080/api/v1/student/register-student", body)
-      .subscribe(res => {
-        
-        this.router.navigate(["login"]);
-        
-      }, err => {
-        
-        console.log(err);
-      })
-
-      
-
+    return this.http.post<any>("http://127.0.0.1:8080/api/v1/student/register-student", body)
   }
 
 
   login(loginForm:FormGroup){
     let body = loginForm.value;
-    return this.http.post<any>("http://127.0.0.1:8080/api/v1/auth/login", body)
+    return this.http.post<any>(environment.apiEndpoint + "/auth/login", body)
   }
 
   logOut() {
@@ -48,10 +36,9 @@ export class AuthService {
 
   validateJwt(){
     let localStorageObj = JSON.parse(localStorage.getItem("credentials") || "{ }");
-    
-    const resp = this.http.post<any>("http://127.0.0.1:8080/api/v1/auth/validate-jwt", localStorageObj);
-    return resp;
+    return this.http.post<any>(environment.apiEndpoint + "/auth/validate-jwt", localStorageObj);
   }
+  
   parseJwt() {
     let localStorageObj = JSON.parse(localStorage.getItem("credentials") || "{ }");
     let token = localStorageObj.jwt;
@@ -60,8 +47,6 @@ export class AuthService {
     var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
-
-
     return JSON.parse(jsonPayload);
   }
 

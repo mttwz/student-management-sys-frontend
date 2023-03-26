@@ -40,15 +40,6 @@
                 <input class="form-control phone" formControlName="phone" type="text">
             </div>
 
-            <div *ngIf="this.userInfo.roleName == 'student'" class="inputText formInput">
-                <label>Institution:</label>
-                <input  class="form-control institution" formControlName="institution" type="text" >
-            </div>
-            <div *ngIf="this.userInfo.roleName == 'student'" class="inputText formInput">
-                <label>Workgroup:</label>
-                <input class="form-control workgroup" formControlName="workgroup" type="text" >
-            </div>
-
 
             <div class="inputText formInput">
                 <label>Registered at:</label>
@@ -74,16 +65,15 @@
     <div class="responseTextContainer">
         <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
         <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-            <div *ngIf="this.resStatus == 422">One or more fileds are empty</div>
-            <div *ngIf="this.resStatus == 409">User already exist</div>
-            <div *ngIf="this.resStatus == 0"></div>
+           
         </div>
     </div>
     <div class="modalButtonContainer"> 
+        {{this.isEditingEnabled}}
         <button *ngIf="this.isEditingEnabled == false" type="button" class="btn btn-warning editButton" (click)="this.editUserInfo()">
             Edit
         </button>
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton" (click)="this.saveUserInfo()">
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton" (click)="this.isEditingEnabled = false">
             Cancel
         </button>
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton" (click)="this.saveUserInfo()">
@@ -155,13 +145,11 @@
     <div class="responseTextContainer">
         <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
         <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-            <div *ngIf="this.resStatus == 422">One or more fileds are empty</div>
-            <div *ngIf="this.resStatus == 409">User already exist</div>
-            <div *ngIf="this.resStatus == 0"></div>
+           
         </div>
     </div>
     <div class="modalButtonContainer">
-        <button type="button" class="btn btn-danger cancelButton">
+        <button type="button" class="btn btn-danger cancelButton" data-bs-dismiss="modal" (click)="this.cancelAddUser()">
             Cancel
         </button>
         <button type="button" class="btn btn-success saveButton" (click)="this.addUser()">

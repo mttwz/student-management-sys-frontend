@@ -24,7 +24,7 @@ export class TokeninterceptorService implements HttpInterceptor {
       let localStorageObj = JSON.parse(localStorage.getItem("credentials") || "{ }");
       const userToken = localStorageObj.jwt;
       const modifiedReq = req.clone({
-        headers: req.headers.set('Authorization ', userToken),
+        headers: req.headers.set('Authorization', userToken),
       });
       return next.handle(modifiedReq);
     }

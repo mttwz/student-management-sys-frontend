@@ -1,9 +1,12 @@
-import { group } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 import { Router } from '@angular/router';
+import { ErrorCodes } from 'src/app/enum/error-codes';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { RegisterModalComponent } from '../modals/register-modal/register-modal.component';
+declare var $: any;
+declare var bootstrap: any;
 
 
 @Component({
@@ -13,13 +16,21 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
+
+  @ViewChild(RegisterModalComponent) RegisterModalComponent!: RegisterModalComponent;
+  selectedModal!: String;
+
   isLoading: boolean = true;
   public registerForm !: FormGroup;
+  errorCode!: any;
+
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService) { }
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit() {
 
-
+    $(document).on('hidden.bs.modal','#mainModal',  () => {
+      this.router.navigate(["login"]);
+    })
 
     this.registerForm = this.formBuilder.group({
       lastName: ['', Validators.required],
@@ -37,8 +48,23 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    this.registerForm.value.birth = this.registerForm.value.birth+"T00:00:00Z";
-    this.authService.register(this.registerForm)
+    if(this.registerForm.value.birth.length > 0 && !this.registerForm.value.birth.includes("T00:00:00Z")){
+      this.registerForm.value.birth = this.registerForm.value.birth+"T00:00:00Z";
+    };
+    
+    this.authService.register(this.registerForm).subscribe(res =>{
+     
+      this.selectedModal= "successfullPopUp";
+      var myModal = new bootstrap.Modal(document.getElementById('mainModal'), "show");
+      
+      myModal.show();
+    },err=>{
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
+      
+
+      
+    })
 
   }
 

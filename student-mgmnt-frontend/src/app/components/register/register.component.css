@@ -35,3 +35,12 @@
     background-color: white;
     color: rgb(26, 25, 25);
 }
+
+.invalidRegisterText{
+    height: 30px;
+    color: red;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+   
+}

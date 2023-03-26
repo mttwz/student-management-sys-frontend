@@ -23,7 +23,7 @@
 
                             <div class="inputText formInput">
 
-                                <input class="form-control" formControlName="phone" type="number" id="phone"
+                                <input class="form-control" formControlName="phone" type="text" id="phone"
                                     placeholder="Phone number"><br>
 
                             </div>
@@ -52,15 +52,14 @@
                                 <label class="form-check-label" for="form2Example3">
                                   I agree all statements in <a href="#!" class="text-white">Terms of service</a>
                                 </label>
-                              </div>
+                            </div>
+
+                            <div class="invalidRegisterText">{{this.errorCode}}</div>
 
                             <div class="d-flex align-items-center justify-content-center pb-4">
                                 <button class="btn  btn-block registerBtn" type="submit"
-                                    (click)="this.register()">Register</button>
+                                    (click)="this.register();">Register</button>
                             </div>
-
-                            
-
 
                             <div class="d-flex align-items-center justify-content-center pb-4">
                                 <button type="button" class="btn loginButton" routerLink="/login">Login</button>
@@ -73,3 +72,14 @@
     </div>
 
 </section>
+
+
+<div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="mainModalBox">
+            <div class="modal-body">
+                <app-register-modal #registerModal [modalId]="this.selectedModal" ></app-register-modal>
+            </div>
+        </div>
+    </div>
+</div>

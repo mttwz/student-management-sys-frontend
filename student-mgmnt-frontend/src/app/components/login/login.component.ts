@@ -49,9 +49,6 @@ export class LoginComponent implements OnInit {
     }, err => {
       let str: keyof typeof ErrorCodes = err.error.apiError;
       this.errorCode = ErrorCodes[str];
-      
-      
-
     });
   }
 

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,29 +22,38 @@ export class UserService {
 
   }
 
+  getDateFromDateTime(fullDate: String) {
 
-  getAllUser() {
-    return this.http.get<any>("http://127.0.0.1:8080/api/v1/user/get-all-user");
+    if (fullDate != null) {
+      let date = fullDate.split("T")[0];
+      
+      return date;
+    }
+    return "";
+
   }
 
-  getUserInfo(body:any){
-    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/get-user-info",body);
+
+  getAllUser() {
+    return this.http.get<any>(environment.apiEndpoint + "/user/get-all-user");
+  }
+
+  getUserInfo(userId:number){
+    return this.http.get<any>(environment.apiEndpoint + "/user/get-user-info/"+userId);
   }
 
   addUser(body:any){
-    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/register-user",body);
+    return this.http.post<any>(environment.apiEndpoint + "/user/register-user",body);
   }
 
-  editUserInfo(body:any){
-    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/edit-user-info",body);
+  editUserInfo(id:number,body:any){
+    return this.http.post<any>(environment.apiEndpoint + "/user/edit-user-info/"+id,body);
   }
 
-  searchSuperadmin(body:any){
-    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/search-super-admin",body);
+  searchSuperadmin(groupName:string ,category: string, q: string,pageNumber:number,pageSize:number,sort:string,order:string){
+    return this.http.post<any>(environment.apiEndpoint + "/user/search-super-admin?category="+category+"&q="+q+"&page="+pageNumber+"&size="+pageSize+"&sort="+sort+","+order,groupName);
   }
 
-  getUserFromWorkgroup(body:any){
-    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/get-user-from-workgroup",body);
-  }
+
  
 }

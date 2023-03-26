@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,6 @@ export class AdminService {
 
 
   getAllAdmin() {
-    return this.http.get<any>("http://127.0.0.1:8080/api/v1/user/getalluser");
+    return this.http.get<any>(environment.apiEndpoint + "/user/getalluser");
   }
 }

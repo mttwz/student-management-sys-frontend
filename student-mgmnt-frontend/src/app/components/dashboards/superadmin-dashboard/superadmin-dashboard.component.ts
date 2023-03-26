@@ -33,21 +33,36 @@ export class SuperadminDashboardComponent implements OnInit {
   isOrderedByFirstName: Boolean = false;
   isOrderedByLastName: Boolean = false;
   isOrderedByEmail: Boolean = false;
-  searchText:String = "";
-  searchFilter:String = "All users";
+
+  groupName:string = "";
+
+  searchText:string = "";
+  searchFilter:string = "users";
+  pageSize:number = 100;
+  pageNumber:number = 0;
+  
+  sort:string = "id";
+  order:string = "asc";
 
   selectedModal!: String;
   isAnyModalActive: Boolean = false;
 
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
+  
   ngOnInit(): void {
+    this.searchAllUsers();
+
     $(document).on('hidden.bs.modal','#mainModal',  () => {
       
       this.searchAllUsers();
+     
+      this.SuperadminModalComponent.isEditingEnabled = false;
+      
+
       
     })
     this.modalFix();
-    this.getAllUser();
+
   }
 
 
@@ -60,13 +75,6 @@ export class SuperadminDashboardComponent implements OnInit {
 
 
 
-  getAllUser() {
-    this.userService.getAllUser().subscribe(res => {
-      this.allUsers = res;
-      console.log(res)
-      this.isUsersLoading = false;
-    })
-  }
 
 
 
@@ -125,83 +133,77 @@ export class SuperadminDashboardComponent implements OnInit {
     }
   }
 
-
-  orderById() {
-    if (this.isOrderedById == true) {
-      this.allUsers.reverse();
-      this.isOrderedById = false;
+  sortById(){
+    if(this.sort == 'id' && this.order == 'asc'){
+      this.sort='id';
+      this.order = 'desc'
+    }else if(this.sort == 'id' && this.order == 'desc'){
+      this.sort='id';
+      this.order = 'asc'
     }
-    else {
-      this.allUsers.sort((a, b) => a.id - b.id);
-      this.isOrderedById = true;
-    }
-  }
-  orderByRole() {
-
-    if (this.isOrderedByRole) {
-      this.allUsers.sort((a, b) => b.roleName.localeCompare(a.roleName));
-      this.isOrderedByRole = false;
-    } else {
-      this.allUsers.sort((a, b) => a.roleName.localeCompare(b.roleName));
-      this.isOrderedByRole = true;
-    }
-
+    this.sort='id';
+    this.searchAllUsers();
   }
 
-  orderByFirstName() {
-
-    if (this.isOrderedByFirstName) {
-      this.allUsers.sort((a, b) => b.firstName.localeCompare(a.firstName));
-      this.isOrderedByFirstName = false;
-    } else {
-      this.allUsers.sort((a, b) => a.firstName.localeCompare(b.firstName));
-      this.isOrderedByFirstName = true;
+  sortByRole(){
+    if(this.sort == 'roleId.roleType' && this.order == 'asc'){
+      this.sort='roleId.roleType';
+      this.order = 'desc'
+    }else if(this.sort == 'roleId.roleType' && this.order == 'desc'){
+      this.sort='roleId.roleType';
+      this.order = 'asc'
     }
-
+    this.sort='roleId.roleType';
+    this.searchAllUsers();
   }
 
-
-  orderByLastName() {
-
-    if (this.isOrderedByLastName) {
-      this.allUsers.sort((a, b) => b.lastName.localeCompare(a.lastName));
-      this.isOrderedByLastName = false;
-    } else {
-      this.allUsers.sort((a, b) => a.lastName.localeCompare(b.lastName));
-      this.isOrderedByLastName = true;
+  sortByFirstName(){
+    if(this.sort == 'firstName' && this.order == 'asc'){
+      this.sort='firstName';
+      this.order = 'desc'
+    }else if(this.sort == 'firstName' && this.order == 'desc'){
+      this.sort='firstName';
+      this.order = 'asc'
     }
-
+    this.sort='firstName';
+    this.searchAllUsers();
   }
 
-
-  orderByEmail() {
-
-
-    if (this.isOrderedByEmail) {
-      this.allUsers.sort((a, b) => b.email.localeCompare(a.email));
-      this.isOrderedByEmail = false;
-    } else {
-      this.allUsers.sort((a, b) => a.email.localeCompare(b.email));
-      this.isOrderedByEmail = true;
+  sortByLastName(){
+    if(this.sort == 'lastName' && this.order == 'asc'){
+      this.sort='lastName';
+      this.order = 'desc'
+    }else if(this.sort == 'lastName' && this.order == 'desc'){
+      this.sort='lastName';
+      this.order = 'asc'
     }
+    this.sort='lastName';
+    this.searchAllUsers();
+  }
 
+  sortByEmail(){
+    if(this.sort == 'email' && this.order == 'asc'){
+      this.sort='email';
+      this.order = 'desc'
+    }else if(this.sort == 'email' && this.order == 'desc'){
+      this.sort='email';
+      this.order = 'asc'
+    }
+    this.sort='email';
+    this.searchAllUsers();
   }
 
   searchAllUsers() {
-    let body = {
-      "searchText": this.searchText,
-      "searchFilter": this.searchFilter
-    }
-    console.log(this.searchText);
-    this.userService.searchSuperadmin(body).subscribe(res => {
-      this.allUsers = res;
-      this.changeDetection.detectChanges();
-      console.log(res)
-    },err =>{
-      console.log(err);
-    })
 
-    console.log(this.allUsers)
+    this.userService.searchSuperadmin(this.groupName,this.searchFilter,this.searchText,this.pageNumber,this.pageSize,this.sort,this.order).subscribe(res =>{
+      this.allUsers = res.userInfoDtoList;
+      this.isUsersLoading = false;
+      this.changeDetection.detectChanges();
+      
+      console.log(this.allUsers);
+    },err=>{
+      console.log(err)
+    })
 
   }
 
