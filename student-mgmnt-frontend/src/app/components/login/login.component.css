@@ -30,6 +30,14 @@
 .formInput{
     padding: 3px;
 }
+.invalidLoginText{
+    height: 30px;
+    color: red;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+   
+}
 
 
 .registerBtn{
@@ -45,6 +53,5 @@
 }
 
 .passwordText{
-    font-variant: small-caps;
     color: rgb(188, 182, 182);
 }

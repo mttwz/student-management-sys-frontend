@@ -7,7 +7,7 @@ import { last, Observable } from 'rxjs';
 })
 export class TokeninterceptorService implements HttpInterceptor {
 
-  tokenIgnore: String[] = ["login", "registerstudent", "validatejwt"]
+  tokenIgnore: String[] = ["login", "register-student", "validate-jwt"]
   
 
   constructor() { }
@@ -24,7 +24,7 @@ export class TokeninterceptorService implements HttpInterceptor {
       let localStorageObj = JSON.parse(localStorage.getItem("credentials") || "{ }");
       const userToken = localStorageObj.jwt;
       const modifiedReq = req.clone({
-        headers: req.headers.set('Authorization', userToken),
+        headers: req.headers.set('Authorization ', userToken),
       });
       return next.handle(modifiedReq);
     }

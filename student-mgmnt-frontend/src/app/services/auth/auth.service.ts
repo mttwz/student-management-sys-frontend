@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +21,11 @@ export class AuthService {
     let body = registerForm.value;
     console.log(body)
 
-    this.http.post<any>("http://127.0.0.1:8080/api/v1/student/registerstudent", body)
+    this.http.post<any>("http://127.0.0.1:8080/api/v1/student/register-student", body)
       .subscribe(res => {
         
         this.router.navigate(["login"]);
-        return
+        
       }, err => {
         
         console.log(err);
@@ -35,18 +36,9 @@ export class AuthService {
   }
 
 
-  login(loginForm:FormGroup) {
+  login(loginForm:FormGroup){
     let body = loginForm.value;
-    console.log(body)
-
-    this.http.post<any>("http://127.0.0.1:8080/api/v1/auth/login", body)
-      .subscribe(res => {
-        this.saveToken(res)
-        this.router.navigate(["dashboard"]);
-      }, err => {
-        console.log(err);
-       
-      })
+    return this.http.post<any>("http://127.0.0.1:8080/api/v1/auth/login", body)
   }
 
   logOut() {
@@ -57,7 +49,7 @@ export class AuthService {
   validateJwt(){
     let localStorageObj = JSON.parse(localStorage.getItem("credentials") || "{ }");
     
-    const resp = this.http.post<any>("http://127.0.0.1:8080/api/v1/auth/validatejwt", localStorageObj);
+    const resp = this.http.post<any>("http://127.0.0.1:8080/api/v1/auth/validate-jwt", localStorageObj);
     return resp;
   }
   parseJwt() {

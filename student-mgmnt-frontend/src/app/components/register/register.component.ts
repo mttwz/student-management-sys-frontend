@@ -37,7 +37,9 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
+    this.registerForm.value.birth = this.registerForm.value.birth+"T00:00:00Z";
     this.authService.register(this.registerForm)
+
   }
 
 

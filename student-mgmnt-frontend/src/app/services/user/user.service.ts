@@ -23,27 +23,27 @@ export class UserService {
 
 
   getAllUser() {
-    return this.http.get<any>("http://127.0.0.1:8080/api/v1/user/getalluser");
+    return this.http.get<any>("http://127.0.0.1:8080/api/v1/user/get-all-user");
   }
 
   getUserInfo(body:any){
-    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/getuserinfo",body);
+    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/get-user-info",body);
   }
 
   addUser(body:any){
-    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/registeruser",body);
+    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/register-user",body);
   }
 
   editUserInfo(body:any){
-    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/edituserinfo",body);
+    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/edit-user-info",body);
   }
 
   searchSuperadmin(body:any){
-    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/searchsuperadmin",body);
+    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/search-super-admin",body);
   }
 
   getUserFromWorkgroup(body:any){
-    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/getuserfromworkgroup",body);
+    return this.http.post<any>("http://127.0.0.1:8080/api/v1/user/get-user-from-workgroup",body);
   }
  
 }

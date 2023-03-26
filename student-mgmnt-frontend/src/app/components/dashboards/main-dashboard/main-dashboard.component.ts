@@ -16,7 +16,7 @@ export class MainDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.authService.validateJwt().subscribe(res => {
-      if(res.valid == true){
+      if(res == true){
         this.isLoading = false;
         this.currentUserRole = this.authService.parseJwt().role;
       }else this.router.navigate(["login"]);
