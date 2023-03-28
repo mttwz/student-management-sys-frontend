@@ -48,43 +48,13 @@
         <input [(ngModel)]="this.tableService.searchText" (keyup)="this.tableService.searchAllUsers()" type="text" class="form-control searchBar"
             placeholder="Type to search...">
     </div>
-    
-    <table class="table table-xl table-striped table-dark" id="mainTable">
-        
-            <thead>
-                <tr class="align-middle">
-                    <th scope="col" (click)="this.tableService.sortById()">ID</th>
-                    <th scope="col" (click)="this.tableService.sortByRole()">Role</th>
-                    <th scope="col" (click)="this.tableService.sortByFirstName()">First name</th>
-                    <th scope="col" (click)="this.tableService.sortByLastName()">Last name</th>
-                    <th scope="col" (click)="this.tableService.sortByEmail()">Email</th>
-                    <th style="min-width: 48px;"></th>
-                </tr>
-            </thead>
-
-            <tbody *ngIf="this.tableService.isUsersLoading == false">
-                <ng-container *ngFor="let user of this.tableService.allUsers;">
-                    <tr class="align-middle">
-                        <td>{{user.id}}</td>
-                        <td>{{user.roleName}}</td>
-                        <td>{{user.firstName}}</td>
-                        <td>{{user.lastName}}</td>
-    
-                        <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
-                        <td>
-                            <div id="listMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                                (click)="this.selectedModal = 'getUserInfo'; this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
-                                <img class="listMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
-                                    srcset="">
-    
-                            </div>
-                        </td>
-                    </tr>
-                </ng-container>
-            </tbody>
 
 
-    </table>
+    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'users'">
+        <app-user-table></app-user-table>
+    </div>
+    
+    
     <div class="pageSelector" >
         
         <div class="pageBox" *ngFor="let item of this.tableService.createRange();" (click)="this.tableService.pageClick(item-1)">
@@ -103,34 +73,3 @@
 
 
 
-
-
-
-<div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content" id="mainModalBox">
-            <div class="modal-body">
-                <app-superadmin-modal #superadminModal [modalId]="this.selectedModal"></app-superadmin-modal>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal" id="secondaryModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true"
-    data-bs-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="infoModalLabel">Modal Title</h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>The Second Modal</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>

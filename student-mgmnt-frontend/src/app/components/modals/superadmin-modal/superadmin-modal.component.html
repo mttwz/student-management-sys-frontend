@@ -73,7 +73,7 @@
         <button *ngIf="this.isEditingEnabled == false" type="button" class="btn btn-warning editButton" (click)="this.editUserInfo()">
             Edit
         </button>
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton" (click)="this.isEditingEnabled = false">
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton" (click)="cancelEdit()">
             Cancel
         </button>
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton" (click)="this.saveUserInfo()">

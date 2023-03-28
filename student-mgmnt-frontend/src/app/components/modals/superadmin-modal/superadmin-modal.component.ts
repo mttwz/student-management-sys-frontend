@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TableService } from 'src/app/services/table/table.service';
 import { UserService } from 'src/app/services/user/user.service';
-
+declare var $: any;
 
 
 @Component({
@@ -26,6 +27,14 @@ export class SuperadminModalComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private userService: UserService,private changeDetection: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    $(document).on('hidden.bs.modal','#mainModal',  () => {
+      
+      this.isEditingEnabled =false;
+      
+
+      
+      
+    })
     
 
 
@@ -145,8 +154,7 @@ export class SuperadminModalComponent implements OnInit {
 
     this.userInfoForm.disable();
     this.isEditingEnabled = false;
-
-
+    this.changeDetection.detectChanges();
   }
 
   cancelSaveUserInfo() {
@@ -156,6 +164,11 @@ export class SuperadminModalComponent implements OnInit {
 
   cancelAddUser() {
     this.addUserForm.reset();
+  }
+
+  cancelEdit() {
+    this.isEditingEnabled = false;
+    this.userInfoForm.disable();
   }
 
 

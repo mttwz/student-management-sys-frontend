@@ -33,10 +33,20 @@ export class SuperadminDashboardComponent implements OnInit {
   
   ngOnInit(): void {
     this.tableService.searchAllUsers();
-
+    this.tableService.changeDetectionEmitter.subscribe(
+      () => {
+        this.changeDetection.detectChanges();
+      },
+      (err) => {
+       console.log(err);
+      }
+    );
     $(document).on('hidden.bs.modal','#mainModal',  () => {
+      
       this.tableService.searchAllUsers();
-      this.SuperadminModalComponent.isEditingEnabled = false;
+      
+      console.log(this.tableService.allUsers);
+      
       
     })
     this.modalFix();
