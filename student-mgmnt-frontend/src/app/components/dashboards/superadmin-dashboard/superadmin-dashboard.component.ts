@@ -38,8 +38,9 @@ export class SuperadminDashboardComponent implements OnInit {
 
   searchText:string = "";
   searchFilter:string = "users";
-  pageSize:number = 100;
+  pageSize:number = 3;
   pageNumber:number = 0;
+  allPages!:number;
   
   sort:string = "id";
   order:string = "asc";
@@ -198,12 +199,25 @@ export class SuperadminDashboardComponent implements OnInit {
     this.userService.searchSuperadmin(this.groupName,this.searchFilter,this.searchText,this.pageNumber,this.pageSize,this.sort,this.order).subscribe(res =>{
       this.allUsers = res.userInfoDtoList;
       this.isUsersLoading = false;
+      this.allPages = res.allPages;
       this.changeDetection.detectChanges();
       
       console.log(this.allUsers);
     },err=>{
       console.log(err)
     })
+
+  }
+
+  createRange(){
+    return new Array(this.allPages).fill(0)
+      .map((n, index) => index + 1);
+  }
+
+  pageClick(num: number){
+    this.pageNumber = num;
+    this.searchAllUsers();
+
 
   }
 

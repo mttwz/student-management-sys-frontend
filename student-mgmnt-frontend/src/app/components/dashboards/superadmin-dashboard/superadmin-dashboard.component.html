@@ -80,52 +80,62 @@
     </div>
 
     <table class="table table-xl table-striped table-dark" id="mainTable">
-
-        <thead>
-            <tr class="align-middle">
-                <th scope="col">
-                    <div class="form-check checkboxContainer">
-                        <input class="form-check-input" type="checkbox" value="" id="mainCheckbox"
-                            (click)="this.checkAllBox()">
-                    </div>
-                </th>
-                <th scope="col" (click)="this.sortById()">ID</th>
-                <th scope="col" (click)="this.sortByRole()">Role</th>
-                <th scope="col" (click)="this.sortByFirstName()">First name</th>
-                <th scope="col" (click)="this.sortByLastName()">Last name</th>
-                <th scope="col" (click)="this.sortByEmail()">Email</th>
-                <th style="min-width: 48px;"></th>
-            </tr>
-        </thead>
-        <tbody *ngIf="this.isUsersLoading == false">
-            <ng-container *ngFor="let user of allUsers;">
+        
+            <thead>
                 <tr class="align-middle">
-                    <td>
+                    <th scope="col">
                         <div class="form-check checkboxContainer">
-                            <input class="form-check-input subCheckbox" type="checkbox" value=""
-                                (click)="isAnyCheckedBox()">
+                            <input class="form-check-input" type="checkbox" value="" id="mainCheckbox"
+                                (click)="this.checkAllBox()">
                         </div>
-                    </td>
-                    <td>{{user.id}}</td>
-                    <td>{{user.roleName}}</td>
-                    <td>{{user.firstName}}</td>
-                    <td>{{user.lastName}}</td>
-
-                    <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
-                    <td>
-                        <div id="listMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                            (click)="this.selectedModal = 'getUserInfo'; this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
-                            <img class="listMenuImage" src="../../../../assets/info-button-svgrepo-com.svg" alt=""
-                                srcset="">
-
-                        </div>
-                    </td>
+                    </th>
+                    <th scope="col" (click)="this.sortById()">ID</th>
+                    <th scope="col" (click)="this.sortByRole()">Role</th>
+                    <th scope="col" (click)="this.sortByFirstName()">First name</th>
+                    <th scope="col" (click)="this.sortByLastName()">Last name</th>
+                    <th scope="col" (click)="this.sortByEmail()">Email</th>
+                    <th style="min-width: 48px;"></th>
                 </tr>
-            </ng-container>
-
-        </tbody>
+            </thead>
+            <tbody *ngIf="this.isUsersLoading == false">
+                <ng-container *ngFor="let user of allUsers;">
+                    <tr class="align-middle">
+                        <td>
+                            <div class="form-check checkboxContainer">
+                                <input class="form-check-input subCheckbox" type="checkbox" value=""
+                                    (click)="isAnyCheckedBox()">
+                            </div>
+                        </td>
+                        <td>{{user.id}}</td>
+                        <td>{{user.roleName}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+    
+                        <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                        <td>
+                            <div id="listMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                                (click)="this.selectedModal = 'getUserInfo'; this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
+                                <img class="listMenuImage" src="../../../../assets/info-button-svgrepo-com.svg" alt=""
+                                    srcset="">
+    
+                            </div>
+                        </td>
+                    </tr>
+                </ng-container>
+    
+            </tbody>
+        
+        
 
     </table>
+    <div class="pageSelector" >
+        
+        <div class="pageBox" *ngFor="let item of createRange();" (click)="pageClick(item-1)">
+            {{item}}
+        </div>
+
+
+    </div>
 
 </div>
 
