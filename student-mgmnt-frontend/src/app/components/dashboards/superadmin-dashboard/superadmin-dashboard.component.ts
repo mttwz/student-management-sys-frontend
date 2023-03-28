@@ -1,6 +1,7 @@
 import { JsonPipe } from '@angular/common';
 import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { TableService } from 'src/app/services/table/table.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
 declare var $: any;
@@ -17,7 +18,7 @@ export class SuperadminDashboardComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService, private authService: AuthService,private changeDetection: ChangeDetectorRef) { 
+  constructor(private userService: UserService, private authService: AuthService,private changeDetection: ChangeDetectorRef, private tableService: TableService) { 
 
   
   }
@@ -38,7 +39,7 @@ export class SuperadminDashboardComponent implements OnInit {
 
   searchText:string = "";
   searchFilter:string = "users";
-  pageSize:number = 3;
+  pageSize:number = 100;
   pageNumber:number = 0;
   allPages!:number;
   
@@ -195,7 +196,7 @@ export class SuperadminDashboardComponent implements OnInit {
   }
 
   searchAllUsers() {
-
+    
     this.userService.searchSuperadmin(this.groupName,this.searchFilter,this.searchText,this.pageNumber,this.pageSize,this.sort,this.order).subscribe(res =>{
       this.allUsers = res.userInfoDtoList;
       this.isUsersLoading = false;
@@ -206,7 +207,6 @@ export class SuperadminDashboardComponent implements OnInit {
     },err=>{
       console.log(err)
     })
-
   }
 
   createRange(){

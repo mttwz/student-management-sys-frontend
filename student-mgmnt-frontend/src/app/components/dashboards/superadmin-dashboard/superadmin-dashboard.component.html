@@ -34,10 +34,6 @@
 
 
 <div id="main">
-
-
-
-
     <div id="bulkButtonContainer">
         <div id="bulkButtonHolder" *ngIf="this.isAnyChecked == true">
             <button type="button" class="btn btn-dark" (click)="this.getAllCheckedBox()">asd</button>
@@ -46,17 +42,13 @@
             <button type="button" class="btn btn-dark">asd</button>
             <button type="button" class="btn btn-dark">asd</button>
         </div>
-
-
-
-
     </div>
 
 
 
     <div class="input-group">
         <select [(ngModel)]="searchFilter" (click)="searchAllUsers()" class="form-control"
-            id="exampleFormControlSelect1">
+            id="filterSelect">
             <option selected value="users">All users</option>
             <option value="student">Student</option>
             <option value="admin">Admin</option>
@@ -97,6 +89,7 @@
                     <th style="min-width: 48px;"></th>
                 </tr>
             </thead>
+
             <tbody *ngIf="this.isUsersLoading == false">
                 <ng-container *ngFor="let user of allUsers;">
                     <tr class="align-middle">
@@ -115,17 +108,15 @@
                         <td>
                             <div id="listMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
                                 (click)="this.selectedModal = 'getUserInfo'; this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
-                                <img class="listMenuImage" src="../../../../assets/info-button-svgrepo-com.svg" alt=""
+                                <img class="listMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
                                     srcset="">
     
                             </div>
                         </td>
                     </tr>
                 </ng-container>
-    
             </tbody>
-        
-        
+
 
     </table>
     <div class="pageSelector" >
