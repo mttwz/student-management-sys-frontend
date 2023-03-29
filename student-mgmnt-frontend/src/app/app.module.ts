@@ -19,6 +19,10 @@ import { AdminModalComponent } from './components/modals/admin-modal/admin-modal
 import { StudentModalComponent } from './components/modals/student-modal/student-modal.component';
 import { RegisterModalComponent } from './components/modals/register-modal/register-modal.component';
 import { UserTableComponent } from './components/tables/user-table/user-table.component';
+import { WorkgroupTableComponent } from './components/tables/workgroup-table/workgroup-table.component';
+import { StudentTableComponent } from './components/tables/student-table/student-table.component';
+import { AdminTableComponent } from './components/tables/admin-table/admin-table.component';
+import { SuperadminTableComponent } from './components/tables/superadmin-table/superadmin-table.component';
 
 
 
@@ -42,6 +46,10 @@ import { UserTableComponent } from './components/tables/user-table/user-table.co
     StudentModalComponent,
     RegisterModalComponent,
     UserTableComponent,
+    WorkgroupTableComponent,
+    StudentTableComponent,
+    AdminTableComponent,
+    SuperadminTableComponent,
 
   ],
   imports: [
@@ -51,8 +59,6 @@ import { UserTableComponent } from './components/tables/user-table/user-table.co
     HttpClientModule,
     FormsModule,
     NgbModule,
-
-    
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokeninterceptorService, multi: true },],
   bootstrap: [AppComponent],

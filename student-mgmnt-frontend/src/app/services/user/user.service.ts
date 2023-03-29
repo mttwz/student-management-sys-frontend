@@ -39,7 +39,7 @@ export class UserService {
   }
 
   getUserInfo(userId:number){
-    return this.http.get<any>(environment.apiEndpoint + "/user/get-user-info/"+userId);
+    return this.http.get<any>(environment.apiEndpoint + "http://localhost:8080/api/v1/user/get-user-info/"+userId);
   }
 
   addUser(body:any){
@@ -54,6 +54,8 @@ export class UserService {
     return this.http.post<any>(environment.apiEndpoint + "/user/search-super-admin?category="+category+"&q="+q+"&page="+pageNumber+"&size="+pageSize+"&sort="+sort+","+order,groupName);
   }
 
-
+  getAllWorkgroup(pageNumber:number,pageSize:number,sort:string,order:string){
+    return this.http.get<any>(environment.apiEndpoint + "/workgroup/get-all-workgroups?"+"&page="+pageNumber+"&size="+pageSize+"&sort="+sort+","+order);
+  }
  
 }

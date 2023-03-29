@@ -54,6 +54,30 @@
         <app-user-table></app-user-table>
     </div>
     
+    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'student'">
+        <app-student-table></app-student-table>
+    </div>
+
+    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'admin'">
+        <app-admin-table></app-admin-table>
+    </div>
+
+    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'super-admin'">
+        <app-superadmin-table></app-superadmin-table>
+    </div>
+
+
+    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'workgroup'">
+        <app-workgroup-table></app-workgroup-table>
+    </div>
+
+    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'institution'">
+        
+    </div>
+
+
+
+
     
     <div class="pageSelector" >
         

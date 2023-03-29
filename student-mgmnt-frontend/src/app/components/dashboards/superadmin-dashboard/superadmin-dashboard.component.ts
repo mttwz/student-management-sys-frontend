@@ -18,7 +18,7 @@ export class SuperadminDashboardComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService, public authService: AuthService,private changeDetection: ChangeDetectorRef, public tableService: TableService) { 
+  constructor(private userService: UserService, public authService: AuthService, private changeDetection: ChangeDetectorRef, public tableService: TableService) { 
 
   
   }

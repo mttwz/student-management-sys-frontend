@@ -19,6 +19,7 @@ export class TableService {
   order:string = "asc";
 
   allUsers !: Array<any>;
+  allWorkgroup !: Array<any>;
   
   constructor(private userService: UserService) { }
 
@@ -36,6 +37,39 @@ export class TableService {
       console.log(err)
     })
   }
+
+  searchAllWorkgroups() {
+    //http://localhost:8080/api/v1/workgroup/get-all-workgroups?page=0 &size=2 &sort=id,asc
+
+    
+    this.userService.getAllWorkgroup(this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+      this.allWorkgroup = res.workgroupDtoList;
+      this.isUsersLoading = false;
+      this.changeDetectionEmitter.emit();
+
+      console.log("rws 2: " + res.workgroupDtoList);
+    }, err => {
+      console.log(err)
+    })
+
+
+
+  }
+
+  // searchAllStudents(){
+  //   this.userService.searchSuperadmin(this.groupName,"student",this.searchText,this.pageNumber,this.pageSize,this.sort,this.order).subscribe(res =>{
+  //     this.allStudent = res.userInfoDtoList;
+  //     this.isUsersLoading = false;
+  //     this.allPages = res.allPages;
+
+  //     this.changeDetectionEmitter.emit();
+  //   },err=>{
+  //     console.log(err)
+  //   })
+  // }
+
+
+
 
   sortById(){
     if(this.sort == 'id' && this.order == 'asc'){
