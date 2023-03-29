@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 import { Router } from '@angular/router';
 import { ErrorCodes } from 'src/app/enum/error-codes';
@@ -23,13 +23,18 @@ export class RegisterComponent implements OnInit {
   isLoading: boolean = true;
   public registerForm !: FormGroup;
   errorCode!: any;
+  
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService,private zone: NgZone) { }
 
   ngOnInit() {
 
     $(document).on('hidden.bs.modal','#mainModal',  () => {
-      this.router.navigate(["login"]);
+      this.zone.run(() => {
+        this.router.navigate(["login"]);
+    });
+     
+
     })
 
     this.registerForm = this.formBuilder.group({
@@ -53,11 +58,11 @@ export class RegisterComponent implements OnInit {
     };
     
     this.authService.register(this.registerForm).subscribe(res =>{
-     
+      
       this.selectedModal= "successfullPopUp";
       var myModal = new bootstrap.Modal(document.getElementById('mainModal'), "show");
-      
       myModal.show();
+     
     },err=>{
       let str: keyof typeof ErrorCodes = err.error.apiError;
       this.errorCode = ErrorCodes[str];
@@ -65,6 +70,7 @@ export class RegisterComponent implements OnInit {
 
       
     })
+    
 
   }
 
@@ -75,7 +81,3 @@ export class RegisterComponent implements OnInit {
 
 
 }
-
-
-
-
