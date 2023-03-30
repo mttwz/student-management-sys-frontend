@@ -12,15 +12,11 @@
                     Add user</div>
 
             </li>
+         
             <li>
-                <div class="nav-link">
-                    Create card
-                </div>
-            </li>
-            <li>
-                <div class="nav-link">
-                    Create workgroup
-                </div>
+                <div class="nav-link" data-bs-toggle="modal" data-bs-target="#mainModal"
+                    (click)="this.selectedModal = 'createWorkgroup'; this.superadminModal.createWorkgroup() ; this.SuperadminModalComponent.resetStatusCode()">
+                    Create workgroup</div>
             </li>
             <li>
                 <div class="nav-link">

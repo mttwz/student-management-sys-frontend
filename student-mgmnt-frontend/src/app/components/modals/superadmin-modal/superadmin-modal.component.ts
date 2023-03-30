@@ -15,6 +15,7 @@ export class SuperadminModalComponent implements OnInit {
   @Input() modalId!: String;
   public addUserForm !: FormGroup;
   public userInfoForm !: FormGroup;
+  public createWorkgroupForm !: FormGroup;
   public isSuccessful: any;
   public resStatus!: Number;
   userInfo!: any
@@ -45,6 +46,7 @@ export class SuperadminModalComponent implements OnInit {
       password: ['', Validators.required],
       // role: ['', Validators.required]
     })
+
     this.userInfoForm = this.formBuilder.group({
       id: ['', Validators.required],
       roleName: ['', Validators.required],
@@ -63,6 +65,14 @@ export class SuperadminModalComponent implements OnInit {
       institution: ['', Validators.required],
       workgroup: ['', Validators.required]
     })
+
+    this.createWorkgroupForm = this.formBuilder.group({
+      groupName: ['', Validators.required],
+      institution: ['', Validators.required],
+      isDeleted: [1, Validators.required] //<- backenden lekell kezelni, hogy automatikusan false legyen. 
+      //Illetve a created_at-nek currdatet beallitani.
+    })
+
   }
 
 
@@ -115,6 +125,18 @@ export class SuperadminModalComponent implements OnInit {
       this.isSuccessful = false;
     });
   }
+
+  createWorkgroup(){
+    this.userService.createWorkgroup(this.createWorkgroupForm.value).subscribe(res => {
+      this.createWorkgroupForm.reset();
+      this.isSuccessful = true;
+      this.resStatus = res.status;
+    }, err => {
+      this.resStatus = err.status;
+      this.isSuccessful = false;
+    });
+  }
+
 
   resetStatusCode() {
     this.resStatus = 0;
@@ -170,8 +192,12 @@ export class SuperadminModalComponent implements OnInit {
     this.userInfoForm.disable();
   }
 
+  cancelCreateWorkgroup(){
+    this.createWorkgroupForm.reset();
+  }
 
 
+  
 
 
 
