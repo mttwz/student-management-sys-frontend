@@ -63,5 +63,9 @@ export class UserService {
   createWorkgroup(body:any){
     return this.http.post<any>(environment.apiEndpoint + "/workgroup/create-workgroup", body);
   }
+
+  createWorkgroupSchedule(body:any){
+    return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/create-workgroup-schedule", body);
+  }
  
 }

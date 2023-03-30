@@ -176,6 +176,7 @@
 
 
 
+<!-- Workgroup -->
 
 <div id="createWorkgroup" *ngIf="this.modalId== 'createWorkgroup'">
     <div class="modal-header">
@@ -217,3 +218,75 @@
         </div>
 
     </div>
+
+</div>
+
+<div id="createWorkgroupSchedule" *ngIf="this.modalId== 'createWorkgroupSchedule'">
+    <div class="modal-header">
+        <h5 class="modal-title" class="mainModalLabel">Create workgroup schedule</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modalContainer">
+        <form [formGroup]="createWorkgroupScheduleForm">
+
+            <div class="inputText formInput">
+                <label for="name">Name:</label>
+                <input class="form-control name" formControlName="name" type="text">
+
+            </div>
+
+            <div class="inputText formInput">
+                <label for="start">Start:</label>
+                <input type="datetime-local" class="form-control start" formControlName="start"  min="2021-06-07T00:00" max="2050-06-14T00:00" required>
+            </div>
+
+            <div class="inputText formInput">
+                <label for="end">End:</label>
+                <input type="datetime-local" class="form-control end" formControlName="end" min="2021-06-07T00:00" max="2050-06-14T00:00" required>
+            </div>
+
+            <div class="inputText formInput">
+                <label for="isOnsite">Onsite:</label>
+                <select class="custom-select isOnsite" formControlName="isOnsite">
+                    <option value="" selected disabled hidden placeholder id="defaultSelected"></option>
+                    <option value="1">true</option>
+                    <option value="0">false</option>
+                </select>
+
+            </div>
+
+            <div class="inputText formInput">
+                <label for="workgroupId">Workgroup:</label>
+                <select class="custom-select workgroupId" formControlName="workgroupId">
+                    <option value="" selected disabled hidden placeholder id="defaultSelected"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+
+            </div>
+
+        </form>
+
+
+    </div>
+
+
+    <div class="responseTextContainer">
+        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+
+        </div>
+    </div>
+    <div class="modalButtonContainer">
+        <button type="button" class="btn btn-danger cancelButton" data-bs-dismiss="modal"
+            (click)="this.cancelCreateWorkgroupSchedule()">
+            Cancel
+        </button>
+        <button type="button" class="btn btn-success saveButton" (click)="this.createWorkgroupSchedule()">
+            Save
+        </button>
+
+    </div>
+
+</div>

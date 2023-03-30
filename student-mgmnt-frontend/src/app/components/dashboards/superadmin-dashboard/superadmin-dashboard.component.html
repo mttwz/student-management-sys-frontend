@@ -18,11 +18,13 @@
                     (click)="this.selectedModal = 'createWorkgroup'; this.superadminModal.createWorkgroup() ; this.SuperadminModalComponent.resetStatusCode()">
                     Create workgroup</div>
             </li>
+
             <li>
-                <div class="nav-link">
-                    Create workgroup schedule
-                </div>
+                <div class="nav-link" data-bs-toggle="modal" data-bs-target="#mainModal"
+                    (click)="this.selectedModal = 'createWorkgroupSchedule'; this.superadminModal.createWorkgroupSchedule() ; this.SuperadminModalComponent.resetStatusCode()">
+                    Create workgroup schedule</div>
             </li>
+          
          
             <!-- <li>
                 <div class="btnContainer" (click)="this.authService.logOut()">

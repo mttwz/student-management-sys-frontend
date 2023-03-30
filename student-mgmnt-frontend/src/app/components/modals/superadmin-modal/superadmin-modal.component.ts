@@ -15,7 +15,10 @@ export class SuperadminModalComponent implements OnInit {
   @Input() modalId!: String;
   public addUserForm !: FormGroup;
   public userInfoForm !: FormGroup;
+
   public createWorkgroupForm !: FormGroup;
+  public createWorkgroupScheduleForm !: FormGroup;
+
   public isSuccessful: any;
   public resStatus!: Number;
   userInfo!: any
@@ -73,6 +76,14 @@ export class SuperadminModalComponent implements OnInit {
       //Illetve a created_at-nek currdatet beallitani.
     })
 
+    this.createWorkgroupScheduleForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      start: ['', Validators.required],
+      end: ['', Validators.required],
+      isOnsite: [1, Validators.required],
+      workgroupId: ['', Validators.required]
+    })
+
   }
 
 
@@ -126,6 +137,8 @@ export class SuperadminModalComponent implements OnInit {
     });
   }
 
+
+ //Workgroup 
   createWorkgroup(){
     this.userService.createWorkgroup(this.createWorkgroupForm.value).subscribe(res => {
       this.createWorkgroupForm.reset();
@@ -135,6 +148,24 @@ export class SuperadminModalComponent implements OnInit {
       this.resStatus = err.status;
       this.isSuccessful = false;
     });
+  }
+
+  createWorkgroupSchedule(){
+    if(!this.createWorkgroupScheduleForm.value.end.includes(":00Z") && !this.createWorkgroupScheduleForm.value.start.includes(":00Z")){
+      this.createWorkgroupScheduleForm.value.start = this.createWorkgroupScheduleForm.value.start+":00Z";
+      this.createWorkgroupScheduleForm.value.end = this.createWorkgroupScheduleForm.value.end+":00Z";
+    };
+
+    this.userService.createWorkgroupSchedule(this.createWorkgroupScheduleForm.value).subscribe(res => {
+      this.createWorkgroupScheduleForm.reset();
+      this.createWorkgroupForm.reset();
+      this.isSuccessful = true;
+      this.resStatus = res.status;
+    }, err => {
+      this.resStatus = err.status;
+      this.isSuccessful = false;
+    });
+
   }
 
 
@@ -192,7 +223,13 @@ export class SuperadminModalComponent implements OnInit {
     this.userInfoForm.disable();
   }
 
+
+  //Workgroup
   cancelCreateWorkgroup(){
+    this.createWorkgroupForm.reset();
+  }
+
+  cancelCreateWorkgroupSchedule(){
     this.createWorkgroupForm.reset();
   }
 
