@@ -31,21 +31,19 @@ export class SuperadminModalComponent implements OnInit {
       
       this.isEditingEnabled =false;
       
-
-      
-      
     })
     
 
 
     this.addUserForm = this.formBuilder.group({
+      roleName: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       phone: ['', Validators.required],
       birth: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      role: ['', Validators.required]
+      // role: ['', Validators.required]
     })
     this.userInfoForm = this.formBuilder.group({
       id: ['', Validators.required],
@@ -102,14 +100,15 @@ export class SuperadminModalComponent implements OnInit {
 
 
   addUser() {
+    if(this.addUserForm.value.birth.length > 0 && !this.addUserForm.value.birth.includes("T00:00:00Z")){
+      this.addUserForm.value.birth = this.addUserForm.value.birth+"T00:00:00Z";
+    };
 
     this.userService.addUser(this.addUserForm.value).subscribe(res => {
       this.addUserForm.reset();
       console.log(res.status)
       this.isSuccessful = true;
       this.resStatus = res.status;
-
-
 
     }, err => {
       this.resStatus = err.status;

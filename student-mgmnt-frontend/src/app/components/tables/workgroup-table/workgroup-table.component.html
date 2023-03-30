@@ -5,8 +5,7 @@
             <th scope="col" (click)="this.tableService.sortById()">ID</th>
             <th scope="col" (click)="this.tableService.sortByRole()">Workgroup name</th>
             <th scope="col" (click)="this.tableService.sortByFirstName()">institution</th>
-          
-            <th style="min-width: 48px;"></th>
+            <th></th>
         </tr>
     </thead>
 
@@ -16,16 +15,16 @@
                 <td>{{workgroup.id}}</td>
                 <td>{{workgroup.groupName}}</td>
                 <td>{{workgroup.institution}}</td>
-                
+                <td>Users from workgroup</td>
 
-                <td>
-                    <!-- <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                <!-- <td>
+                    <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
                         (click)="this.superadminDashboard.selectedModal = 'getUserInfo'; this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
                         <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
                             srcset="">
 
-                    </div> -->
-                </td>
+                    </div>
+                </td> -->
             </tr>
         </ng-container>
     </tbody>
@@ -33,7 +32,7 @@
 
 </table>
 
-<div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
             <div class="modal-body">
@@ -41,4 +40,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

@@ -18,7 +18,11 @@ export class SuperadminDashboardComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService, public authService: AuthService, private changeDetection: ChangeDetectorRef, public tableService: TableService) { 
+  constructor(
+    public userService: UserService, 
+    public authService: AuthService, 
+    private changeDetection: ChangeDetectorRef, 
+    public tableService: TableService) { 
 
   
   }
@@ -33,6 +37,8 @@ export class SuperadminDashboardComponent implements OnInit {
   
   ngOnInit(): void {
     this.tableService.searchAllUsers();
+    // this.userService.addUser();
+    
     this.tableService.changeDetectionEmitter.subscribe(
       () => {
         this.changeDetection.detectChanges();

@@ -7,26 +7,40 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <div class="nav-link" (click)="this.tableService.searchAllUsers()">Link</div>
+                <div class="nav-link" data-bs-toggle="modal" data-bs-target="#mainModal"
+                    (click)="this.selectedModal = 'addUser'; this.superadminModal.addUser() ; this.SuperadminModalComponent.resetStatusCode()">
+                    Add user</div>
+
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    User
-                </a>
-                <div class="dropdown-menu fade" aria-labelledby="navbarDropdown">
-                    <div class="dropdown-item"
-                        (click)="this.selectedModal = 'addUser'; this.SuperadminModalComponent.resetStatusCode()"
-                        data-bs-toggle="modal" data-bs-target="#mainModal">Add User</div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+            <li>
+                <div class="nav-link">
+                    Create card
                 </div>
             </li>
+            <li>
+                <div class="nav-link">
+                    Create workgroup
+                </div>
+            </li>
+            <li>
+                <div class="nav-link">
+                    Create workgroup schedule
+                </div>
+            </li>
+         
+            <!-- <li>
+                <div class="btnContainer" (click)="this.authService.logOut()">
+                    Log out
+                </div>
+            </li> -->
         </ul>
-        <button type="button" class="btn btn-danger " (click)="this.authService.logOut()">Log out</button>
+  <div class="btnContainer">
+        <button type="button" class="btn btn-danger float-right" (click)="this.authService.logOut()">Log out</button>
     </div>
+        
+    </div>
+  
+
 </nav>
 
 
@@ -36,24 +50,24 @@
 <div id="main">
 
     <div class="input-group">
-        <select [(ngModel)]="this.tableService.searchFilter" (click)="this.tableService.searchAllUsers()" class="form-control"
-            id="filterSelect">
+        <select [(ngModel)]="this.tableService.searchFilter" (click)="this.tableService.searchAllUsers()"
+            class="form-control" id="filterSelect">
             <option selected value="users">All users</option>
             <option value="student">Student</option>
             <option value="admin">Admin</option>
             <option value="super-admin">Superadmin</option>
             <option value="workgroup">Workgroup</option>
-            <option>Institution</option>
+            <!-- <option>Institution</option> -->
         </select>
-        <input [(ngModel)]="this.tableService.searchText" (keyup)="this.tableService.searchAllUsers()" type="text" class="form-control searchBar"
-            placeholder="Type to search...">
+        <input [(ngModel)]="this.tableService.searchText" (keyup)="this.tableService.searchAllUsers()" type="text"
+            class="form-control searchBar" placeholder="Type to search...">
     </div>
 
 
     <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'users'">
         <app-user-table></app-user-table>
     </div>
-    
+
     <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'student'">
         <app-student-table></app-student-table>
     </div>
@@ -71,17 +85,15 @@
         <app-workgroup-table></app-workgroup-table>
     </div>
 
-    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'institution'">
-        
-    </div>
 
 
 
 
-    
-    <div class="pageSelector" >
-        
-        <div class="pageBox" *ngFor="let item of this.tableService.createRange();" (click)="this.tableService.pageClick(item-1)">
+
+    <div class="pageSelector">
+
+        <div class="pageBox" *ngFor="let item of this.tableService.createRange();"
+            (click)="this.tableService.pageClick(item-1)">
             {{item}}
         </div>
 
@@ -91,9 +103,12 @@
 </div>
 
 
-
-
-
-
-
-
+<div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="mainModalBox">
+            <div class="modal-body">
+                <app-superadmin-modal #superadminModal [modalId]="this.selectedModal"></app-superadmin-modal>
+            </div>
+        </div>
+    </div>
+</div>
