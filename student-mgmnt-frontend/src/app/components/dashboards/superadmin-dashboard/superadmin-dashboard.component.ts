@@ -36,7 +36,8 @@ export class SuperadminDashboardComponent implements OnInit {
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   
   ngOnInit(): void {
-    this.tableService.searchAllUsers();
+
+
     // this.userService.addUser();
     
     this.tableService.changeDetectionEmitter.subscribe(
@@ -47,12 +48,10 @@ export class SuperadminDashboardComponent implements OnInit {
        console.log(err);
       }
     );
+    
     $(document).on('hidden.bs.modal','#mainModal',  () => {
-      
       this.tableService.searchAllUsers();
-      
-      console.log(this.tableService.allUsers);
-      
+      this.changeDetection.detectChanges();  
       
     })
     this.modalFix();
@@ -73,6 +72,12 @@ export class SuperadminDashboardComponent implements OnInit {
     } if (anoyingBackground2 != undefined) {
       anoyingBackground2.classList.remove("modal-open");
     }
+  }
+
+
+  changeModal(modalName:string){
+    this.selectedModal = modalName;
+    this.changeDetection.detectChanges();
   }
 
 

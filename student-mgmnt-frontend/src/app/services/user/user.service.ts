@@ -54,6 +54,8 @@ export class UserService {
     return this.http.post<any>(environment.apiEndpoint + "/user/search-super-admin?category="+category+"&q="+q+"&page="+pageNumber+"&size="+pageSize+"&sort="+sort+","+order,groupName);
   }
 
+  
+
   //WorkgroupService
 
   getAllWorkgroup(pageNumber:number,pageSize:number,sort:string,order:string){

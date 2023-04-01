@@ -2,9 +2,9 @@
         
     <thead>
         <tr class="align-middle">
-            <th scope="col" (click)="this.tableService.sortById()">ID</th>
-            <th scope="col" (click)="this.tableService.sortByRole()">Workgroup name</th>
-            <th scope="col" (click)="this.tableService.sortByFirstName()">institution</th>
+            <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
+            <th scope="col">Workgroup name</th>
+            <th scope="col">institution</th>
             <th></th>
         </tr>
     </thead>
@@ -15,7 +15,7 @@
                 <td>{{workgroup.id}}</td>
                 <td>{{workgroup.groupName}}</td>
                 <td>{{workgroup.institution}}</td>
-                <td>Users from workgroup</td>
+                <td (click)="this.tableService.searchAllWorkgroupMemebers(workgroup.groupName)">Users from workgroup</td> <!-- ((click)="this.userServise.getAllUserFromWorkgroup()" megkell csinalni backenden -->
 
                 <!-- <td>
                     <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"

@@ -13,7 +13,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokeninterceptorService } from './services/interceptor/tokeninterceptor.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from './components/modal/modal.component';
 import { SuperadminModalComponent } from './components/modals/superadmin-modal/superadmin-modal.component';
 import { AdminModalComponent } from './components/modals/admin-modal/admin-modal.component';
 import { StudentModalComponent } from './components/modals/student-modal/student-modal.component';
@@ -23,9 +22,7 @@ import { WorkgroupTableComponent } from './components/tables/workgroup-table/wor
 import { StudentTableComponent } from './components/tables/student-table/student-table.component';
 import { AdminTableComponent } from './components/tables/admin-table/admin-table.component';
 import { SuperadminTableComponent } from './components/tables/superadmin-table/superadmin-table.component';
-
-
-
+import { WorkgroupMembersTableComponent } from './components/tables/workgroup-members-table/workgroup-members-table.component';
 
 
 
@@ -40,7 +37,6 @@ import { SuperadminTableComponent } from './components/tables/superadmin-table/s
     AdminDashboardComponent,
     StudentDashboardComponent,
     MainDashboardComponent,
-    ModalComponent,
     SuperadminModalComponent,
     AdminModalComponent,
     StudentModalComponent,
@@ -50,6 +46,7 @@ import { SuperadminTableComponent } from './components/tables/superadmin-table/s
     StudentTableComponent,
     AdminTableComponent,
     SuperadminTableComponent,
+    WorkgroupMembersTableComponent,
 
   ],
   imports: [
