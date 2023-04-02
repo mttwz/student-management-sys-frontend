@@ -247,11 +247,7 @@
                 <input type="datetime-local" class="form-control end" formControlName="end" min="2021-06-07T00:00" max="2050-06-14T00:00" required>
             </div>
 
-            <div class="inputText formInput">
-                <label for="isOnsite">Onsite:</label>
-                <input type="checkbox" id="isOnsiteCheckBox" formControlName="isOnsite">
-                       
-            </div>
+           
 
             <div class="inputText formInput" >
                 <label for="workgroupId">Workgroup:</label>
@@ -261,7 +257,13 @@
                      [value]="workgroup.id">{{workgroup.groupName}}</option>
                     
                 </select>
+            </div>
 
+            <div class="inputText formInput">
+                <label for="isOnsite">Onsite:</label>
+                <div class="form-switch">
+                    <input class="form-check-input isOnsiteCheckBox" type="checkbox" formControlName="isOnsite"  id="flexSwitchCheckChecked" checked>
+                  </div>
             </div>
 
         </form>
