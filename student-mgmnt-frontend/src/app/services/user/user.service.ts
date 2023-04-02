@@ -69,5 +69,9 @@ export class UserService {
   createWorkgroupSchedule(body:any){
     return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/create-workgroup-schedule", body);
   }
+
+  searchAllWorkgroupMemebers(groupName:string, q: string,pageNumber:number,pageSize:number,sort:string,order:string){
+    return this.http.post<any>(environment.apiEndpoint + "/user/search-super-admin?category=users-in-workgroup"+"&q="+q+"&page="+pageNumber+"&size="+pageSize+"&sort="+sort+","+order,groupName);
+  }
  
 }

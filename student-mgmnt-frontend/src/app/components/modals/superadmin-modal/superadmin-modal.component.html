@@ -82,7 +82,7 @@
             Edit
         </button>
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton"
-            (click)="cancelEdit()" >
+            (click)="cancelEdit()">
             Cancel
         </button>
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
@@ -220,6 +220,7 @@
 
 </div>
 
+
 <div id="createWorkgroupSchedule" *ngIf="this.modalId == 'createWorkgroupSchedule'">
     <div class="modal-header">
         <h5 class="modal-title" class="mainModalLabel">Create workgroup schedule</h5>
@@ -239,31 +240,34 @@
 
             <div class="inputText formInput">
                 <label for="start">Start:</label>
-                <input type="datetime-local" class="form-control start" formControlName="start"  min="2021-06-07T00:00" max="2050-06-14T00:00" required>
+                <input type="datetime-local" class="form-control start" formControlName="start" min="2021-06-07T00:00"
+                    max="2050-06-14T00:00" required>
             </div>
 
             <div class="inputText formInput">
                 <label for="end">End:</label>
-                <input type="datetime-local" class="form-control end" formControlName="end" min="2021-06-07T00:00" max="2050-06-14T00:00" required>
+                <input type="datetime-local" class="form-control end" formControlName="end" min="2021-06-07T00:00"
+                    max="2050-06-14T00:00" required>
             </div>
 
-           
 
-            <div class="inputText formInput" >
+
+            <div class="inputText formInput">
                 <label for="workgroupId">Workgroup:</label>
                 <select class="custom-select workgroupId" formControlName="workgroupId">
                     <!-- <option  value="" selected disabled hidden placeholder id="defaultSelected"></option> -->
-                    <option   *ngFor="let workgroup of this.tableService.allWorkgroup;"
-                     [value]="workgroup.id">{{workgroup.groupName}}</option>
-                    
+                    <option *ngFor="let workgroup of this.tableService.allWorkgroup;" [value]="workgroup.id">
+                        {{workgroup.groupName}}</option>
+
                 </select>
             </div>
 
             <div class="inputText formInput">
                 <label for="isOnsite">Onsite:</label>
                 <div class="form-switch">
-                    <input class="form-check-input isOnsiteCheckBox" type="checkbox" formControlName="isOnsite"  id="flexSwitchCheckChecked" checked>
-                  </div>
+                    <input class="form-check-input isOnsiteCheckBox" type="checkbox" formControlName="isOnsite"
+                        id="flexSwitchCheckChecked" checked>
+                </div>
             </div>
 
         </form>
@@ -286,8 +290,55 @@
         <button type="button" class="btn btn-success saveButton" (click)="this.createWorkgroupSchedule()">
             Save
         </button>
-        
 
+
+    </div>
+
+</div>
+
+<!--workgroup members-->
+
+<div id="workgroupMembers" *ngIf="this.modalId == 'workgroupMembers'">
+
+    <div class="modal-header">
+        <h5 class="modal-title" class="mainModalLabel">Workgroup members</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modalContainer">
+        <table class="table table-xl table-striped table-dark" id="mainTable">
+            <thead>
+                <tr class="align-middle">
+                    <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
+                    <th scope="col" (click)="this.tableService.sortBy('roleId.roleType')">Role</th>
+                    <th scope="col" (click)="this.tableService.sortBy('firstName')">First name</th>
+                    <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
+                    <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
+                    <th style="min-width: 48px;"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <ng-container *ngFor="let user of this.tableService.allWorkgroupMemebers;">
+                    <tr class="align-middle">
+                        <td>{{user.id}}</td>
+                        <td>{{user.roleName}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+
+                        <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                        <td>
+                            <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                                (click)="this.superadminDashboard.changeModal('getUserInfo');this.getUserInfo(user.id); this.resetStatusCode()">
+                                <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
+                                    srcset="">
+                            </div>
+
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
     </div>
 
 </div>

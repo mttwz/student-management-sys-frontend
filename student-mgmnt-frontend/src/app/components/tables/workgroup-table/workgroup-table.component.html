@@ -15,24 +15,24 @@
                 <td>{{workgroup.id}}</td>
                 <td>{{workgroup.groupName}}</td>
                 <td>{{workgroup.institution}}</td>
-                <td (click)="this.tableService.searchAllWorkgroupMemebers(workgroup.groupName)">Users from workgroup</td> <!-- ((click)="this.userServise.getAllUserFromWorkgroup()" megkell csinalni backenden -->
-
-                <!-- <td>
-                    <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                        (click)="this.superadminDashboard.selectedModal = 'getUserInfo'; this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
-                        <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
-                            srcset="">
-
+                <td >
+                    <div  type="button" data-bs-toggle="modal" data-bs-target="#workgroupMembers"
+                    (click)="this.superadminDashboard.changeModal('workgroupMembers'); this.SuperadminModalComponent.resetStatusCode()"
+                     class="userLink">
+                      <a (click)="this.tableService.searchAllWorkgroupMemebers(workgroup.groupName)">
+                        Users from workgroup
+                      </a> 
                     </div>
-                </td> -->
+                   
+                </td>
             </tr>
         </ng-container>
     </tbody>
 
-
+    <!-- (click)="this.tableService.searchAllWorkgroupMemebers(workgroup.groupName)" -->
 </table>
 
-<!-- <div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
+<div #mainModal class="modal fade" id="workgroupMembers" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
             <div class="modal-body">
@@ -40,4 +40,14 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
+
+<div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="mainModalBox">
+            <div class="modal-body">
+                <app-superadmin-modal #superadminModal [modalId]="this.superadminDashboard.selectedModal"></app-superadmin-modal>
+            </div>
+        </div>
+    </div>
+</div>

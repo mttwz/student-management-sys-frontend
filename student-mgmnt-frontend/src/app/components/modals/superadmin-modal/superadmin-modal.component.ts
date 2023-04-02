@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TableService } from 'src/app/services/table/table.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 declare var $: any;
 
 
@@ -16,6 +17,7 @@ export class SuperadminModalComponent implements OnInit {
   public addUserForm !: FormGroup;
   public userInfoForm !: FormGroup;
 
+  public workgroupMembersForm !: FormGroup;
   public createWorkgroupForm !: FormGroup;
   public createWorkgroupScheduleForm !: FormGroup;
 
@@ -30,7 +32,12 @@ export class SuperadminModalComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, public tableService: TableService, private userService: UserService, private changeDetection: ChangeDetectorRef) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    public tableService: TableService, 
+    private userService: UserService, 
+    private changeDetection: ChangeDetectorRef, 
+    public superadminDashboard: SuperadminDashboardComponent) { }
 
   ngOnInit(): void {
 
@@ -94,6 +101,17 @@ export class SuperadminModalComponent implements OnInit {
   }
 
 
+  isUserInfoModalOpen = false;
+
+  openUserInfoModal() {
+    this.modalId = 'getUserInfo';
+    this.isUserInfoModalOpen = true;
+  }
+  
+  closeUserInfoModal() {
+    this.isUserInfoModalOpen = false;
+  }
+
 
 
   getUserInfo(id: number) {
@@ -102,6 +120,7 @@ export class SuperadminModalComponent implements OnInit {
       this.userInfo = res;
       console.log(res);
       this.isUserInfoLoading = false;
+      console.log(this.isUserInfoLoading + "      asdasdsadasdadadsadadasd");
       this.userInfoForm.controls['id'].setValue(this.userInfo.id);
       this.userInfoForm.controls['roleName'].setValue(this.userInfo.roleName);
       this.userInfoForm.controls['firstName'].setValue(this.userInfo.firstName);
@@ -178,7 +197,7 @@ export class SuperadminModalComponent implements OnInit {
       this.isSuccessful = false;
     });
 
-  }
+  }  
 
 
   resetStatusCode() {

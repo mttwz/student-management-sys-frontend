@@ -111,6 +111,13 @@ tr td {
 }
 
 
+.userLink{
+    cursor: pointer;
+}
+
+.userLink:hover{
+    color: rgb(39, 87, 195);
+}
 
 
 

@@ -53,6 +53,23 @@ select:disabled {
     padding-left: 13.6em;
 }
 
+#infoMenu {
+    height: 16px;
+    width: 32px;
+    display: flex;
+    position: sticky;
+    right: 0;
+
+}
+
+.infoMenuImage {
+    height: 16px;
+    width: 32px;
+    display: block;
+    filter: invert(1);
+    flex-direction: row-reverse;
+}
+
 
 
 

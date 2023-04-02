@@ -61,7 +61,6 @@ export class TableService {
       this.allWorkgroupMemebers = res.userInfoDtoList;
       this.isUsersLoading = false;
 
-
       console.log(this.allWorkgroupMemebers);
       this.changeDetectionEmitter.emit();
 
@@ -109,6 +108,9 @@ export class TableService {
     this.searchFilter = filter;
     this.pageNumber = 0;
   }
+
+
+
 
 
 

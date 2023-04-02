@@ -77,7 +77,9 @@ export class SuperadminDashboardComponent implements OnInit {
 
   changeModal(modalName:string){
     this.selectedModal = modalName;
-    this.changeDetection.detectChanges();
+    setTimeout(() => {
+      this.changeDetection.detectChanges();
+    }, 100);
   }
 
 
