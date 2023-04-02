@@ -101,17 +101,6 @@ export class SuperadminModalComponent implements OnInit {
   }
 
 
-  isUserInfoModalOpen = false;
-
-  openUserInfoModal() {
-    this.modalId = 'getUserInfo';
-    this.isUserInfoModalOpen = true;
-  }
-  
-  closeUserInfoModal() {
-    this.isUserInfoModalOpen = false;
-  }
-
 
 
   getUserInfo(id: number) {
@@ -120,7 +109,7 @@ export class SuperadminModalComponent implements OnInit {
       this.userInfo = res;
       console.log(res);
       this.isUserInfoLoading = false;
-      console.log(this.isUserInfoLoading + "      asdasdsadasdadadsadadasd");
+      
       this.userInfoForm.controls['id'].setValue(this.userInfo.id);
       this.userInfoForm.controls['roleName'].setValue(this.userInfo.roleName);
       this.userInfoForm.controls['firstName'].setValue(this.userInfo.firstName);

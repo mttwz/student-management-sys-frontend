@@ -33,6 +33,7 @@ export class SuperadminDashboardComponent implements OnInit {
   isAnyModalActive: Boolean = false;
 
 
+
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   
   ngOnInit(): void {

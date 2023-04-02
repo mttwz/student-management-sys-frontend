@@ -1,45 +1,53 @@
-<table class="table table-xl table-striped table-dark" id="mainTable">
-    <button type="button" class="btn btn-dark">Back</button>
-    <thead>
-        <tr class="align-middle">
-            <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
-            <th scope="col" (click)="this.tableService.sortBy('roleId.roleType')">Role</th>
-            <th scope="col" (click)="this.tableService.sortBy('firstName')">First name</th>
-            <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
-            <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
-            <th style="min-width: 48px;"></th>
-        </tr>
-    </thead>
-
-    <tbody *ngIf="this.tableService.isUsersLoading == false">
-        <ng-container *ngFor="let user of this.tableService.allUsers;">
+<div *ngIf="currentComponent === 'workgroup-members-table'">
+    <table class="table table-xl table-striped table-dark" id="mainTable">
+        <button type="button" class="btn btn-secondary" (click)="currentComponent = 'workgroup-table'">Back to workgroups</button>
+        <div ></div>
+        <thead>
             <tr class="align-middle">
-                <td>{{user.id}}</td>
-                <td>{{user.roleName}}</td>
-                <td>{{user.firstName}}</td>
-                <td>{{user.lastName}}</td>
-
-                <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
-                <td>
-                    <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                        (click)="this.superadminDashboard.selectedModal = 'getUserInfo'; this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
-                        <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
-                            srcset="">
-
-                    </div>
-                </td>
+                <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
+                <th scope="col" (click)="this.tableService.sortBy('roleId.roleType')">Role</th>
+                <th scope="col" (click)="this.tableService.sortBy('firstName')">First name</th>
+                <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
+                <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
+                <th style="min-width: 48px;"></th>
             </tr>
-        </ng-container>
-    </tbody>
+        </thead>
+    
+        <tbody>
+            <ng-container *ngFor="let user of this.tableService.allWorkgroupMemebers;">
+                <tr class="align-middle">
+                    <td>{{user.id}}</td>
+                    <td>{{user.roleName}}</td>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+    
+                    <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                    <td>
+                        <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                            (click)="this.superadminDashboard.changeModal('getUserInfo'); this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
+                            <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
+                                srcset="">
+    
+                        </div>
+    
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
 
+<div *ngIf="currentComponent === 'workgroup-table'">
+    <app-workgroup-table></app-workgroup-table>
+</div>
 
-</table>
 
 <div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
             <div class="modal-body">
-                <app-superadmin-modal #superadminModal [modalId]="this.superadminDashboard.selectedModal"></app-superadmin-modal>
+                <app-superadmin-modal #superadminModal
+                    [modalId]="this.superadminDashboard.selectedModal"></app-superadmin-modal>
             </div>
         </div>
     </div>
