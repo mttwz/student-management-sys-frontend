@@ -75,7 +75,6 @@ export class TableService {
     this.workgroupService.getWorkgroupScheduleByUserId(id,this.pageNumber, this.pageSize).subscribe(res => {
       this.allWorkgroupScheduleByUserId = res.workgroupscheduleDtoList;
       this.isUsersLoading = false;
-
       console.log(res.workgroupscheduleDtoList);
       this.changeDetectionEmitter.emit();
     },err => {

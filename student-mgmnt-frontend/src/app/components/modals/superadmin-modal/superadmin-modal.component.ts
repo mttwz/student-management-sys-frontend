@@ -22,6 +22,7 @@ export class SuperadminModalComponent implements OnInit {
   public createWorkgroupForm !: FormGroup;
   public createWorkgroupScheduleForm !: FormGroup;
   public addUserToWorkgroupForm !: FormGroup;
+
   public getWorkgroupScheduleByUserIdForm !: FormGroup;
 
   public isSuccessful: any;
@@ -33,14 +34,20 @@ export class SuperadminModalComponent implements OnInit {
   isEditingEnabled: Boolean = false;
   allWorkgroups !: Array<any>;
 
+  allWorkgroupScheduleByUserId !: any;
+
+
+  pageSize: number = 90; // <- erre kikell talalni valamit
+  pageNumber: number = 0;
+
 
 
   constructor(
-    private formBuilder: FormBuilder, 
-    public tableService: TableService, 
-    private userService: UserService, 
+    private formBuilder: FormBuilder,
+    public tableService: TableService,
+    private userService: UserService,
     public workgroupService: WorkgroupService,
-    private changeDetection: ChangeDetectorRef, 
+    private changeDetection: ChangeDetectorRef,
     public superadminDashboard: SuperadminDashboardComponent) { }
 
   ngOnInit(): void {
@@ -53,6 +60,10 @@ export class SuperadminModalComponent implements OnInit {
       this.isSuccessful = false;
       this.changeDetection.detectChanges();
     })
+
+
+
+
 
 
 
@@ -89,8 +100,8 @@ export class SuperadminModalComponent implements OnInit {
     this.createWorkgroupForm = this.formBuilder.group({
       groupName: ['', Validators.required],
       institution: ['', Validators.required],
-      isDeleted: ['', Validators.required] 
-      
+      isDeleted: ['', Validators.required]
+
     })
 
     this.createWorkgroupScheduleForm = this.formBuilder.group({
@@ -107,7 +118,10 @@ export class SuperadminModalComponent implements OnInit {
     })
 
     this.getWorkgroupScheduleByUserIdForm = this.formBuilder.group({
-      
+      name: ['', Validators.required],
+      start: ['', Validators.required],
+      end: ['', Validators.required],
+      isOnsite: ['', Validators.required],
 
     })
 
@@ -122,7 +136,7 @@ export class SuperadminModalComponent implements OnInit {
       this.userInfo = res;
       console.log(res);
       this.isUserInfoLoading = false;
-      
+
       this.userInfoForm.controls['id'].setValue(this.userInfo.id);
       this.userInfoForm.controls['roleName'].setValue(this.userInfo.roleName);
       this.userInfoForm.controls['firstName'].setValue(this.userInfo.firstName);
@@ -141,11 +155,11 @@ export class SuperadminModalComponent implements OnInit {
       this.isEditingEnabled = false;
       this.changeDetection.detectChanges();
 
-      
+
     }, err => {
       console.log(err);
     });
-    
+
 
 
   }
@@ -170,10 +184,27 @@ export class SuperadminModalComponent implements OnInit {
 
   //Workgroup 
 
- 
- 
 
-  addUserToWorkgroup(){
+  // getWorkgroupScheduleByUserId(id: number) {
+  //   this.workgroupService.getWorkgroupScheduleByUserId(id, this.pageNumber, this.pageSize).subscribe(res => {
+  //     this.allWorkgroupScheduleByUserId = res.workgroupscheduleDtoList;
+  //     this.isUserInfoLoading = false;
+
+  //     console.log(this.allWorkgroupScheduleByUserId.name);
+  //     this.getWorkgroupScheduleByUserIdForm.controls['name'].setValue(this.allWorkgroupScheduleByUserId.name);
+  //     this.getWorkgroupScheduleByUserIdForm.controls['start'].setValue(this.workgroupService.getDateFromDateTime(this.allWorkgroupScheduleByUserId.start));
+  //     this.getWorkgroupScheduleByUserIdForm.controls['end'].setValue(this.workgroupService.getDateFromDateTime(this.allWorkgroupScheduleByUserId.end));
+  //     this.getWorkgroupScheduleByUserIdForm.controls['isOnsite'].setValue(this.allWorkgroupScheduleByUserId.isOnsite);
+
+  //     this.getWorkgroupScheduleByUserIdForm.disable();
+  //     this.changeDetection.detectChanges();
+
+  //   }, err => {
+  //     console.log(err);
+  //   });
+  // }
+
+  addUserToWorkgroup() {
     this.workgroupService.addUserToWorkgroup(this.addUserToWorkgroupForm.value).subscribe(res => {
       this.addUserToWorkgroupForm.reset();
       this.isSuccessful = true;
@@ -211,7 +242,7 @@ export class SuperadminModalComponent implements OnInit {
       this.isSuccessful = false;
     });
 
-  }  
+  }
 
 
   resetStatusCode() {
@@ -263,7 +294,7 @@ export class SuperadminModalComponent implements OnInit {
 
   cancelAddUser() {
     this.addUserForm.reset();
-    
+
   }
 
   cancelEdit() {
