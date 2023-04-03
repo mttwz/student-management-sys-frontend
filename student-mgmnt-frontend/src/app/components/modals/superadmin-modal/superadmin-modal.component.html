@@ -149,8 +149,6 @@
                 <option value="student">student</option>
             </select>
         </form>
-
-
     </div>
 
 
@@ -288,6 +286,58 @@
             Cancel
         </button>
         <button type="button" class="btn btn-success saveButton" (click)="this.createWorkgroupSchedule()">
+            Save
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<!---------------------------------------------------------------------------------------------->
+
+<div id="addUserToWorkgroup" *ngIf="this.modalId == 'addUserToWorkgroup'">
+    <div class="modal-header">
+        <h5 class="modal-title" class="mainModalLabel">Add user to workgroup</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modalContainer">
+        <form [formGroup]="addUserToWorkgroupForm">
+
+            <div class="inputText formInput">
+                <label for="userId">Users:</label>
+                <select class="custom-select userId" formControlName="userId">
+                    <option *ngFor="let user of this.tableService.allUsers;" [value]="user.id">
+                        {{user.roleName}}</option>
+                </select>
+            </div>
+
+            <div class="inputText formInput">
+                <label for="workgroupId">Workgroup:</label>
+                <select class="custom-select workgroupId" formControlName="workgroupId">
+                    <!-- <option  value="" selected disabled hidden placeholder id="defaultSelected"></option> -->
+                    <option *ngFor="let workgroup of this.tableService.allWorkgroup;" [value]="workgroup.id">
+                        {{workgroup.groupName}}</option>
+                </select>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="responseTextContainer">
+        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+
+        </div>
+    </div>
+    <div class="modalButtonContainer">
+        <!-- <button type="button" class="btn btn-danger cancelButton" data-bs-dismiss="modal"
+            (click)="this.cancelCreateWorkgroupSchedule()">
+            Cancel
+        </button> -->
+        <button type="button" class="btn btn-success saveButton" (click)="this.addUserToWorkgroup()">
             Save
         </button>
 

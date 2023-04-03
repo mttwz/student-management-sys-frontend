@@ -13,7 +13,7 @@ export class TableService {
   groupName: string = "";
   searchText: string = "";
   searchFilter: string = "users";
-  pageSize: number = 9;
+  pageSize: number = 90; // <- erre kikell talalni valamit
   pageNumber: number = 0;
   allPages!: number;
   sort: string = "id";

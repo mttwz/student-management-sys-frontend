@@ -21,6 +21,7 @@ export class SuperadminModalComponent implements OnInit {
   public workgroupMembersForm !: FormGroup;
   public createWorkgroupForm !: FormGroup;
   public createWorkgroupScheduleForm !: FormGroup;
+  public addUserToWorkgroupForm !: FormGroup
 
   public isSuccessful: any;
   public resStatus!: Number;
@@ -99,6 +100,11 @@ export class SuperadminModalComponent implements OnInit {
       workgroupId: ['', Validators.required]
     })
 
+    this.addUserToWorkgroupForm = this.formBuilder.group({
+      userId: ['', Validators.required],
+      workgroupId: ['', Validators.required]
+    })
+
 
   }
 
@@ -139,9 +145,6 @@ export class SuperadminModalComponent implements OnInit {
 
   }
 
-
-
-
   addUser() {
     if (this.addUserForm.value.birth.length > 0 && !this.addUserForm.value.birth.includes("T00:00:00Z")) {
       this.addUserForm.value.birth = this.addUserForm.value.birth + "T00:00:00Z";
@@ -161,6 +164,18 @@ export class SuperadminModalComponent implements OnInit {
 
 
   //Workgroup 
+
+  addUserToWorkgroup(){
+    this.workgroupService.addUserToWorkgroup(this.addUserToWorkgroupForm.value).subscribe(res => {
+      this.addUserToWorkgroupForm.reset();
+      this.isSuccessful = true;
+      this.resStatus = res.status;
+    }, err => {
+      this.resStatus = err.status;
+      this.isSuccessful = false;
+    });
+  }
+
   createWorkgroup() {
     this.workgroupService.createWorkgroup(this.createWorkgroupForm.value).subscribe(res => {
       this.createWorkgroupForm.reset();
