@@ -22,6 +22,7 @@ export class TableService {
   allUsers !: Array<any>;
   allWorkgroup !: Array<any>;
   allWorkgroupMemebers !: Array<any>;
+  allWorkgroupScheduleByUserId !: Array<any>;
 
   constructor(private userService: UserService, public workgroupService: WorkgroupService) { }
 
@@ -67,6 +68,18 @@ export class TableService {
 
     }, err => {
       console.log(err)
+    })
+  }
+
+  getWorkgroupScheduleByUserId(id: number){
+    this.workgroupService.getWorkgroupScheduleByUserId(id,this.pageNumber, this.pageSize).subscribe(res => {
+      this.allWorkgroupScheduleByUserId = res.workgroupscheduleDtoList;
+      this.isUsersLoading = false;
+
+      console.log(res.workgroupscheduleDtoList);
+      this.changeDetectionEmitter.emit();
+    },err => {
+      console.log(err);
     })
   }
 

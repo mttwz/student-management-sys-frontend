@@ -94,6 +94,7 @@
 </div>
 
 
+<!---------------------------------------------------------------------------------------------->
 
 <div id="addUser" *ngIf="this.modalId== 'addUser'">
     <div class="modal-header">
@@ -218,6 +219,8 @@
 
 </div>
 
+
+<!---------------------------------------------------------------------------------------------->
 
 <div id="createWorkgroupSchedule" *ngIf="this.modalId == 'createWorkgroupSchedule'">
     <div class="modal-header">
@@ -346,3 +349,44 @@
 
 </div>
 
+
+
+<!--------------------------------------------------------------------------------->
+
+<div id="getWorkgroupScheduleByUserId" *ngIf="this.modalId == 'getWorkgroupScheduleByUserId'">
+
+    <div class="modal-header">
+        <h5 class="modal-title" class="mainModalLabel">User schedule</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+    </div>
+    <div class="modalContainer" >
+       
+            <table class="table table-striped table-dark" id="mainTable">
+                <thead>
+                    <tr class="align-middle">
+                        <th>Schedule name</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Is onsite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let schedule of this.tableService.allWorkgroupScheduleByUserId;">
+                        <tr class="align-middle">
+                            <td>{{schedule.name}}</td>
+                            <td>{{schedule.start}}</td>
+                            <td>{{schedule.end}}</td>
+                            <td>{{schedule.isOnsite}}</td>
+
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+
+
+
+    </div>
+
+
+</div>

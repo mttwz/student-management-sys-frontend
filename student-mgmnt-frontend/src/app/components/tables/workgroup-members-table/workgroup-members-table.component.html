@@ -11,7 +11,7 @@
                 <th scope="col" (click)="this.tableService.sortBy('firstName')">First name</th>
                 <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
                 <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
-                <th>Missing</th>
+                <th style="max-width: 48px;"></th>
                 <th style="min-width: 48px;"></th>
             </tr>
         </thead>
@@ -24,15 +24,21 @@
                     <td>{{user.firstName}}</td>
                     <td>{{user.lastName}}</td>
                     <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
-                    <td></td>
+
+                    <td>
+                        <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#getWorkgroupScheduleByUserId"
+                            (click)="this.superadminDashboard.changeModal('getWorkgroupScheduleByUserId'); this.tableService.getWorkgroupScheduleByUserId(user.id); this.SuperadminModalComponent.resetStatusCode()">
+                            <img class="infoMenuImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
+                                srcset="">
+                        </div>
+                    </td>
+
                     <td>
                         <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
                             (click)="this.superadminDashboard.changeModal('getUserInfo'); this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
                             <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
                                 srcset="">
-    
                         </div>
-    
                     </td>
                 </tr>
             </ng-container>
@@ -46,6 +52,17 @@
 
 
 <div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="mainModalBox">
+            <div class="modal-body">
+                <app-superadmin-modal #superadminModal
+                    [modalId]="this.superadminDashboard.selectedModal"></app-superadmin-modal>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div #mainModal class="modal fade" id="getWorkgroupScheduleByUserId" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
             <div class="modal-body">
