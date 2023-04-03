@@ -114,9 +114,13 @@ tr td {
     border-bottom-right-radius: 5px;
 }
 
+.backToWorkgroups{
+    cursor: pointer;
+}
 
-
-
+.backToWorkgroups:hover{
+    color: rgb(39, 87, 195);
+}
 
 
 

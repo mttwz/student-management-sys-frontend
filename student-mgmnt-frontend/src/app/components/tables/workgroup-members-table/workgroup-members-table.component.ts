@@ -25,7 +25,7 @@ export class WorkgroupMembersTableComponent implements OnInit {
     groupName="";
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   ngOnInit(): void {
-    this.tableService.searchAllWorkgroupMemebers(this.groupName);
+    //this.tableService.searchAllWorkgroupMemebers(this.groupName);
     this.tableService.changeDetectionEmitter.subscribe(
       () => {
         this.changeDetection.detectChanges();
