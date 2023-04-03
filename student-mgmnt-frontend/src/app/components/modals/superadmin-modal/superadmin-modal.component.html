@@ -313,7 +313,7 @@
                 <label for="userId">Users:</label>
                 <select class="custom-select userId" formControlName="userId">
                     <option *ngFor="let user of this.tableService.allUsers;" [value]="user.id">
-                        {{user.roleName}}</option>
+                        Name: {{user.firstName}} {{user.lastName}},  {{user.roleName}} </option>
                 </select>
             </div>
 

@@ -1,7 +1,11 @@
 <div *ngIf="currentComponent === 'workgroup-members-table'">
     <table class="table table-xl table-striped table-dark" id="mainTable">
-        <div type="button" class="backToWorkgroups">       
-             <a  (click)="currentComponent = 'workgroup-table'">Back to workgroups</a>
+        <div type="button" class="backToWorkgroups" (click)="currentComponent = 'workgroup-table'" style="font-size: 15px;">   
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path  fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+              </svg>   
+              Back to workgroups
+             <!-- <a  (click)="currentComponent = 'workgroup-table'">Back to workgroups</a> -->
         </div>
        
         <thead>
@@ -26,7 +30,7 @@
                     <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
 
                     <td>
-                        <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#getWorkgroupScheduleByUserId"
+                        <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
                             (click)="this.superadminDashboard.changeModal('getWorkgroupScheduleByUserId'); this.tableService.getWorkgroupScheduleByUserId(user.id); this.SuperadminModalComponent.resetStatusCode()">
                             <img class="infoMenuImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
                                 srcset="">
@@ -51,18 +55,6 @@
 </div>
 
 
-<div #mainModal class="modal fade" id="getWorkgroupScheduleByUserId" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content" id="mainModalBox">
-            <div class="modal-body">
-                <app-superadmin-modal #superadminModal
-                    [modalId]="this.superadminDashboard.selectedModal"></app-superadmin-modal>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
@@ -73,3 +65,4 @@
         </div>
     </div>
 </div>
+
