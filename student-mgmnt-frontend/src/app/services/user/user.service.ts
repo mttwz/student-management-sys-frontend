@@ -58,20 +58,20 @@ export class UserService {
 
   //WorkgroupService
 
-  getAllWorkgroup(pageNumber:number,pageSize:number,sort:string,order:string){
-    return this.http.get<any>(environment.apiEndpoint + "/workgroup/get-all-workgroups?"+"&page="+pageNumber+"&size="+pageSize+"&sort="+sort+","+order);
-  }
+  // getAllWorkgroup(pageNumber:number,pageSize:number,sort:string,order:string){
+  //   return this.http.get<any>(environment.apiEndpoint + "/workgroup/get-all-workgroups?"+"&page="+pageNumber+"&size="+pageSize+"&sort="+sort+","+order);
+  // }
 
-  createWorkgroup(body:any){
-    return this.http.post<any>(environment.apiEndpoint + "/workgroup/create-workgroup", body);
-  }
+  // createWorkgroup(body:any){
+  //   return this.http.post<any>(environment.apiEndpoint + "/workgroup/create-workgroup", body);
+  // }
 
-  createWorkgroupSchedule(body:any){
-    return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/create-workgroup-schedule", body);
-  }
+  // createWorkgroupSchedule(body:any){
+  //   return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/create-workgroup-schedule", body);
+  // }
 
-  searchAllWorkgroupMemebers(groupName:string, q: string,pageNumber:number,pageSize:number,sort:string,order:string){
-    return this.http.post<any>(environment.apiEndpoint + "/user/search-super-admin?category=users-in-workgroup"+"&q="+q+"&page="+pageNumber+"&size="+pageSize+"&sort="+sort+","+order,groupName);
-  }
+  // searchAllWorkgroupMemebers(groupName:string, q: string,pageNumber:number,pageSize:number,sort:string,order:string){
+  //   return this.http.post<any>(environment.apiEndpoint + "/user/search-super-admin?category=users-in-workgroup"+"&q="+q+"&page="+pageNumber+"&size="+pageSize+"&sort="+sort+","+order,groupName);
+  // }
  
 }

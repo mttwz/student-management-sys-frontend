@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TableService } from 'src/app/services/table/table.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
+import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 declare var $: any;
 
 
@@ -36,6 +37,7 @@ export class SuperadminModalComponent implements OnInit {
     private formBuilder: FormBuilder, 
     public tableService: TableService, 
     private userService: UserService, 
+    public workgroupService: WorkgroupService,
     private changeDetection: ChangeDetectorRef, 
     public superadminDashboard: SuperadminDashboardComponent) { }
 
@@ -160,7 +162,7 @@ export class SuperadminModalComponent implements OnInit {
 
   //Workgroup 
   createWorkgroup() {
-    this.userService.createWorkgroup(this.createWorkgroupForm.value).subscribe(res => {
+    this.workgroupService.createWorkgroup(this.createWorkgroupForm.value).subscribe(res => {
       this.createWorkgroupForm.reset();
       this.isSuccessful = true;
       this.resStatus = res.status;
@@ -177,7 +179,7 @@ export class SuperadminModalComponent implements OnInit {
     };
 
 
-    this.userService.createWorkgroupSchedule(this.createWorkgroupScheduleForm.value).subscribe(res => {
+    this.workgroupService.createWorkgroupSchedule(this.createWorkgroupScheduleForm.value).subscribe(res => {
       this.createWorkgroupScheduleForm.reset();
       this.isSuccessful = true;
       this.resStatus = res.status;

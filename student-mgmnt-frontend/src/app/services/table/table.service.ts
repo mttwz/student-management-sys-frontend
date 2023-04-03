@@ -1,5 +1,6 @@
 import { ApplicationRef, ChangeDetectorRef, EventEmitter, Injectable, ViewChildren } from '@angular/core';
 import { UserService } from '../user/user.service';
+import { WorkgroupService } from '../workgroup/workgroup.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class TableService {
   allWorkgroup !: Array<any>;
   allWorkgroupMemebers !: Array<any>;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public workgroupService: WorkgroupService) { }
 
   changeDetectionEmitter: EventEmitter<void> = new EventEmitter<void>();
 
@@ -39,11 +40,11 @@ export class TableService {
   }
 
 
-  //workgoup keresest megkell csinalni.
+
   searchAllWorkgroups() {
     //http://localhost:8080/api/v1/workgroup/get-all-workgroups?page=0 &size=2 &sort=id,asc
 
-    this.userService.getAllWorkgroup(this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+    this.workgroupService.getAllWorkgroup(this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
       this.allWorkgroup = res.workgroupDtoList;
       this.isUsersLoading = false;
       this.allPages = res.allPages;
