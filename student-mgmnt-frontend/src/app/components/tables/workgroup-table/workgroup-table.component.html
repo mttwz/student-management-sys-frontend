@@ -1,35 +1,32 @@
 <div *ngIf="isUsersListed == false">
     <table class="table table-xl table-striped table-dark" id="mainTable">
 
-    <thead>
-        <tr class="align-middle">
-            <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
-            <th scope="col">Workgroup name</th>
-            <th scope="col">institution</th>
-            <th></th>
-        </tr>
-    </thead>
-
-    <tbody *ngIf="this.tableService.isUsersLoading == false">
-        <ng-container *ngFor="let workgroup of this.tableService.allWorkgroup;">
+        <thead>
             <tr class="align-middle">
-                <td>{{workgroup.id}}</td>
-                <td>{{workgroup.groupName}}</td>
-                <td>{{workgroup.institution}}</td>
-                <td>
-                    <div type="button" (click)="asd(workgroup.groupName)" class="userLink">
-                        <a>
-                            Users from workgroup
-                        </a>
-                    </div>
-                    
-                </td>
+                <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
+                <th scope="col">Workgroup name</th>
+                <th scope="col">institution</th>
+                <th style="max-width: 48px;"></th>
             </tr>
-        </ng-container>
-        
-    </tbody>
-    
-</table>
+        </thead>
+
+        <tbody *ngIf="this.tableService.isUsersLoading == false">
+            <ng-container *ngFor="let workgroup of this.tableService.allWorkgroup;">
+                <tr class="align-middle">
+                    <td>{{workgroup.id}}</td>
+                    <td>{{workgroup.groupName}}</td>
+                    <td>{{workgroup.institution}}</td>
+                    <td>
+                        <div id="userInWorkgroupList" type="button" (click)="switchToWorkgroupMembers(workgroup.groupName)">
+                            <img class="userInWorkgroupListImage" src="../../../../assets/user-list-svgrepo-com.svg" alt=""srcset="">
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+
+        </tbody>
+
+    </table>
 </div>
 <div *ngIf="isUsersListed == true">
     <app-workgroup-members-table></app-workgroup-members-table>

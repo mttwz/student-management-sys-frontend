@@ -21,19 +21,20 @@ export class WorkgroupTableComponent implements OnInit {
     
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   ngOnInit(): void {
-    this.tableService.searchAllUsers();
+    this.tableService.searchSuperadmin();
     
   }
 
 
 
-  asd(groupName:string){
+  switchToWorkgroupMembers(groupName:string){
     this.tableService.searchFilter = 'users-in-workgroup';
     this.tableService.groupName = groupName;
     this.isUsersListed = true; 
     this.tableService.searchText = ''; 
+    this.tableService.selectedWorkgroup = groupName;
     this.changeDetection.detectChanges();
-    this.tableService.searchAllUsers(); 
+    this.tableService.searchSuperadmin(); 
     
   }
 

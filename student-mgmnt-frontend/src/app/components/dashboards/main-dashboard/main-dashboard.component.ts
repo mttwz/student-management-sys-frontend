@@ -39,7 +39,7 @@ export class MainDashboardComponent implements OnInit {
     $(document).on('hidden.bs.modal', '#mainModal', () => {
       console.error(this.tableService.searchFilter);
       
-      this.tableService.searchAllUsers();
+      this.tableService.searchSuperadmin();
       this.changeDetection.detectChanges();  
       
       

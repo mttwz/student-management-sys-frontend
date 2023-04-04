@@ -103,7 +103,7 @@
     </div>
 
     <div class="modalContainer">
-        <form [formGroup]="addUserForm">
+        <form utocomplete="off" [formGroup]="addUserForm">
 
             <div class="inputText formInput">
                 <label for="firstName">First name:</label>
@@ -132,13 +132,13 @@
 
             <div class="inputText formInput">
                 <label for="email">Email:</label>
-                <input class="form-control email" formControlName="email" type="text">
+                <input autocomplete="off" class="form-control email" formControlName="email" type="text">
 
             </div>
 
             <div class="inputText formInput">
                 <label for="password">Password:</label>
-                <input class="form-control password" formControlName="password" type="password">
+                <input autoComplete="new-password" class="form-control password" formControlName="password" type="password">
 
             </div>
 
@@ -369,7 +369,7 @@
                         <th>Schedule name</th>
                         <th>Start</th>
                         <th>End</th>
-                        <th>Is onsite</th>
+                        <th>Onsite</th>
                     </tr>
                 </thead>
                 <tbody>

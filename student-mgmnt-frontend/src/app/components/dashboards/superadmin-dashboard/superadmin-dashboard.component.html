@@ -53,10 +53,10 @@
             <option value="student" (click)="this.tableService.changeSearchFilter('student')">Student</option>    
             <option value="admin" (click)="this.tableService.changeSearchFilter('admin')">Admin</option>
             <option value="super-admin" (click)="this.tableService.changeSearchFilter('super-admin')">Superadmin</option>
-            <option value="workgroup" (click)="this.tableService.changeSearchFilter('workgroup')">Workgroup</option>
+            <option value="workgroup" (click)="this.tableService.changeSearchFilter('workgroup')">Workgroup ( {{this.tableService.selectedWorkgroup}} ) </option>
             <!-- <option>Institution</option> -->
         </select>
-        <input [(ngModel)]="this.tableService.searchText" (keyup)="this.tableService.searchAllUsers()" type="text"
+        <input [(ngModel)]="this.tableService.searchText" (keyup)="this.tableService.searchSuperadmin()" type="text"
             class="form-control searchBar" placeholder="Type to search...">
     </div>
 

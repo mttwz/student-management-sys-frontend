@@ -1,6 +1,7 @@
 import { ApplicationRef, ChangeDetectorRef, EventEmitter, Injectable, ViewChildren } from '@angular/core';
 import { UserService } from '../user/user.service';
 import { WorkgroupService } from '../workgroup/workgroup.service';
+import { WorkgroupScheduleService } from '../workgroup-schedule/workgroup-schedule.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,13 +27,15 @@ export class TableService {
   allWorkgroupMemebers !: Array<any>;
   allWorkgroupScheduleByUserId !: Array<any>;
 
+  dailyAttendance !: Array<any>;
 
 
-  constructor(private userService: UserService, public workgroupService: WorkgroupService) { }
+
+  constructor(private userService: UserService, public workgroupService: WorkgroupService, public workgroupScheduleService: WorkgroupScheduleService) { }
 
   changeDetectionEmitter: EventEmitter<void> = new EventEmitter<void>();
 
-  searchAllUsers() {
+  searchSuperadmin() {
     if(this.searchFilter == "users"){
       this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allUsers = res.userInfoDtoList;
@@ -128,6 +131,19 @@ export class TableService {
     })
   }
 
+  getDailyAttendance(id:number, date:string){
+    let body = {
+      userId: id,
+      date: date
+    };
+    this.workgroupScheduleService.getDailyAttendance(body).subscribe(res =>{
+      console.log(res);
+    },err => {
+      console.log(err);
+    })
+
+  }
+
 
 
   sortBy(type: string) {
@@ -140,7 +156,7 @@ export class TableService {
     }
     this.sort = type;
     this.getContentByFilter();
-    this.searchAllUsers();
+    this.searchSuperadmin();
   }
 
   pageClick(num: number) {
@@ -156,7 +172,7 @@ export class TableService {
 
   getContentByFilter() {
     if (this.searchFilter == "users") {
-      this.searchAllUsers();
+      this.searchSuperadmin();
     }
     else if (this.searchFilter == "workgroup") {
       this.getAllWorkgroups();

@@ -28,6 +28,18 @@ export class WorkgroupMembersTableComponent implements OnInit {
   ngOnInit(): void {
     
   }
+
+
+
+  switchToWorkgroups(){
+    this.tableService.searchFilter = 'workgroup';
+    this.tableService.searchText = '';
+    this.workgroupTableComponents.isUsersListed = false;
+    this.tableService.selectedWorkgroup = "";
+
+    this.tableService.searchSuperadmin(); 
+    
+  }
 }
 
 

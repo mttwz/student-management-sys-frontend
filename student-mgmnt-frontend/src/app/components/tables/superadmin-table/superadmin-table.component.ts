@@ -19,7 +19,7 @@ export class SuperadminTableComponent implements OnInit {
 
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   ngOnInit(): void {
-    this.tableService.searchAllUsers();
+    this.tableService.searchSuperadmin();
   
   }
 }
