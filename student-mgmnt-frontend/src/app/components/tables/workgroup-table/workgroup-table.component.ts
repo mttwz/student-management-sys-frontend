@@ -26,4 +26,16 @@ export class WorkgroupTableComponent implements OnInit {
   }
 
 
+
+  asd(groupName:string){
+    this.tableService.searchFilter = 'users-in-workgroup';
+    this.tableService.groupName = groupName;
+    this.isUsersListed = true; 
+    this.tableService.searchText = ''; 
+    this.changeDetection.detectChanges();
+    this.tableService.searchAllUsers(); 
+    
+  }
+
+
 }

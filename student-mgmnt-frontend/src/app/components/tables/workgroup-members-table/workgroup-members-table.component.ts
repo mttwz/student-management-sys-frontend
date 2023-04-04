@@ -13,7 +13,7 @@ declare var $: any;
 })
 export class WorkgroupMembersTableComponent implements OnInit {
 
-
+  selectedWorkgroup!:string;
 
   constructor(
     public tableService: TableService,
@@ -25,7 +25,9 @@ export class WorkgroupMembersTableComponent implements OnInit {
 
    
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 }
 
 

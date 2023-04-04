@@ -13,16 +13,20 @@ export class TableService {
   groupName: string = "";
   searchText: string = "";
   searchFilter: string = "users";
-  pageSize: number = 90; // <- erre kikell talalni valamit
+  pageSize: number = 90; // <- erre kikell talalni valamit.   mire? itt adod meg hogy hany szar legyen kilistazva 
   pageNumber: number = 0;
   allPages!: number;
   sort: string = "id";
   order: string = "asc";
 
+  selectedWorkgroup!: string;
+
   allUsers !: Array<any>;
   allWorkgroup !: Array<any>;
   allWorkgroupMemebers !: Array<any>;
   allWorkgroupScheduleByUserId !: Array<any>;
+
+
 
   constructor(private userService: UserService, public workgroupService: WorkgroupService) { }
 
@@ -38,16 +42,54 @@ export class TableService {
       }, err => {
         console.log(err)
       })
+    }else if(this.searchFilter == "student"){
+      this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+        this.allUsers = res.userInfoDtoList;
+        this.isUsersLoading = false;
+        this.allPages = res.allPages;
+        this.changeDetectionEmitter.emit();
+      }, err => {
+        console.log(err)
+      })
+    }else if(this.searchFilter == "admin"){
+      this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+        this.allUsers = res.userInfoDtoList;
+        this.isUsersLoading = false;
+        this.allPages = res.allPages;
+        this.changeDetectionEmitter.emit();
+      }, err => {
+        console.log(err)
+      })
+    }else if(this.searchFilter == "super-admin"){
+      this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+        this.allUsers = res.userInfoDtoList;
+        this.isUsersLoading = false;
+        this.allPages = res.allPages;
+        this.changeDetectionEmitter.emit();
+      }, err => {
+        console.log(err)
+      })
     }else if(this.searchFilter == "workgroup"){
       this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allWorkgroup = res.workgroupDtoList;
         this.isUsersLoading = false;
         this.allPages = res.allPages;
         this.changeDetectionEmitter.emit();
-        console.log(this.allWorkgroup);
       }, err => {
         console.log(err)
       })
+    }else if(this.searchFilter == 'users-in-workgroup'){
+      console.error(this.groupName);
+      this.userService.searchSuperadmin(this.groupName, "users-in-workgroup", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+        this.allWorkgroupMemebers = res.userInfoDtoList;
+        this.isUsersLoading = false;
+        console.log(this.allWorkgroupMemebers);
+        this.changeDetectionEmitter.emit();
+  
+      }, err => {
+        console.log(err)
+      })
+      
     }
 
   }
@@ -72,16 +114,7 @@ export class TableService {
 
 
   searchAllWorkgroupMemebers(groupName: string) {
-    this.userService.searchSuperadmin(groupName, "users-in-workgroup", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
-      this.allWorkgroupMemebers = res.userInfoDtoList;
-      this.isUsersLoading = false;
 
-      console.log(this.allWorkgroupMemebers);
-      this.changeDetectionEmitter.emit();
-
-    }, err => {
-      console.log(err)
-    })
   }
 
   getWorkgroupScheduleByUserId(id: number){

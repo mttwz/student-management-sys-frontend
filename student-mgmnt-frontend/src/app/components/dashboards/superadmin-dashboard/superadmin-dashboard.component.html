@@ -78,18 +78,15 @@
     </div>
 
 
-    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'workgroup'">
+    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'workgroup' || this.tableService.searchFilter == 'users-in-workgroup'">
         <app-workgroup-table></app-workgroup-table>
     </div>
 
     <div class="pageSelector">
-
         <div class="pageBox" *ngFor="let item of this.tableService.createRange();"
             (click)="this.tableService.pageClick(item-1)">
             {{item}}
         </div>
-
-
     </div>
 
 </div>
