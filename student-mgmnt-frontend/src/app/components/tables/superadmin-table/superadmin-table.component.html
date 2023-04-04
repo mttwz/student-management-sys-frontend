@@ -22,7 +22,7 @@
                 <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
                 <td>
                     <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                        (click)="this.superadminDashboard.selectedModal = 'getUserInfo'; this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
+                    (click)="this.superadminDashboard.changeModal('getUserInfo'); this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
                         <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
                             srcset="">
 

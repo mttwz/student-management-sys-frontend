@@ -56,9 +56,10 @@ export class SuperadminModalComponent implements OnInit {
 
     $(document).on('hidden.bs.modal', '#mainModal', () => {
 
-      this.isEditingEnabled = false;
-      this.isSuccessful = false;
-      this.changeDetection.detectChanges();
+      // this.isEditingEnabled = false;
+      // this.isSuccessful = false;
+      // this.changeDetection.detectChanges();
+      // console.error("itttt<??????")
     })
 
 
@@ -300,6 +301,7 @@ export class SuperadminModalComponent implements OnInit {
   cancelEdit() {
     this.isEditingEnabled = false;
     this.userInfoForm.disable();
+    this.changeDetection.detectChanges();
   }
 
 

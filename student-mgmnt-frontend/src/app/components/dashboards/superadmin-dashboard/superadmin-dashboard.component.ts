@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { TableService } from 'src/app/services/table/table.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
+import { MainDashboardComponent } from '../main-dashboard/main-dashboard.component';
 declare var $: any;
 
 
@@ -22,7 +23,8 @@ export class SuperadminDashboardComponent implements OnInit {
     public userService: UserService, 
     public authService: AuthService, 
     private changeDetection: ChangeDetectorRef, 
-    public tableService: TableService) { 
+    public tableService: TableService,
+    public mainDashboard: MainDashboardComponent) { 
 
   
   }
@@ -37,50 +39,30 @@ export class SuperadminDashboardComponent implements OnInit {
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   
   ngOnInit(): void {
-
-
-    // this.userService.addUser();
-    
-    this.tableService.changeDetectionEmitter.subscribe(
-      () => {
-        this.changeDetection.detectChanges();
-      },
-      (err) => {
-       console.log(err);
-      }
-    );
-    
-    $(document).on('hidden.bs.modal','#mainModal',  () => {
-      this.tableService.searchAllUsers();
-      this.changeDetection.detectChanges();  
-      
-    })
-    this.modalFix();
-
   }
 
-  modalFix() {
-    let anoyingBackground = document.getElementsByClassName("modal-backdrop show")[0];
-    let anoyingBackground1 = document.getElementsByClassName("modal-backdrop show")[1];
-    let anoyingBackground2 = document.getElementsByClassName("modal-open")[0];
-    console.log(anoyingBackground2)
-    if (anoyingBackground != undefined) {
-      anoyingBackground.classList.remove("modal-backdrop");
-      anoyingBackground.classList.remove("show");
-    } if (anoyingBackground1 != undefined) {
-      anoyingBackground1.classList.remove("modal-backdrop");
-      anoyingBackground1.classList.remove("show");
-    } if (anoyingBackground2 != undefined) {
-      anoyingBackground2.classList.remove("modal-open");
-    }
-  }
+  // modalFix() {
+  //   let anoyingBackground = document.getElementsByClassName("modal-backdrop show")[0];
+  //   let anoyingBackground1 = document.getElementsByClassName("modal-backdrop show")[1];
+  //   let anoyingBackground2 = document.getElementsByClassName("modal-open")[0];
+  //   console.log(anoyingBackground2)
+  //   if (anoyingBackground != undefined) {
+  //     anoyingBackground.classList.remove("modal-backdrop");
+  //     anoyingBackground.classList.remove("show");
+  //   } if (anoyingBackground1 != undefined) {
+  //     anoyingBackground1.classList.remove("modal-backdrop");
+  //     anoyingBackground1.classList.remove("show");
+  //   } if (anoyingBackground2 != undefined) {
+  //     anoyingBackground2.classList.remove("modal-open");
+  //   }
+  // }
 
 
   changeModal(modalName:string){
+    
     this.selectedModal = modalName;
-    setTimeout(() => {
-      this.changeDetection.detectChanges();
-    }, 100);
+    this.changeDetection.detectChanges();
+    console.error(this.selectedModal);
   }
 
 

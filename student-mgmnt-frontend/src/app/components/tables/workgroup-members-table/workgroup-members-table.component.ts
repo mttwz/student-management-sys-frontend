@@ -34,7 +34,15 @@ export class WorkgroupMembersTableComponent implements OnInit {
         console.log(err);
       }
     );
+    console.error("wmt INIT.........")
+    $(document).on('hidden.bs.modal','#mainModal',  () => {
+      console.log(this.tableService.searchFilter);
+      this.changeDetection.detectChanges();  
+      
+    })
   }
+
+  
 
 
   

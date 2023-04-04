@@ -11,7 +11,12 @@ declare var $: any;
 })
 export class StudentTableComponent implements OnInit {
 
-  constructor(public tableService: TableService, public superadminDashboard: SuperadminDashboardComponent, private changeDetection: ChangeDetectorRef) { }
+  constructor(
+    public tableService: TableService, 
+    public superadminDashboard: SuperadminDashboardComponent, 
+    private changeDetection: ChangeDetectorRef) { }
+
+
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   ngOnInit(): void {
     this.tableService.searchAllUsers();
