@@ -1,4 +1,4 @@
-<div *ngIf="currentComponent === 'workgroup-table'">
+<div *ngIf="isUsersListed == false">
     <table class="table table-xl table-striped table-dark" id="mainTable">
 
     <thead>
@@ -17,7 +17,7 @@
                 <td>{{workgroup.groupName}}</td>
                 <td>{{workgroup.institution}}</td>
                 <td>
-                    <div type="button" (click)="currentComponent = 'workgroup-members-table'; this.tableService.searchAllWorkgroupMemebers(workgroup.groupName)" class="userLink">
+                    <div type="button" (click)="isUsersListed = true; this.tableService.searchText = ''; this.tableService.searchAllWorkgroupMemebers(workgroup.groupName);" class="userLink">
                         <a>
                             Users from workgroup
                         </a>
@@ -31,6 +31,6 @@
     
 </table>
 </div>
-<div *ngIf="currentComponent === 'workgroup-members-table'">
+<div *ngIf="isUsersListed == true">
     <app-workgroup-members-table></app-workgroup-members-table>
 </div>

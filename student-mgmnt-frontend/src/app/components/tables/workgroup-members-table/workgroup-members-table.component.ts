@@ -3,6 +3,7 @@ import { TableService } from 'src/app/services/table/table.service';
 import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
 import { UserService } from 'src/app/services/user/user.service';
+import { WorkgroupTableComponent } from '../workgroup-table/workgroup-table.component';
 declare var $: any;
 
 @Component({
@@ -18,34 +19,13 @@ export class WorkgroupMembersTableComponent implements OnInit {
     public tableService: TableService,
     public userService: UserService,
     public superadminDashboard: SuperadminDashboardComponent,
-    private changeDetection: ChangeDetectorRef) { }
+    private changeDetection: ChangeDetectorRef,
+    public workgroupTableComponents: WorkgroupTableComponent) { }
 
 
-    currentComponent = 'workgroup-members-table';
-    groupName="";
+   
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
-  ngOnInit(): void {
-  
-    this.tableService.changeDetectionEmitter.subscribe(
-      () => {
-        this.changeDetection.detectChanges();
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-    console.error("wmt INIT.........")
-    $(document).on('hidden.bs.modal','#mainModal',  () => {
-      console.log(this.tableService.searchFilter);
-      this.changeDetection.detectChanges();  
-      
-    })
-  }
-
-  
-
-
-  
+  ngOnInit(): void {}
 }
 
 

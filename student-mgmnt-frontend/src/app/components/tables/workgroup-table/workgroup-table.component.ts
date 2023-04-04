@@ -17,19 +17,12 @@ export class WorkgroupTableComponent implements OnInit {
     public superadminDashboard: SuperadminDashboardComponent, 
     private changeDetection: ChangeDetectorRef,
     ) { }
-    currentComponent = 'workgroup-table';
+    isUsersListed = false;
     
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   ngOnInit(): void {
-    this.tableService.searchAllWorkgroups();
-    this.tableService.changeDetectionEmitter.subscribe(
-      () => {
-        this.changeDetection.detectChanges();
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    this.tableService.searchAllUsers();
+    
   }
 
 

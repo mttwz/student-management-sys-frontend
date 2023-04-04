@@ -20,13 +20,6 @@ export class SuperadminTableComponent implements OnInit {
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   ngOnInit(): void {
     this.tableService.searchAllUsers();
-    this.tableService.changeDetectionEmitter.subscribe(
-      () => {
-        this.changeDetection.detectChanges();
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+  
   }
 }

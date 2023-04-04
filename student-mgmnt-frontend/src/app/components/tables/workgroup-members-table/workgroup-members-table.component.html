@@ -1,6 +1,6 @@
-<div *ngIf="currentComponent === 'workgroup-members-table'">
+<div>
     <table class="table table-xl table-striped table-dark" id="mainTable">
-        <div type="button" class="backToWorkgroups" (click)="currentComponent = 'workgroup-table'" style="font-size: 15px;">   
+        <div type="button" class="backToWorkgroups" (click)=" this.tableService.searchText = ''; this.workgroupTableComponents.isUsersListed = false; this.workgroupTableComponents.ngOnInit()" style="font-size: 15px;">   
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                 <path  fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
               </svg>   
@@ -16,7 +16,7 @@
                 <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
                 <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
                 <th style="max-width: 48px;"></th>
-                <th style="min-width: 48px;"></th>
+                
             </tr>
         </thead>
     
@@ -36,24 +36,11 @@
                                 srcset="">
                         </div>
                     </td>
-
-                    <td>
-                        <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                            (click)="this.superadminDashboard.changeModal('getUserInfo'); this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
-                            <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
-                                srcset="">
-                        </div>
-                    </td>
                 </tr>
             </ng-container>
         </tbody>
     </table>
 </div>
-
-<div *ngIf="currentComponent === 'workgroup-table'">
-    <app-workgroup-table></app-workgroup-table>
-</div>
-
 
 <div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

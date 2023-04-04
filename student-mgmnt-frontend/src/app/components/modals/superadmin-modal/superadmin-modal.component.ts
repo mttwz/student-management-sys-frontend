@@ -15,6 +15,7 @@ declare var $: any;
 export class SuperadminModalComponent implements OnInit {
 
   @Input() modalId!: String;
+  
   public addUserForm !: FormGroup;
   public userInfoForm !: FormGroup;
 

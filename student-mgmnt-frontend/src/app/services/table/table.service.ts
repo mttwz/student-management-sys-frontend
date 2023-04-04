@@ -29,20 +29,34 @@ export class TableService {
   changeDetectionEmitter: EventEmitter<void> = new EventEmitter<void>();
 
   searchAllUsers() {
-    this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
-      this.allUsers = res.userInfoDtoList;
-      this.isUsersLoading = false;
-      this.allPages = res.allPages;
+    if(this.searchFilter == "users"){
+      this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+        this.allUsers = res.userInfoDtoList;
+        this.isUsersLoading = false;
+        this.allPages = res.allPages;
+        this.changeDetectionEmitter.emit();
+      }, err => {
+        console.log(err)
+      })
+    }else if(this.searchFilter == "workgroup"){
+      this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+        this.allWorkgroup = res.workgroupDtoList;
+        this.isUsersLoading = false;
+        this.allPages = res.allPages;
+        this.changeDetectionEmitter.emit();
+        console.log(this.allWorkgroup);
+      }, err => {
+        console.log(err)
+      })
+    }
 
-      this.changeDetectionEmitter.emit();
-    }, err => {
-      console.log(err)
-    })
   }
 
 
 
-  searchAllWorkgroups() {
+
+
+  getAllWorkgroups() {
     //http://localhost:8080/api/v1/workgroup/get-all-workgroups?page=0 &size=2 &sort=id,asc
 
     this.workgroupService.getAllWorkgroup(this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
@@ -53,10 +67,9 @@ export class TableService {
     }, err => {
       console.log(err)
     })
-
-
-
   }
+
+
 
   searchAllWorkgroupMemebers(groupName: string) {
     this.userService.searchSuperadmin(groupName, "users-in-workgroup", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
@@ -113,7 +126,7 @@ export class TableService {
       this.searchAllUsers();
     }
     else if (this.searchFilter == "workgroup") {
-      this.searchAllWorkgroups();
+      this.getAllWorkgroups();
     }
   }
 
