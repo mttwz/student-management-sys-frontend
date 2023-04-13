@@ -82,7 +82,7 @@ export class TableService {
         console.log(err)
       })
     }else if(this.searchFilter == 'users-in-workgroup'){
-      console.error(this.groupName);
+      // console.error(this.groupName);
       this.userService.searchSuperadmin(this.groupName, "users-in-workgroup", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allWorkgroupMemebers = res.userInfoDtoList;
         this.isUsersLoading = false;
@@ -100,7 +100,7 @@ export class TableService {
 
 
 
-
+// ha torolve van a wg akkor ne jelenjen meg.
   getAllWorkgroups() {
     //http://localhost:8080/api/v1/workgroup/get-all-workgroups?page=0 &size=2 &sort=id,asc
 
@@ -112,6 +112,17 @@ export class TableService {
     }, err => {
       console.log(err)
     })
+  }
+
+  deleteWorkgroup(id:number){
+    // if (confirm("Are you sure you want to delete this workgroup?")){
+      this.workgroupService.deleteWorkgroup(id).subscribe(res=> {
+      console.log("Workgroup deleted successfully");
+    }, err =>{
+      console.log("Failed to delete workgroup: ", err);
+    });
+    
+    
   }
 
 

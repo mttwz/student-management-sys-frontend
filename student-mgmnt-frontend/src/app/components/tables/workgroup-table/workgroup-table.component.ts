@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { TableService } from 'src/app/services/table/table.service';
 import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
-import { Router } from '@angular/router';
+import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 declare var $: any;
 
 @Component({
@@ -14,6 +14,7 @@ export class WorkgroupTableComponent implements OnInit {
 
   constructor(
     public tableService: TableService, 
+    public workgroupService: WorkgroupService,
     public superadminDashboard: SuperadminDashboardComponent, 
     private changeDetection: ChangeDetectorRef,
     ) { }
@@ -37,6 +38,8 @@ export class WorkgroupTableComponent implements OnInit {
     this.tableService.searchSuperadmin(); 
     
   }
+
+  
 
 
 }

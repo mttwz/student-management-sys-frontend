@@ -37,7 +37,7 @@ export class MainDashboardComponent implements OnInit {
     })
 
     $(document).on('hidden.bs.modal', '#mainModal', () => {
-      console.error(this.tableService.searchFilter);
+      // console.error(this.tableService.searchFilter);
       
       this.tableService.searchSuperadmin();
       this.changeDetection.detectChanges();  
@@ -45,15 +45,15 @@ export class MainDashboardComponent implements OnInit {
       
 
     })
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     
     this.tableService.changeDetectionEmitter.subscribe(
       () => {
         
         this.changeDetection.detectChanges();
-        console.error(this.tableService.allWorkgroup);
+        // console.error(this.tableService.allWorkgroup);
         
-        console.log("VALOTOZAAAAAAAAAASSDAMKOASNFKJASFNBAJSNFBASKJLFBASBFKASBFKSAHJBFKSFBSANDJK")
+        // console.log("VALOTOZAAAAAAAAAASSDAMKOASNFKJASFNBAJSNFBASKJLFBASBFKASBFKSAHJBFKSFBSANDJK")
       },
       (err) => {
        console.log(err);

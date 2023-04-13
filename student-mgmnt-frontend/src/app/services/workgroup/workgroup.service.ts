@@ -49,6 +49,11 @@ export class WorkgroupService {
     return this.http.post<any>(environment.apiEndpoint + "/workgroup/create-workgroup", body);
   }
 
+  deleteWorkgroup(id:number){
+    // http://localhost:8080/api/v1/workgroup/delete-workgroup/1
+    return this.http.delete<any>(environment.apiEndpoint + "/workgroup/delete-workgroup/" + id);
+  }
+
   createWorkgroupSchedule(body:any){
     return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/create-workgroup-schedule", body);
   }

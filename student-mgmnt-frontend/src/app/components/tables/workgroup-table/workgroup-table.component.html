@@ -7,6 +7,7 @@
                 <th scope="col">Workgroup name</th>
                 <th scope="col">institution</th>
                 <th style="max-width: 48px;"></th>
+                <th style="max-width: 48px;"></th>
             </tr>
         </thead>
 
@@ -16,6 +17,13 @@
                     <td>{{workgroup.id}}</td>
                     <td>{{workgroup.groupName}}</td>
                     <td>{{workgroup.institution}}</td>
+                    <td>
+                        <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
+                        <div id="deleteWorkgroup" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                        (click)="this.superadminDashboard.changeModalWithId('deleteWorkgroup', workgroup.id)" >
+                            <img class="deleteWorkgroupImage" src="../../../../assets/trash.png" alt="">
+                        </div>
+                    </td>
                     <td>
                         <div id="userInWorkgroupList" type="button" (click)="switchToWorkgroupMembers(workgroup.groupName)">
                             <img class="userInWorkgroupListImage" src="../../../../assets/user-list-svgrepo-com.svg" alt=""srcset="">
@@ -30,4 +38,14 @@
 </div>
 <div *ngIf="isUsersListed == true">
     <app-workgroup-members-table></app-workgroup-members-table>
+</div>
+
+<div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="mainModalBox">
+            <div class="modal-body">
+                <app-superadmin-modal #superadminModal [modalId]="this.superadminDashboard.selectedModal"></app-superadmin-modal>
+            </div>
+        </div>
+    </div>
 </div>

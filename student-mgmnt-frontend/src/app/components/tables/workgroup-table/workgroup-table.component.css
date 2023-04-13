@@ -138,6 +138,15 @@ tr td {
     flex-direction: row-reverse;
 }
 
+.deleteWorkgroupImage{
+    height: 16px;
+    width: 16px;
+    display: block;
+    filter: invert(1);
+    flex-direction: row-reverse;
+}
+
+
 
 
 @media only screen and (max-width: 600px) {
