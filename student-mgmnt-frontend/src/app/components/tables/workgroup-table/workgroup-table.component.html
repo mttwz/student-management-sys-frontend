@@ -8,6 +8,7 @@
                 <th scope="col">institution</th>
                 <th style="max-width: 48px;"></th>
                 <th style="max-width: 48px;"></th>
+                <th style="max-width: 48px;"></th>
             </tr>
         </thead>
 
@@ -22,6 +23,11 @@
                         <div id="getWorkgroupInfo" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
                         (click)="this.superadminDashboard.changeModal('getWorkgroupInfo'); this.superadminModal.getWorkgroupInfo(workgroup.id); this.SuperadminModalComponent.resetStatusCode()" >
                             <img class="deleteWorkgroupImage" src="../../../../assets/edit.png" alt="">
+                        </div>
+                    </td>
+                    <td>
+                        <div id="deleteWorkgroup" type="button" (click)="this.tableService.deleteWorkgroup(workgroup.id)">
+                            <img class="deleteWorkgroupImage" src="../../../../assets/trash.png" alt=""srcset="">
                         </div>
                     </td>
                     <td>

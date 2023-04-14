@@ -448,7 +448,7 @@
                 <label>ID:</label>
                 <input class="form-control workgroupId" formControlName="id" type="text">
             </div>
-          
+
             <div class="inputText formInput">
                 <label>Groupname:</label>
                 <input class="form-control groupName" formControlName="groupName" type="text">
@@ -464,7 +464,7 @@
                 <label>Created at:</label>
                 <input class="form-control createdAt" formControlName="createdAt" type="text">
             </div>
-      
+
             <div class="inputText formInput">
                 <label>Deleted:</label>
 
@@ -491,6 +491,7 @@
             (click)="this.editWorkgroupInfo()">
             Edit
         </button>
+
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton"
             (click)="cancelEdit()">
             Cancel

@@ -4,6 +4,7 @@ import { TableService } from 'src/app/services/table/table.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
+import { WorkgroupTableComponent } from '../../tables/workgroup-table/workgroup-table.component';
 declare var $: any;
 
 
