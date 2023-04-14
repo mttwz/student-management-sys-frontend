@@ -82,4 +82,14 @@ export class WorkgroupService {
       return this.http.get<any>(environment.apiEndpoint + "/workgroupschedule/get-workgroup-schedule-by-workgroup-id/" + workgroupId);
   }
 
+  getWorkgroupInfo(workgroupId: number){
+    //http://localhost:8080/api/v1/workgroup/get-workgroup-info/1
+    return this.http.get<any>(environment.apiEndpoint + "/workgroup/get-workgroup-info/" + workgroupId);
+  }
+
+  editWorkgroupInfo(workgroupId:number,body:any){
+    //http://localhost:8080/api/v1/workgroup/edit-workgroup-info/1
+    return this.http.post<any>(environment.apiEndpoint + "/workgroup/edit-workgroup-info/" + workgroupId, body);
+  }
+
 }
