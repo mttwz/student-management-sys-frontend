@@ -32,6 +32,7 @@ export class SuperadminDashboardComponent implements OnInit {
 
 
   selectedModal!: String;
+  id!: number;
   isAnyModalActive: Boolean = false;
 
 
@@ -62,17 +63,8 @@ export class SuperadminDashboardComponent implements OnInit {
     
     this.selectedModal = modalName;
     this.changeDetection.detectChanges();
-    console.error(this.selectedModal);
+    // console.error(this.selectedModal);
   }
-
-
-
-
-
-
-
-
-
 
 
 

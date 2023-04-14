@@ -23,23 +23,29 @@ export class SuperadminModalComponent implements OnInit {
   public createWorkgroupForm !: FormGroup;
   public createWorkgroupScheduleForm !: FormGroup;
   public addUserToWorkgroupForm !: FormGroup;
+  public workgroupInfoForm !: FormGroup;
 
   public getWorkgroupScheduleByUserIdForm !: FormGroup;
 
   public isSuccessful: any;
   public resStatus!: Number;
-  userInfo!: any
+
+  userInfo!: any;
   isUserInfoLoading: Boolean = true;
   selectedUserId!: Number;
   selectedUserRole!: String;
   isEditingEnabled: Boolean = false;
   allWorkgroups !: Array<any>;
+  workgroupInfo!: any;
+  isWorkgroupInfoLoading: Boolean = true;
 
   allWorkgroupScheduleByUserId !: any;
 
 
   pageSize: number = 90; // <- erre kikell talalni valamit
   pageNumber: number = 0;
+
+  id!: number;
 
 
 
@@ -62,11 +68,6 @@ export class SuperadminModalComponent implements OnInit {
       // this.changeDetection.detectChanges();
       // console.error("itttt<??????")
     })
-
-
-
-
-
 
 
     this.addUserForm = this.formBuilder.group({
@@ -125,6 +126,16 @@ export class SuperadminModalComponent implements OnInit {
       end: ['', Validators.required],
       isOnsite: ['', Validators.required],
 
+    })
+
+
+    this.workgroupInfoForm = this.formBuilder.group({
+      id: ['', Validators.required],
+      groupName: ['', Validators.required],
+      institution: ['', Validators.required],
+      createdAt: ['', Validators.required],
+      isDeleted: ['', Validators.required],
+      deletedAt: ['', Validators.required],
     })
 
   }
@@ -318,6 +329,56 @@ export class SuperadminModalComponent implements OnInit {
   }
 
 
+  getWorkgroupInfo(id: number) {
+
+    this.workgroupService.getWorkgroupInfo(id).subscribe(res => {
+      this.workgroupInfo = res;
+      console.log(res + "aaaaaaaa getWorkgroupInfo");
+      this.isWorkgroupInfoLoading = false;
+
+      this.workgroupInfoForm.controls['id'].setValue(this.workgroupInfo.id);
+      this.workgroupInfoForm.controls['groupName'].setValue(this.workgroupInfo.groupName);
+      this.workgroupInfoForm.controls['institution'].setValue(this.workgroupInfo.institution);
+
+      this.workgroupInfoForm.controls['createdAt'].setValue(this.workgroupService.formatDate(this.workgroupInfo.createdAt));
+      this.workgroupInfoForm.controls['isDeleted'].setValue(this.workgroupInfo.isDeleted);
+      this.workgroupInfoForm.controls['deletedAt'].setValue(this.workgroupService.formatDate(this.workgroupInfo.deletedAt));
+
+      this.workgroupInfoForm.disable();
+      this.isEditingEnabled = false;
+      this.changeDetection.detectChanges();
+
+
+    }, err => {
+      console.log(err);
+    });
+  }
+
+
+  editWorkgroupInfo() {
+    this.isEditingEnabled = true;
+    this.changeDetection.detectChanges();
+    this.workgroupInfoForm.controls['groupName'].enable();
+    this.workgroupInfoForm.controls['institution'].enable();
+  }
+
+  saveWorkgroupInfo(){
+    this.workgroupInfoForm.controls['id'].enable();
+    this.workgroupInfoForm.value;
+
+    this.workgroupService.editWorkgroupInfo(this.workgroupInfoForm.value.id, this.workgroupInfoForm.value).subscribe(res=>{
+        console.log(res);
+        this.isSuccessful = true;
+    }, err => {
+      console.log(err);
+      this.resStatus = err.status;
+      this.isSuccessful = false;
+    });
+
+    this.workgroupInfoForm.disable();
+    this.isEditingEnabled = false;
+    this.changeDetection.detectChanges();
+  }
  
 
 

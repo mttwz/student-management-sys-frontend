@@ -36,7 +36,7 @@ export class TableService {
   changeDetectionEmitter: EventEmitter<void> = new EventEmitter<void>();
 
   searchSuperadmin() {
-    if(this.searchFilter == "users"){
+    if (this.searchFilter == "users") {
       this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allUsers = res.userInfoDtoList;
         this.isUsersLoading = false;
@@ -45,7 +45,7 @@ export class TableService {
       }, err => {
         console.log(err)
       })
-    }else if(this.searchFilter == "student"){
+    } else if (this.searchFilter == "student") {
       this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allUsers = res.userInfoDtoList;
         this.isUsersLoading = false;
@@ -54,7 +54,7 @@ export class TableService {
       }, err => {
         console.log(err)
       })
-    }else if(this.searchFilter == "admin"){
+    } else if (this.searchFilter == "admin") {
       this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allUsers = res.userInfoDtoList;
         this.isUsersLoading = false;
@@ -63,7 +63,7 @@ export class TableService {
       }, err => {
         console.log(err)
       })
-    }else if(this.searchFilter == "super-admin"){
+    } else if (this.searchFilter == "super-admin") {
       this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allUsers = res.userInfoDtoList;
         this.isUsersLoading = false;
@@ -72,7 +72,7 @@ export class TableService {
       }, err => {
         console.log(err)
       })
-    }else if(this.searchFilter == "workgroup"){
+    } else if (this.searchFilter == "workgroup") {
       this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allWorkgroup = res.workgroupDtoList;
         this.isUsersLoading = false;
@@ -81,18 +81,18 @@ export class TableService {
       }, err => {
         console.log(err)
       })
-    }else if(this.searchFilter == 'users-in-workgroup'){
+    } else if (this.searchFilter == 'users-in-workgroup') {
       // console.error(this.groupName);
       this.userService.searchSuperadmin(this.groupName, "users-in-workgroup", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allWorkgroupMemebers = res.userInfoDtoList;
         this.isUsersLoading = false;
         console.log(this.allWorkgroupMemebers);
         this.changeDetectionEmitter.emit();
-  
+
       }, err => {
         console.log(err)
       })
-      
+
     }
 
   }
@@ -100,7 +100,7 @@ export class TableService {
 
 
 
-// ha torolve van a wg akkor ne jelenjen meg.
+  // ha torolve van a wg akkor ne jelenjen meg.
   getAllWorkgroups() {
     //http://localhost:8080/api/v1/workgroup/get-all-workgroups?page=0 &size=2 &sort=id,asc
 
@@ -114,15 +114,15 @@ export class TableService {
     })
   }
 
-  deleteWorkgroup(id:number){
-    // if (confirm("Are you sure you want to delete this workgroup?")){
-      this.workgroupService.deleteWorkgroup(id).subscribe(res=> {
-      console.log("Workgroup deleted successfully");
-    }, err =>{
-      console.log("Failed to delete workgroup: ", err);
-    });
-    
-    
+  deleteWorkgroup(id: number) {
+    if (confirm("Are you sure you want to delete this workgroup?")) {
+      this.workgroupService.deleteWorkgroup(id).subscribe(res => {
+        console.log("Workgroup deleted successfully");
+      }, err => {
+        console.log("Failed to delete workgroup: ", err);
+      });
+    }
+
   }
 
 
@@ -131,25 +131,25 @@ export class TableService {
 
   }
 
-  getWorkgroupScheduleByUserId(id: number){
-    this.workgroupService.getWorkgroupScheduleByUserId(id,this.pageNumber, this.pageSize).subscribe(res => {
+  getWorkgroupScheduleByUserId(id: number) {
+    this.workgroupService.getWorkgroupScheduleByUserId(id, this.pageNumber, this.pageSize).subscribe(res => {
       this.allWorkgroupScheduleByUserId = res.workgroupscheduleDtoList;
       this.isUsersLoading = false;
       console.log(res.workgroupscheduleDtoList);
       this.changeDetectionEmitter.emit();
-    },err => {
+    }, err => {
       console.log(err);
     })
   }
 
-  getDailyAttendance(id:number, date:string){
+  getDailyAttendance(id: number, date: string) {
     let body = {
       userId: id,
       date: date
     };
-    this.workgroupScheduleService.getDailyAttendance(body).subscribe(res =>{
+    this.workgroupScheduleService.getDailyAttendance(body).subscribe(res => {
       console.log(res);
-    },err => {
+    }, err => {
       console.log(err);
     })
 
@@ -190,7 +190,7 @@ export class TableService {
     }
   }
 
-  changeSearchFilter(filter:string){
+  changeSearchFilter(filter: string) {
     this.searchFilter = filter;
     this.pageNumber = 0;
   }

@@ -138,7 +138,8 @@
 
             <div class="inputText formInput">
                 <label for="password">Password:</label>
-                <input autoComplete="new-password" class="form-control password" formControlName="password" type="password">
+                <input autoComplete="new-password" class="form-control password" formControlName="password"
+                    type="password">
 
             </div>
 
@@ -313,7 +314,7 @@
                 <label for="userId">Users:</label>
                 <select class="custom-select userId" formControlName="userId">
                     <option *ngFor="let user of this.tableService.allUsers;" [value]="user.id">
-                        Name: {{user.firstName}} {{user.lastName}},  {{user.roleName}} </option>
+                        Name: {{user.firstName}} {{user.lastName}}, {{user.roleName}} </option>
                 </select>
             </div>
 
@@ -360,7 +361,7 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
-    <div class="modalContainer" >
+    <div class="modalContainer">
         <form [formGroup]="getWorkgroupScheduleByUserIdForm">
 
             <table class="table  table-striped table-dark" id="mainTable">
@@ -373,7 +374,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                     <ng-container *ngFor="let schedule of this.tableService.allWorkgroupScheduleByUserId;">
                         <tr class="align-middle">
                             <td>{{schedule.name}}</td>
@@ -410,4 +411,94 @@
     </div>
 
 
+</div>
+
+
+<!------------------------------------------------------------------------------------------------>
+
+<!-- <div id="deleteWorkgroup" *ngIf="this.modalId == 'deleteWorkgroup'">
+    <div class="modal-header">
+        <h5 class="modal-title">Delete workgroup</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modalContainer">
+        <p>Are you sure you want to delete this workgroup?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="this.tableService.deleteWorkgroup(this.id)">Yes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+    </div>
+</div> -->
+
+
+<!------------------------------------------------------------------------------------------------->
+
+<div id="getWorkgroupInfo" *ngIf="this.modalId == 'getWorkgroupInfo'">
+
+    <div class="modal-header">
+        <h5 class="modal-title" class="mainModalLabel">Info</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+    </div>
+    <div class="modalContainer" *ngIf="this.isWorkgroupInfoLoading == false">
+        <form [formGroup]="workgroupInfoForm">
+
+            <div class="inputText formInput">
+                <label>ID:</label>
+                <input class="form-control workgroupId" formControlName="id" type="text">
+            </div>
+          
+            <div class="inputText formInput">
+                <label>Groupname:</label>
+                <input class="form-control groupName" formControlName="groupName" type="text">
+            </div>
+            <div class="inputText formInput">
+                <label>Institution:</label>
+                <input class="form-control institution" formControlName="institution" type="text">
+            </div>
+
+
+
+            <div class="inputText formInput">
+                <label>Created at:</label>
+                <input class="form-control createdAt" formControlName="createdAt" type="text">
+            </div>
+      
+            <div class="inputText formInput">
+                <label>Deleted:</label>
+
+                <input *ngIf="this.workgroupInfo.isDeleted == true"
+                    style="background: url(../../../../assets/green-checkmark-icon.webp) no-repeat scroll 7px 7px;  padding-left:40px; background-size: 21px;"
+                    class="form-control isDeleted" formControlName="deletedAt" type="text">
+                <input *ngIf="this.workgroupInfo.isDeleted == false"
+                    style="background: url(../../../../assets/red-x-icon.webp) no-repeat scroll 7px 7px;  padding-left:40px; background-size: 21px;"
+                    class="form-control isDeleted" formControlName="deletedAt" type="text">
+
+            </div>
+        </form>
+
+
+    </div>
+    <div class="responseTextContainer">
+        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+
+        </div>
+    </div>
+    <div class="modalButtonContainer">
+        <button *ngIf="this.isEditingEnabled == false" type="button" class="btn btn-warning editButton"
+            (click)="this.editWorkgroupInfo()">
+            Edit
+        </button>
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton"
+            (click)="cancelEdit()">
+            Cancel
+        </button>
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
+            (click)="this.saveWorkgroupInfo()">
+            Save
+        </button>
+
+    </div>
 </div>
