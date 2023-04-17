@@ -21,12 +21,12 @@
         </thead>
     
         <tbody>
-            <ng-container *ngFor="let schedule of this.tableService.allWorkgroupScheduleByUserId;">
+            <ng-container *ngFor="let schedule of this.tableService.allWorkgroupScheduleByWorkgroupId;">
                 <tr class="align-middle">
                     <td>{{schedule.id}}</td>
                     <td>{{schedule.name}}</td>
-                    <td>{{schedule.start}}</td>
-                    <td>{{schedule.end}}</td>
+                    <td>{{schedule.start | date:'medium'}}</td>
+                    <td>{{schedule.end | date:'medium'}}</td>
                     <td>{{schedule.isOnsite}}</td>
 
                     <td>

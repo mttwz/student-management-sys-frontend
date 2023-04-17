@@ -1,4 +1,4 @@
-<div *ngIf="isUsersListed == false">
+<div *ngIf="isUsersListed == false && this.isWorkgroupListed == false">
     <table class="table table-xl table-striped table-dark" id="mainTable">
 
         <thead>
@@ -32,7 +32,7 @@
                         </div>
                     </td>
                     <td>
-                        <div id="eventeWorkgroup" type="button" (click)="this.switchToWorkgroupSchedule(workgroup.id)">
+                        <div id="eventeWorkgroup" type="button" (click)="switchToWorkgroupSchedule(workgroup.id, workgroup.groupName)">
                             <img class="workgroupImage" src="../../../../assets/event.png" alt=""srcset="">
                         </div>
                     </td>
@@ -51,8 +51,11 @@
 <div *ngIf="isUsersListed == true">
     <app-workgroup-members-table></app-workgroup-members-table>
 </div>
+<div *ngIf="isWorkgroupListed == true">
+      <app-workgroup-schedule-table></app-workgroup-schedule-table>
+</div>
 
-    <app-workgroup-schedule-table *ngIf="isWorkgroupListed == true"></app-workgroup-schedule-table>
+  
 
 
 

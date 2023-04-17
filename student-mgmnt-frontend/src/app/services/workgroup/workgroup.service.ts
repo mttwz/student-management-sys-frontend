@@ -72,14 +72,14 @@ export class WorkgroupService {
       return this.http.get<any>(environment.apiEndpoint + "/workgroupschedule/get-user-schedule/?page=" + pageNumber + "&size=" + pageSize + "&sort=" + sort + "," + order);
   }
 
-  getWorkgroupScheduleByUserId(userId:number, pageNumber:number, pageSize:number,){
+  getWorkgroupScheduleByUserId(userId:number, pageNumber:number, pageSize:number){
       // http://localhost:8080/api/v1/workgroupschedule/get-workgroup-schedule-by-user-id/2?page=0&size=1
       return this.http.get<any>(environment.apiEndpoint + "/workgroupschedule/get-workgroup-schedule-by-user-id/" + userId + "?page=" + pageNumber + "&size=" + pageSize);
   }
 
-  getWorkgroupScheduleByWorkgroupId(workgroupId:number){
-      // http://localhost:8080/api/v1/workgroupschedule/get-workgroup-schedule-by-workgroup-id/1
-      return this.http.get<any>(environment.apiEndpoint + "/workgroupschedule/get-workgroup-schedule-by-workgroup-id/" + workgroupId);
+  getWorkgroupScheduleByWorkgroupId(workgroupId:number,pageNumber:number, pageSize:number){
+      // http://localhost:8080/api/v1/workgroupschedule/get-workgroup-schedule-by-workgroup-id/1?page=0&size=10
+      return this.http.get<any>(environment.apiEndpoint + "/workgroupschedule/get-workgroup-schedule-by-workgroup-id/" + workgroupId + "?page=" + pageNumber + "&size=" + pageSize);
   }
 
   getWorkgroupInfo(workgroupId: number){

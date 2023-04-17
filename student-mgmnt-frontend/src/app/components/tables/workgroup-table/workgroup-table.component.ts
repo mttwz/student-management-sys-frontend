@@ -40,11 +40,14 @@ export class WorkgroupTableComponent implements OnInit {
     this.tableService.searchSuperadmin(); 
   }
 
-  switchToWorkgroupSchedule(groupId: number){
+  switchToWorkgroupSchedule(groupId: number, groupName :string){
     this.isWorkgroupListed = true;
-    this.tableService.selectedWorkgroupId = groupId;
-    this.tableService.getWorkgroupScheduleByWorkgroupId(groupId);
+    
+    this.tableService.selectedWorkgroup = groupName;
+    
+    
     this.changeDetection.detectChanges();
+    this.tableService.getWorkgroupScheduleByWorkgroupId(groupId);
 
   }
 
