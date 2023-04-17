@@ -9,6 +9,7 @@
                 <th style="max-width: 48px;"></th>
                 <th style="max-width: 48px;"></th>
                 <th style="max-width: 48px;"></th>
+                <th style="max-width: 48px;"></th>
             </tr>
         </thead>
 
@@ -22,12 +23,17 @@
                         <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
                         <div id="getWorkgroupInfo" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
                         (click)="this.superadminDashboard.changeModal('getWorkgroupInfo'); this.superadminModal.getWorkgroupInfo(workgroup.id); this.SuperadminModalComponent.resetStatusCode()" >
-                            <img class="deleteWorkgroupImage" src="../../../../assets/edit.png" alt="">
+                            <img class="workgroupImage" src="../../../../assets/edit.png" alt="">
                         </div>
                     </td>
                     <td>
                         <div id="deleteWorkgroup" type="button" (click)="this.tableService.deleteWorkgroup(workgroup.id)">
-                            <img class="deleteWorkgroupImage" src="../../../../assets/trash.png" alt=""srcset="">
+                            <img class="workgroupImage" src="../../../../assets/trash.png" alt=""srcset="">
+                        </div>
+                    </td>
+                    <td>
+                        <div id="eventeWorkgroup" type="button" (click)="this.switchToWorkgroupSchedule(workgroup.id)">
+                            <img class="workgroupImage" src="../../../../assets/event.png" alt=""srcset="">
                         </div>
                     </td>
                     <td>
@@ -45,6 +51,8 @@
 <div *ngIf="isUsersListed == true">
     <app-workgroup-members-table></app-workgroup-members-table>
 </div>
+
+    <app-workgroup-schedule-table *ngIf="isWorkgroupListed == true"></app-workgroup-schedule-table>
 
 
 

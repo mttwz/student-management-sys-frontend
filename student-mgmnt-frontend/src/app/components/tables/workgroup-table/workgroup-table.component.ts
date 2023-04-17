@@ -18,7 +18,9 @@ export class WorkgroupTableComponent implements OnInit {
     public superadminDashboard: SuperadminDashboardComponent, 
     private changeDetection: ChangeDetectorRef,
     ) { }
+
     isUsersListed = false;
+    isWorkgroupListed = false;
     
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   ngOnInit(): void {
@@ -36,7 +38,14 @@ export class WorkgroupTableComponent implements OnInit {
     this.tableService.selectedWorkgroup = groupName;
     this.changeDetection.detectChanges();
     this.tableService.searchSuperadmin(); 
-    
+  }
+
+  switchToWorkgroupSchedule(groupId: number){
+    this.isWorkgroupListed = true;
+    this.tableService.selectedWorkgroupId = groupId;
+    this.tableService.getWorkgroupScheduleByWorkgroupId(groupId);
+    this.changeDetection.detectChanges();
+
   }
 
   

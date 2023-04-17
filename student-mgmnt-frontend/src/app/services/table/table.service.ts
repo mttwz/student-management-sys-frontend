@@ -9,6 +9,7 @@ import { WorkgroupScheduleService } from '../workgroup-schedule/workgroup-schedu
 export class TableService {
 
   isUsersLoading = true;
+  isWorkgroupLoading = true;
 
   //search data
   groupName: string = "";
@@ -21,11 +22,13 @@ export class TableService {
   order: string = "asc";
 
   selectedWorkgroup!: string;
+  selectedWorkgroupId !: number;
 
   allUsers !: Array<any>;
   allWorkgroup !: Array<any>;
   allWorkgroupMemebers !: Array<any>;
   allWorkgroupScheduleByUserId !: Array<any>;
+  allWorkgroupScheduleByWorkgroupId !: Array<any>;
 
   dailyAttendance !: Array<any>;
 
@@ -127,10 +130,6 @@ export class TableService {
 
 
 
-  searchAllWorkgroupMemebers(groupName: string) {
-
-  }
-
   getWorkgroupScheduleByUserId(id: number) {
     this.workgroupService.getWorkgroupScheduleByUserId(id, this.pageNumber, this.pageSize).subscribe(res => {
       this.allWorkgroupScheduleByUserId = res.workgroupscheduleDtoList;
@@ -141,6 +140,20 @@ export class TableService {
       console.log(err);
     })
   }
+
+
+  getWorkgroupScheduleByWorkgroupId(id:number){
+    this.workgroupService.getWorkgroupScheduleByWorkgroupId(id).subscribe(res=>{
+      console.log("workgroupRES" + res.id);
+      this.allWorkgroupScheduleByWorkgroupId = res;
+      this.isWorkgroupLoading = false;
+      this.changeDetectionEmitter.emit();
+    }, err =>{
+      console.log(err);
+    })
+
+  }
+
 
   getDailyAttendance(id: number, date: string) {
     let body = {
