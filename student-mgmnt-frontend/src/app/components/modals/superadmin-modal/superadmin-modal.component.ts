@@ -314,6 +314,7 @@ export class SuperadminModalComponent implements OnInit {
   cancelEdit() {
     this.isEditingEnabled = false;
     this.userInfoForm.disable();
+    this.workgroupInfoForm.disable();
     this.changeDetection.detectChanges();
   }
 

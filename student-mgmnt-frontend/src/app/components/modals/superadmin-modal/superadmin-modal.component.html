@@ -496,10 +496,17 @@
             (click)="cancelEdit()">
             Cancel
         </button>
+
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
             (click)="this.saveWorkgroupInfo()">
             Save
         </button>
-
+    </div>
+    
+    <div id="deleteButtonContainer">
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
+        (click)="this.saveWorkgroupInfo()">
+        Save
+    </button>
     </div>
 </div>
