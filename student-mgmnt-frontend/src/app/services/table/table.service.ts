@@ -21,8 +21,6 @@ export class TableService {
   sort: string = "id";
   order: string = "asc";
 
-  groupId !: number;
-
   selectedWorkgroup!: string;
   selectedWorkgroupId !: number;
 
@@ -145,11 +143,10 @@ export class TableService {
 
 
   getWorkgroupScheduleByWorkgroupId(id:number){
-    this.workgroupService.getWorkgroupScheduleByWorkgroupId(id, this.pageNumber, this.pageSize).subscribe(res=>{
-      this.allWorkgroupScheduleByWorkgroupId = res.workgroupscheduleDtoList;
+    this.workgroupService.getWorkgroupScheduleByWorkgroupId(id).subscribe(res=>{
+      console.log("workgroupRES" + res.id);
+      this.allWorkgroupScheduleByWorkgroupId = res;
       this.isWorkgroupLoading = false;
-      console.log(this.allWorkgroupScheduleByWorkgroupId);
-      
       this.changeDetectionEmitter.emit();
     }, err =>{
       console.log(err);

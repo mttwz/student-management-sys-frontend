@@ -13,7 +13,7 @@ declare var $: any;
 })
 export class WorkgroupMembersTableComponent implements OnInit {
 
-  selectedWorkgroup!: string;
+  selectedWorkgroup!:string;
 
   constructor(
     public tableService: TableService,
@@ -22,19 +22,23 @@ export class WorkgroupMembersTableComponent implements OnInit {
     private changeDetection: ChangeDetectorRef,
     public workgroupTableComponents: WorkgroupTableComponent) { }
 
+
+   
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   ngOnInit(): void {
-
+    
   }
 
-  switchToWorkgroups() {
+
+
+  switchToWorkgroups(){
     this.tableService.searchFilter = 'workgroup';
     this.tableService.searchText = '';
     this.workgroupTableComponents.isUsersListed = false;
     this.tableService.selectedWorkgroup = "";
 
-    this.tableService.searchSuperadmin();
-
+    this.tableService.searchSuperadmin(); 
+    
   }
 }
 
