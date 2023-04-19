@@ -98,7 +98,7 @@
 
 <div id="addUser" *ngIf="this.modalId== 'addUser'">
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Add user</h5>
+        <h5 class="modal-title" class="mainModalLabel">Add user {{this.userService.currentlySelectedUserId}}</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
@@ -477,6 +477,76 @@
 
             </div>
         </form>
+
+
+    </div>
+    <div class="responseTextContainer">
+        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+
+        </div>
+    </div>
+    <div class="modalButtonContainer">
+        <button *ngIf="this.isEditingEnabled == false" type="button" class="btn btn-warning editButton"
+            (click)="this.editWorkgroupInfo()">
+            Edit
+        </button>
+
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton"
+            (click)="cancelEdit()">
+            Cancel
+        </button>
+
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
+            (click)="this.saveWorkgroupInfo()">
+            Save
+        </button>
+    </div>
+    
+    <div id="deleteButtonContainer">
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
+        (click)="this.saveWorkgroupInfo()">
+        Save
+    </button>
+    </div>
+</div>
+
+
+
+<!------------------------------------------------------------------------------------------------->
+
+<div id="getWorkgroupInfo" *ngIf="this.modalId == 'studentAttendanceMenu'">
+
+    <div class="modal-header">
+        <h5 class="modal-title" class="mainModalLabel">Attendance</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+    </div>
+    <div class="modalContainer"  *ngIf="this.isdailyAttendanceLoading == false">
+      
+        <div class="datePickerContainer">
+            <input id="studentAttendanceDatePicker" type="date" (change)="changeDate()" value={{this.defaultDate}} placeholder={{this.defaultDate}} data-date-format="YYYY-MM-DD">
+            {{defaultDate}}
+            <button (click)="getStudentDailyAttendance(2)"></button>
+        </div>
+
+
+        <table class="table table-xl table-striped table-dark" id="mainTable">
+            <thead>
+                <tr>
+                    <td>in</td>
+                    <td>out</td>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let dailyAttendance of this.studentDailyAttendance;">
+                    <tr class="align-middle">
+                        <td>{{dateFormatter(dailyAttendance.arrival)}}</td>
+                        <td>{{dailyAttendance.leaving}}</td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
 
 
     </div>

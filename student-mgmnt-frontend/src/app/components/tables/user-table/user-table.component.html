@@ -7,7 +7,7 @@
             <th scope="col" (click)="this.tableService.sortBy('firstName')">First name</th>
             <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
             <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
-            <th style="min-width: 48px;"></th>
+            <th style="max-width: 48px;"></th>
         </tr>
     </thead>
 
@@ -22,7 +22,7 @@
                 <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
                 <td>
                     <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                        (click)="this.superadminDashboard.changeModal('getUserInfo'); this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
+                        (click)="this.superadminDashboard.changeModal('getUserInfo'); this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode(); this.userService.currentlySelectedUserId=user.id">
                         <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
                             srcset="">
 

@@ -73,6 +73,9 @@ select:disabled {
 }
 
 
+.datePickerContainer{
+    background-color: red;
+}
 
 
 @media (max-width: 575px) {

@@ -14,8 +14,9 @@ export class TokeninterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let apiPath :String = req.url.toString().split("api")[1];
-    let target :String = apiPath.split("/")[apiPath.split("/").length-1];
 
+    let target :String = apiPath.split("/")[3];
+    console.log(apiPath)
     console.log(target)
 
     if (!this.tokenIgnore.includes(target)) {

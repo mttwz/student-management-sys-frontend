@@ -5,6 +5,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 import { WorkgroupTableComponent } from '../../tables/workgroup-table/workgroup-table.component';
+import {formatDate} from '@angular/common';
 declare var $: any;
 
 
@@ -37,8 +38,10 @@ export class SuperadminModalComponent implements OnInit {
   selectedUserRole!: String;
   isEditingEnabled: Boolean = false;
   allWorkgroups !: Array<any>;
+  studentDailyAttendance !: Array<any>;
   workgroupInfo!: any;
   isWorkgroupInfoLoading: Boolean = true;
+  isdailyAttendanceLoading: Boolean = true;
 
   allWorkgroupScheduleByUserId !: any;
 
@@ -49,11 +52,13 @@ export class SuperadminModalComponent implements OnInit {
   id!: number;
 
 
+  defaultDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') + "T00:00:00Z";
+
 
   constructor(
     private formBuilder: FormBuilder,
     public tableService: TableService,
-    private userService: UserService,
+    public userService: UserService,
     public workgroupService: WorkgroupService,
     private changeDetection: ChangeDetectorRef,
     public superadminDashboard: SuperadminDashboardComponent) { }
@@ -173,9 +178,6 @@ export class SuperadminModalComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-
-
-
   }
 
   addUser() {
@@ -194,29 +196,6 @@ export class SuperadminModalComponent implements OnInit {
       this.isSuccessful = false;
     });
   }
-
-
-  //Workgroup 
-
-
-  // getWorkgroupScheduleByUserId(id: number) {
-  //   this.workgroupService.getWorkgroupScheduleByUserId(id, this.pageNumber, this.pageSize).subscribe(res => {
-  //     this.allWorkgroupScheduleByUserId = res.workgroupscheduleDtoList;
-  //     this.isUserInfoLoading = false;
-
-  //     console.log(this.allWorkgroupScheduleByUserId.name);
-  //     this.getWorkgroupScheduleByUserIdForm.controls['name'].setValue(this.allWorkgroupScheduleByUserId.name);
-  //     this.getWorkgroupScheduleByUserIdForm.controls['start'].setValue(this.workgroupService.getDateFromDateTime(this.allWorkgroupScheduleByUserId.start));
-  //     this.getWorkgroupScheduleByUserIdForm.controls['end'].setValue(this.workgroupService.getDateFromDateTime(this.allWorkgroupScheduleByUserId.end));
-  //     this.getWorkgroupScheduleByUserIdForm.controls['isOnsite'].setValue(this.allWorkgroupScheduleByUserId.isOnsite);
-
-  //     this.getWorkgroupScheduleByUserIdForm.disable();
-  //     this.changeDetection.detectChanges();
-
-  //   }, err => {
-  //     console.log(err);
-  //   });
-  // }
 
   addUserToWorkgroup() {
     this.workgroupService.addUserToWorkgroup(this.addUserToWorkgroupForm.value).subscribe(res => {
@@ -381,8 +360,31 @@ export class SuperadminModalComponent implements OnInit {
     this.isEditingEnabled = false;
     this.changeDetection.detectChanges();
   }
+
+
  
+  getStudentDailyAttendance(userId:number){
+    let body = {
+      userId: userId,
+      date: this.defaultDate
+    };
+    console.log(body);
+    this.userService.getDailyAttendance(body).subscribe(res=>{
+        this.studentDailyAttendance = res;
+        this.isdailyAttendanceLoading = false;
+        console.error(res);
+    })
+
+  }
+
+  changeDate(){
+    let updatedDate = formatDate(new Date($('#studentAttendanceDatePicker').val()), 'yyyy-MM-dd', 'en') + "T00:00:00Z";
+    this.defaultDate = updatedDate;
+  }
 
 
+  dateFormatter(date:string){
+    return  date.split("T")[0] +" "+ date.split("T")[1].split("+")[0];
+  }
 
 }

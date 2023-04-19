@@ -10,6 +10,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   users: any;
+  currentlySelectedUserId!: number;
 
   formatDate(fullDate: String) {
 
@@ -48,6 +49,10 @@ export class UserService {
 
   editUserInfo(id:number,body:any){
     return this.http.post<any>(environment.apiEndpoint + "/user/edit-user-info/"+id,body);
+  }
+
+  getDailyAttendance(body:any){
+    return this.http.post<any>(environment.apiEndpoint + "/attendance/get-daily-attendance-by-user-id",body);
   }
 
   searchSuperadmin(groupName:string ,category: string, q: string,pageNumber:number,pageSize:number,sort:string,order:string){
