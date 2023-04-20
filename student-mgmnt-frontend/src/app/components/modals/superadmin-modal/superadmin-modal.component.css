@@ -75,8 +75,19 @@ select:disabled {
 
 .datePickerContainer{
     background-color: red;
+    display: flex;
+    
 }
 
+.studentAttendanceDatePicker{
+    max-width: 500px;
+}
+.getStudentDailyAttendanceButton{
+    width: 100%;
+    max-width: 100px;
+    margin-left: auto;
+    
+}
 
 @media (max-width: 575px) {
     label{

@@ -525,9 +525,8 @@
     <div class="modalContainer"  *ngIf="this.isdailyAttendanceLoading == false">
       
         <div class="datePickerContainer">
-            <input id="studentAttendanceDatePicker" type="date" (change)="changeDate()" value={{this.defaultDate}} placeholder={{this.defaultDate}} data-date-format="YYYY-MM-DD">
-            {{defaultDate}}
-            <button (click)="getStudentDailyAttendance(2)"></button>
+            <input class="studentAttendanceDatePicker" type="date" (change)="changeDate()" value={{this.defaultDate}} placeholder={{this.defaultDate}} data-date-format="YYYY-MM-DD">
+            <button class="btn btn-success editButton" (click)="getStudentDailyAttendance(2)">Search</button>
         </div>
 
 
