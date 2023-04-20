@@ -24,4 +24,10 @@ export class UserTableComponent implements OnInit {
     this.tableService.searchSuperadmin();
   }
 
+  openUserInfoModal(user:any){
+    this.superadminDashboard.changeModal('getUserInfo'); 
+    this.SuperadminModalComponent.resetStatusCode(); 
+    this.userService.currentlySelectedUserId=user.id
+  }
+
 }

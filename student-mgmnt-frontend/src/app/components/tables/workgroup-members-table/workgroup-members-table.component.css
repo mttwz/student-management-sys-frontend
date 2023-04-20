@@ -116,6 +116,10 @@ tr td {
 
 .backToWorkgroups{
     cursor: pointer;
+    height: 30px;
+
+
+    
 }
 
 .backToWorkgroups:hover{

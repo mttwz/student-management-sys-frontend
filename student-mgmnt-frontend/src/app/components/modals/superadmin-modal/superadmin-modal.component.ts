@@ -6,6 +6,7 @@ import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashbo
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 import { WorkgroupTableComponent } from '../../tables/workgroup-table/workgroup-table.component';
 import {formatDate} from '@angular/common';
+import { DateFormatterService } from 'src/app/services/utils/date-formatter.service';
 declare var $: any;
 
 
@@ -39,9 +40,12 @@ export class SuperadminModalComponent implements OnInit {
   isEditingEnabled: Boolean = false;
   allWorkgroups !: Array<any>;
   studentDailyAttendance !: Array<any>;
+  studentDailyClasses !: Array<any>;
   workgroupInfo!: any;
   isWorkgroupInfoLoading: Boolean = true;
+
   isdailyAttendanceLoading: Boolean = true;
+  isdailyClassesLoading: Boolean = true;
 
   allWorkgroupScheduleByUserId !: any;
 
@@ -61,7 +65,8 @@ export class SuperadminModalComponent implements OnInit {
     public userService: UserService,
     public workgroupService: WorkgroupService,
     private changeDetection: ChangeDetectorRef,
-    public superadminDashboard: SuperadminDashboardComponent) { }
+    public superadminDashboard: SuperadminDashboardComponent,
+    public dateUtil: DateFormatterService) { }
 
   ngOnInit(): void {
 
@@ -364,6 +369,8 @@ export class SuperadminModalComponent implements OnInit {
 
  
   getStudentDailyAttendance(userId:number){
+
+    this.changeDate();
     let body = {
       userId: userId,
       date: this.defaultDate
@@ -372,19 +379,41 @@ export class SuperadminModalComponent implements OnInit {
     this.userService.getDailyAttendance(body).subscribe(res=>{
         this.studentDailyAttendance = res;
         this.isdailyAttendanceLoading = false;
+        this.changeDetection.detectChanges();
         console.error(res);
     })
+
 
   }
 
   changeDate(){
-    let updatedDate = formatDate(new Date($('#studentAttendanceDatePicker').val()), 'yyyy-MM-dd', 'en') + "T00:00:00Z";
-    this.defaultDate = updatedDate;
+    if($('.studentAttendanceDatePicker').val() != ""){
+      let updatedDate = formatDate(new Date($('.studentAttendanceDatePicker').val()), 'yyyy-MM-dd', 'en') + "T00:00:00Z";
+      this.defaultDate = updatedDate;
+    }
+  }
+
+  getStudentDailyClasses(userId:number){
+
+    this.changeDate();
+    let body = {
+      userId: userId,
+      date: this.defaultDate
+    };
+    console.log(body);
+    this.userService.getDailyClasses(body).subscribe(res=>{
+      
+        this.studentDailyClasses = res;
+        this.isdailyClassesLoading = false;
+        this.changeDetection.detectChanges();
+        console.error(res);
+    })
+
+    
+
   }
 
 
-  dateFormatter(date:string){
-    return  date.split("T")[0] +" "+ date.split("T")[1].split("+")[0];
-  }
+
 
 }

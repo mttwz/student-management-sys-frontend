@@ -9,6 +9,7 @@
             <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
             <th style="max-width: 48px;"></th>
             <th style="max-width: 48px;"></th>
+            <th style="max-width: 48px;"></th>
         </tr>
     </thead>
 
@@ -22,16 +23,24 @@
 
                 <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
                 <td>
-                    <div id="studentAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="this.superadminDashboard.changeModal('studentAttendanceMenu'); this.superadminModal.getStudentDailyAttendance(user.id); this.SuperadminModalComponent.resetStatusCode()">
+                    <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                    (click)="openStudentDailyClassesModal(user); this.superadminModal.getStudentDailyClasses(user.id);">
                         <img class="infoMenuImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
                             srcset="">
 
                     </div>
                 </td>
                 <td>
+                    <div id="studentAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                    (click)="openStudentDailyAttendanceModal(user); this.superadminModal.getStudentDailyAttendance(user.id);">
+                        <img class="infoMenuImage" src="../../../../assets/date-range-svgrepo-com.svg" alt=""
+                            srcset="">
+
+                    </div>
+                </td>
+                <td>
                     <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="this.superadminDashboard.changeModal('getUserInfo'); this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
+                    (click)="openStudentInfoModal(user); this.superadminModal.getUserInfo(user.id);">
                         <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
                             srcset="">
 

@@ -66,6 +66,29 @@ export class SuperadminDashboardComponent implements OnInit {
     // console.error(this.selectedModal);
   }
 
+  openAddUserModal(){
+    this.selectedModal = 'addUser' ; 
+    this.SuperadminModalComponent.resetStatusCode()
+  }
+
+  openAddUserToWorkgroupModal(){
+    this.selectedModal = 'addUserToWorkgroup' ; 
+    this.tableService.getAllWorkgroups(); 
+    this.SuperadminModalComponent.resetStatusCode()
+  }
+
+  openCreateWorkgroupModal(){
+    this.selectedModal = 'createWorkgroup'; 
+    this.SuperadminModalComponent.resetStatusCode()
+  }
+
+  openCreateWorkgroupSceduleModal(){
+    this.selectedModal = 'createWorkgroupSchedule'; 
+    this.tableService.getAllWorkgroups(); 
+    this.SuperadminModalComponent.resetStatusCode()
+
+  }
+
 
 
 
