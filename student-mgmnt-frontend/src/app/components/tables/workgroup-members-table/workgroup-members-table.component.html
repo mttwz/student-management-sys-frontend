@@ -29,10 +29,11 @@
                     <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
 
                     <td>
-                        <div id="scheduleMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                            (click)="this.superadminDashboard.changeModal('getWorkgroupScheduleByUserId'); this.tableService.getWorkgroupScheduleByUserId(user.id); this.SuperadminModalComponent.resetStatusCode()">
-                            <img class="scheduleMenuImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
+                        <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                        (click)="openStudentDailyClassesModal(user); this.superadminModal.getStudentDailyClasses(user.id);">
+                            <img class="infoMenuImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
                                 srcset="">
+    
                         </div>
                     </td>
                 </tr>

@@ -36,9 +36,16 @@ export class WorkgroupMembersTableComponent implements OnInit {
     this.tableService.searchText = '';
     this.workgroupTableComponents.isUsersListed = false;
     this.tableService.selectedWorkgroup = "";
+    this.tableService.pageNumber = this.tableService.tempPageNumber;
 
     this.tableService.searchSuperadmin(); 
     
+  }
+
+  openStudentDailyClassesModal(user:any){
+    this.superadminDashboard.changeModal('studentDailyAttendanceMenu'); 
+    this.userService.currentlySelectedUserId = user.id;
+    this.SuperadminModalComponent.resetStatusCode()
   }
 }
 

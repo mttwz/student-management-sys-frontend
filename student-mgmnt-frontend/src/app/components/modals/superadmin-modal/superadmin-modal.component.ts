@@ -50,7 +50,7 @@ export class SuperadminModalComponent implements OnInit {
   allWorkgroupScheduleByUserId !: any;
 
 
-  pageSize: number = 90; // <- erre kikell talalni valamit
+  // pageSize: number = 90; // <- erre kikell talalni valamit
   pageNumber: number = 0;
 
   id!: number;
@@ -74,10 +74,10 @@ export class SuperadminModalComponent implements OnInit {
 
     $(document).on('hidden.bs.modal', '#mainModal', () => {
 
-      // this.isEditingEnabled = false;
-      // this.isSuccessful = false;
-      // this.changeDetection.detectChanges();
-      // console.error("itttt<??????")
+      this.resetStatusCode();
+      this.changeDetection.detectChanges();
+       
+      
     })
 
 
@@ -168,11 +168,11 @@ export class SuperadminModalComponent implements OnInit {
       this.userInfoForm.controls['phone'].setValue(this.userInfo.phone);
       this.userInfoForm.controls['birth'].setValue(this.userService.getDateFromDateTime(this.userInfo.birth));
       this.userInfoForm.controls['email'].setValue(this.userInfo.email);
-      this.userInfoForm.controls['registeredAt'].setValue(this.userService.formatDate(this.userInfo.registeredAt));
+      this.userInfoForm.controls['registeredAt'].setValue(this.dateUtil.dateFormatter(this.userInfo.registeredAt));
       this.userInfoForm.controls['activationCode'].setValue(this.userInfo.activationCode);
-      this.userInfoForm.controls['activatedAt'].setValue(this.userService.formatDate(this.userInfo.activatedAt));
+      this.userInfoForm.controls['activatedAt'].setValue(this.dateUtil.dateFormatter(this.userInfo.activatedAt));
       this.userInfoForm.controls['isDeleted'].setValue(this.userInfo.isDeleted);
-      this.userInfoForm.controls['deletedAt'].setValue(this.userService.formatDate(this.userInfo.deletedAt));
+      this.userInfoForm.controls['deletedAt'].setValue(this.dateUtil.dateFormatter(this.userInfo.deletedAt));
       this.userInfoForm.controls['jwt'].setValue(this.userInfo.jwt);
       this.selectedUserRole = this.userInfo.roleName;
       this.userInfoForm.disable();
@@ -245,7 +245,7 @@ export class SuperadminModalComponent implements OnInit {
 
   resetStatusCode() {
     this.resStatus = 0;
-
+    this.isSuccessful = null;
   }
 
 

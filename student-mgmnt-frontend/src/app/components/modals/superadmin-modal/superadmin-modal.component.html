@@ -157,7 +157,7 @@
     <div class="responseTextContainer">
         <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
         <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
+            fassss
         </div>
     </div>
     <div class="modalButtonContainer">
@@ -310,6 +310,25 @@
     <div class="modalContainer">
         <form [formGroup]="addUserToWorkgroupForm">
 
+            <input [(ngModel)]="this.tableService.searchText" (keyup)="this.tableService.searchOnlyUsers()" type="text"
+            class="form-control searchBar" placeholder="Type to search...">
+
+            
+                <ng-container *ngFor="let user of this.tableService.allUsers;">
+                    <tr class="align-middle">
+                        <td>{{user.id}}</td>
+                        <td>{{user.roleName}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+        
+                        <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                        
+                    </tr>
+                </ng-container>
+            
+
+
+
             <div class="inputText formInput">
                 <label for="userId">Users:</label>
                 <select class="custom-select userId" formControlName="userId">
@@ -317,6 +336,16 @@
                         Name: {{user.firstName}} {{user.lastName}}, {{user.roleName}} </option>
                 </select>
             </div>
+
+            <div class="inputText formInput">
+                <label for="workgroupId">Workgroup:</label>
+                <select class="custom-select workgroupId" formControlName="workgroupId">
+                    <!-- <option  value="" selected disabled hidden placeholder id="defaultSelected"></option> -->
+                    <option *ngFor="let workgroup of this.tableService.allWorkgroup;" [value]="workgroup.id">
+                        {{workgroup.groupName}}</option>
+                </select>
+            </div>
+
         </form>
     </div>
 

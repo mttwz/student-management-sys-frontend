@@ -15,8 +15,9 @@ export class TableService {
   groupName: string = "";
   searchText: string = "";
   searchFilter: string = "users";
-  pageSize: number = 90; // <- erre kikell talalni valamit.   mire? itt adod meg hogy hany szar legyen kilistazva 
+  pageSize: number = 1; // <- erre kikell talalni valamit.   mire? itt adod meg hogy hany szar legyen kilistazva 
   pageNumber: number = 0;
+  tempPageNumber!: number;
   allPages!: number;
   sort: string = "id";
   order: string = "asc";
@@ -89,6 +90,7 @@ export class TableService {
       this.userService.searchSuperadmin(this.groupName, "users-in-workgroup", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allWorkgroupMemebers = res.userInfoDtoList;
         this.isUsersLoading = false;
+        this.allPages = res.allPages;
         console.log(this.allWorkgroupMemebers);
         this.changeDetectionEmitter.emit();
 
@@ -98,6 +100,17 @@ export class TableService {
 
     }
 
+  }
+
+  searchOnlyUsers(){
+    this.userService.searchSuperadmin(this.groupName, "users", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+      this.allUsers = res.userInfoDtoList;
+      this.isUsersLoading = false;
+      this.allPages = res.allPages;
+      this.changeDetectionEmitter.emit();
+    }, err => {
+      console.log(err)
+    })
   }
 
 
@@ -185,6 +198,7 @@ export class TableService {
 
   pageClick(num: number) {
     console.log(this.searchFilter)
+    console.log(this.pageNumber);
     this.pageNumber = num;
     this.getContentByFilter();
   }
@@ -197,9 +211,16 @@ export class TableService {
   getContentByFilter() {
     if (this.searchFilter == "users") {
       this.searchSuperadmin();
-    }
-    else if (this.searchFilter == "workgroup") {
+    }else if (this.searchFilter == "student") {
+      this.searchSuperadmin();
+    }else if (this.searchFilter == "admin") {
+      this.searchSuperadmin();
+    }else if (this.searchFilter == "super-admin") {
+      this.searchSuperadmin();
+    }else if (this.searchFilter == "workgroup") {
       this.getAllWorkgroups();
+    }else if (this.searchFilter == "users-in-workgroup") {
+      this.searchSuperadmin();
     }
   }
 

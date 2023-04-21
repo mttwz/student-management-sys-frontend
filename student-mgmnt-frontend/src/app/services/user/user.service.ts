@@ -12,16 +12,6 @@ export class UserService {
   users: any;
   currentlySelectedUserId!: number;
 
-  formatDate(fullDate: String) {
-
-    if (fullDate != null) {
-      let date = fullDate.split("T")[0];
-      let time = fullDate.split("T")[1].split(".")[0];
-      return date + " " + time;
-    }
-    return "";
-
-  }
 
   getDateFromDateTime(fullDate: String) {
 
