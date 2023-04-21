@@ -99,7 +99,7 @@ tr td {
 
 }
 
-.infoMenuImage {
+.infoMenuImage, .studentRoleIcon {
     height: 16px;
     width: 32px;
     display: block;
@@ -115,7 +115,9 @@ tr td {
 }
 
 
-
+.studentRoleIcon{
+    filter: brightness(0) saturate(100%) invert(59%) sepia(96%) saturate(483%) hue-rotate(77deg) brightness(95%) contrast(88%);
+}
 
 
 

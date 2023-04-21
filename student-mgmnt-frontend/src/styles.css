@@ -110,3 +110,8 @@ display: flex;
     filter: opacity(0.9);
 
 }
+
+a{
+    color: white;
+    text-decoration: none
+}

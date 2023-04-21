@@ -99,7 +99,7 @@ tr td {
 
 }
 
-.infoMenuImage {
+.infoMenuImage, .superadminRoleIcon {
     height: 16px;
     width: 32px;
     display: block;
@@ -116,7 +116,9 @@ tr td {
 
 
 
-
+.superadminRoleIcon{
+    filter: brightness(0) saturate(100%) invert(24%) sepia(98%) saturate(2238%) hue-rotate(306deg) brightness(85%) contrast(96%);
+}
 
 
 
