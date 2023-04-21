@@ -105,4 +105,8 @@ display: flex;
     color: red;
 }
 
+.deleted{
+    background-color: red;
+    filter: opacity(0.9);
 
+}

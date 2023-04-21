@@ -13,7 +13,23 @@
 
     <tbody *ngIf="this.tableService.isUsersLoading == false">
         <ng-container *ngFor="let user of this.tableService.allUsers;">
-            <tr class="align-middle">
+            <tr class="align-middle deleted" *ngIf="user.isDeleted == true">
+                <td class="deleted">{{user.id}}</td>
+                <td class="deleted">{{user.roleName}}</td>
+                <td class="deleted">{{user.firstName}}</td>
+                <td class="deleted">{{user.lastName}}</td>
+
+                <td class="deleted"><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                <td class="deleted">
+                    <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                    (click)="this.superadminDashboard.changeModal('getUserInfo'); this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
+                        <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
+                            srcset="">
+
+                    </div>
+                </td>
+            </tr>
+            <tr class="align-middle" *ngIf="user.isDeleted == false">
                 <td>{{user.id}}</td>
                 <td>{{user.roleName}}</td>
                 <td>{{user.firstName}}</td>

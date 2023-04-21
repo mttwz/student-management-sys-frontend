@@ -14,7 +14,32 @@
 
         <tbody *ngIf="this.tableService.isUsersLoading == false">
             <ng-container *ngFor="let workgroup of this.tableService.allWorkgroup;">
-                <tr class="align-middle">
+                
+                <tr class="align-middle deleted" *ngIf="workgroup.isDeleted == true">
+                    <td class="deleted">{{workgroup.id}}</td>
+                    <td class="deleted">{{workgroup.groupName}}</td>
+                    <td class="deleted">{{workgroup.institution}}</td>
+                    <td class="deleted">
+                        <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
+                        <div id="addUserToWorkgroup" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                        (click)="openAddUserToWorkgroupModal(workgroup)" >
+                            <img class="workgroupImage" src="../../../../assets/add-user-svgrepo-com.svg" alt="">
+                        </div>
+                    </td>
+                    <td class="deleted">
+                        <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
+                        <div id="getWorkgroupInfo" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                        (click)="openWorkgroupInfoModal(workgroup); this.superadminModal.getWorkgroupInfo(this.workgroupService.currentlySelectedWorkgroup);" >
+                            <img class="workgroupImage" src="../../../../assets/edit.png" alt="">
+                        </div>
+                    </td>
+                    <td class="deleted">
+                        <div id="userInWorkgroupList" type="button" (click)="switchToWorkgroupMembers(workgroup.groupName)">
+                            <img class="userInWorkgroupListImage" src="../../../../assets/user-list-svgrepo-com.svg" alt=""srcset="">
+                        </div>
+                    </td>
+                </tr>
+                <tr class="align-middle"  *ngIf="workgroup.isDeleted == false">
                     <td>{{workgroup.id}}</td>
                     <td>{{workgroup.groupName}}</td>
                     <td>{{workgroup.institution}}</td>
