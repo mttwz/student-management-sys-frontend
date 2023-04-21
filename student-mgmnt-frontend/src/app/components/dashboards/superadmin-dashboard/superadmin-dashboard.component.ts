@@ -5,6 +5,7 @@ import { TableService } from 'src/app/services/table/table.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
 import { MainDashboardComponent } from '../main-dashboard/main-dashboard.component';
+import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 declare var $: any;
 
 
@@ -21,6 +22,7 @@ export class SuperadminDashboardComponent implements OnInit {
 
   constructor(
     public userService: UserService, 
+    public workgroupService: WorkgroupService, 
     public authService: AuthService, 
     private changeDetection: ChangeDetectorRef, 
     public tableService: TableService,

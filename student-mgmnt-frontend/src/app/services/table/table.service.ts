@@ -22,9 +22,6 @@ export class TableService {
   sort: string = "id";
   order: string = "asc";
 
-  selectedWorkgroup!: string;
-  selectedWorkgroupId !: number;
-
   allUsers !: Array<any>;
   allWorkgroup !: Array<any>;
   allWorkgroupMemebers !: Array<any>;

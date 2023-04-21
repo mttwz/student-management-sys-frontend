@@ -9,7 +9,8 @@ export class WorkgroupService {
 
   constructor(private http: HttpClient) { }
 
-  currentlySelectedWorkgroup!:number;
+  currentlySelectedWorkgroupId!:number;
+  currentlySelectedWorkgroupName!:string;
 
 
   formatDate(fullDate: String) {

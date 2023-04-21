@@ -4,6 +4,7 @@ import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashbo
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
 import { UserService } from 'src/app/services/user/user.service';
 import { WorkgroupTableComponent } from '../workgroup-table/workgroup-table.component';
+import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 declare var $: any;
 
 @Component({
@@ -17,6 +18,7 @@ export class WorkgroupMembersTableComponent implements OnInit {
 
   constructor(
     public tableService: TableService,
+    public workgroupService: WorkgroupService,
     public userService: UserService,
     public superadminDashboard: SuperadminDashboardComponent,
     private changeDetection: ChangeDetectorRef,
@@ -35,7 +37,7 @@ export class WorkgroupMembersTableComponent implements OnInit {
     this.tableService.searchFilter = 'workgroup';
     this.tableService.searchText = '';
     this.workgroupTableComponents.isUsersListed = false;
-    this.tableService.selectedWorkgroup = "";
+    this.workgroupService.currentlySelectedWorkgroupName = "";
     this.tableService.pageNumber = this.tableService.tempPageNumber;
 
     this.tableService.searchSuperadmin(); 

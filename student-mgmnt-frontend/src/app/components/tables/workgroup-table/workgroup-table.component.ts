@@ -35,7 +35,7 @@ export class WorkgroupTableComponent implements OnInit {
     this.tableService.groupName = groupName;
     this.isUsersListed = true; 
     this.tableService.searchText = ''; 
-    this.tableService.selectedWorkgroup = groupName;
+    this.workgroupService.currentlySelectedWorkgroupName = groupName;
     this.changeDetection.detectChanges();
     this.tableService.searchSuperadmin();
     this.tableService.tempPageNumber = this.tableService.pageNumber;
@@ -54,14 +54,14 @@ export class WorkgroupTableComponent implements OnInit {
   // }
 
   openWorkgroupInfoModal(workgroup:any){
-    this.workgroupService.currentlySelectedWorkgroup = workgroup.id;
+    this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.superadminDashboard.changeModal('getWorkgroupInfo'); 
     this.SuperadminModalComponent.resetStatusCode()
 
   }
 
   openAddUserToWorkgroupModal(workgroup:any){
-    this.workgroupService.currentlySelectedWorkgroup = workgroup.id;
+    this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.superadminDashboard.changeModal('addUserToWorkgroup'); 
     this.SuperadminModalComponent.resetStatusCode()
 

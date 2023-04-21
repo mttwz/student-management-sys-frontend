@@ -534,11 +534,11 @@
     
     <div class="modalDeleteRestoreButtonContainer">
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton"
-            (click)="deleteWorkgroup(this.workgroupService.currentlySelectedWorkgroup)" data-bs-dismiss="modal">
+            (click)="deleteWorkgroup(this.workgroupService.currentlySelectedWorkgroupId)" data-bs-dismiss="modal">
             DELETE
         </button>
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
-            (click)="restoreDeletedWorkgroup(this.workgroupService.currentlySelectedWorkgroup)"  data-bs-dismiss="modal">
+            (click)="restoreDeletedWorkgroup(this.workgroupService.currentlySelectedWorkgroupId)"  data-bs-dismiss="modal">
             Restore
         </button>
     </div>
