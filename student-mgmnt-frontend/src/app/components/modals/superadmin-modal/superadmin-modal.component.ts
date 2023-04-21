@@ -202,6 +202,40 @@ export class SuperadminModalComponent implements OnInit {
     });
   }
 
+  deleteUser(userId:number) {
+    this.userService.deleteUser(userId).subscribe(res => {
+      console.log(res.status)
+    }, err => {
+     
+
+    });
+  }
+
+  restoreDeletedUser(userId:number) {
+    this.userService.restoreDeletetUser(userId).subscribe(res => {
+      console.log(res.status)
+    }, err => {
+     
+    });
+  }
+
+  deleteWorkgroup(workgroupId:number) {
+    this.workgroupService.deleteWorkgroup(workgroupId).subscribe(res => {
+      console.log(res.status)
+    }, err => {
+     
+
+    });
+  }
+
+  restoreDeletedWorkgroup(workgroupId:number) {
+    this.workgroupService.restoreDeletedWorkgroup(workgroupId).subscribe(res => {
+      console.log(res.status)
+    }, err => {
+     
+    });
+  }
+
   addUserToWorkgroup() {
     this.workgroupService.addUserToWorkgroup(this.addUserToWorkgroupForm.value).subscribe(res => {
       this.addUserToWorkgroupForm.reset();

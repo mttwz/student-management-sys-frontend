@@ -63,7 +63,7 @@
                     class="form-control isDeleted" formControlName="deletedAt" type="text">
                 <input *ngIf="this.userInfo.isDeleted == false"
                     style="background: url(../../../../assets/red-x-icon.webp) no-repeat scroll 7px 7px;  padding-left:40px; background-size: 21px;"
-                    class="form-control isDeleted" formControlName="deletedAt" type="text">
+                    class="form-control isDeleted" formControlName="deletedAt" type="text">  
 
             </div>
         </form>
@@ -89,8 +89,18 @@
             (click)="this.saveUserInfo()">
             Save
         </button>
-
     </div>
+    <div class="modalDeleteRestoreButtonContainer">
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton"
+            (click)="deleteUser(this.userService.currentlySelectedUserId)" data-bs-dismiss="modal">
+            DELETE
+        </button>
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
+            (click)="restoreDeletedUser(this.userService.currentlySelectedUserId)"  data-bs-dismiss="modal">
+            Restore
+        </button>
+    </div>
+
 </div>
 
 
@@ -522,11 +532,15 @@
         </button>
     </div>
     
-    <div id="deleteButtonContainer">
+    <div class="modalDeleteRestoreButtonContainer">
+        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton"
+            (click)="deleteWorkgroup(this.workgroupService.currentlySelectedWorkgroup)" data-bs-dismiss="modal">
+            DELETE
+        </button>
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
-        (click)="this.saveWorkgroupInfo()">
-        Save
-    </button>
+            (click)="restoreDeletedWorkgroup(this.workgroupService.currentlySelectedWorkgroup)"  data-bs-dismiss="modal">
+            Restore
+        </button>
     </div>
 </div>
 
@@ -575,29 +589,6 @@
 
         </div>
     </div>
-    <div class="modalButtonContainer">
-        <button *ngIf="this.isEditingEnabled == false" type="button" class="btn btn-warning editButton"
-            (click)="this.editWorkgroupInfo()">
-            Edit
-        </button>
-
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton"
-            (click)="cancelEdit()">
-            Cancel
-        </button>
-
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
-            (click)="this.saveWorkgroupInfo()">
-            Save
-        </button>
-    </div>
-    
-    <div id="deleteButtonContainer">
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
-        (click)="this.saveWorkgroupInfo()">
-        Save
-    </button>
-    </div>
 </div>
 
 
@@ -619,7 +610,6 @@
             <button class="btn btn-success getStudentDailyAttendanceButton" (click)="getStudentDailyClasses(this.userService.currentlySelectedUserId)">Search</button>
         </div>
 
-        asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd
         <table class="table table-xl table-striped table-dark" id="mainTable" *ngIf="this.isdailyClassesLoading == false">
             <thead>
                 <tr>
@@ -653,28 +643,5 @@
         <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
 
         </div>
-    </div>
-    <div class="modalButtonContainer">
-        <button *ngIf="this.isEditingEnabled == false" type="button" class="btn btn-warning editButton"
-            (click)="this.editWorkgroupInfo()">
-            Edit
-        </button>
-
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton"
-            (click)="cancelEdit()">
-            Cancel
-        </button>
-
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
-            (click)="this.saveWorkgroupInfo()">
-            Save
-        </button>
-    </div>
-    
-    <div id="deleteButtonContainer">
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
-        (click)="this.saveWorkgroupInfo()">
-        Save
-    </button>
     </div>
 </div>

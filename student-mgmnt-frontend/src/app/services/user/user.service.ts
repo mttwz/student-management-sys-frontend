@@ -37,6 +37,15 @@ export class UserService {
     return this.http.post<any>(environment.apiEndpoint + "/user/register-user",body);
   }
 
+  deleteUser(userId:number){
+    return this.http.delete<any>(environment.apiEndpoint + "/user/delete-user/" + userId);
+  }
+
+
+  restoreDeletetUser(userId:number){
+    return this.http.post<any>(environment.apiEndpoint + "/user/restore-deleted-user/" + userId, null);
+  }
+
   editUserInfo(id:number,body:any){
     return this.http.post<any>(environment.apiEndpoint + "/user/edit-user-info/"+id,body);
   }

@@ -9,8 +9,8 @@
 
 
 .searchBar{
-    border-radius: 0px;
     width: 280px;
+
 }
 
 .nav-link{
@@ -133,5 +133,32 @@
 
 
 
+
+
   }
+
+
+  @media only screen and (max-width: 723px) {
+    #mainTable {
+      overflow: scroll;
+    }
+
+    .form-control{
+        /* border: none; */
+        border-radius: 0px; 
+        border-color: #212529;
+        color: aliceblue;
+    }
+
+    #filterSelect{
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    
+
+
+
+  }
+
+
 
