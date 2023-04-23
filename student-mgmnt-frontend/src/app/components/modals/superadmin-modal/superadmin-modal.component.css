@@ -88,6 +88,14 @@ select:disabled {
     
 }
 
+.userInfoTable{
+    color: white;
+}
+
+.userInfoTable td{
+    padding: 5px;
+}
+
 @media (max-width: 575px) {
     label{
         width: 100%;

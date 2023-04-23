@@ -7,7 +7,16 @@
             <th scope="col" (click)="this.tableService.sortBy('firstName')">First name</th>
             <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
             <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
-            <th style="max-width: 48px;"></th>
+            <!-- <th style="max-width: 48px;"></th> -->
+            <th style="max-width: 48px;">
+               
+                    <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
+                    <div id="addUser" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                    (click)="openAddUserModal()" >
+                        <img class="addUserImage" src="../../../../assets/add-user-svgrepo-com.svg" alt="">
+                    </div>
+                
+            </th>
         </tr>
     </thead>
 

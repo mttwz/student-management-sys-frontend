@@ -325,7 +325,7 @@
 
             
                 <ng-container *ngFor="let user of this.tableService.allUsers;">
-                    <tr class="align-middle">
+                    <tr class="align-middle userInfoTable">
                         <td>{{user.id}}</td>
                         <td>{{user.roleName}}</td>
                         <td>{{user.firstName}}</td>
@@ -336,12 +336,9 @@
                     </tr>
                 </ng-container>
             
-
-
-
             <div class="inputText formInput">
                 <label for="userId">Users:</label>
-                <select class="custom-select userId" formControlName="userId">
+                <select class="custom-select  userId" formControlName="userId">
                     <option *ngFor="let user of this.tableService.allUsers;" [value]="user.id">
                         Name: {{user.firstName}} {{user.lastName}}, {{user.roleName}} </option>
                 </select>

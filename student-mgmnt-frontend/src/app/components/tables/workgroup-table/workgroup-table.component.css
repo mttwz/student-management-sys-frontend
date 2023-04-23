@@ -146,6 +146,14 @@ tr td {
     flex-direction: row-reverse;
 }
 
+.addWorkgroupImage{
+    height: 28px;
+    width: 28px;
+    display: block;
+    filter: invert(1);
+    flex-direction: row-reverse;
+}
+
 
 
 

@@ -43,16 +43,6 @@ export class WorkgroupTableComponent implements OnInit {
 
   }
 
-  // switchToWorkgroupSchedule(groupId: number,groupName:string){
-  //   this.isWorkgroupListed = true;
-  //   this.tableService.selectedWorkgroupId = groupId;
-  //   this.tableService.selectedWorkgroup = groupName;
-  //   this.tableService.getWorkgroupScheduleByWorkgroupId(groupId);
-  //   this.changeDetection.detectChanges();
-  //   this.tableService.searchSuperadmin(); 
-
-  // }
-
   openWorkgroupInfoModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.superadminDashboard.changeModal('getWorkgroupInfo'); 
@@ -65,8 +55,21 @@ export class WorkgroupTableComponent implements OnInit {
     this.superadminDashboard.changeModal('addUserToWorkgroup'); 
     this.SuperadminModalComponent.resetStatusCode()
 
+
   }
 
+  openCreateWorkgroupSceduleModal(workgroup:any){
+    this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
+    this.superadminDashboard.changeModal('createWorkgroupSchedule'); 
+    this.SuperadminModalComponent.resetStatusCode()
+  }
+
+ 
+
+  openCreateWorkgroupModal(){
+    this.superadminDashboard.changeModal('createWorkgroup');
+    this.SuperadminModalComponent.resetStatusCode();
+  }
   
 
 

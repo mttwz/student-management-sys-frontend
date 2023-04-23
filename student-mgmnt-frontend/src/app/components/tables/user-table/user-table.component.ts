@@ -30,4 +30,10 @@ export class UserTableComponent implements OnInit {
     this.userService.currentlySelectedUserId=user.id
   }
 
+  openAddUserModal(){
+    this.superadminDashboard.changeModal('addUser');
+    this.SuperadminModalComponent.resetStatusCode();
+    
+  }
+
 }
