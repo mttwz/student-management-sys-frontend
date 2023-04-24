@@ -360,9 +360,9 @@ export class SuperadminModalComponent implements OnInit {
       this.workgroupInfoForm.controls['groupName'].setValue(this.workgroupInfo.groupName);
       this.workgroupInfoForm.controls['institution'].setValue(this.workgroupInfo.institution);
 
-      this.workgroupInfoForm.controls['createdAt'].setValue(this.workgroupService.formatDate(this.workgroupInfo.createdAt));
+      this.workgroupInfoForm.controls['createdAt'].setValue(this.dateUtil.dateFormatter(this.workgroupInfo.createdAt));
       this.workgroupInfoForm.controls['isDeleted'].setValue(this.workgroupInfo.isDeleted);
-      this.workgroupInfoForm.controls['deletedAt'].setValue(this.workgroupService.formatDate(this.workgroupInfo.deletedAt));
+      this.workgroupInfoForm.controls['deletedAt'].setValue(this.dateUtil.dateFormatter(this.workgroupInfo.deletedAt));
 
       this.workgroupInfoForm.disable();
       this.isEditingEnabled = false;
