@@ -58,8 +58,11 @@ export class UserService {
     return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-user-schedule",body);
   }
 
-  searchSuperadmin(groupName:string ,category: string, q: string,pageNumber:number,pageSize:number,sort:string,order:string){
-    return this.http.post<any>(environment.apiEndpoint + "/user/search-super-admin?category="+category+"&q="+q+"&page="+pageNumber+"&size="+pageSize+"&sort="+sort+","+order,groupName);
+  searchSuperadmin(groupId:number ,category: string, q: string,pageNumber:number,pageSize:number,sort:string,order:string){
+    if(category == 'users-in-workgroup'){
+      return this.http.post<any>(environment.apiEndpoint + "/user/search-super-admin?groupId="+groupId+"&category="+category+"&q="+q+"&page="+pageNumber+"&size="+pageSize+"&sort="+sort+","+order,null);
+    }
+    return this.http.post<any>(environment.apiEndpoint + "/user/search-super-admin?category="+category+"&q="+q+"&page="+pageNumber+"&size="+pageSize+"&sort="+sort+","+order,null);
   }
 
 

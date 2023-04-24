@@ -12,7 +12,7 @@ export class TableService {
   isWorkgroupLoading = true;
 
   //search data
-  groupName: string = "";
+
   searchText: string = "";
   searchFilter: string = "users";
   pageSize: number = 99; // <- erre kikell talalni valamit.   mire? itt adod meg hogy hany szar legyen kilistazva 
@@ -38,7 +38,7 @@ export class TableService {
 
   searchSuperadmin() {
     if (this.searchFilter == "users") {
-      this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+      this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allUsers = res.userInfoDtoList;
         this.isUsersLoading = false;
         this.allPages = res.allPages;
@@ -47,7 +47,7 @@ export class TableService {
         console.log(err)
       })
     } else if (this.searchFilter == "student") {
-      this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+      this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allUsers = res.userInfoDtoList;
         this.isUsersLoading = false;
         this.allPages = res.allPages;
@@ -56,7 +56,7 @@ export class TableService {
         console.log(err)
       })
     } else if (this.searchFilter == "admin") {
-      this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+      this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allUsers = res.userInfoDtoList;
         this.isUsersLoading = false;
         this.allPages = res.allPages;
@@ -65,7 +65,7 @@ export class TableService {
         console.log(err)
       })
     } else if (this.searchFilter == "super-admin") {
-      this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+      this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allUsers = res.userInfoDtoList;
         this.isUsersLoading = false;
         this.allPages = res.allPages;
@@ -74,7 +74,7 @@ export class TableService {
         console.log(err)
       })
     } else if (this.searchFilter == "workgroup") {
-      this.userService.searchSuperadmin(this.groupName, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+      this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allWorkgroup = res.workgroupDtoList;
         this.isUsersLoading = false;
         this.allPages = res.allPages;
@@ -84,7 +84,7 @@ export class TableService {
       })
     } else if (this.searchFilter == 'users-in-workgroup') {
       // console.error(this.groupName);
-      this.userService.searchSuperadmin(this.groupName, "users-in-workgroup", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+      this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, "users-in-workgroup", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allWorkgroupMemebers = res.userInfoDtoList;
         this.isUsersLoading = false;
         this.allPages = res.allPages;
@@ -100,7 +100,7 @@ export class TableService {
   }
 
   searchOnlyUsers(){
-    this.userService.searchSuperadmin(this.groupName, "users", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+    this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, "users", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
       this.allUsers = res.userInfoDtoList;
       this.isUsersLoading = false;
       this.allPages = res.allPages;

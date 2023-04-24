@@ -32,12 +32,13 @@ export class WorkgroupTableComponent implements OnInit {
 
 
 
-  switchToWorkgroupMembers(groupName:string){
+  switchToWorkgroupMembers(group:any){
+   
     this.tableService.searchFilter = 'users-in-workgroup';
-    this.tableService.groupName = groupName;
     this.isUsersListed = true; 
     this.tableService.searchText = ''; 
-    this.workgroupService.currentlySelectedWorkgroupName = groupName;
+    this.workgroupService.currentlySelectedWorkgroupName = group.groupName;
+    this.workgroupService.currentlySelectedWorkgroupId = group.id;
     this.changeDetection.detectChanges();
     this.tableService.searchSuperadmin();
     this.tableService.tempPageNumber = this.tableService.pageNumber;
