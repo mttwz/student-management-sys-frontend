@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TableService } from 'src/app/services/table/table.service';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
+import { ModalService } from 'src/app/services/modal/modal.service';
 declare var $: any;
 
 @Component({
@@ -15,6 +16,7 @@ export class MainDashboardComponent implements OnInit {
 
   constructor(
     private authService: AuthService, 
+    public modalService: ModalService, 
     private router: Router, 
     private http: HttpClient,
     private changeDetection: ChangeDetectorRef, 
@@ -54,6 +56,15 @@ export class MainDashboardComponent implements OnInit {
         // console.error(this.tableService.allWorkgroup);
         
         // console.log("VALOTOZAAAAAAAAAASSDAMKOASNFKJASFNBAJSNFBASKJLFBASBFKASBFKSAHJBFKSFBSANDJK")
+      },
+      (err) => {
+       console.log(err);
+      }
+    );
+
+    this.modalService.changeDetectionEmitter.subscribe(
+      () => {
+        this.changeDetection.detectChanges();
       },
       (err) => {
        console.log(err);

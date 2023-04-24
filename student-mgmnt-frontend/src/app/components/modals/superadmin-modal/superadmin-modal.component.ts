@@ -155,12 +155,10 @@ export class SuperadminModalComponent implements OnInit {
 
 
   getUserInfo(id: number) {
-
     this.userService.getUserInfo(id).subscribe(res => {
       this.userInfo = res;
       console.log(res);
       this.isUserInfoLoading = false;
-
       this.userInfoForm.controls['id'].setValue(this.userInfo.id);
       this.userInfoForm.controls['roleName'].setValue(this.userInfo.roleName);
       this.userInfoForm.controls['firstName'].setValue(this.userInfo.firstName);
@@ -178,8 +176,6 @@ export class SuperadminModalComponent implements OnInit {
       this.userInfoForm.disable();
       this.isEditingEnabled = false;
       this.changeDetection.detectChanges();
-
-
     }, err => {
       console.log(err);
     });

@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
 import { MainDashboardComponent } from '../main-dashboard/main-dashboard.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
+import { ModalService } from 'src/app/services/modal/modal.service';
 declare var $: any;
 
 
@@ -22,6 +23,7 @@ export class SuperadminDashboardComponent implements OnInit {
 
   constructor(
     public userService: UserService, 
+    public modalService: ModalService, 
     public workgroupService: WorkgroupService, 
     public authService: AuthService, 
     private changeDetection: ChangeDetectorRef, 
@@ -33,7 +35,7 @@ export class SuperadminDashboardComponent implements OnInit {
 
 
 
-  selectedModal!: String;
+  //selectedModal!: String;
   id!: number;
   isAnyModalActive: Boolean = false;
 
@@ -61,31 +63,30 @@ export class SuperadminDashboardComponent implements OnInit {
   // }
 
 
-  changeModal(modalName:string){
-    
-    this.selectedModal = modalName;
-    this.changeDetection.detectChanges();
-    // console.error(this.selectedModal);
-  }
+  // changeModal(modalName:string){
+  //   this.selectedModal = modalName;
+  //   this.changeDetection.detectChanges();
+  //   // console.error(this.selectedModal);
+  // }
 
   openAddUserModal(){
-    this.selectedModal = 'addUser' ; 
+    this.modalService.currentlySelectedModal = 'addUser' ; 
     this.SuperadminModalComponent.resetStatusCode()
   }
 
   openAddUserToWorkgroupModal(){
-    this.selectedModal = 'addUserToWorkgroup' ; 
+    this.modalService.currentlySelectedModal = 'addUserToWorkgroup' ; 
     this.tableService.getAllWorkgroups(); 
     this.SuperadminModalComponent.resetStatusCode()
   }
 
   openCreateWorkgroupModal(){
-    this.selectedModal = 'createWorkgroup'; 
+    this.modalService.currentlySelectedModal = 'createWorkgroup'; 
     this.SuperadminModalComponent.resetStatusCode()
   }
 
   openCreateWorkgroupSceduleModal(){
-    this.selectedModal = 'createWorkgroupSchedule'; 
+    this.modalService.currentlySelectedModal = 'createWorkgroupSchedule'; 
     this.tableService.getAllWorkgroups(); 
     this.SuperadminModalComponent.resetStatusCode()
 

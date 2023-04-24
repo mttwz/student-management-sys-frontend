@@ -56,7 +56,7 @@
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
             <div class="modal-body">
-                <app-superadmin-modal #superadminModal [modalId]="this.superadminDashboard.selectedModal"></app-superadmin-modal>
+                <app-superadmin-modal #superadminModal [modalId]="this.modalService.currentlySelectedModal"></app-superadmin-modal>
             </div>
         </div>
     </div>

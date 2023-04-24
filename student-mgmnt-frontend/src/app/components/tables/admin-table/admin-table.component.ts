@@ -3,6 +3,7 @@ import { TableService } from 'src/app/services/table/table.service';
 import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
 import { UserService } from 'src/app/services/user/user.service';
+import { ModalService } from 'src/app/services/modal/modal.service';
 declare var $: any;
 
 @Component({
@@ -15,6 +16,7 @@ export class AdminTableComponent implements OnInit {
   constructor(
     public tableService: TableService, 
     public userService: UserService,
+    public modalService: ModalService, 
     public superadminDashboard: SuperadminDashboardComponent, 
     private changeDetection: ChangeDetectorRef) { }
 
@@ -25,7 +27,7 @@ export class AdminTableComponent implements OnInit {
   }
 
   openUserInfoModal(user:any){
-    this.superadminDashboard.changeModal('getUserInfo'); 
+    this.modalService.changeModal('getUserInfo'); 
     this.SuperadminModalComponent.resetStatusCode(); 
     this.userService.currentlySelectedUserId=user.id
     

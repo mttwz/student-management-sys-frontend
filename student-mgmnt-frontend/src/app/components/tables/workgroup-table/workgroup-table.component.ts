@@ -3,6 +3,7 @@ import { TableService } from 'src/app/services/table/table.service';
 import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
+import { ModalService } from 'src/app/services/modal/modal.service';
 declare var $: any;
 
 @Component({
@@ -14,6 +15,7 @@ export class WorkgroupTableComponent implements OnInit {
 
   constructor(
     public tableService: TableService, 
+    public modalService: ModalService, 
     public workgroupService: WorkgroupService,
     public superadminDashboard: SuperadminDashboardComponent, 
     private changeDetection: ChangeDetectorRef,
@@ -45,14 +47,14 @@ export class WorkgroupTableComponent implements OnInit {
 
   openWorkgroupInfoModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.superadminDashboard.changeModal('getWorkgroupInfo'); 
+    this.modalService.changeModal('getWorkgroupInfo'); 
     this.SuperadminModalComponent.resetStatusCode()
 
   }
 
   openAddUserToWorkgroupModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.superadminDashboard.changeModal('addUserToWorkgroup'); 
+    this.modalService.changeModal('addUserToWorkgroup'); 
     this.SuperadminModalComponent.resetStatusCode()
 
 
@@ -60,14 +62,14 @@ export class WorkgroupTableComponent implements OnInit {
 
   openCreateWorkgroupSceduleModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.superadminDashboard.changeModal('createWorkgroupSchedule'); 
+    this.modalService.changeModal('createWorkgroupSchedule'); 
     this.SuperadminModalComponent.resetStatusCode()
   }
 
  
 
   openCreateWorkgroupModal(){
-    this.superadminDashboard.changeModal('createWorkgroup');
+    this.modalService.changeModal('createWorkgroup');
     this.SuperadminModalComponent.resetStatusCode();
   }
   
