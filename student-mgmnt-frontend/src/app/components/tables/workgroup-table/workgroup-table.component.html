@@ -71,7 +71,7 @@
                         </div>
                     </td>
                     
-                    <td class="deleted">
+                    <td>
                         <div id="createWorkgroupSchedule" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
                     (click)="openCreateWorkgroupSceduleModal(workgroup)" >
                             <img class="workgroupImage" src="../../../../assets/add.png" alt="">
@@ -101,9 +101,6 @@
     <app-workgroup-members-table></app-workgroup-members-table>
 </div>
 
-<div *ngIf="isWorkgroupListed == true">
-    <app-workgroup-schedule-table></app-workgroup-schedule-table>
-</div>
 
 
 

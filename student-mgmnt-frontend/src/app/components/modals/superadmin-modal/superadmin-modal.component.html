@@ -63,7 +63,7 @@
                     class="form-control isDeleted" formControlName="deletedAt" type="text">
                 <input *ngIf="this.userInfo.isDeleted == false"
                     style="background: url(../../../../assets/red-x-icon.webp) no-repeat scroll 7px 7px;  padding-left:40px; background-size: 21px;"
-                    class="form-control isDeleted" formControlName="deletedAt" type="text">  
+                    class="form-control isDeleted" formControlName="deletedAt" type="text">
 
             </div>
         </form>
@@ -96,7 +96,7 @@
             DELETE
         </button>
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
-            (click)="restoreDeletedUser(this.userService.currentlySelectedUserId)"  data-bs-dismiss="modal">
+            (click)="restoreDeletedUser(this.userService.currentlySelectedUserId)" data-bs-dismiss="modal">
             Restore
         </button>
     </div>
@@ -318,42 +318,31 @@
     </div>
 
     <div class="modalContainer">
-        <form [formGroup]="addUserToWorkgroupForm">
 
-            <input [(ngModel)]="this.tableService.searchText" (keyup)="this.tableService.searchOnlyUsers()" type="text"
-            class="form-control searchBar" placeholder="Type to search...">
+        
+        <input [(ngModel)]="this.modalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
+            class="form-control searchBar" placeholder="Type to search..." (keyup)="this.modalService.searchOnlyUsersInModals()">
 
-            
-                <ng-container *ngFor="let user of this.tableService.allUsers;">
-                    <tr class="align-middle userInfoTable">
+        <table class="table table-xl table-striped table-dark" id="mainTable">
+            <div *ngIf="this.modalService.isModalUsersLoading == false">
+                <ng-container *ngFor="let user of this.modalService.allUsersModal;">
+                    <tr class="align-middle" (click)="this.addUserToWorkgroup(user.id)">
                         <td>{{user.id}}</td>
-                        <td>{{user.roleName}}</td>
                         <td>{{user.firstName}}</td>
                         <td>{{user.lastName}}</td>
-        
-                        <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
-                        
+
                     </tr>
                 </ng-container>
-            
-            <div class="inputText formInput">
-                <label for="userId">Users:</label>
-                <select class="custom-select  userId" formControlName="userId">
-                    <option *ngFor="let user of this.tableService.allUsers;" [value]="user.id">
-                        Name: {{user.firstName}} {{user.lastName}}, {{user.roleName}} </option>
-                </select>
             </div>
+        </table>
 
-            <div class="inputText formInput">
-                <label for="workgroupId">Workgroup:</label>
-                <select class="custom-select workgroupId" formControlName="workgroupId">
-                    <!-- <option  value="" selected disabled hidden placeholder id="defaultSelected"></option> -->
-                    <option *ngFor="let workgroup of this.tableService.allWorkgroup;" [value]="workgroup.id">
-                        {{workgroup.groupName}}</option>
-                </select>
+        <div class="pageSelector">
+            <div class="pageBox" *ngFor="let item of this.modalService.createRange();"
+                (click)="modalService.pageClick(item-1)">
+                {{item}}
             </div>
+        </div>
 
-        </form>
     </div>
 
     <div class="responseTextContainer">
@@ -367,9 +356,7 @@
             (click)="this.cancelCreateWorkgroupSchedule()">
             Cancel
         </button> -->
-        <button type="button" class="btn btn-success saveButton" (click)="this.addUserToWorkgroup()">
-            Save
-        </button>
+        
 
 
     </div>
@@ -528,14 +515,15 @@
             Save
         </button>
     </div>
-    
+
     <div class="modalDeleteRestoreButtonContainer">
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton"
             (click)="deleteWorkgroup(this.workgroupService.currentlySelectedWorkgroupId)" data-bs-dismiss="modal">
             DELETE
         </button>
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
-            (click)="restoreDeletedWorkgroup(this.workgroupService.currentlySelectedWorkgroupId)"  data-bs-dismiss="modal">
+            (click)="restoreDeletedWorkgroup(this.workgroupService.currentlySelectedWorkgroupId)"
+            data-bs-dismiss="modal">
             Restore
         </button>
     </div>
@@ -553,15 +541,17 @@
 
     </div>
     <div class="modalContainer">
-      
+
         <div class="datePickerContainer">
             <input class="studentAttendanceDatePicker" type="date">
-           
-            <button class="btn btn-success getStudentDailyAttendanceButton" (click)="getStudentDailyAttendance(this.userService.currentlySelectedUserId)">Search</button>
+
+            <button class="btn btn-success getStudentDailyAttendanceButton"
+                (click)="getStudentDailyAttendance(this.userService.currentlySelectedUserId)">Search</button>
         </div>
 
 
-        <table class="table table-xl table-striped table-dark" id="mainTable" *ngIf="this.isdailyAttendanceLoading == false">
+        <table class="table table-xl table-striped table-dark" id="mainTable"
+            *ngIf="this.isdailyAttendanceLoading == false">
             <thead>
                 <tr>
                     <td>in</td>
@@ -600,14 +590,16 @@
 
     </div>
     <div class="modalContainer">
-      
+
         <div class="datePickerContainer">
             <input class="studentAttendanceDatePicker" type="date">
-           
-            <button class="btn btn-success getStudentDailyAttendanceButton" (click)="getStudentDailyClasses(this.userService.currentlySelectedUserId)">Search</button>
+
+            <button class="btn btn-success getStudentDailyAttendanceButton"
+                (click)="getStudentDailyClasses(this.userService.currentlySelectedUserId)">Search</button>
         </div>
 
-        <table class="table table-xl table-striped table-dark" id="mainTable" *ngIf="this.isdailyClassesLoading == false">
+        <table class="table table-xl table-striped table-dark" id="mainTable"
+            *ngIf="this.isdailyClassesLoading == false">
             <thead>
                 <tr>
                     <td>name</td>
@@ -627,7 +619,7 @@
                         <td>{{dateUtil.dateFormatter(dailyClass.end)}}</td>
                         <td>{{dailyClass.isStudentPresent}}</td>
                         <td>{{dailyClass.lateInMinutes}}</td>
-                        
+
                     </tr>
                 </ng-container>
             </tbody>

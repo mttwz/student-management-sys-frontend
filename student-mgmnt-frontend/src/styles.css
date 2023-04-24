@@ -115,3 +115,42 @@ a{
     color: white;
     text-decoration: none
 }
+
+
+.pageSelector{
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: #373e4466;
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    justify-content: flex-start;
+    
+    max-width: 80vw;
+    height: 40px;
+   
+    overflow-x: scroll;
+    min-width: 300px;
+   
+    
+    
+   
+}
+.pageBox{
+    border-radius: 5px;
+    background-color: #212529;
+    min-width: 40px;
+    min-height: 40px;
+    color: white;
+    text-align: center;
+    
+   
+    line-height: 40px; 
+    margin-left: 10px;
+    margin-right: 10px;
+
+    cursor: pointer;
+    
+    
+
+}

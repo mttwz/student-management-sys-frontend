@@ -7,6 +7,7 @@ import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 import { WorkgroupTableComponent } from '../../tables/workgroup-table/workgroup-table.component';
 import {formatDate} from '@angular/common';
 import { DateFormatterService } from 'src/app/services/utils/date-formatter.service';
+import { ModalService } from 'src/app/services/modal/modal.service';
 declare var $: any;
 
 
@@ -25,7 +26,6 @@ export class SuperadminModalComponent implements OnInit {
   public workgroupMembersForm !: FormGroup;
   public createWorkgroupForm !: FormGroup;
   public createWorkgroupScheduleForm !: FormGroup;
-  public addUserToWorkgroupForm !: FormGroup;
   public workgroupInfoForm !: FormGroup;
 
   public getWorkgroupScheduleByUserIdForm !: FormGroup;
@@ -59,6 +59,7 @@ export class SuperadminModalComponent implements OnInit {
   defaultDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') + "T00:00:00Z";
 
 
+
   constructor(
     private formBuilder: FormBuilder,
     public tableService: TableService,
@@ -66,7 +67,8 @@ export class SuperadminModalComponent implements OnInit {
     public workgroupService: WorkgroupService,
     private changeDetection: ChangeDetectorRef,
     public superadminDashboard: SuperadminDashboardComponent,
-    public dateUtil: DateFormatterService) { }
+    public dateUtil: DateFormatterService,
+    public modalService: ModalService) { }
 
   ngOnInit(): void {
 
@@ -126,10 +128,6 @@ export class SuperadminModalComponent implements OnInit {
       workgroupId: ['', Validators.required]
     })
 
-    this.addUserToWorkgroupForm = this.formBuilder.group({
-      userId: ['', Validators.required],
-      workgroupId: ['', Validators.required]
-    })
 
     this.getWorkgroupScheduleByUserIdForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -232,9 +230,13 @@ export class SuperadminModalComponent implements OnInit {
     });
   }
 
-  addUserToWorkgroup() {
-    this.workgroupService.addUserToWorkgroup(this.addUserToWorkgroupForm.value).subscribe(res => {
-      this.addUserToWorkgroupForm.reset();
+  addUserToWorkgroup(userId:number) {
+    
+    let body = {
+      userId: userId,
+      workgroupId: this.workgroupService.currentlySelectedWorkgroupId
+    };
+    this.workgroupService.addUserToWorkgroup(body).subscribe(res => {
       this.isSuccessful = true;
       this.resStatus = res.status;
     }, err => {

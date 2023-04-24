@@ -23,7 +23,7 @@ import { StudentTableComponent } from './components/tables/student-table/student
 import { AdminTableComponent } from './components/tables/admin-table/admin-table.component';
 import { SuperadminTableComponent } from './components/tables/superadmin-table/superadmin-table.component';
 import { WorkgroupMembersTableComponent } from './components/tables/workgroup-members-table/workgroup-members-table.component';
-import { WorkgroupScheduleTableComponent } from './components/tables/workgroup-schedule-table/workgroup-schedule-table.component';
+
 
 
 
@@ -48,7 +48,7 @@ import { WorkgroupScheduleTableComponent } from './components/tables/workgroup-s
     AdminTableComponent,
     SuperadminTableComponent,
     WorkgroupMembersTableComponent,
-    WorkgroupScheduleTableComponent,
+
 
   ],
   imports: [

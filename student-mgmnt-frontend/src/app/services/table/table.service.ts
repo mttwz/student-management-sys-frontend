@@ -24,7 +24,7 @@ export class TableService {
 
   allUsers !: Array<any>;
   allWorkgroup !: Array<any>;
-  allWorkgroupMemebers !: Array<any>;
+  allWorkgroupMemebers !: Array<any>; // sub table
   allWorkgroupScheduleByUserId !: Array<any>;
   allWorkgroupScheduleByWorkgroupId !: Array<any>;
 
@@ -99,16 +99,7 @@ export class TableService {
 
   }
 
-  searchOnlyUsers(){
-    this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, "users", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
-      this.allUsers = res.userInfoDtoList;
-      this.isUsersLoading = false;
-      this.allPages = res.allPages;
-      this.changeDetectionEmitter.emit();
-    }, err => {
-      console.log(err)
-    })
-  }
+
 
 
 
@@ -201,6 +192,10 @@ export class TableService {
   }
 
   createRange() {
+    if(this.allPages == 0){
+      return [1];
+      
+    }
     return new Array(this.allPages).fill(0)
       .map((n, index) => index + 1);
   }

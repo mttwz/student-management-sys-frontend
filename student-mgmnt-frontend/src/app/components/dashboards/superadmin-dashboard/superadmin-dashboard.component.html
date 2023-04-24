@@ -56,9 +56,10 @@
             <option value="workgroup" (click)="this.tableService.changeSearchFilter('workgroup')">Workgroup ( {{this.workgroupService.currentlySelectedWorkgroupName}} ) </option>
             <!-- <option>Institution</option> -->
         </select>
-        <input [(ngModel)]="this.tableService.searchText" (keyup)="this.tableService.searchSuperadmin()" type="text"
+        <input [(ngModel)]="this.tableService.searchText"  [ngModelOptions]="{standalone: true}" (keyup)="this.tableService.searchSuperadmin()" type="text"
             class="form-control searchBar" placeholder="Type to search...">
     </div>
+
 
 
     <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'users'">
