@@ -14,12 +14,7 @@
                 <th scope="col" (click)="this.tableService.sortBy('firstName')">First name</th>
                 <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
                 <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
-                <th style="max-width: 48px;"><div id="workgroupDailyClassesMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="openWorkgroupDailyClasses();">
-                        <img class="basicSmallIconContainerImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
-                            srcset="">
-
-                    </div></th>
+                <th style="max-width: 48px;"></th>
                 
             </tr>
         </thead>
@@ -28,15 +23,15 @@
             <ng-container *ngFor="let user of this.tableService.allWorkgroupMemebers;">
 
                 <tr class="align-middle deleted"  *ngIf="user.isDeleted == true">
-                    <td class="deleted">{{user.id}}</td>
-                    <td class="deleted" *ngIf="user.roleName == 'superadmin'"><img class="superadminRoleIcon" src="../../../../assets/user-secret-svgrepo-com.svg" alt="" srcset=""></td>
-                    <td class="deleted" *ngIf="user.roleName == 'admin'"><img class="adminRoleIcon" src="../../../../assets/user-tie-svgrepo-com.svg" alt="" srcset=""></td>
-                    <td class="deleted" *ngIf="user.roleName == 'student'"><img class="studentRoleIcon" src="../../../../assets/user-graduate-svgrepo-com.svg" alt="" srcset=""></td>
-                    <td class="deleted">{{user.firstName}}</td>
-                    <td class="deleted">{{user.lastName}}</td>
-                    <td class="deleted"><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                    <td >{{user.id}}</td>
+                    <td  *ngIf="user.roleName == 'superadmin'"><img class="superadminRoleIcon" src="../../../../assets/user-secret-svgrepo-com.svg" alt="" srcset=""></td>
+                    <td  *ngIf="user.roleName == 'admin'"><img class="adminRoleIcon" src="../../../../assets/user-tie-svgrepo-com.svg" alt="" srcset=""></td>
+                    <td  *ngIf="user.roleName == 'student'"><img class="studentRoleIcon" src="../../../../assets/user-graduate-svgrepo-com.svg" alt="" srcset=""></td>
+                    <td >{{user.firstName}}</td>
+                    <td >{{user.lastName}}</td>
+                    <td ><a class="deleteda" href="mailto:{{user.email}}">{{user.email}}</a></td>
 
-                    <td class="deleted">
+                    <td >
                         <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
                         (click)="openStudentDailyClassesPerWgModal(user); this.superadminModal.getStudentDailyClassesPerWg(user.id);">
                             <img class="basicSmallIconContainerImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
@@ -46,7 +41,7 @@
                     </td>
                 </tr>
                 
-                <tr class="align-middle deleted"  *ngIf="user.isDeleted == false">
+                <tr class="align-middle"  *ngIf="user.isDeleted == false">
                     <td>{{user.id}}</td>
                     <td *ngIf="user.roleName == 'superadmin'"><img class="superadminRoleIcon" src="../../../../assets/user-secret-svgrepo-com.svg" alt="" srcset=""></td>
                     <td *ngIf="user.roleName == 'admin'"><img class="adminRoleIcon" src="../../../../assets/user-tie-svgrepo-com.svg" alt="" srcset=""></td>

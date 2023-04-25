@@ -6,89 +6,140 @@
                 <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
                 <th scope="col" (click)="this.tableService.sortBy('groupName')">Workgroup name</th>
                 <th scope="col" (click)="this.tableService.sortBy('institution')">institution</th>
-                <th style="max-width: 48px;"></th>
-                <th style="max-width: 48px;"></th>
-                <th style="max-width: 48px;"></th>
                 <th style="max-width: 48px;">
-               
                     <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
                     <div id="createWorkgroup" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="openCreateWorkgroupModal()">
+                        (click)="openCreateWorkgroupModal()">
                         <img class="addWorkgroupImage" src="../../../../assets/addWorkgroup.png" alt="">
                     </div>
-                
-            </th>
+                </th>
+
+
+
             </tr>
         </thead>
 
         <tbody *ngIf="this.tableService.isUsersLoading == false">
             <ng-container *ngFor="let workgroup of this.tableService.allWorkgroup;">
-                
+
                 <tr class="align-middle deleted" *ngIf="workgroup.isDeleted == true">
-                    <td class="deleted">{{workgroup.id}}</td>
-                    <td class="deleted">{{workgroup.groupName}}</td>
-                    <td class="deleted">{{workgroup.institution}}</td>
-                  
-                    <td class="deleted">
-                        <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
-                        <div id="addUserToWorkgroup" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                        (click)="openAddUserToWorkgroupModal(workgroup)" >
-                            <img class="workgroupImage" src="../../../../assets/add-user-svgrepo-com.svg" alt="">
-                        </div>
-                    </td>
+                    <td>{{workgroup.id}}</td>
+                    <td>{{workgroup.groupName}}</td>
+                    <td>{{workgroup.institution}}</td>
 
-                    <td class="deleted">
-                        <div id="createWorkgroupSchedule" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="openCreateWorkgroupSceduleModal(workgroup)" >
-                            <img class="workgroupImage" src="../../../../assets/add.png" alt="">
-                        </div>
-                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
 
-                    <td class="deleted">
-                        <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
-                        <div id="getWorkgroupInfo" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                        (click)="openWorkgroupInfoModal(workgroup); this.superadminModal.getWorkgroupInfo(this.workgroupService.currentlySelectedWorkgroupId);" >
-                            <img class="workgroupImage" src="../../../../assets/edit.png" alt="">
-                        </div>
-                    </td>
 
-                    <td class="deleted">
-                        <div id="userInWorkgroupList" type="button" (click)="switchToWorkgroupMembers(workgroup)">
-                            <img class="userInWorkgroupListImage" src="../../../../assets/user-list-svgrepo-com.svg" alt=""srcset="">
+                                <div class="dropdownButton" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#mainModal" (click)="openAddUserToWorkgroupModal(workgroup)">
+                                    <div class="basicSmallIconContainer">
+                                        <img class="basicSmallIconContainerImage"
+                                            src="../../../../assets/add-user-svgrepo-com.svg" alt="" srcset="">
+                                        <div class="itemText">Add user to workgroup</div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdownButton" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#mainModal" (click)="openCreateWorkgroupSceduleModal(workgroup)">
+                                    <div class="basicSmallIconContainer">
+                                        <img class="basicSmallIconContainerImage" src="../../../../assets/add.png"
+                                            alt="" srcset="">
+                                        <div class="itemText">Create a schedule</div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdownButton" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#mainModal"
+                                    (click)="openWorkgroupInfoModal(workgroup); this.superadminModal.getWorkgroupInfo(this.workgroupService.currentlySelectedWorkgroupId);">
+                                    <div class="basicSmallIconContainer">
+                                        <img class="basicSmallIconContainerImage" src="../../../../assets/edit.png"
+                                            alt="" srcset="">
+                                        <div class="itemText">Workgroup info</div>
+                                    </div>
+                                </div>
+                                <div class="dropdownButton" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#mainModal" (click)="openWorkgroupDailyClasses(workgroup)">
+                                    <div class="basicSmallIconContainer">
+                                        <img class="basicSmallIconContainerImage"
+                                            src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
+                                            srcset="">
+                                        <div class="itemText">Classes</div>
+                                    </div>
+                                </div>
+                                <div class="dropdownButton" type="button" (click)="switchToWorkgroupMembers(workgroup)">
+                                    <div class="basicSmallIconContainer">
+                                        <img class="basicSmallIconContainerImage"
+                                            src="../../../../assets/user-list-svgrepo-com.svg" alt="" srcset="">
+                                        <div class="itemText">Members</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </td>
 
                 </tr>
-                
-                <tr class="align-middle"  *ngIf="workgroup.isDeleted == false">
+
+                <tr class="align-middle" *ngIf="workgroup.isDeleted == false">
                     <td>{{workgroup.id}}</td>
                     <td>{{workgroup.groupName}}</td>
                     <td>{{workgroup.institution}}</td>
                     <td>
-                        <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
-                        <div id="addUserToWorkgroup" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                        (click)="openAddUserToWorkgroupModal(workgroup)" >
-                            <img class="workgroupImage" src="../../../../assets/add-user-svgrepo-com.svg" alt="">
-                        </div>
-                    </td>
-                    
-                    <td>
-                        <div id="createWorkgroupSchedule" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="openCreateWorkgroupSceduleModal(workgroup)" >
-                            <img class="workgroupImage" src="../../../../assets/add.png" alt="">
-                        </div>
-                    </td>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
 
-                    <td>
-                        <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
-                        <div id="getWorkgroupInfo" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                        (click)="openWorkgroupInfoModal(workgroup); this.superadminModal.getWorkgroupInfo(this.workgroupService.currentlySelectedWorkgroupId);" >
-                            <img class="workgroupImage" src="../../../../assets/edit.png" alt="">
-                        </div>
-                    </td>
-                    <td>
-                        <div id="userInWorkgroupList" type="button" (click)="switchToWorkgroupMembers(workgroup)">
-                            <img class="userInWorkgroupListImage" src="../../../../assets/user-list-svgrepo-com.svg" alt=""srcset="">
+
+                                <div class="dropdownButton" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#mainModal" (click)="openAddUserToWorkgroupModal(workgroup)">
+                                    <div class="basicSmallIconContainer">
+                                        <img class="basicSmallIconContainerImage"
+                                            src="../../../../assets/add-user-svgrepo-com.svg" alt="" srcset="">
+                                        <div class="itemText">Add user to workgroup</div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdownButton" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#mainModal" (click)="openCreateWorkgroupSceduleModal(workgroup)">
+                                    <div class="basicSmallIconContainer">
+                                        <img class="basicSmallIconContainerImage" src="../../../../assets/add.png"
+                                            alt="" srcset="">
+                                        <div class="itemText">Create a schedule</div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdownButton" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#mainModal"
+                                    (click)="openWorkgroupInfoModal(workgroup); this.superadminModal.getWorkgroupInfo(this.workgroupService.currentlySelectedWorkgroupId);">
+                                    <div class="basicSmallIconContainer">
+                                        <img class="basicSmallIconContainerImage" src="../../../../assets/edit.png"
+                                            alt="" srcset="">
+                                        <div class="itemText">Workgroup info</div>
+                                    </div>
+                                </div>
+                                <div class="dropdownButton" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#mainModal" (click)="openWorkgroupDailyClasses(workgroup)">
+                                    <div class="basicSmallIconContainer">
+                                        <img class="basicSmallIconContainerImage"
+                                            src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
+                                            srcset="">
+                                        <div class="itemText">Classes</div>
+                                    </div>
+                                </div>
+                                <div class="dropdownButton" type="button" (click)="switchToWorkgroupMembers(workgroup)">
+                                    <div class="basicSmallIconContainer">
+                                        <img class="basicSmallIconContainerImage"
+                                            src="../../../../assets/user-list-svgrepo-com.svg" alt="" srcset="">
+                                        <div class="itemText">Members</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -110,7 +161,8 @@
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
             <div class="modal-body">
-                <app-superadmin-modal #superadminModal [modalId]="this.modalService.currentlySelectedModal"></app-superadmin-modal>
+                <app-superadmin-modal #superadminModal
+                    [modalId]="this.modalService.currentlySelectedModal"></app-superadmin-modal>
             </div>
         </div>
     </div>

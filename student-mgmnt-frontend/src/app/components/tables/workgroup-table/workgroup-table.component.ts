@@ -79,6 +79,13 @@ export class WorkgroupTableComponent implements OnInit {
     this.modalService.changeModal('createWorkgroupModal');
     this.SuperadminModalComponent.resetStatusCode();
   }
+
+  openWorkgroupDailyClasses(workgroup:any){
+    this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
+    this.SuperadminModalComponent.allDailyWorkgroupClasses = [];
+    this.modalService.changeModal('workgroupDailyClassesMenu');
+    this.SuperadminModalComponent.resetStatusCode()
+  }
   
 
 

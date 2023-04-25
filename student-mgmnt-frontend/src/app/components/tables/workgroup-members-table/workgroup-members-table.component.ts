@@ -55,10 +55,7 @@ export class WorkgroupMembersTableComponent implements OnInit {
     this.SuperadminModalComponent.resetStatusCode()
   }
 
-  openWorkgroupDailyClasses(){
-    this.modalService.changeModal('workgroupDailyClassesMenu'); 
-    this.SuperadminModalComponent.resetStatusCode()
-  }
+
 }
 
 

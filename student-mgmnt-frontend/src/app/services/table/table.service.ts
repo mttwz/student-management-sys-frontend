@@ -209,7 +209,10 @@ export class TableService {
 
   changeSearchFilter(filter: string) {
     this.searchFilter = filter;
+    this.sort = "id"
+    this.order = "asc"
     this.pageNumber = 0;
+    this.workgroupService.currentlySelectedWorkgroupName = "";
   }
 
 

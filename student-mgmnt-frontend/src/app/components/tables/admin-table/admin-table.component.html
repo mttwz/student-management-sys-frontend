@@ -15,23 +15,25 @@
         <ng-container *ngFor="let user of this.tableService.allUsers;">
 
             <tr class="align-middle deleted" *ngIf="user.isDeleted == true">
-                <td class="deleted">{{user.id}}</td>
-                <td class="deleted"><img class="adminRoleIcon" src="../../../../assets/user-tie-svgrepo-com.svg" alt="" srcset=""></td>
-                <td class="deleted">{{user.firstName}}</td>
-                <td class="deleted">{{user.lastName}}</td>
+                <td>{{user.id}}</td>
+                <td><img class="adminRoleIcon" src="../../../../assets/user-tie-svgrepo-com.svg" alt="" srcset=""></td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
 
-                <td class="deleted"><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                <td><a class="deleteda" href="mailto:{{user.email}}">{{user.email}}</a></td>
                 <td>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
                             data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
                         <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                            <div class="basicSmallIconContainer" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
                                 (click)="openUserInfoModal(user); this.superadminModal.getUserInfo(user.id); ">
-                                <img class="basicSmallIconContainerImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
-                                    srcset="">
-                                <div class="itemText">User info</div>
+                                <div class="basicSmallIconContainer">
+                                    <img class="basicSmallIconContainerImage"
+                                        src="../../../../assets/edit-profile-svgrepo-com.svg" alt="" srcset="">
+                                    <div class="itemText">User info</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -50,12 +52,15 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
                         <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                            <div class="basicSmallIconContainer" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
                                 (click)="openUserInfoModal(user); this.superadminModal.getUserInfo(user.id); ">
-                                <img class="basicSmallIconContainerImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
-                                    srcset="">
-                                <div class="itemText">User info</div>
+                                <div class="basicSmallIconContainer">
+                                    <img class="basicSmallIconContainerImage"
+                                        src="../../../../assets/edit-profile-svgrepo-com.svg" alt="" srcset="">
+                                    <div class="itemText">User info</div>
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
                 </td>
