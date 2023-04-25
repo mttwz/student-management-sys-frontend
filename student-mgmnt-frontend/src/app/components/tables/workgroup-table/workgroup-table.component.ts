@@ -53,7 +53,7 @@ export class WorkgroupTableComponent implements OnInit {
 
   openWorkgroupInfoModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.changeModal('getWorkgroupInfo'); 
+    this.modalService.changeModal('workgroupInfoModal'); 
     this.SuperadminModalComponent.resetStatusCode()
 
   }
@@ -61,7 +61,7 @@ export class WorkgroupTableComponent implements OnInit {
   openAddUserToWorkgroupModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.modalService.searchOnlyUsersInModals();
-    this.modalService.changeModal('addUserToWorkgroup'); 
+    this.modalService.changeModal('addUserToWorkgroupModal'); 
     this.SuperadminModalComponent.resetStatusCode()
 
 
@@ -69,14 +69,14 @@ export class WorkgroupTableComponent implements OnInit {
 
   openCreateWorkgroupSceduleModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.changeModal('createWorkgroupSchedule'); 
+    this.modalService.changeModal('createWorkgroupScheduleModal'); 
     this.SuperadminModalComponent.resetStatusCode()
   }
 
  
 
   openCreateWorkgroupModal(){
-    this.modalService.changeModal('createWorkgroup');
+    this.modalService.changeModal('createWorkgroupModal');
     this.SuperadminModalComponent.resetStatusCode();
   }
   

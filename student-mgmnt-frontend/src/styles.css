@@ -14,17 +14,24 @@ display: none;
 }
 
 
-
-
-
-
-/* main content for the dashboards */
+/* main content for the dashboards (the table)*/
 .main {
     width: 80%;
     margin: auto;
     display: grid;
     margin-top: 25px;
 }
+
+
+/* container for different tables eg: user, admin etc.. */
+.tableContainer{
+    overflow: scroll;
+    max-width: 100%;
+}
+
+
+
+
 
 
 

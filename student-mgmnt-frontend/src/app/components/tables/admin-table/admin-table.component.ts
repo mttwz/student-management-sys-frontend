@@ -27,7 +27,7 @@ export class AdminTableComponent implements OnInit {
   }
 
   openUserInfoModal(user:any){
-    this.modalService.changeModal('getUserInfo'); 
+    this.modalService.changeModal('userInfoModal'); 
     this.SuperadminModalComponent.resetStatusCode(); 
     this.userService.currentlySelectedUserId=user.id
     

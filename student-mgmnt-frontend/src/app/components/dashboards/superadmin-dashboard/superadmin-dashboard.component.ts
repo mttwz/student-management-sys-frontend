@@ -69,28 +69,28 @@ export class SuperadminDashboardComponent implements OnInit {
   //   // console.error(this.selectedModal);
   // }
 
-  openAddUserModal(){
-    this.modalService.currentlySelectedModal = 'addUser' ; 
-    this.SuperadminModalComponent.resetStatusCode()
-  }
+  // openAddUserModal(){
+  //   this.modalService.currentlySelectedModal = 'addUserModal' ; 
+  //   this.SuperadminModalComponent.resetStatusCode()
+  // }
 
-  openAddUserToWorkgroupModal(){
-    this.modalService.currentlySelectedModal = 'addUserToWorkgroup' ; 
-    this.tableService.getAllWorkgroups(); 
-    this.SuperadminModalComponent.resetStatusCode()
-  }
+  // openAddUserToWorkgroupModal(){
+  //   this.modalService.currentlySelectedModal = 'addUserToWorkgroup' ; 
+  //   this.tableService.getAllWorkgroups(); 
+  //   this.SuperadminModalComponent.resetStatusCode()
+  // }
 
-  openCreateWorkgroupModal(){
-    this.modalService.currentlySelectedModal = 'createWorkgroup'; 
-    this.SuperadminModalComponent.resetStatusCode()
-  }
+  // openCreateWorkgroupModal(){
+  //   this.modalService.currentlySelectedModal = 'createWorkgroupModal'; 
+  //   this.SuperadminModalComponent.resetStatusCode()
+  // }
 
-  openCreateWorkgroupSceduleModal(){
-    this.modalService.currentlySelectedModal = 'createWorkgroupSchedule'; 
-    this.tableService.getAllWorkgroups(); 
-    this.SuperadminModalComponent.resetStatusCode()
+  // openCreateWorkgroupSceduleModal(){
+  //   this.modalService.currentlySelectedModal = 'createWorkgroupSchedule'; 
+  //   this.tableService.getAllWorkgroups(); 
+  //   this.SuperadminModalComponent.resetStatusCode()
 
-  }
+  // }
 
 
 

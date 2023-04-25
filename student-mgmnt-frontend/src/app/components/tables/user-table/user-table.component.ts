@@ -27,13 +27,13 @@ export class UserTableComponent implements OnInit {
   }
 
   openUserInfoModal(user:any){
-    this.modalService.changeModal('getUserInfo'); 
+    this.modalService.changeModal('userInfoModal'); 
     this.SuperadminModalComponent.resetStatusCode(); 
     this.userService.currentlySelectedUserId=user.id
   }
 
   openAddUserModal(){
-    this.modalService.changeModal('addUser');
+    this.modalService.changeModal('addUserModal');
     this.SuperadminModalComponent.resetStatusCode();
     
   }

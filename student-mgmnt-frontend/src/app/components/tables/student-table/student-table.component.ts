@@ -27,14 +27,14 @@ export class StudentTableComponent implements OnInit {
   }
 
   openStudentDailyAttendanceModal(user:any){
-    this.modalService.changeModal('studentAttendanceMenu'); 
+    this.modalService.changeModal('studentAttendanceLogMenu'); 
     this.userService.currentlySelectedUserId = user.id;
     this.SuperadminModalComponent.resetStatusCode();
     
   }
 
   openStudentInfoModal(user:any){
-    this.modalService.changeModal('getUserInfo'); 
+    this.modalService.changeModal('userInfoModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.SuperadminModalComponent.resetStatusCode()
   }
