@@ -41,6 +41,10 @@ export class SuperadminModalComponent implements OnInit {
   allWorkgroups !: Array<any>;
   studentDailyAttendance !: Array<any>;
   studentDailyClasses !: Array<any>;
+
+  allDailyWorkgroupClasses !: Array<any>;
+  isWorkgroupClassesLoading: Boolean = true;
+
   workgroupInfo!: any;
   isWorkgroupInfoLoading: Boolean = true;
 
@@ -419,14 +423,15 @@ export class SuperadminModalComponent implements OnInit {
   }
 
   changeDate(){
-    if($('.studentAttendanceDatePicker').val() != ""){
-      let updatedDate = formatDate(new Date($('.studentAttendanceDatePicker').val()), 'yyyy-MM-dd', 'en') + "T00:00:00Z";
+    if($('.datePicker').val() != ""){
+      let updatedDate = formatDate(new Date($('.datePicker').val()), 'yyyy-MM-dd', 'en') + "T00:00:00Z";
       this.defaultDate = updatedDate;
     }
   }
 
-  getStudentDailyClasses(userId:number){
 
+
+  getStudentDailyClasses(userId:number){
     this.changeDate();
     let body = {
       userId: userId,
@@ -434,14 +439,49 @@ export class SuperadminModalComponent implements OnInit {
     };
     console.log(body);
     this.userService.getDailyClasses(body).subscribe(res=>{
-      
+
         this.studentDailyClasses = res;
         this.isdailyClassesLoading = false;
         this.changeDetection.detectChanges();
-        console.error(res);
+        console.error(res.length);
     })
+  }
 
+  getStudentDailyClassesPerWg(userId:number){
+    this.changeDate();
+    let body = {
+      userId: userId,
+      workgroupId: this.workgroupService.currentlySelectedWorkgroupId,
+      date: this.defaultDate
+    };
     
+
+    this.userService.getDailyClassesInWorkgroup(body).subscribe(res=>{
+
+        this.studentDailyClasses = res;
+        this.isdailyClassesLoading = false;
+        this.changeDetection.detectChanges();
+        console.error(res.length);
+        console.log(res);
+    })
+    
+  }
+
+
+  getDailyWorkgroupSchedule(){
+    this.changeDate();
+    let body = {
+      workgroupId: this.workgroupService.currentlySelectedWorkgroupId,
+      start: this.defaultDate
+    };
+
+    this.workgroupService.getDailyWorkgroupScheduleByWorkgroupId(body).subscribe(res=>{
+      this.allDailyWorkgroupClasses = res.workgroupscheduleDtoList;
+      this.isWorkgroupClassesLoading = false;
+      this.changeDetection.detectChanges();
+    }, err =>{
+      console.log(err);
+    })
 
   }
 

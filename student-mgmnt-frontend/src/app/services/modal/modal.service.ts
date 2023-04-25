@@ -60,4 +60,7 @@ export class ModalService {
     return new Array(this.modalAllPages).fill(0)
       .map((n, index) => index + 1);
   }
+
+
+  
 }

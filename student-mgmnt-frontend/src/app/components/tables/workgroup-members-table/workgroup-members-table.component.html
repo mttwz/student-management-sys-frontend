@@ -14,7 +14,12 @@
                 <th scope="col" (click)="this.tableService.sortBy('firstName')">First name</th>
                 <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
                 <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
-                <th style="max-width: 48px;"></th>
+                <th style="max-width: 48px;"><div id="workgroupDailyClassesMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                    (click)="openWorkgroupDailyClasses();">
+                        <img class="infoMenuImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
+                            srcset="">
+
+                    </div></th>
                 
             </tr>
         </thead>
@@ -33,7 +38,7 @@
 
                     <td class="deleted">
                         <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                        (click)="openStudentDailyClassesModal(user); this.superadminModal.getStudentDailyClasses(user.id);">
+                        (click)="openStudentDailyClassesPerWgModal(user); this.superadminModal.getStudentDailyClassesPerWg(user.id);">
                             <img class="infoMenuImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
                                 srcset="">
     
@@ -52,7 +57,7 @@
 
                     <td>
                         <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                        (click)="openStudentDailyClassesModal(user); this.superadminModal.getStudentDailyClasses(user.id);">
+                        (click)="openStudentDailyClassesPerWgModal(user); this.superadminModal.getStudentDailyClassesPerWg(user.id);">
                             <img class="infoMenuImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
                                 srcset="">
     

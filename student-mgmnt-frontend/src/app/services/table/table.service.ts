@@ -143,17 +143,7 @@ export class TableService {
   }
 
 
-  getWorkgroupScheduleByWorkgroupId(id:number){
-    this.workgroupService.getWorkgroupScheduleByWorkgroupId(id).subscribe(res=>{
-      console.log("workgroupRES" + res.id);
-      this.allWorkgroupScheduleByWorkgroupId = res;
-      this.isWorkgroupLoading = false;
-      this.changeDetectionEmitter.emit();
-    }, err =>{
-      console.log(err);
-    })
 
-  }
 
 
   getDailyAttendance(id: number, date: string) {

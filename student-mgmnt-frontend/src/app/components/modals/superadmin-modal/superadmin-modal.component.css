@@ -78,7 +78,7 @@ select:disabled {
     
 }
 
-.studentAttendanceDatePicker{
+.datePicker{
     max-width: 500px;
 }
 .getStudentDailyAttendanceButton{

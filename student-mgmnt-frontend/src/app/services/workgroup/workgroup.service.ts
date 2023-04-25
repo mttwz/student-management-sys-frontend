@@ -83,9 +83,9 @@ export class WorkgroupService {
       return this.http.get<any>(environment.apiEndpoint + "/workgroupschedule/get-workgroup-schedule-by-user-id/" + userId + "?page=" + pageNumber + "&size=" + pageSize);
   }
 
-  getWorkgroupScheduleByWorkgroupId(workgroupId:number){
+  getDailyWorkgroupScheduleByWorkgroupId(body:any){
       // http://localhost:8080/api/v1/workgroupschedule/get-workgroup-schedule-by-workgroup-id/1
-      return this.http.get<any>(environment.apiEndpoint + "/workgroupschedule/get-workgroup-schedule-by-workgroup-id/" + workgroupId);
+      return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-daily-workgroup-schedule-by-workgroup-id",body);
   }
 
   getWorkgroupInfo(workgroupId: number){
