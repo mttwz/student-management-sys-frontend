@@ -125,7 +125,7 @@ tr td {
 }
 
 
-.infoMenuImage, .superadminRoleIcon, .adminRoleIcon, .studentRoleIcon  {
+.basicSmallIconContainerImage, .superadminRoleIcon, .adminRoleIcon, .studentRoleIcon  {
     height: 16px;
     width: 32px;
     display: block;

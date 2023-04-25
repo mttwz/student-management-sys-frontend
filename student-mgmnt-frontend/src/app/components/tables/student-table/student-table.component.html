@@ -1,5 +1,5 @@
 <table class="table table-xl table-striped table-dark" id="mainTable">
-        
+
     <thead>
         <tr class="align-middle">
             <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
@@ -8,8 +8,7 @@
             <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
             <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
             <th style="max-width: 48px;"></th>
-            <th style="max-width: 48px;"></th>
-            <th style="max-width: 48px;"></th>
+
         </tr>
     </thead>
 
@@ -17,66 +16,91 @@
         <ng-container *ngFor="let user of this.tableService.allUsers;">
             <tr class="align-middle deleted" *ngIf="user.isDeleted == true">
                 <td class="deleted">{{user.id}}</td>
-                <td class="deleted"><img class="studentRoleIcon" src="../../../../assets/user-graduate-svgrepo-com.svg" alt="" srcset=""></td>
+                <td class="deleted"><img class="studentRoleIcon" src="../../../../assets/user-graduate-svgrepo-com.svg"
+                        alt="" srcset=""></td>
                 <td class="deleted">{{user.firstName}}</td>
                 <td class="deleted">{{user.lastName}}</td>
 
                 <td class="deleted"><a href="mailto:{{user.email}}">{{user.email}}</a></td>
-                <td class="deleted">
-                    <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="openStudentDailyClassesModal(user); this.superadminModal.getStudentDailyClasses(user.id);">
-                        <img class="infoMenuImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
-                            srcset="">
 
-                    </div>
-                </td>
-                <td class="deleted">
-                    <div id="studentAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="openStudentDailyAttendanceModal(user); this.superadminModal.getStudentDailyAttendance(user.id);">
-                        <img class="infoMenuImage" src="../../../../assets/date-range-svgrepo-com.svg" alt=""
-                            srcset="">
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
 
-                    </div>
-                </td>
-                <td class="deleted">
-                    <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="openStudentInfoModal(user); this.superadminModal.getUserInfo(user.id);">
-                        <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
-                            srcset="">
+                            <div class="basicSmallIconContainer" type="button" data-bs-toggle="modal"
+                                data-bs-target="#mainModal"
+                                (click)="openStudentDailyClassesModal(user); this.superadminModal.getStudentDailyClasses(user.id);">
+                                <img class="basicSmallIconContainerImage"
+                                    src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt="" srcset="">
+                                <div class="itemText">Daily schedule</div>
+                            </div>
 
+                            <div class="basicSmallIconContainer" type="button" data-bs-toggle="modal"
+                                data-bs-target="#mainModal"
+                                (click)="openStudentDailyAttendanceModal(user); this.superadminModal.getStudentDailyAttendance(user.id);">
+                                <img class="basicSmallIconContainerImage"
+                                    src="../../../../assets/date-range-svgrepo-com.svg" alt="" srcset="">
+                                <div class="itemText">Daily log</div>
+                            </div>
+
+                            <div class="basicSmallIconContainer" type="button" data-bs-toggle="modal"
+                                data-bs-target="#mainModal"
+                                (click)="openStudentInfoModal(user); this.superadminModal.getUserInfo(user.id);">
+                                <img class="basicSmallIconContainerImage"
+                                    src="../../../../assets/edit-profile-svgrepo-com.svg" alt="" srcset="">
+                                <div class="itemText">User info</div>
+                            </div>
+
+
+                        </div>
                     </div>
                 </td>
             </tr>
 
             <tr class="align-middle" *ngIf="user.isDeleted == false">
                 <td>{{user.id}}</td>
-                <td><img class="studentRoleIcon" src="../../../../assets/user-graduate-svgrepo-com.svg" alt="" srcset=""></td>
+                <td><img class="studentRoleIcon" src="../../../../assets/user-graduate-svgrepo-com.svg" alt=""
+                        srcset=""></td>
                 <td>{{user.firstName}}</td>
                 <td>{{user.lastName}}</td>
 
                 <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
                 <td>
-                    <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="openStudentDailyClassesModal(user); this.superadminModal.getStudentDailyClasses(user.id);">
-                        <img class="infoMenuImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
-                            srcset="">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
 
-                    </div>
-                </td>
-                <td>
-                    <div id="studentAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="openStudentDailyAttendanceModal(user); this.superadminModal.getStudentDailyAttendance(user.id);">
-                        <img class="infoMenuImage" src="../../../../assets/date-range-svgrepo-com.svg" alt=""
-                            srcset="">
+                            <div class="basicSmallIconContainer" type="button" data-bs-toggle="modal"
+                                data-bs-target="#mainModal"
+                                (click)="openStudentDailyClassesModal(user); this.superadminModal.getStudentDailyClasses(user.id);">
+                                <img class="basicSmallIconContainerImage"
+                                    src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt="" srcset="">
+                                <div class="itemText">Daily schedule</div>
+                            </div>
 
-                    </div>
-                </td>
-                <td>
-                    <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="openStudentInfoModal(user); this.superadminModal.getUserInfo(user.id);">
-                        <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
-                            srcset="">
+                            <div class="basicSmallIconContainer" type="button" data-bs-toggle="modal"
+                                data-bs-target="#mainModal"
+                                (click)="openStudentDailyAttendanceModal(user); this.superadminModal.getStudentDailyAttendance(user.id);">
+                                <img class="basicSmallIconContainerImage"
+                                    src="../../../../assets/date-range-svgrepo-com.svg" alt="" srcset="">
+                                <div class="itemText">Daily log</div>
+                            </div>
 
+                            <div class="basicSmallIconContainer" type="button" data-bs-toggle="modal"
+                                data-bs-target="#mainModal"
+                                (click)="openStudentInfoModal(user); this.superadminModal.getUserInfo(user.id);">
+                                <img class="basicSmallIconContainerImage"
+                                    src="../../../../assets/edit-profile-svgrepo-com.svg" alt="" srcset="">
+                                <div class="itemText">User info</div>
+                            </div>
+
+
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -90,7 +114,8 @@
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
             <div class="modal-body">
-                <app-superadmin-modal #superadminModal [modalId]="this.modalService.currentlySelectedModal"></app-superadmin-modal>
+                <app-superadmin-modal #superadminModal
+                    [modalId]="this.modalService.currentlySelectedModal"></app-superadmin-modal>
             </div>
         </div>
     </div>

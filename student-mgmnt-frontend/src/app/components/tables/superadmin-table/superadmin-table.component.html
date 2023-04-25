@@ -20,12 +20,19 @@
                 <td class="deleted">{{user.lastName}}</td>
 
                 <td class="deleted"><a href="mailto:{{user.email}}">{{user.email}}</a></td>
-                <td class="deleted">
-                    <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="this.modalService.changeModal('getUserInfo'); this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
-                        <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
-                            srcset="">
-
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                            <div class="basicSmallIconContainer" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                                (click)="openUserInfoModal(user); this.superadminModal.getUserInfo(user.id); ">
+                                <img class="basicSmallIconContainerImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
+                                    srcset="">
+                                <div class="itemText">User info</div>
+                            </div>
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -37,11 +44,18 @@
 
                 <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
                 <td>
-                    <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                    (click)="this.modalService.changeModal('getUserInfo'); this.superadminModal.getUserInfo(user.id); this.SuperadminModalComponent.resetStatusCode()">
-                        <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
-                            srcset="">
-
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                            <div class="basicSmallIconContainer" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                                (click)="openUserInfoModal(user); this.superadminModal.getUserInfo(user.id); ">
+                                <img class="basicSmallIconContainerImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
+                                    srcset="">
+                                <div class="itemText">User info</div>
+                            </div>
+                        </div>
                     </div>
                 </td>
             </tr>

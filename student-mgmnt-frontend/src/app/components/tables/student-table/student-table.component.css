@@ -90,16 +90,9 @@ tr td {
 
 
 
-#infoMenu {
-    height: 16px;
-    width: 32px;
-    display: flex;
-    position: sticky;
-    right: 0;
 
-}
 
-.infoMenuImage, .studentRoleIcon {
+.basicSmallIconContainerImage, .studentRoleIcon {
     height: 16px;
     width: 32px;
     display: block;

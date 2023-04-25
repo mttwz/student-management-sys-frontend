@@ -90,7 +90,7 @@ tr td {
 
 
 
-#infoMenu {
+.basicSmallIconContainer {
     height: 16px;
     width: 32px;
     display: flex;
@@ -99,7 +99,7 @@ tr td {
 
 }
 
-.infoMenuImage, .adminRoleIcon{
+.basicSmallIconContainerImage, .adminRoleIcon{
     height: 16px;
     width: 32px;
     display: block;

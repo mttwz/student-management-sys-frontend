@@ -30,11 +30,34 @@ display: none;
 }
 
 
+/* text for the dropdown menu items */
+.itemText{
+    color: wheat;
+    margin-top: -5px;
+    margin-left: 10px;
+    min-width: 120px;
+
+}
 
 
+/* image for the dropdown menu info item asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd */
+.basicSmallIconContainer {
+    height: 16px;
+    width: 32px;
+    display: flex;
+    position: sticky;
+    right: 0;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 20px;
 
+}
 
-
+.dropdown-menu{
+    filter: opacity(1);
+   
+    
+}
 
 .modalContainer{
     height: auto;

@@ -55,7 +55,7 @@ select:disabled {
     padding-left: 13.6em;
 }
 
-#infoMenu {
+.basicSmallIconContainer {
     height: 16px;
     width: 32px;
     display: flex;
@@ -64,7 +64,7 @@ select:disabled {
 
 }
 
-.infoMenuImage {
+.basicSmallIconContainerImage {
     height: 16px;
     width: 32px;
     display: block;
