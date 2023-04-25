@@ -710,8 +710,7 @@
                 (click)="getDailyWorkgroupSchedule()">Search</button>
         </div>
 
-        <table class="table table-xl table-striped table-dark" id="mainTable"
-            *ngIf="this.isWorkgroupClassesLoading == false">
+        <table class="table table-xl table-striped table-dark" id="mainTable">
             <thead>
                 <tr>
                     <td>name</td>
@@ -719,7 +718,7 @@
                     <td>end</td>
                 </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="this.isWorkgroupClassesLoading == false">
                 <ng-container *ngFor="let dailyClass of allDailyWorkgroupClasses;">
                     <tr class="align-middle">
                         <td>{{dailyClass.name}}</td>

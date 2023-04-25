@@ -39,10 +39,15 @@ export class WorkgroupTableComponent implements OnInit {
     this.tableService.searchText = ''; 
     this.workgroupService.currentlySelectedWorkgroupName = group.groupName;
     this.workgroupService.currentlySelectedWorkgroupId = group.id;
-    this.changeDetection.detectChanges();
-    this.tableService.searchSuperadmin();
+    
     this.tableService.tempPageNumber = this.tableService.pageNumber;
     this.tableService.pageNumber = 0;
+
+    this.tableService.tempSort = this.tableService.sort;
+    this.tableService.sort = "id";
+
+    this.changeDetection.detectChanges();
+    this.tableService.searchSuperadmin();
 
   }
 

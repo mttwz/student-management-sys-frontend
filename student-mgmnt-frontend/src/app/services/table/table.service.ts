@@ -21,6 +21,7 @@ export class TableService {
   allPages!: number;
   sort: string = "id";
   order: string = "asc";
+  tempSort!: string;
 
   allUsers !: Array<any>;
   allWorkgroup !: Array<any>;

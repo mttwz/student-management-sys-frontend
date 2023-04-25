@@ -1,11 +1,11 @@
-<div *ngIf="isUsersListed == false && isWorkgroupListed == false">
+<div *ngIf="isUsersListed == false">
     <table class="table table-xl table-striped table-dark" id="mainTable">
 
         <thead>
             <tr class="align-middle">
                 <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
-                <th scope="col">Workgroup name</th>
-                <th scope="col">institution</th>
+                <th scope="col" (click)="this.tableService.sortBy('groupName')">Workgroup name</th>
+                <th scope="col" (click)="this.tableService.sortBy('institution')">institution</th>
                 <th style="max-width: 48px;"></th>
                 <th style="max-width: 48px;"></th>
                 <th style="max-width: 48px;"></th>
@@ -59,6 +59,7 @@
                     </td>
 
                 </tr>
+                
                 <tr class="align-middle"  *ngIf="workgroup.isDeleted == false">
                     <td>{{workgroup.id}}</td>
                     <td>{{workgroup.groupName}}</td>

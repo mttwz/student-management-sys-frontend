@@ -1,5 +1,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
+
+/* hidden scrollbars */
 *{
     -ms-overflow-style: none;
     /* IE and Edge */
@@ -13,8 +15,21 @@ display: none;
 
 
 
+
+
+
+/* main content for the dashboards */
+.main {
+    width: 80%;
+    margin: auto;
+    display: grid;
+    margin-top: 25px;
+}
+
+
+
+
 .modalContainer{
-    
     height: auto;
     width: auto;
 

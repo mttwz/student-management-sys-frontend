@@ -52,12 +52,19 @@
 
                 <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
                 <td>
-                    <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                        (click)="openUserInfoModal(user); this.superadminModal.getUserInfo(user.id); ">
-                        <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
-                            srcset="">
-
-                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div id="infoMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                            (click)="openUserInfoModal(user); this.superadminModal.getUserInfo(user.id); ">
+                            <img class="infoMenuImage" src="../../../../assets/edit-profile-svgrepo-com.svg" alt=""
+                                srcset="">
+                            <div>User info</div>
+                        </div>
+                        </div>
+                      </div>
                 </td>
             </tr>
         </ng-container>
