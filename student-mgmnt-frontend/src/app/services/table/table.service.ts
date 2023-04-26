@@ -51,7 +51,7 @@ export class TableService {
     clearTimeout(this.timeoutId);
     this.timeoutId = setTimeout(() => {
       this.searchSuperadmin();
-    }, 500); 
+    }, 250); 
   }
 
   searchSuperadmin() {

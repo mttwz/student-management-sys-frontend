@@ -36,7 +36,7 @@ export class ModalService {
     this.timeoutId = setTimeout(() => {
       console.error("miafasz")
       this.searchOnlyUsersInModals();
-    }, 500); 
+    }, 250); 
   }
 
   searchOnlyUsersInModals(){
@@ -62,7 +62,6 @@ export class ModalService {
   createRange() {
     if(this.modalAllPages == 0){
       return [1];
-      
     }
     return new Array(this.modalAllPages).fill(0)
       .map((n, index) => index + 1);
