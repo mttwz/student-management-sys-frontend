@@ -60,7 +60,7 @@ tr td {
 
 
 
-#mainTable {
+.mainTable {
     width: 100%;
     
     position: relative;
@@ -81,7 +81,7 @@ tr td {
 
 }
 
-#mainTable::-webkit-scrollbar {
+.mainTable::-webkit-scrollbar {
     display: none;
 }
 
@@ -117,7 +117,7 @@ tr td {
 
 
 @media only screen and (max-width: 600px) {
-    #mainTable {
+    .mainTable {
       overflow: scroll;
     }
 

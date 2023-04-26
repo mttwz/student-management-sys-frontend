@@ -1,68 +1,68 @@
-<div>
-    <table class="table table-xl table-striped table-dark" id="mainTable">
-        <div type="button" class="backToWorkgroups" (click)="switchToWorkgroups()" style="font-size: 15px;">   
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                <path  fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-              </svg>   
-              Back to workgroups
-        </div>
-       
-        <thead>
-            <tr class="align-middle">
-                <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
-                <th scope="col" (click)="this.tableService.sortBy('roleId.roleType')">Role</th>
-                <th scope="col" (click)="this.tableService.sortBy('firstName')">First name</th>
-                <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
-                <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
-                <th style="max-width: 48px;"></th>
-                
+
+<table class="table table-xl table-striped table-dark mainTable">
+    <div type="button" class="backToWorkgroups" (click)="switchToWorkgroups()" style="font-size: 15px;">   
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path  fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>   
+            Back to workgroups
+    </div>
+    
+    <thead>
+        <tr class="align-middle">
+            <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
+            <th scope="col" (click)="this.tableService.sortBy('roleId.roleType')">Role</th>
+            <th scope="col" (click)="this.tableService.sortBy('firstName')">First name</th>
+            <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
+            <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
+            <th style="max-width: 48px;"></th>
+            
+        </tr>
+    </thead>
+
+    <tbody>
+        <ng-container *ngFor="let user of this.tableService.allWorkgroupMemebers;">
+
+            <tr class="align-middle deleted"  *ngIf="user.isDeleted == true">
+                <td >{{user.id}}</td>
+                <td  *ngIf="user.roleName == 'superadmin'"><img class="superadminRoleIcon" src="../../../../assets/user-secret-svgrepo-com.svg" alt="" srcset=""></td>
+                <td  *ngIf="user.roleName == 'admin'"><img class="adminRoleIcon" src="../../../../assets/user-tie-svgrepo-com.svg" alt="" srcset=""></td>
+                <td  *ngIf="user.roleName == 'student'"><img class="studentRoleIcon" src="../../../../assets/user-graduate-svgrepo-com.svg" alt="" srcset=""></td>
+                <td >{{user.firstName}}</td>
+                <td >{{user.lastName}}</td>
+                <td ><a class="deleteda" href="mailto:{{user.email}}">{{user.email}}</a></td>
+
+                <td >
+                    <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                    (click)="openStudentDailyClassesPerWgModal(user); this.superadminModal.getStudentDailyClassesPerWg(user.id);">
+                        <img class="basicSmallIconContainerImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
+                            srcset="">
+
+                    </div>
+                </td>
             </tr>
-        </thead>
-    
-        <tbody>
-            <ng-container *ngFor="let user of this.tableService.allWorkgroupMemebers;">
+            
+            <tr class="align-middle"  *ngIf="user.isDeleted == false">
+                <td>{{user.id}}</td>
+                <td *ngIf="user.roleName == 'superadmin'"><img class="superadminRoleIcon" src="../../../../assets/user-secret-svgrepo-com.svg" alt="" srcset=""></td>
+                <td *ngIf="user.roleName == 'admin'"><img class="adminRoleIcon" src="../../../../assets/user-tie-svgrepo-com.svg" alt="" srcset=""></td>
+                <td *ngIf="user.roleName == 'student'"><img class="studentRoleIcon" src="../../../../assets/user-graduate-svgrepo-com.svg" alt="" srcset=""></td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
 
-                <tr class="align-middle deleted"  *ngIf="user.isDeleted == true">
-                    <td >{{user.id}}</td>
-                    <td  *ngIf="user.roleName == 'superadmin'"><img class="superadminRoleIcon" src="../../../../assets/user-secret-svgrepo-com.svg" alt="" srcset=""></td>
-                    <td  *ngIf="user.roleName == 'admin'"><img class="adminRoleIcon" src="../../../../assets/user-tie-svgrepo-com.svg" alt="" srcset=""></td>
-                    <td  *ngIf="user.roleName == 'student'"><img class="studentRoleIcon" src="../../../../assets/user-graduate-svgrepo-com.svg" alt="" srcset=""></td>
-                    <td >{{user.firstName}}</td>
-                    <td >{{user.lastName}}</td>
-                    <td ><a class="deleteda" href="mailto:{{user.email}}">{{user.email}}</a></td>
+                <td>
+                    <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                    (click)="openStudentDailyClassesPerWgModal(user); this.superadminModal.getStudentDailyClassesPerWg(user.id);">
+                        <img class="basicSmallIconContainerImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
+                            srcset="">
 
-                    <td >
-                        <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                        (click)="openStudentDailyClassesPerWgModal(user); this.superadminModal.getStudentDailyClassesPerWg(user.id);">
-                            <img class="basicSmallIconContainerImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
-                                srcset="">
-    
-                        </div>
-                    </td>
-                </tr>
-                
-                <tr class="align-middle"  *ngIf="user.isDeleted == false">
-                    <td>{{user.id}}</td>
-                    <td *ngIf="user.roleName == 'superadmin'"><img class="superadminRoleIcon" src="../../../../assets/user-secret-svgrepo-com.svg" alt="" srcset=""></td>
-                    <td *ngIf="user.roleName == 'admin'"><img class="adminRoleIcon" src="../../../../assets/user-tie-svgrepo-com.svg" alt="" srcset=""></td>
-                    <td *ngIf="user.roleName == 'student'"><img class="studentRoleIcon" src="../../../../assets/user-graduate-svgrepo-com.svg" alt="" srcset=""></td>
-                    <td>{{user.firstName}}</td>
-                    <td>{{user.lastName}}</td>
-                    <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                    </div>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
 
-                    <td>
-                        <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
-                        (click)="openStudentDailyClassesPerWgModal(user); this.superadminModal.getStudentDailyClassesPerWg(user.id);">
-                            <img class="basicSmallIconContainerImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
-                                srcset="">
-    
-                        </div>
-                    </td>
-                </tr>
-            </ng-container>
-        </tbody>
-    </table>
-</div>
 
 <div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
