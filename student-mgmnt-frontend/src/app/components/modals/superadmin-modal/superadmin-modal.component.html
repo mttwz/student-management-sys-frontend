@@ -309,7 +309,7 @@
 
         
         <input [(ngModel)]="this.modalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
-            class="form-control searchBar" placeholder="Type to search..." (keyup)="this.modalService.searchOnlyUsersInModals()">
+            class="form-control searchBar" placeholder="Type to search..." (keyup)="this.modalService.searchOnlyUsersInModalsWithDebounce()">
 
         <table class="table table-xl table-striped table-dark mainTable">
             <div *ngIf="this.modalService.isModalUsersLoading == false">
@@ -499,8 +499,8 @@
                 (click)="getStudentDailyClasses(this.userService.currentlySelectedUserId)">Search</button>
         </div>
 
-        <table class="table table-xl table-striped table-dark mainTable">
-            *ngIf="this.isdailyClassesLoading == false">
+        <table class="table table-xl table-striped table-dark mainTable" *ngIf="this.isdailyClassesLoading == false">
+            
             <thead>
                 <tr>
                     <td>name</td>
@@ -556,8 +556,8 @@
                 (click)="getStudentDailyClassesPerWg(this.userService.currentlySelectedUserId)">Search</button>
         </div>
 
-        <table class="table table-xl table-striped table-dark mainTable">
-            *ngIf="this.isdailyClassesLoading == false">
+        <table class="table table-xl table-striped table-dark mainTable" *ngIf="this.isdailyClassesLoading == false">
+            
             <thead>
                 <tr>
                     <td>name</td>

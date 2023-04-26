@@ -24,16 +24,23 @@ export class ModalService {
 
   changeDetectionEmitter: EventEmitter<void> = new EventEmitter<void>();
   
+  private timeoutId!: any;
+
   changeModal(modalName:string){
     this.currentlySelectedModal = modalName;
     this.changeDetectionEmitter.emit();
   }
 
-
+  searchOnlyUsersInModalsWithDebounce(): void {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      console.error("miafasz")
+      this.searchOnlyUsersInModals();
+    }, 500); 
+  }
 
   searchOnlyUsersInModals(){
     
-    console.error(this.modalSearchtext)
     this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, "users", this.modalSearchtext, this.modalPageNumber, this.modalPageSize, this.modalSort, this.modalOrder).subscribe(res => {
       this.allUsersModal = res.userInfoDtoList;
       this.isModalUsersLoading = false;

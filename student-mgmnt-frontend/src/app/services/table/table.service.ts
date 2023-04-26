@@ -2,6 +2,8 @@ import { ApplicationRef, ChangeDetectorRef, EventEmitter, Injectable, ViewChildr
 import { UserService } from '../user/user.service';
 import { WorkgroupService } from '../workgroup/workgroup.service';
 import { WorkgroupScheduleService } from '../workgroup-schedule/workgroup-schedule.service';
+import { fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -31,11 +33,26 @@ export class TableService {
 
   dailyAttendance !: Array<any>;
 
+  private timeoutId!: any;
 
 
-  constructor(private userService: UserService, public workgroupService: WorkgroupService, public workgroupScheduleService: WorkgroupScheduleService) { }
+  constructor(private userService: UserService, public workgroupService: WorkgroupService, public workgroupScheduleService: WorkgroupScheduleService) {
+    // let source = fromEvent(document, 'input');
+    // source.pipe(debounceTime(500)).subscribe(c => {
+    //   console.error("debounce working biiiatch 8=======3")
+    //   this.searchSuperadmin();
+    // });
+  }
 
   changeDetectionEmitter: EventEmitter<void> = new EventEmitter<void>();
+
+
+  searchSuperadminWithDebounce(): void {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      this.searchSuperadmin();
+    }, 500); 
+  }
 
   searchSuperadmin() {
     if (this.searchFilter == "users") {
@@ -95,7 +112,6 @@ export class TableService {
       }, err => {
         console.log(err)
       })
-
     }
 
   }
@@ -169,7 +185,7 @@ export class TableService {
     }
     this.sort = type;
     this.getContentByFilter();
-    
+
   }
 
   pageClick(num: number) {
@@ -180,9 +196,9 @@ export class TableService {
   }
 
   createRange() {
-    if(this.allPages == 0){
+    if (this.allPages == 0) {
       return [1];
-      
+
     }
     return new Array(this.allPages).fill(0)
       .map((n, index) => index + 1);
@@ -191,15 +207,15 @@ export class TableService {
   getContentByFilter() {
     if (this.searchFilter == "users") {
       this.searchSuperadmin();
-    }else if (this.searchFilter == "student") {
+    } else if (this.searchFilter == "student") {
       this.searchSuperadmin();
-    }else if (this.searchFilter == "admin") {
+    } else if (this.searchFilter == "admin") {
       this.searchSuperadmin();
-    }else if (this.searchFilter == "super-admin") {
+    } else if (this.searchFilter == "super-admin") {
       this.searchSuperadmin();
-    }else if (this.searchFilter == "workgroup") {
+    } else if (this.searchFilter == "workgroup") {
       this.getAllWorkgroups();
-    }else if (this.searchFilter == "users-in-workgroup") {
+    } else if (this.searchFilter == "users-in-workgroup") {
       this.searchSuperadmin();
     }
   }
