@@ -36,14 +36,14 @@
 
 
 @media only screen and (max-width: 600px) {
-    #mainTable {
+    .mainTable {
         overflow: scroll;
     }
 }
 
 
 @media only screen and (max-width: 723px) {
-    #mainTable {
+    .mainTable {
         overflow: scroll;
     }
 

@@ -169,7 +169,7 @@ export class TableService {
     }
     this.sort = type;
     this.getContentByFilter();
-    this.searchSuperadmin();
+    
   }
 
   pageClick(num: number) {
