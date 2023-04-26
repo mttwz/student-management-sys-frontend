@@ -262,18 +262,6 @@
                     max="2050-06-14T00:00" required>
             </div>
 
-
-
-            <div class="inputText formInput">
-                <label for="workgroupId">Workgroup:</label>
-                <select class="custom-select workgroupId" formControlName="workgroupId">
-
-                    <option *ngFor="let workgroup of this.tableService.allWorkgroup;" [value]="workgroup.id">
-                        {{workgroup.groupName}}</option>
-
-                </select>
-            </div>
-
             <div class="inputText formInput">
                 <label for="isOnsite">Onsite:</label>
                 <div class="form-switch">
@@ -330,7 +318,6 @@
                         <td>{{user.id}}</td>
                         <td>{{user.firstName}}</td>
                         <td>{{user.lastName}}</td>
-
                     </tr>
                 </ng-container>
             </div>
