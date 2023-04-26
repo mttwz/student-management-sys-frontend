@@ -16,11 +16,12 @@ label {
   
 input {
     width: 70%;
-   
-    
-    
-    
 }
+
+.checkboxInput{
+    width: 14%;
+}
+
 .formInput{
     margin-bottom: 30px;
 }
@@ -46,7 +47,7 @@ select:disabled {
     accent-color: #1f2224;
     height: 25px;
     width: 47px;
-    left: 30px;
+    margin-left: 0;
 
 }
 

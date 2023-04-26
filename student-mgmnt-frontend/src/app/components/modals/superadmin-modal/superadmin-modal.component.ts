@@ -95,7 +95,6 @@ export class SuperadminModalComponent implements OnInit {
       birth: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      // role: ['', Validators.required]
     })
 
     this.userInfoForm = this.formBuilder.group({
@@ -250,6 +249,7 @@ export class SuperadminModalComponent implements OnInit {
   }
 
   createWorkgroup() {
+  
     this.workgroupService.createWorkgroup(this.createWorkgroupForm.value).subscribe(res => {
       this.createWorkgroupForm.reset();
       this.isSuccessful = true;
@@ -266,7 +266,8 @@ export class SuperadminModalComponent implements OnInit {
       this.createWorkgroupScheduleForm.value.end = this.createWorkgroupScheduleForm.value.end + ":00Z";
     };
 
-
+    this.createWorkgroupScheduleForm.value.workgroupId = this.workgroupService.currentlySelectedWorkgroupId;
+    
     this.workgroupService.createWorkgroupSchedule(this.createWorkgroupScheduleForm.value).subscribe(res => {
       this.createWorkgroupScheduleForm.reset();
       this.isSuccessful = true;

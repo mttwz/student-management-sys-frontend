@@ -102,9 +102,6 @@ export class TableService {
 
 
 
-
-
-
   // ha torolve van a wg akkor ne jelenjen meg.
   getAllWorkgroups() {
     //http://localhost:8080/api/v1/workgroup/get-all-workgroups?page=0 &size=2 &sort=id,asc
