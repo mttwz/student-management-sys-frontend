@@ -18,8 +18,12 @@ input {
     width: 70%;
 }
 
-.checkboxInput{
-    width: 14%;
+.sucessful{
+    width: 5%;
+}
+
+.addUser{
+    cursor: pointer;
 }
 
 .formInput{
