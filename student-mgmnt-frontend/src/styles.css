@@ -54,6 +54,8 @@ display: none;
 
 .dropdown-menu{
    width: 300px;
+   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.389);
+   border: solid #202020 1px;
 }
 .dropdownButton{
     
