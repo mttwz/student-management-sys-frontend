@@ -23,7 +23,7 @@ export class SuperadminModalComponent implements OnInit {
   public addUserForm !: FormGroup;
   public userInfoForm !: FormGroup;
 
-  public workgroupMembersForm !: FormGroup;
+  // public workgroupMembersForm !: FormGroup;
   public createWorkgroupForm !: FormGroup;
   public createWorkgroupScheduleForm !: FormGroup;
   public workgroupInfoForm !: FormGroup;
@@ -31,7 +31,9 @@ export class SuperadminModalComponent implements OnInit {
   public getWorkgroupScheduleByUserIdForm !: FormGroup;
 
   public isSuccessful: any;
-  public resStatus!: Number;
+  public resStatus : any;
+
+  public isUserAddToWorkgroup : Boolean = false;
 
   userInfo!: any;
   isUserInfoLoading: Boolean = true;
@@ -53,6 +55,7 @@ export class SuperadminModalComponent implements OnInit {
 
   allWorkgroupScheduleByUserId !: any;
 
+  addedUserId !: number;
 
   // pageSize: number = 90; // <- erre kikell talalni valamit
   pageNumber: number = 0;
@@ -233,8 +236,10 @@ export class SuperadminModalComponent implements OnInit {
     });
   }
 
+
+
   addUserToWorkgroup(userId:number) {
-    
+
     let body = {
       userId: userId,
       workgroupId: this.workgroupService.currentlySelectedWorkgroupId
@@ -242,11 +247,19 @@ export class SuperadminModalComponent implements OnInit {
     this.workgroupService.addUserToWorkgroup(body).subscribe(res => {
       this.isSuccessful = true;
       this.resStatus = res.status;
+      this.addedUserId = userId;
+      this.isUserAddToWorkgroup = true;
+      console.log(this.addedUserId )
     }, err => {
       this.resStatus = err.status;
       this.isSuccessful = false;
+      this.isUserAddToWorkgroup = false;
     });
   }
+
+
+
+
 
   createWorkgroup() {
   
@@ -267,7 +280,7 @@ export class SuperadminModalComponent implements OnInit {
     };
 
     this.createWorkgroupScheduleForm.value.workgroupId = this.workgroupService.currentlySelectedWorkgroupId;
-    
+
     this.workgroupService.createWorkgroupSchedule(this.createWorkgroupScheduleForm.value).subscribe(res => {
       this.createWorkgroupScheduleForm.reset();
       this.isSuccessful = true;
@@ -485,6 +498,8 @@ export class SuperadminModalComponent implements OnInit {
     })
 
   }
+
+  // userid osszehasonlitasa, van e a wgbe olyan userid.
 
 
 
