@@ -1,4 +1,4 @@
-<div *ngIf="isUsersListed == false">
+<div *ngIf="this.tableService.isWorkgroupMembersListed == false">
     <table class="table table-xl table-striped table-dark mainTable">
 
         <thead>
@@ -71,7 +71,7 @@
                                         <div class="itemText">Classes</div>
                                     </div>
                                 </div>
-                                <div class="dropdownButton" type="button" (click)="switchToWorkgroupMembers(workgroup)">
+                                <div class="dropdownButton" type="button" (click)="this.tableService.switchToWorkgroupMembers(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage"
                                             src="../../../../assets/user-list-svgrepo-com.svg" alt="" srcset="">
@@ -132,7 +132,7 @@
                                         <div class="itemText">Classes</div>
                                     </div>
                                 </div>
-                                <div class="dropdownButton" type="button" (click)="switchToWorkgroupMembers(workgroup)">
+                                <div class="dropdownButton" type="button" (click)="this.tableService.switchToWorkgroupMembers(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage"
                                             src="../../../../assets/user-list-svgrepo-com.svg" alt="" srcset="">
@@ -149,7 +149,7 @@
 
     </table>
 </div>
-<div *ngIf="isUsersListed == true">
+<div *ngIf="this.tableService.isWorkgroupMembersListed == true">
     <app-workgroup-members-table></app-workgroup-members-table>
 </div>
 

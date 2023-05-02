@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
 
-    $(document).on('hidden.bs.modal','#mainModal',  () => {
+    $(document).on('hidden.bs.modal','#registerModal',  () => {
       this.zone.run(() => {
         this.router.navigate(["login"]);
     });
@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.registerForm).subscribe(res =>{
       
       this.selectedModal= "successfullPopUp";
-      var myModal = new bootstrap.Modal(document.getElementById('mainModal'), "show");
+      var myModal = new bootstrap.Modal(document.getElementById('registerModal'), "show");
       myModal.show();
      
     },err=>{

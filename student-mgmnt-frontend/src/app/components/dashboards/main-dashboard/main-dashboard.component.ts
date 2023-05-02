@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TableService } from 'src/app/services/table/table.service';
@@ -31,8 +31,8 @@ export class MainDashboardComponent implements OnInit {
   ngOnInit() {
     this.authService.validateJwt().subscribe(res => {
       if(res == true){
-        this.isLoading = false;
         this.currentUserRole = this.authService.parseJwt().role;
+        this.isLoading = false;
       }else this.router.navigate(["login"]);
     }, err => {
       this.router.navigate(["login"]);
@@ -47,15 +47,13 @@ export class MainDashboardComponent implements OnInit {
       
 
     })
-    // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+   
     
     this.tableService.changeDetectionEmitter.subscribe(
       () => {
         
         this.changeDetection.detectChanges();
-        // console.error(this.tableService.allWorkgroup);
-        
-        // console.log("VALOTOZAAAAAAAAAASSDAMKOASNFKJASFNBAJSNFBASKJLFBASBFKASBFKSAHJBFKSFBSANDJK")
+      
       },
       (err) => {
        console.log(err);
@@ -72,7 +70,5 @@ export class MainDashboardComponent implements OnInit {
     );
     
   }
-
   
-
 }
