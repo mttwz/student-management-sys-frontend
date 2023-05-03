@@ -336,11 +336,10 @@
                         <td>{{user.firstName}}</td>
                         <td>{{user.lastName}}</td>
                         <td>
-                            <div (click)="this.addUserToWorkgroup(user.id)">
-                                <a class="addUser" *ngIf="addedUserId !== user.id">ADD USER</a>
-                                <div *ngIf="isUserAddToWorkgroup && addedUserId === user.id"><img style="width: 20px;" src="../../../../assets/green-checkmark-icon.webp" alt=""></div>
-                            </div>
-
+                            <button (click)="addUserToWorkgroup(user.id)" type="button" class="btn btn-secondary"
+                                [ngClass]="{'btn-success': isUserAddToWorkgroup && addedUserId == user.id}">
+                                {{ isUserAddToWorkgroup && addedUserId == user.id ? 'ADDED' : 'ADD USER' }}
+                            </button>
                         </td>
                     </tr>
                 </ng-container>
@@ -355,17 +354,6 @@
         </div>
 
     </div>
-
-    <!-- <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
-        </div>
-    </div>
-    <div class="modalButtonContainer">
-
-
-    </div> -->
 
 </div>
 
