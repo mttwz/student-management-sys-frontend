@@ -358,6 +358,7 @@
 </div>
 
 
+
 <!---------------------------------------------------------------------------------------------->
 <!-- modal for displaying the workgroup informations -->
 <div id="workgroupInfoModal" *ngIf="this.modalId == 'workgroupInfoModal'">
@@ -511,8 +512,8 @@
                 (click)="getStudentDailyClasses(this.userService.currentlySelectedUserId)">Search</button>
         </div>
 
-        <table class="table table-xl table-striped table-dark mainTable">
-            *ngIf="this.isdailyClassesLoading == false">
+        <table class="table table-xl table-striped table-dark mainTable" *ngIf="this.isdailyClassesLoading == false">
+            
             <thead>
                 <tr>
                     <td>name</td>
@@ -568,8 +569,8 @@
                 (click)="getStudentDailyClassesPerWg(this.userService.currentlySelectedUserId)">Search</button>
         </div>
 
-        <table class="table table-xl table-striped table-dark mainTable">
-            *ngIf="this.isdailyClassesLoading == false">
+        <table class="table table-xl table-striped table-dark mainTable" *ngIf="this.isdailyClassesLoading == false">
+            
             <thead>
                 <tr>
                     <td>name</td>

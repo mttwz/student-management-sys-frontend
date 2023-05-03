@@ -2,6 +2,9 @@ import { ApplicationRef, ChangeDetectorRef, EventEmitter, Injectable, ViewChildr
 import { UserService } from '../user/user.service';
 import { WorkgroupService } from '../workgroup/workgroup.service';
 import { WorkgroupScheduleService } from '../workgroup-schedule/workgroup-schedule.service';
+import { fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { WorkgroupTableComponent } from 'src/app/components/tables/workgroup-table/workgroup-table.component';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +13,8 @@ export class TableService {
 
   isUsersLoading = true;
   isWorkgroupLoading = true;
+  isWorkgroupMembersListed = false;
+  isWorkgroupsListed = true;
 
   //search data
 
@@ -33,11 +38,26 @@ export class TableService {
 
   dailyAttendance !: Array<any>;
 
+  private timeoutId!: any;
 
 
-  constructor(private userService: UserService, public workgroupService: WorkgroupService, public workgroupScheduleService: WorkgroupScheduleService) { }
+  constructor(private userService: UserService, public workgroupService: WorkgroupService, public workgroupScheduleService: WorkgroupScheduleService) {
+    // let source = fromEvent(document, 'input');
+    // source.pipe(debounceTime(500)).subscribe(c => {
+    //   console.error("debounce working biiiatch 8=======3")
+    //   this.searchSuperadmin();
+    // });
+  }
 
   changeDetectionEmitter: EventEmitter<void> = new EventEmitter<void>();
+
+
+  searchSuperadminWithDebounce(): void {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      this.searchSuperadmin();
+    }, 250); 
+  }
 
   searchSuperadmin() {
     if (this.searchFilter == "users") {
@@ -97,7 +117,6 @@ export class TableService {
       }, err => {
         console.log(err)
       })
-
     }
 
   }
@@ -172,7 +191,7 @@ export class TableService {
     }
     this.sort = type;
     this.getContentByFilter();
-    
+
   }
 
   pageClick(num: number) {
@@ -183,9 +202,9 @@ export class TableService {
   }
 
   createRange() {
-    if(this.allPages == 0){
+    if (this.allPages == 0) {
       return [1];
-      
+
     }
     return new Array(this.allPages).fill(0)
       .map((n, index) => index + 1);
@@ -194,15 +213,15 @@ export class TableService {
   getContentByFilter() {
     if (this.searchFilter == "users") {
       this.searchSuperadmin();
-    }else if (this.searchFilter == "student") {
+    } else if (this.searchFilter == "student") {
       this.searchSuperadmin();
-    }else if (this.searchFilter == "admin") {
+    } else if (this.searchFilter == "admin") {
       this.searchSuperadmin();
-    }else if (this.searchFilter == "super-admin") {
+    } else if (this.searchFilter == "super-admin") {
       this.searchSuperadmin();
-    }else if (this.searchFilter == "workgroup") {
+    } else if (this.searchFilter == "workgroup") {
       this.getAllWorkgroups();
-    }else if (this.searchFilter == "users-in-workgroup") {
+    } else if (this.searchFilter == "users-in-workgroup") {
       this.searchSuperadmin();
     }
   }
@@ -213,6 +232,42 @@ export class TableService {
     this.order = "asc"
     this.pageNumber = 0;
     this.workgroupService.currentlySelectedWorkgroupName = "";
+    this.isWorkgroupMembersListed = false;
+    
+  }
+
+
+  switchToWorkgroupMembers(group:any){
+   
+    this.searchFilter = 'users-in-workgroup';
+    this.isWorkgroupMembersListed = true; 
+    this.searchText = ''; 
+    this.workgroupService.currentlySelectedWorkgroupName = group.groupName;
+    this.workgroupService.currentlySelectedWorkgroupId = group.id;
+    
+    this.tempPageNumber = this.pageNumber;
+    this.pageNumber = 0;
+
+    this.tempSort = this.sort;
+    this.sort = "id";
+
+    this.searchSuperadmin();
+
+  }
+
+
+  switchToWorkgroups(){
+
+    this.searchFilter = 'workgroup';
+    this.searchText = '';
+    this.isWorkgroupMembersListed = false;
+    this.workgroupService.currentlySelectedWorkgroupName = "";
+    this.pageNumber = this.tempPageNumber;
+
+    this.sort = this.tempSort;
+
+    this.searchSuperadmin(); 
+    
   }
 
 
