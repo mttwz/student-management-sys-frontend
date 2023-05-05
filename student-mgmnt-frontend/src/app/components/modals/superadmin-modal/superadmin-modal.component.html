@@ -309,7 +309,9 @@
 
 
         <input [(ngModel)]="this.modalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
-            class="form-control searchBar" placeholder="Type to search..." (keyup)="this.modalService.searchOnlyUsersInModalsWithDebounce()">
+            class="form-control searchBar" placeholder="Type to search..."
+            (keyup)="this.modalService.searchOnlyUsersInModals()">
+
 
         <table class="table table-xl table-striped table-dark mainTable">
 
@@ -333,11 +335,10 @@
                         <td>{{user.roleName}}</td>
                         <td>{{user.firstName}}</td>
                         <td>{{user.lastName}}</td>
-                        <td>
-                            <div (click)="this.addUserToWorkgroup(user.id)">
-                                <a class="addUser" *ngIf="addedUserId !== user.id">ADD USER</a>
-                                <div *ngIf="isUserAddToWorkgroup && addedUserId === user.id"><img style="width: 20px;" src="../../../../assets/green-checkmark-icon.webp" alt=""></div>
-                            </div>
+                        <td class="addUserToWgButton">
+                            <button type="button" class="btn btn-success" (click)="this.addUserToWorkgroup(user.id)">
+                                Add
+                            </button>
 
                         </td>
                     </tr>
@@ -366,6 +367,7 @@
     </div> -->
 
 </div>
+
 
 
 <!---------------------------------------------------------------------------------------------->

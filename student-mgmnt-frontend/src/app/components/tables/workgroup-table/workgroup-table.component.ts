@@ -20,9 +20,6 @@ export class WorkgroupTableComponent implements OnInit {
     public superadminDashboard: SuperadminDashboardComponent, 
     private changeDetection: ChangeDetectorRef,
     ) { }
-
-    isUsersListed = false;
-    isWorkgroupListed = false;
     
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   ngOnInit(): void {
@@ -30,26 +27,6 @@ export class WorkgroupTableComponent implements OnInit {
     
   }
 
-
-
-  switchToWorkgroupMembers(group:any){
-   
-    this.tableService.searchFilter = 'users-in-workgroup';
-    this.isUsersListed = true; 
-    this.tableService.searchText = ''; 
-    this.workgroupService.currentlySelectedWorkgroupName = group.groupName;
-    this.workgroupService.currentlySelectedWorkgroupId = group.id;
-    
-    this.tableService.tempPageNumber = this.tableService.pageNumber;
-    this.tableService.pageNumber = 0;
-
-    this.tableService.tempSort = this.tableService.sort;
-    this.tableService.sort = "id";
-
-    this.changeDetection.detectChanges();
-    this.tableService.searchSuperadmin();
-
-  }
 
   openWorkgroupInfoModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;

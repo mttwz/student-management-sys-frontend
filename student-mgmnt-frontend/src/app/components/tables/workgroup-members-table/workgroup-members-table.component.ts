@@ -35,19 +35,6 @@ export class WorkgroupMembersTableComponent implements OnInit {
 
 
 
-  switchToWorkgroups(){
-
-    this.tableService.searchFilter = 'workgroup';
-    this.tableService.searchText = '';
-    this.workgroupTableComponents.isUsersListed = false;
-    this.workgroupService.currentlySelectedWorkgroupName = "";
-    this.tableService.pageNumber = this.tableService.tempPageNumber;
-
-    this.tableService.sort = this.tableService.tempSort;
-
-    this.tableService.searchSuperadmin(); 
-    
-  }
 
   openStudentDailyClassesPerWgModal(user:any){
     this.modalService.changeModal('studentDailyAttendanceInWorkgroupMenu'); 
