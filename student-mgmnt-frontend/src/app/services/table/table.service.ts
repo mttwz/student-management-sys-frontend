@@ -5,6 +5,7 @@ import { WorkgroupScheduleService } from '../workgroup-schedule/workgroup-schedu
 import { fromEvent } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { WorkgroupTableComponent } from 'src/app/components/tables/superadmin/su-workgroup-table/su-workgroup-table.component';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -278,7 +279,7 @@ export class TableService {
   }
 
 
-  switchToWorkgroupMembers(group:any){
+  superadminSwitchToWorkgroupMembers(group:any){
     
     this.searchFilter = 'users-in-workgroup';
     this.isWorkgroupMembersListed = true; 
@@ -293,13 +294,14 @@ export class TableService {
     this.tempSort = this.sort;
     this.sort = "id";
 
+    
     this.searchSuperadmin();
     
 
   }
 
 
-  switchToWorkgroups(){
+  superadminSwitchToWorkgroups(){
 
     this.searchFilter = 'workgroup';
     this.searchText = '';
@@ -312,6 +314,48 @@ export class TableService {
     this.searchSuperadmin(); 
     
   }
+
+
+
+  adminSwitchToWorkgroupMembers(group:any){
+    
+    this.searchFilter = 'users-in-workgroup';
+    this.isWorkgroupMembersListed = true; 
+    
+    this.searchText = ''; 
+    this.workgroupService.currentlySelectedWorkgroupName = group.groupName;
+    this.workgroupService.currentlySelectedWorkgroupId = group.id;
+    
+    this.tempPageNumber = this.pageNumber;
+    this.pageNumber = 0;
+
+    this.tempSort = this.sort;
+    this.sort = "id";
+
+    
+    this.searchAdmin();
+    
+
+  }
+
+
+  adminSwitchToWorkgroups(){
+
+    this.searchFilter = 'workgroup';
+    this.searchText = '';
+    this.isWorkgroupMembersListed = false;
+    this.workgroupService.currentlySelectedWorkgroupName = "";
+    this.pageNumber = this.tempPageNumber;
+
+    this.sort = this.tempSort;
+
+    this.searchAdmin(); 
+    
+  }
+
+
+
+  
 
 
 
