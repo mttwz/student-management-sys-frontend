@@ -1,0 +1,118 @@
+p{
+    color: white;
+}
+
+label {
+    width: 30%;
+    float: left;
+    color: white;
+    height: 38px;
+    display: flex;
+    align-items: center;
+
+}
+  
+
+  
+input {
+    width: 70%;
+}
+
+.sucessful{
+    width: 5%;
+}
+
+.addUser{
+    cursor: pointer;
+}
+
+.formInput{
+    margin-bottom: 30px;
+}
+
+select{
+    width: 70%;
+    margin-bottom: 30px;
+}
+
+.form-control:disabled{
+    background-color: #1f2224;;
+    opacity: 0.5;
+}
+
+select:disabled {
+    background-color: #1f2224;;
+    opacity: 0.5;
+}
+
+
+
+.isOnsiteCheckBox{
+    accent-color: #1f2224;
+    height: 25px;
+    width: 47px;
+    margin-left: 0;
+
+}
+
+.form-switch{
+    /* width: 500px; */
+    padding-left: 13.6em;
+}
+
+.basicSmallIconContainer {
+    height: 16px;
+    width: 32px;
+    display: flex;
+    position: sticky;
+    right: 0;
+
+}
+
+.basicSmallIconContainerImage {
+    height: 16px;
+    width: 32px;
+    display: block;
+    filter: invert(1);
+    flex-direction: row-reverse;
+}
+
+
+.datePickerContainer{
+    display: flex;
+    
+}
+
+.datePicker{
+    max-width: 500px;
+}
+.getStudentDailyAttendanceButton{
+    width: 100%;
+    max-width: 100px;
+    margin-left: auto;
+    
+}
+
+.userInfoTable{
+    color: white;
+}
+
+.userInfoTable td{
+    padding: 5px;
+}
+
+@media (max-width: 575px) {
+    label{
+        width: 100%;
+    }
+    input {
+        width: 100%;
+    }
+    select{
+        width: 100%;
+        margin-bottom: 0px;
+    }
+    .formInput{
+        margin-bottom: 0px;
+    }
+  }

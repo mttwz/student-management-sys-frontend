@@ -240,7 +240,7 @@ export class TableService {
 
 
   switchToWorkgroupMembers(group:any){
-   
+    
     this.searchFilter = 'users-in-workgroup';
     this.isWorkgroupMembersListed = true; 
     this.searchText = ''; 

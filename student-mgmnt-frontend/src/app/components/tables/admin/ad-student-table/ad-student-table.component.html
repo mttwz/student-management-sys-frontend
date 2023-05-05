@@ -1,1 +1,126 @@
-<p>ad-student-table works!</p>
+<table class="table table-xl table-striped table-dark mainTable">
+
+    <thead>
+        <tr class="align-middle">
+            <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
+            <th scope="col" (click)="this.tableService.sortBy('roleId.roleType')">Role</th>
+            <th scope="col" (click)="this.tableService.sortBy('firstName')">First name</th>
+            <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
+            <th scope="col" (click)="this.tableService.sortBy('email')">Email</th>
+            <th style="max-width: 48px;"></th>
+
+        </tr>
+    </thead>
+
+    <tbody *ngIf="this.tableService.isUsersLoading == false">
+        <ng-container *ngFor="let user of this.tableService.allUsers;">
+            <tr class="align-middle" *ngIf="user.isDeleted == true">
+                <td style="color: rgba(255, 58, 58, 0.539)">{{user.id}}</td>
+                <td><img class="studentRoleIcon" src="../../../../assets/user-graduate-svgrepo-com.svg" alt=""
+                        srcset=""></td>
+                <td style="color: rgba(255, 58, 58, 0.539)">{{user.firstName}}</td>
+                <td style="color: rgba(255, 58, 58, 0.539)">{{user.lastName}}</td>
+
+                <td><a class="deleteda" href="mailto:{{user.email}}">{{user.email}}</a></td>
+
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                                (click)="openStudentDailyClassesModal(user); this.adminModal.getStudentDailyClasses(user.id);">
+                                <div class="basicSmallIconContainer">
+                                    <img class="basicSmallIconContainerImage"
+                                        src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
+                                        srcset="">
+                                    <div class="itemText">Daily schedule</div>
+                                </div>
+                            </div>
+
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                                (click)="openStudentDailyAttendanceModal(user); this.adminModal.getStudentDailyAttendance(user.id);">
+                                <div class="basicSmallIconContainer">
+                                    <img class="basicSmallIconContainerImage"
+                                        src="../../../../assets/date-range-svgrepo-com.svg" alt="" srcset="">
+                                    <div class="itemText">Daily log</div>
+                                </div>
+                            </div>
+
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                                (click)="openStudentInfoModal(user); this.adminModal.getUserInfo(user.id);">
+                                <div class="basicSmallIconContainer">
+                                    <img class="basicSmallIconContainerImage"
+                                        src="../../../../assets/edit-profile-svgrepo-com.svg" alt="" srcset="">
+                                    <div class="itemText">User info</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="align-middle" *ngIf="user.isDeleted == false">
+                <td>{{user.id}}</td>
+                <td><img class="studentRoleIcon" src="../../../../assets/user-graduate-svgrepo-com.svg" alt=""
+                        srcset=""></td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+
+                <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                                (click)="openStudentDailyClassesModal(user); this.adminModal.getStudentDailyClasses(user.id);">
+                                <div class="basicSmallIconContainer">
+                                    <img class="basicSmallIconContainerImage"
+                                        src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
+                                        srcset="">
+                                    <div class="itemText">Daily schedule</div>
+                                </div>
+                            </div>
+
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                                (click)="openStudentDailyAttendanceModal(user); this.adminModal.getStudentDailyAttendance(user.id);">
+                                <div class="basicSmallIconContainer">
+                                    <img class="basicSmallIconContainerImage"
+                                        src="../../../../assets/date-range-svgrepo-com.svg" alt="" srcset="">
+                                    <div class="itemText">Daily log</div>
+                                </div>
+                            </div>
+
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                                (click)="openStudentInfoModal(user); this.adminModal.getUserInfo(user.id);">
+                                <div class="basicSmallIconContainer">
+                                    <img class="basicSmallIconContainerImage"
+                                        src="../../../../assets/edit-profile-svgrepo-com.svg" alt="" srcset="">
+                                    <div class="itemText">User info</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+
+
+</table>
+
+<div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="mainModalBox">
+            <div class="modal-body">
+                <app-admin-modal #adminModal
+                    [modalId]="this.modalService.currentlySelectedModal"></app-admin-modal>
+            </div>
+        </div>
+    </div>
+</div>
