@@ -516,11 +516,23 @@
     <div class="modalContainer">
 
         <div class="datePickerContainer">
-            <input class="datePicker" type="date">
+            <input class="datePicker form-control" type="date">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="getStudentDailyAttendance(this.userService.currentlySelectedUserId)">Search</button>
         </div>
+
+        <div class="datePickerContainer">
+            
+            <input class="datePicker form-control addAttendanceDatePicker" type="datetime-local">
+            
+            <input class="datePicker form-control addAttendanceDatePicker" type="datetime-local">
+
+            <button class="btn btn-success getStudentDailyAttendanceButton"
+                (click)="getStudentDailyAttendance(this.userService.currentlySelectedUserId)">Add attendance</button>
+        </div>
+
+        
 
 
         <table class="table table-xl table-striped table-dark mainTable">

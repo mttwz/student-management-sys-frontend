@@ -83,13 +83,13 @@ export class SuperadminModalComponent implements OnInit {
 
 
 
-    $(document).on('hidden.bs.modal', '#mainModal', () => {
+    // $(document).on('hidden.bs.modal', '#mainModal', () => {
 
-      this.resetStatusCode();
-      this.changeDetection.detectChanges();
+    //   this.resetStatusCode();
+    //   this.changeDetection.detectChanges();
        
       
-    })
+    // })
 
 
     this.addUserForm = this.formBuilder.group({

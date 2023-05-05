@@ -215,7 +215,19 @@ a:hover{
     max-height: 10px;
 }
 
+.addAttendanceContainer{
+    display: block;
+    padding-top: 30px;
+}
+.addAttendanceDatePicker{
+    
+    max-width: 250px;
+}
 
+.addAttendanceButton{
+   
+    margin-left: 300px;
+}
 
 
 
