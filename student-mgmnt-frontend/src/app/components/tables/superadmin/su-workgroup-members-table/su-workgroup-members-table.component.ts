@@ -9,7 +9,7 @@ import { ModalService } from 'src/app/services/modal/modal.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-workgroup-members-table',
+  selector: 'app-su-workgroup-members-table',
   templateUrl: './su-workgroup-members-table.component.html',
   styleUrls: ['./su-workgroup-members-table.component.css']
 })

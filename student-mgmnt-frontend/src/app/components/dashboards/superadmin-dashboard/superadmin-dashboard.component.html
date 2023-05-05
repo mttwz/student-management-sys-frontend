@@ -25,24 +25,24 @@
     </div>
 
     <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'users'">
-        <app-user-table></app-user-table>
+        <app-su-user-table></app-su-user-table>
     </div>
 
     <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'student'">
-        <app-student-table></app-student-table>
+        <app-su-student-table></app-su-student-table>
     </div>
 
     <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'admin'">
-        <app-admin-table></app-admin-table>
+        <app-su-admin-table></app-su-admin-table>
     </div>
 
     <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'super-admin'">
-        <app-superadmin-table></app-superadmin-table>
+        <app-su-superadmin-table></app-su-superadmin-table>
     </div>
 
 
     <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'workgroup' || this.tableService.searchFilter == 'users-in-workgroup'">
-        <app-workgroup-table></app-workgroup-table>
+        <app-su-workgroup-table></app-su-workgroup-table>
     </div>
 
     <div class="pageSelector">

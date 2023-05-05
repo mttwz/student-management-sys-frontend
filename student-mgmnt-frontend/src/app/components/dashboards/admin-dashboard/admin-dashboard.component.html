@@ -7,4 +7,42 @@
     </div>
 
 </nav>
-<app-ad-workgroup-table></app-ad-workgroup-table>
+<div class="main">
+
+    <div class="input-group">
+        <select class="form-control filterSelect">
+            <option value="student" (click)="this.tableService.changeSearchFilter('student')">Student</option>    
+            <option value="workgroup" (click)="this.tableService.changeSearchFilter('workgroup')">Workgroup ( {{this.workgroupService.currentlySelectedWorkgroupName}} ) </option>
+            
+        </select>
+        <input [(ngModel)]="this.tableService.searchText"  [ngModelOptions]="{standalone: true}" (keyup)="this.tableService.searchSuperadminWithDebounce()" type="text"
+            class="form-control searchBar" placeholder="Type to search...">
+    </div>
+
+    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'student'">
+        <app-ad-workgroup-table></app-ad-workgroup-table>
+    </div>
+    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'workgroup'">
+        <app-ad-workgroup-table></app-ad-workgroup-table>
+    </div>
+
+
+    <div class="pageSelector">
+        <div class="pageBox" *ngFor="let item of this.tableService.createRange();"
+            (click)="tableService.pageClick(item-1)">
+            {{item}}
+        </div>
+    </div>
+
+</div>
+
+
+<div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <app-admin-modal #adminModal [modalId]="this.modalService.currentlySelectedModal"></app-admin-modal>
+            </div>
+        </div>
+    </div>
+</div>

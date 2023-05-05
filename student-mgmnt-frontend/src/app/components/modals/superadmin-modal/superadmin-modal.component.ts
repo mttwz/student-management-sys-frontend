@@ -75,7 +75,6 @@ export class SuperadminModalComponent implements OnInit {
     public userService: UserService,
     public workgroupService: WorkgroupService,
     private changeDetection: ChangeDetectorRef,
-    public superadminDashboard: SuperadminDashboardComponent,
     public dateUtil: DateFormatterService,
     public modalService: ModalService) { }
 

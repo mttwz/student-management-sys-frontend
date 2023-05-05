@@ -7,7 +7,7 @@ import { ModalService } from 'src/app/services/modal/modal.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-student-table',
+  selector: 'app-su-student-table',
   templateUrl: './su-student-table.component.html',
   styleUrls: ['./su-student-table.component.css']
 })

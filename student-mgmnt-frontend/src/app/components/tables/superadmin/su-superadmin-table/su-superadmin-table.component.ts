@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user/user.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-superadmin-table',
+  selector: 'app-su-superadmin-table',
   templateUrl: './su-superadmin-table.component.html',
   styleUrls: ['./su-superadmin-table.component.css']
 })
