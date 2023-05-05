@@ -249,7 +249,7 @@ export class SuperadminModalComponent implements OnInit {
       this.resStatus = res.status;
       this.addedUserId = userId;
       this.isUserAddToWorkgroup = true;
-      console.log(this.addedUserId )
+      // console.log(this.addedUserId )
     }, err => {
       this.resStatus = err.status;
       this.isSuccessful = false;

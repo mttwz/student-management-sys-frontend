@@ -335,11 +335,11 @@
                         <td>{{user.roleName}}</td>
                         <td>{{user.firstName}}</td>
                         <td>{{user.lastName}}</td>
-                        <td class="addUserToWgButton">
-                            <button type="button" class="btn btn-success" (click)="this.addUserToWorkgroup(user.id)">
-                                Add
+                        <td>
+                            <button (click)="addUserToWorkgroup(user.id)" type="button" class="btn btn-secondary"
+                                [ngClass]="{'btn-success': isUserAddToWorkgroup && addedUserId == user.id}">
+                                {{ isUserAddToWorkgroup && addedUserId == user.id ? 'ADDED' : 'ADD USER' }}
                             </button>
-
                         </td>
                     </tr>
                 </ng-container>
@@ -354,17 +354,6 @@
         </div>
 
     </div>
-
-    <!-- <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
-        </div>
-    </div>
-    <div class="modalButtonContainer">
-
-
-    </div> -->
 
 </div>
 
