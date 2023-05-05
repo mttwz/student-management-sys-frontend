@@ -46,21 +46,7 @@ export class SuperadminDashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // modalFix() {
-  //   let anoyingBackground = document.getElementsByClassName("modal-backdrop show")[0];
-  //   let anoyingBackground1 = document.getElementsByClassName("modal-backdrop show")[1];
-  //   let anoyingBackground2 = document.getElementsByClassName("modal-open")[0];
-  //   console.log(anoyingBackground2)
-  //   if (anoyingBackground != undefined) {
-  //     anoyingBackground.classList.remove("modal-backdrop");
-  //     anoyingBackground.classList.remove("show");
-  //   } if (anoyingBackground1 != undefined) {
-  //     anoyingBackground1.classList.remove("modal-backdrop");
-  //     anoyingBackground1.classList.remove("show");
-  //   } if (anoyingBackground2 != undefined) {
-  //     anoyingBackground2.classList.remove("modal-open");
-  //   }
-  // }
+
 
 
   // changeModal(modalName:string){

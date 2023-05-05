@@ -68,7 +68,23 @@ export class MainDashboardComponent implements OnInit {
        console.log(err);
       }
     );
-    
+    this.modalFix();
+  }
+
+
+    modalFix() {
+    let annoyingBackground = document.getElementsByClassName("modal-backdrop show")[0];
+    let annoyingBackground1 = document.getElementsByClassName("modal-backdrop show")[1];
+    let annoyingBackground2 = document.getElementsByClassName("modal-open")[0];
+    if (annoyingBackground != undefined) {
+      annoyingBackground.classList.remove("modal-backdrop");
+      annoyingBackground.classList.remove("show");
+    } if (annoyingBackground1 != undefined) {
+      annoyingBackground1.classList.remove("modal-backdrop");
+      annoyingBackground1.classList.remove("show");
+    } if (annoyingBackground2 != undefined) {
+      annoyingBackground2.classList.remove("modal-open");
+    }
   }
   
 }
