@@ -18,7 +18,7 @@ export class AdminTableComponent implements OnInit {
     public userService: UserService,
     public modalService: ModalService, 
     public superadminDashboard: SuperadminDashboardComponent, 
-    private changeDetection: ChangeDetectorRef) { }
+    ) { }
 
 
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;

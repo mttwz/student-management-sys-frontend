@@ -7,6 +7,7 @@
     </div>
 
 </nav>
+
 <div class="main">
 
     <div class="input-group">
@@ -22,7 +23,7 @@
     <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'student'">
         <app-ad-student-table></app-ad-student-table>
     </div>
-    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'workgroup'">
+    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'workgroup' || this.tableService.searchFilter == 'users-in-workgroup'">
         <app-ad-workgroup-table></app-ad-workgroup-table>
     </div>
 

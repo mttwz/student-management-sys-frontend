@@ -14,6 +14,7 @@ export class TableService {
   isUsersLoading = true;
   isWorkgroupLoading = true;
   isWorkgroupMembersListed = false;
+  asd = false;
   isWorkgroupsListed = true;
 
   //search data
@@ -44,11 +45,7 @@ export class TableService {
 
 
   constructor(private userService: UserService, public workgroupService: WorkgroupService, public workgroupScheduleService: WorkgroupScheduleService) {
-    // let source = fromEvent(document, 'input');
-    // source.pipe(debounceTime(500)).subscribe(c => {
-    //   console.error("debounce working biiiatch 8=======3")
-    //   this.searchSuperadmin();
-    // });
+
   }
 
   changeDetectionEmitter: EventEmitter<void> = new EventEmitter<void>();
@@ -243,6 +240,7 @@ export class TableService {
     
     this.searchFilter = 'users-in-workgroup';
     this.isWorkgroupMembersListed = true; 
+    
     this.searchText = ''; 
     this.workgroupService.currentlySelectedWorkgroupName = group.groupName;
     this.workgroupService.currentlySelectedWorkgroupId = group.id;
@@ -254,6 +252,7 @@ export class TableService {
     this.sort = "id";
 
     this.searchSuperadmin();
+    
 
   }
 
