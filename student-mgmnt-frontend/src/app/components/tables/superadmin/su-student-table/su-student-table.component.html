@@ -30,7 +30,7 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
 
-                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                                 (click)="openStudentDailyClassesModal(user); this.superadminModal.getStudentDailyClasses(user.id);">
                                 <div class="basicSmallIconContainer">
                                     <img class="basicSmallIconContainerImage"
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
 
-                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                                 (click)="openStudentDailyAttendanceModal(user); this.superadminModal.getStudentDailyAttendance(user.id);">
                                 <div class="basicSmallIconContainer">
                                     <img class="basicSmallIconContainerImage"
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
 
-                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                                 (click)="openStudentInfoModal(user); this.superadminModal.getUserInfo(user.id);">
                                 <div class="basicSmallIconContainer">
                                     <img class="basicSmallIconContainerImage"
@@ -77,7 +77,7 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
 
-                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                                 (click)="openStudentDailyClassesModal(user); this.superadminModal.getStudentDailyClasses(user.id);">
                                 <div class="basicSmallIconContainer">
                                     <img class="basicSmallIconContainerImage"
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
 
-                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                                 (click)="openStudentDailyAttendanceModal(user); this.superadminModal.getStudentDailyAttendance(user.id);">
                                 <div class="basicSmallIconContainer">
                                     <img class="basicSmallIconContainerImage"
@@ -96,7 +96,7 @@
                                 </div>
                             </div>
 
-                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                                 (click)="openStudentInfoModal(user); this.superadminModal.getUserInfo(user.id);">
                                 <div class="basicSmallIconContainer">
                                     <img class="basicSmallIconContainerImage"
@@ -114,7 +114,7 @@
 
 </table>
 
-<div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
             <div class="modal-body">

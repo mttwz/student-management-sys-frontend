@@ -38,7 +38,7 @@ export class MainDashboardComponent implements OnInit {
       this.router.navigate(["login"]);
     })
 
-    $(document).on('hidden.bs.modal', '#mainModal', () => {
+    $(document).on('hidden.bs.modal', '.mainModal', () => {
       // console.error(this.tableService.searchFilter);
       
       let jwtData = this.authService.parseJwt();

@@ -11,7 +11,7 @@
             <th style="max-width: 48px;">
 
                 <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
-                <div id="addUser" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                <div id="addUser" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                     (click)="openAddUserModal()">
                     <img class="addUserImage" src="../../../../assets/add-user-svgrepo-com.svg" alt="">
                 </div>
@@ -41,7 +41,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
                         <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                                 (click)="openUserInfoModal(user); this.superadminModal.getUserInfo(user.id); ">
                                 <div class="basicSmallIconContainer">
                                     <img class="basicSmallIconContainerImage"
@@ -73,7 +73,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
                         <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                                 (click)="openUserInfoModal(user); this.superadminModal.getUserInfo(user.id); ">
                                 <div class="basicSmallIconContainer">
                                     <img class="basicSmallIconContainerImage"
@@ -92,7 +92,7 @@
 
 </table>
 
-<div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
             <div class="modal-body">

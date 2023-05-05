@@ -263,6 +263,7 @@ export class AdminModalComponent implements OnInit {
     };
     this.workgroupService.removeUserFromWorkgroup(body).subscribe(res => {
       this.isSuccessful = true;
+      
       this.modalService.superadminSearchOnlyUsersInWorkgroupInModals();
       
     }, err => {

@@ -32,7 +32,7 @@
                 <td ><a class="deleteda" href="mailto:{{user.email}}">{{user.email}}</a></td>
 
                 <td >
-                    <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                    <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                     (click)="openStudentDailyClassesPerWgModal(user); this.superadminModal.getStudentDailyClassesPerWg(user.id);">
                         <img class="basicSmallIconContainerImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
                             srcset="">
@@ -51,7 +51,7 @@
                 <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
 
                 <td>
-                    <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                    <div id="studentDailyAttendanceMenu" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                     (click)="openStudentDailyClassesPerWgModal(user); this.superadminModal.getStudentDailyClassesPerWg(user.id);">
                         <img class="basicSmallIconContainerImage" src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
                             srcset="">
@@ -64,7 +64,7 @@
 </table>
 
 
-<div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
+<div  class="modal fade mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
             <div class="modal-body">

@@ -8,7 +8,7 @@
                 <th scope="col" (click)="this.tableService.sortBy('institution')">institution</th>
                 <th style="max-width: 48px;">
                     <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
-                    <div id="createWorkgroup" type="button" data-bs-toggle="modal" data-bs-target="#mainModal"
+                    <div id="createWorkgroup" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                         (click)="openCreateWorkgroupModal()">
                         <img class="addWorkgroupImage" src="../../../../assets/addWorkgroup.png" alt="">
                     </div>
@@ -36,7 +36,7 @@
 
 
                                 <div class="dropdownButton" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#mainModal" (click)="openAddUserToWorkgroupModal(workgroup)">
+                                    data-bs-target=".mainModal" (click)="openAddUserToWorkgroupModal(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage"
                                             src="../../../../assets/add-user-svgrepo-com.svg" alt="" srcset="">
@@ -45,7 +45,7 @@
                                 </div>
 
                                 <div class="dropdownButton" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#mainModal" (click)="openRemoverUserFromWorkgroupModal(workgroup)">
+                                    data-bs-target=".mainModal" (click)="openRemoverUserFromWorkgroupModal(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage"
                                             src="../../../../assets/add-user-svgrepo-com.svg" alt="" srcset="">
@@ -54,7 +54,7 @@
                                 </div>
 
                                 <div class="dropdownButton" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#mainModal" (click)="openCreateWorkgroupSceduleModal(workgroup)">
+                                    data-bs-target=".mainModal" (click)="openCreateWorkgroupSceduleModal(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage" src="../../../../assets/add.png"
                                             alt="" srcset="">
@@ -63,7 +63,7 @@
                                 </div>
 
                                 <div class="dropdownButton" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#mainModal"
+                                    data-bs-target=".mainModal"
                                     (click)="openWorkgroupInfoModal(workgroup); this.adminModal.getWorkgroupInfo(this.workgroupService.currentlySelectedWorkgroupId);">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage" src="../../../../assets/edit.png"
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                                 <div class="dropdownButton" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#mainModal" (click)="openWorkgroupDailyClasses(workgroup)">
+                                    data-bs-target=".mainModal" (click)="openWorkgroupDailyClasses(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage"
                                             src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
@@ -107,7 +107,7 @@
 
 
                                 <div class="dropdownButton" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#mainModal" (click)="openAddUserToWorkgroupModal(workgroup)">
+                                    data-bs-target=".mainModal" (click)="openAddUserToWorkgroupModal(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage"
                                             src="../../../../assets/add-user-svgrepo-com.svg" alt="" srcset="">
@@ -116,7 +116,7 @@
                                 </div>
 
                                 <div class="dropdownButton" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#mainModal" (click)="openRemoverUserFromWorkgroupModal(workgroup)">
+                                    data-bs-target=".mainModal" (click)="openRemoverUserFromWorkgroupModal(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage"
                                             src="../../../../assets/add-user-svgrepo-com.svg" alt="" srcset="">
@@ -125,7 +125,7 @@
                                 </div>
 
                                 <div class="dropdownButton" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#mainModal" (click)="openCreateWorkgroupSceduleModal(workgroup)">
+                                    data-bs-target=".mainModal" (click)="openCreateWorkgroupSceduleModal(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage" src="../../../../assets/add.png"
                                             alt="" srcset="">
@@ -134,7 +134,7 @@
                                 </div>
 
                                 <div class="dropdownButton" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#mainModal"
+                                    data-bs-target=".mainModal"
                                     (click)="openWorkgroupInfoModal(workgroup); this.adminModal.getWorkgroupInfo(this.workgroupService.currentlySelectedWorkgroupId);">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage" src="../../../../assets/edit.png"
@@ -143,7 +143,7 @@
                                     </div>
                                 </div>
                                 <div class="dropdownButton" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#mainModal" (click)="openWorkgroupDailyClasses(workgroup)">
+                                    data-bs-target=".mainModal" (click)="openWorkgroupDailyClasses(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage"
                                             src="../../../../assets/presence-away-16-filled-svgrepo-com.svg" alt=""
@@ -180,7 +180,7 @@
 
 
 
-<div #mainModal class="modal fade" id="mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" id="mainModalBox">
             <div class="modal-body">
