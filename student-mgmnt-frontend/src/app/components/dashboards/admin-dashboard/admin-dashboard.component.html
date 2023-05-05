@@ -16,7 +16,7 @@
             <option value="workgroup" (click)="this.tableService.changeSearchFilter('workgroup')">Workgroup ( {{this.workgroupService.currentlySelectedWorkgroupName}} ) </option>
             
         </select>
-        <input [(ngModel)]="this.tableService.searchText"  [ngModelOptions]="{standalone: true}" (keyup)="this.tableService.searchSuperadminWithDebounce()" type="text"
+        <input [(ngModel)]="this.tableService.searchText"  [ngModelOptions]="{standalone: true}" (keyup)="this.tableService.searchAdminWithDebounce()" type="text"
             class="form-control searchBar" placeholder="Type to search...">
     </div>
 

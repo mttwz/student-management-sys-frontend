@@ -20,7 +20,7 @@ export class AdWorkgroupTableComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.tableService.searchSuperadmin();
+    this.tableService.searchAdmin();
     
   }
   @ViewChild(AdminModalComponent) AdminModalComponent!: AdminModalComponent;
@@ -33,7 +33,7 @@ export class AdWorkgroupTableComponent implements OnInit {
 
   openAddUserToWorkgroupModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.searchOnlyUsersInModals();
+    this.modalService.adminSearchOnlyUsersInModals();
     this.modalService.changeModal('addUserToWorkgroupModal'); 
     this.AdminModalComponent.resetStatusCode()
 
@@ -42,7 +42,7 @@ export class AdWorkgroupTableComponent implements OnInit {
 
   openRemoverUserFromWorkgroupModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.searchOnlyUsersInWorkgroupInModals();
+    this.modalService.adminSearchOnlyUsersInWorkgroupInModals();
     this.modalService.changeModal('removeUserFromWorkgroupModal'); 
     this.AdminModalComponent.resetStatusCode()
 

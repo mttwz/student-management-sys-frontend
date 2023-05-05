@@ -37,7 +37,7 @@ export class WorkgroupTableComponent implements OnInit {
 
   openAddUserToWorkgroupModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.searchOnlyUsersInModals();
+    this.modalService.superadminSearchOnlyUsersInModals();
     this.modalService.changeModal('addUserToWorkgroupModal'); 
     this.SuperadminModalComponent.resetStatusCode()
 
@@ -46,7 +46,7 @@ export class WorkgroupTableComponent implements OnInit {
 
   openRemoverUserFromWorkgroupModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.searchOnlyUsersInWorkgroupInModals();
+    this.modalService.superadminSearchOnlyUsersInWorkgroupInModals();
     this.modalService.changeModal('removeUserFromWorkgroupModal'); 
     this.SuperadminModalComponent.resetStatusCode()
 

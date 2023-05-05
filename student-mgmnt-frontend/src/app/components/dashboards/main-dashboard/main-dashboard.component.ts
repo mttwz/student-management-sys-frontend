@@ -41,7 +41,16 @@ export class MainDashboardComponent implements OnInit {
     $(document).on('hidden.bs.modal', '#mainModal', () => {
       // console.error(this.tableService.searchFilter);
       
-      this.tableService.searchSuperadmin();
+      let jwtData = this.authService.parseJwt();
+
+      if(jwtData.role == "superadmin"){
+        this.tableService.searchSuperadmin();
+        console.log("superadmin");
+      }else if (jwtData.role == "admin"){
+        this.tableService.searchAdmin();
+        console.log("admin");
+      }
+      
       this.changeDetection.detectChanges();  
       
       

@@ -265,7 +265,7 @@ export class SuperadminModalComponent implements OnInit {
     };
     this.workgroupService.removeUserFromWorkgroup(body).subscribe(res => {
       this.isSuccessful = true;
-      this.modalService.searchOnlyUsersInWorkgroupInModals();
+      this.modalService.superadminSearchOnlyUsersInWorkgroupInModals();
       
     }, err => {
       this.resStatus = err.status;

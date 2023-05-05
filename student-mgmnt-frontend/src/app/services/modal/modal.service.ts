@@ -31,15 +31,9 @@ export class ModalService {
     this.changeDetectionEmitter.emit();
   }
 
-  searchOnlyUsersInModalsWithDebounce(): void {
-    clearTimeout(this.timeoutId);
-    this.timeoutId = setTimeout(() => {
-      console.error("miafasz")
-      this.searchOnlyUsersInModals();
-    }, 250); 
-  }
 
-  searchOnlyUsersInModals(){
+
+  superadminSearchOnlyUsersInModals(){
     
     this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, "users", this.modalSearchtext, this.modalPageNumber, this.modalPageSize, this.modalSort, this.modalOrder).subscribe(res => {
       this.allUsersModal = res.userInfoDtoList;
@@ -49,11 +43,45 @@ export class ModalService {
     }, err => {
       console.log(err)
     })
-
-   
   }
 
-  searchOnlyUsersInWorkgroupInModals(){
+  superadminSearchOnlyUsersInModalsWithDebounce(): void {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      console.error("miafasz")
+      this.superadminSearchOnlyUsersInModals();
+    }, 250); 
+  }
+
+
+
+
+
+
+
+
+  adminSearchOnlyUsersInModals(){
+    
+    this.userService.searchAdmin(this.workgroupService.currentlySelectedWorkgroupId, "student", this.modalSearchtext, this.modalPageNumber, this.modalPageSize, this.modalSort, this.modalOrder).subscribe(res => {
+      this.allUsersModal = res.userInfoDtoList;
+      this.isModalUsersLoading = false;
+      this.modalAllPages = res.allPages;
+      this.changeDetectionEmitter.emit();
+    }, err => {
+      console.log(err)
+    })
+  }
+
+  adminSearchOnlyUsersInModalsWithDebounce(): void {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      this.adminSearchOnlyUsersInModals();
+    }, 250); 
+  }
+
+
+
+  superadminSearchOnlyUsersInWorkgroupInModals(){
     
     this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, "users-in-workgroup", this.modalSearchtext, this.modalPageNumber, this.modalPageSize, this.modalSort, this.modalOrder).subscribe(res => {
       this.allUsersModal = res.userInfoDtoList;
@@ -64,12 +92,39 @@ export class ModalService {
       console.log(err)
     })
 
-   
   }
+
+  superadminSearchOnlyUsersInWorkgroupInModalsWithDebounce(): void {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      this.superadminSearchOnlyUsersInWorkgroupInModals();
+    }, 250); 
+  }
+
+  adminSearchOnlyUsersInWorkgroupInModals(){
+    
+    this.userService.searchAdmin(this.workgroupService.currentlySelectedWorkgroupId, "users-in-workgroup", this.modalSearchtext, this.modalPageNumber, this.modalPageSize, this.modalSort, this.modalOrder).subscribe(res => {
+      this.allUsersModal = res.userInfoDtoList;
+      this.isModalUsersLoading = false;
+      this.modalAllPages = res.allPages;
+      this.changeDetectionEmitter.emit();
+    }, err => {
+      console.log(err)
+    })
+
+  }
+
+  adminSearchOnlyUsersInWorkgroupInModalsWithDebounce(): void {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      this.adminSearchOnlyUsersInWorkgroupInModals();
+    }, 250); 
+  }
+
 
   pageClick(num: number) {
     this.modalPageNumber = num;
-    this.searchOnlyUsersInModals();
+    this.superadminSearchOnlyUsersInModals();
     this.changeDetectionEmitter.emit();
   }
 

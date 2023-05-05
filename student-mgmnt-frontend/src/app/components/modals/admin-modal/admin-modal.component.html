@@ -270,7 +270,7 @@
 <!-- modal for adding user to a workgroup -->
 <div id="addUserToWorkgroupModal" *ngIf="this.modalId == 'addUserToWorkgroupModal'">
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Add user to workgroup</h5>
+        <h5 class="modal-title" class="mainModalLabel">Add user to workgroup admin</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
@@ -279,7 +279,7 @@
 
         <input [(ngModel)]="this.modalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
             class="form-control searchBar" placeholder="Type to search..."
-            (keyup)="this.modalService.searchOnlyUsersInModals()">
+            (keyup)="this.modalService.adminSearchOnlyUsersInModalsWithDebounce()">
 
 
         <table class="table table-xl table-striped table-dark mainTable">
@@ -331,7 +331,7 @@
 <!-- modal for removing user from a workgroup -->
 <div id="removeUserFromWorkgroupModal" *ngIf="this.modalId == 'removeUserFromWorkgroupModal'">
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Add user to workgroup</h5>
+        <h5 class="modal-title" class="mainModalLabel">Remve user from workgroup</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
@@ -340,7 +340,7 @@
 
         <input [(ngModel)]="this.modalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
             class="form-control searchBar" placeholder="Type to search..."
-            (keyup)="this.modalService.searchOnlyUsersInWorkgroupInModals()">
+            (keyup)="this.modalService.adminSearchOnlyUsersInWorkgroupInModalsWithDebounce()">
 
 
         <table class="table table-xl table-striped table-dark mainTable">

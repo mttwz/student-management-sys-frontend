@@ -18,6 +18,7 @@ export class AdminDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.tableService.searchFilter = "student"
+    
   }
 
 }

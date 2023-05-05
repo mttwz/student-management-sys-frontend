@@ -20,7 +20,7 @@ export class AdStudentTableComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.tableService.searchSuperadmin();
+    this.tableService.searchAdmin();
   }
 
   @ViewChild(AdminModalComponent) AdminModalComponent!: AdminModalComponent;

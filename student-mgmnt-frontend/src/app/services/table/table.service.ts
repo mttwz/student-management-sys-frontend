@@ -58,6 +58,13 @@ export class TableService {
     }, 250); 
   }
 
+  searchAdminWithDebounce(): void {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      this.searchAdmin();
+    }, 250); 
+  }
+
   searchSuperadmin() {
     if (this.searchFilter == "users") {
       this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
@@ -107,6 +114,41 @@ export class TableService {
     } else if (this.searchFilter == 'users-in-workgroup') {
       // console.error(this.groupName);
       this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, "users-in-workgroup", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+        this.allWorkgroupMemebers = res.userInfoDtoList;
+        this.isUsersLoading = false;
+        this.allPages = res.allPages;
+        console.log(this.allWorkgroupMemebers);
+        this.changeDetectionEmitter.emit();
+
+      }, err => {
+        console.log(err)
+      })
+    }
+
+  }
+
+  searchAdmin() {
+    if (this.searchFilter == "student") {
+      this.userService.searchAdmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+        this.allUsers = res.userInfoDtoList;
+        this.isUsersLoading = false;
+        this.allPages = res.allPages;
+        this.changeDetectionEmitter.emit();
+      }, err => {
+        console.log(err)
+      })
+    } else if (this.searchFilter == "workgroup") {
+      this.userService.searchAdmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
+        this.allWorkgroup = res.workgroupDtoList;
+        this.isUsersLoading = false;
+        this.allPages = res.allPages;
+        this.changeDetectionEmitter.emit();
+      }, err => {
+        console.log(err)
+      })
+    } else if (this.searchFilter == 'users-in-workgroup') {
+      // console.error(this.groupName);
+      this.userService.searchAdmin(this.workgroupService.currentlySelectedWorkgroupId, "users-in-workgroup", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allWorkgroupMemebers = res.userInfoDtoList;
         this.isUsersLoading = false;
         this.allPages = res.allPages;
