@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WorkgroupTableComponent } from './workgroup-table.component';
+import { WorkgroupTableComponent } from './su-workgroup-table.component';
 
 describe('WorkgroupTableComponent', () => {
   let component: WorkgroupTableComponent;

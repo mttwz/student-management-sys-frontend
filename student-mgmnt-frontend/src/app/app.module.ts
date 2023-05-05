@@ -17,12 +17,14 @@ import { SuperadminModalComponent } from './components/modals/superadmin-modal/s
 import { AdminModalComponent } from './components/modals/admin-modal/admin-modal.component';
 import { StudentModalComponent } from './components/modals/student-modal/student-modal.component';
 import { RegisterModalComponent } from './components/modals/register-modal/register-modal.component';
-import { UserTableComponent } from './components/tables/user-table/user-table.component';
-import { WorkgroupTableComponent } from './components/tables/workgroup-table/workgroup-table.component';
-import { StudentTableComponent } from './components/tables/student-table/student-table.component';
-import { AdminTableComponent } from './components/tables/admin-table/admin-table.component';
-import { SuperadminTableComponent } from './components/tables/superadmin-table/superadmin-table.component';
-import { WorkgroupMembersTableComponent } from './components/tables/workgroup-members-table/workgroup-members-table.component';
+import { UserTableComponent } from './components/tables/superadmin/su-user-table/su-user-table.component';
+import { WorkgroupTableComponent } from './components/tables/superadmin/su-workgroup-table/su-workgroup-table.component';
+import { StudentTableComponent } from './components/tables/superadmin/su-student-table/su-student-table.component';
+import { AdminTableComponent } from './components/tables/superadmin/su-admin-table/su-admin-table.component';
+import { SuperadminTableComponent } from './components/tables/superadmin/su-superadmin-table/su-superadmin-table.component';
+import { WorkgroupMembersTableComponent } from './components/tables/superadmin/su-workgroup-members-table/su-workgroup-members-table.component';
+import { AdWorkgroupTableComponent } from './components/tables/admin/ad-workgroup-table/ad-workgroup-table.component';
+import { AdWorkgroupMembersTableComponent } from './components/tables/admin/ad-workgroup-members-table/ad-workgroup-members-table.component';
 
 
 
@@ -48,6 +50,8 @@ import { WorkgroupMembersTableComponent } from './components/tables/workgroup-me
     AdminTableComponent,
     SuperadminTableComponent,
     WorkgroupMembersTableComponent,
+    AdWorkgroupTableComponent,
+    AdWorkgroupMembersTableComponent,
 
 
   ],

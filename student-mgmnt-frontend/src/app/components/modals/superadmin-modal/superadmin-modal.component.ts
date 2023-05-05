@@ -4,7 +4,7 @@ import { TableService } from 'src/app/services/table/table.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
-import { WorkgroupTableComponent } from '../../tables/workgroup-table/workgroup-table.component';
+import { WorkgroupTableComponent } from '../../tables/superadmin/su-workgroup-table/su-workgroup-table.component';
 import {formatDate} from '@angular/common';
 import { DateFormatterService } from 'src/app/services/utils/date-formatter.service';
 import { ModalService } from 'src/app/services/modal/modal.service';

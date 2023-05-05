@@ -4,7 +4,7 @@ import { WorkgroupService } from '../workgroup/workgroup.service';
 import { WorkgroupScheduleService } from '../workgroup-schedule/workgroup-schedule.service';
 import { fromEvent } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { WorkgroupTableComponent } from 'src/app/components/tables/workgroup-table/workgroup-table.component';
+import { WorkgroupTableComponent } from 'src/app/components/tables/superadmin/su-workgroup-table/su-workgroup-table.component';
 
 @Injectable({
   providedIn: 'root'

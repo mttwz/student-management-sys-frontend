@@ -1,15 +1,15 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { TableService } from 'src/app/services/table/table.service';
-import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
-import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
+import { SuperadminDashboardComponent } from '../../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
+import { SuperadminModalComponent } from '../../../modals/superadmin-modal/superadmin-modal.component';
 import { ModalService } from 'src/app/services/modal/modal.service';
 import { UserService } from 'src/app/services/user/user.service';
 declare var $: any;
 
 @Component({
   selector: 'app-superadmin-table',
-  templateUrl: './superadmin-table.component.html',
-  styleUrls: ['./superadmin-table.component.css']
+  templateUrl: './su-superadmin-table.component.html',
+  styleUrls: ['./su-superadmin-table.component.css']
 })
 export class SuperadminTableComponent implements OnInit {
 

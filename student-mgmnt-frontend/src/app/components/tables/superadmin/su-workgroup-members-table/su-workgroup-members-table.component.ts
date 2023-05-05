@@ -1,17 +1,17 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { TableService } from 'src/app/services/table/table.service';
-import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
-import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
+import { SuperadminDashboardComponent } from '../../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
+import { SuperadminModalComponent } from '../../../modals/superadmin-modal/superadmin-modal.component';
 import { UserService } from 'src/app/services/user/user.service';
-import { WorkgroupTableComponent } from '../workgroup-table/workgroup-table.component';
+import { WorkgroupTableComponent } from '../su-workgroup-table/su-workgroup-table.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
 declare var $: any;
 
 @Component({
   selector: 'app-workgroup-members-table',
-  templateUrl: './workgroup-members-table.component.html',
-  styleUrls: ['./workgroup-members-table.component.css']
+  templateUrl: './su-workgroup-members-table.component.html',
+  styleUrls: ['./su-workgroup-members-table.component.css']
 })
 export class WorkgroupMembersTableComponent implements OnInit {
 
