@@ -44,6 +44,15 @@ export class WorkgroupTableComponent implements OnInit {
 
   }
 
+  openRemoverUserFromWorkgroupModal(workgroup:any){
+    this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
+    this.modalService.searchOnlyUsersInWorkgroupInModals();
+    this.modalService.changeModal('removeUserFromWorkgroupModal'); 
+    this.SuperadminModalComponent.resetStatusCode()
+
+
+  }
+
   openCreateWorkgroupSceduleModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.modalService.changeModal('createWorkgroupScheduleModal'); 

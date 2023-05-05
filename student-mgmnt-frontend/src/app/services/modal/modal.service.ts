@@ -53,6 +53,20 @@ export class ModalService {
    
   }
 
+  searchOnlyUsersInWorkgroupInModals(){
+    
+    this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, "users-in-workgroup", this.modalSearchtext, this.modalPageNumber, this.modalPageSize, this.modalSort, this.modalOrder).subscribe(res => {
+      this.allUsersModal = res.userInfoDtoList;
+      this.isModalUsersLoading = false;
+      this.modalAllPages = res.allPages;
+      this.changeDetectionEmitter.emit();
+    }, err => {
+      console.log(err)
+    })
+
+   
+  }
+
   pageClick(num: number) {
     this.modalPageNumber = num;
     this.searchOnlyUsersInModals();

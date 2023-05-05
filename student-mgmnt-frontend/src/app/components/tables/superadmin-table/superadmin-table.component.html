@@ -13,11 +13,11 @@
 
     <tbody *ngIf="this.tableService.isUsersLoading == false">
         <ng-container *ngFor="let user of this.tableService.allUsers;">
-            <tr class="align-middle deleted" *ngIf="user.isDeleted == true">
-                <td >{{user.id}}</td>
+            <tr class="align-middle" *ngIf="user.isDeleted == true">
+                <td style="color: rgba(255, 58, 58, 0.539)" >{{user.id}}</td>
                 <td ><img class="superadminRoleIcon" src="../../../../assets/user-secret-svgrepo-com.svg" alt="" srcset=""></td>
-                <td >{{user.firstName}}</td>
-                <td >{{user.lastName}}</td>
+                <td style="color: rgba(255, 58, 58, 0.539)" >{{user.firstName}}</td>
+                <td style="color: rgba(255, 58, 58, 0.539)" >{{user.lastName}}</td>
 
                 <td ><a class="deleteda" href="mailto:{{user.email}}">{{user.email}}</a></td>
                 <td>

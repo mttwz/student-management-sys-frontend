@@ -28,12 +28,13 @@ export class SuperadminModalComponent implements OnInit {
   public createWorkgroupScheduleForm !: FormGroup;
   public workgroupInfoForm !: FormGroup;
 
+
   public getWorkgroupScheduleByUserIdForm !: FormGroup;
 
   public isSuccessful: any;
   public resStatus : any;
 
-  public isUserAddToWorkgroup : Boolean = false;
+
 
   userInfo!: any;
   isUserInfoLoading: Boolean = true;
@@ -55,7 +56,7 @@ export class SuperadminModalComponent implements OnInit {
 
   allWorkgroupScheduleByUserId !: any;
 
-  addedUserId !: number;
+
 
   // pageSize: number = 90; // <- erre kikell talalni valamit
   pageNumber: number = 0;
@@ -64,6 +65,7 @@ export class SuperadminModalComponent implements OnInit {
 
 
   defaultDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') + "T00:00:00Z";
+
 
 
 
@@ -247,13 +249,29 @@ export class SuperadminModalComponent implements OnInit {
     this.workgroupService.addUserToWorkgroup(body).subscribe(res => {
       this.isSuccessful = true;
       this.resStatus = res.status;
-      this.addedUserId = userId;
-      this.isUserAddToWorkgroup = true;
+      
       // console.log(this.addedUserId )
     }, err => {
       this.resStatus = err.status;
       this.isSuccessful = false;
-      this.isUserAddToWorkgroup = false;
+     
+    });
+  }
+
+  removeUserFromWorkgroup(userId:number) {
+
+    let body = {
+      userId: userId,
+      workgroupId: this.workgroupService.currentlySelectedWorkgroupId
+    };
+    this.workgroupService.removeUserFromWorkgroup(body).subscribe(res => {
+      this.isSuccessful = true;
+      this.modalService.searchOnlyUsersInWorkgroupInModals();
+      
+    }, err => {
+      this.resStatus = err.status;
+      this.isSuccessful = false;
+     
     });
   }
 
@@ -419,7 +437,7 @@ export class SuperadminModalComponent implements OnInit {
 
  
   getStudentDailyAttendance(userId:number){
-
+    this.isEditingEnabled = false;
     this.changeDate();
     let body = {
       userId: userId,
@@ -435,6 +453,7 @@ export class SuperadminModalComponent implements OnInit {
 
 
   }
+
 
   changeDate(){
     if($('.datePicker').val() != ""){
@@ -460,6 +479,8 @@ export class SuperadminModalComponent implements OnInit {
         console.error(res.length);
     })
   }
+
+  
 
   getStudentDailyClassesPerWg(userId:number){
     this.changeDate();

@@ -73,6 +73,10 @@ export class WorkgroupService {
     return this.http.post<any>(environment.apiEndpoint + "/workgroup/add-user-to-workgroup", body);
   }
 
+  removeUserFromWorkgroup(body:any){
+    return this.http.post<any>(environment.apiEndpoint + "/workgroup/remove-user-from-workgroup", body);
+  }
+
   getUserSchedule(pageNumber:number, pageSize:number, sort:string, order:string){
       // http://localhost:8080/api/v1/workgroupschedule/get-user-schedule/?page=0&size=2&sort=start,asc
       return this.http.get<any>(environment.apiEndpoint + "/workgroupschedule/get-user-schedule/?page=" + pageNumber + "&size=" + pageSize + "&sort=" + sort + "," + order);

@@ -22,10 +22,10 @@
         <tbody *ngIf="this.tableService.isUsersLoading == false">
             <ng-container *ngFor="let workgroup of this.tableService.allWorkgroup;">
 
-                <tr class="align-middle deleted" *ngIf="workgroup.isDeleted == true">
-                    <td>{{workgroup.id}}</td>
-                    <td>{{workgroup.groupName}}</td>
-                    <td>{{workgroup.institution}}</td>
+                <tr class="align-middle" *ngIf="workgroup.isDeleted == true">
+                    <td style="color: rgba(255, 58, 58, 0.539)">{{workgroup.id}}</td>
+                    <td style="color: rgba(255, 58, 58, 0.539)">{{workgroup.groupName}}</td>
+                    <td style="color: rgba(255, 58, 58, 0.539)">{{workgroup.institution}}</td>
 
                     <td>
                         <div class="dropdown">
@@ -41,6 +41,15 @@
                                         <img class="basicSmallIconContainerImage"
                                             src="../../../../assets/add-user-svgrepo-com.svg" alt="" srcset="">
                                         <div class="itemText">Add user to workgroup</div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdownButton" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#mainModal" (click)="openRemoverUserFromWorkgroupModal(workgroup)">
+                                    <div class="basicSmallIconContainer">
+                                        <img class="basicSmallIconContainerImage"
+                                            src="../../../../assets/add-user-svgrepo-com.svg" alt="" srcset="">
+                                        <div class="itemText">Remove user from workgroup</div>
                                     </div>
                                 </div>
 
@@ -71,7 +80,8 @@
                                         <div class="itemText">Classes</div>
                                     </div>
                                 </div>
-                                <div class="dropdownButton" type="button" (click)="this.tableService.switchToWorkgroupMembers(workgroup)">
+                                <div class="dropdownButton" type="button"
+                                    (click)="this.tableService.switchToWorkgroupMembers(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage"
                                             src="../../../../assets/user-list-svgrepo-com.svg" alt="" srcset="">
@@ -132,7 +142,8 @@
                                         <div class="itemText">Classes</div>
                                     </div>
                                 </div>
-                                <div class="dropdownButton" type="button" (click)="this.tableService.switchToWorkgroupMembers(workgroup)">
+                                <div class="dropdownButton" type="button"
+                                    (click)="this.tableService.switchToWorkgroupMembers(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage"
                                             src="../../../../assets/user-list-svgrepo-com.svg" alt="" srcset="">
