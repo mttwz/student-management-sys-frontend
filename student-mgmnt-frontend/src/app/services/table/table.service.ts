@@ -59,12 +59,7 @@ export class TableService {
     }, 250); 
   }
 
-  searchAdminWithDebounce(): void {
-    clearTimeout(this.timeoutId);
-    this.timeoutId = setTimeout(() => {
-      this.searchAdmin();
-    }, 250); 
-  }
+
 
   searchSuperadmin() {
     if (this.searchFilter == "users") {
@@ -163,7 +158,12 @@ export class TableService {
 
   }
 
-  
+  searchAdminWithDebounce(): void {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      this.searchAdmin();
+    }, 250); 
+  }
 
 
 
