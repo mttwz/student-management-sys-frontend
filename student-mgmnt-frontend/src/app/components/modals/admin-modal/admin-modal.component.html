@@ -412,12 +412,12 @@
 
         <div class="datePickerContainer">
             
-            <input class="datePicker form-control addAttendanceDatePicker" type="datetime-local">
+            <input [(ngModel)]="arrivalInput" class="datePicker form-control addAttendanceDatePicker" type="datetime-local">
             
-            <input class="datePicker form-control addAttendanceDatePicker" type="datetime-local">
+            <input [(ngModel)]="leavingInput" class="datePicker form-control addAttendanceDatePicker" type="datetime-local">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
-                (click)="getStudentDailyAttendance(this.userService.currentlySelectedUserId)">Add attendance</button>
+                (click)="addStudentDailyAttendance(this.userService.currentlySelectedUserId)">Add attendance</button>
         </div>
 
         
@@ -461,7 +461,6 @@
         </div>
     </div>
 </div>
-
 
 
 <!------------------------------------------------------------------------------------------------->
