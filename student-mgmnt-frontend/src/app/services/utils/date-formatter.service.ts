@@ -14,4 +14,8 @@ export class DateFormatterService {
     }
     return date.split("T")[0] +" "+ date.split("T")[1].split("+")[0];
   }
+
+  dateFormatterForBackend(date:string){
+    return date+"Z";
+  }
 }

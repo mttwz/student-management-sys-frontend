@@ -54,6 +54,10 @@ export class UserService {
     return this.http.post<any>(environment.apiEndpoint + "/attendance/get-daily-attendance-by-user-id",body);
   }
 
+  createAttendance(body:any){
+    return this.http.post<any>(environment.apiEndpoint + "/attendance/create-attendance",body);
+  }
+
   getDailyClasses(body:any){
     return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-user-schedule",body);
   }

@@ -66,6 +66,8 @@ export class SuperadminModalComponent implements OnInit {
 
   defaultDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') + "T00:00:00Z";
 
+  arrivalInput: any;
+  leavingInput: any;
 
 
 
@@ -436,7 +438,7 @@ export class SuperadminModalComponent implements OnInit {
 
  
   getStudentDailyAttendance(userId:number){
-    this.isEditingEnabled = false;
+    
     this.changeDate();
     let body = {
       userId: userId,
@@ -449,6 +451,28 @@ export class SuperadminModalComponent implements OnInit {
         this.changeDetection.detectChanges();
         console.error(res);
     })
+
+
+  }
+
+  addStudentDailyAttendance(userId:number){
+    
+    if(this.arrivalInput != undefined && this.arrivalInput != undefined){
+      let body = {
+        userId: userId,
+        arrival: this.dateUtil.dateFormatterForBackend(this.arrivalInput),
+        leaving: this.dateUtil.dateFormatterForBackend(this.leavingInput)
+      };
+      console.log(body);
+      this.userService.createAttendance(body).subscribe(res=>{
+          this.studentDailyAttendance = res;
+          this.isdailyAttendanceLoading = false;
+          this.changeDetection.detectChanges();
+          this.getStudentDailyAttendance(this.userService.currentlySelectedUserId);
+          console.error(res);
+      })
+    }
+    
 
 
   }
