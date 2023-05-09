@@ -30,6 +30,7 @@ export class AdminTableComponent implements OnInit {
     this.modalService.changeModal('userInfoModal'); 
     this.SuperadminModalComponent.resetStatusCode(); 
     this.userService.currentlySelectedUserId=user.id
+    this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
     
   }
 

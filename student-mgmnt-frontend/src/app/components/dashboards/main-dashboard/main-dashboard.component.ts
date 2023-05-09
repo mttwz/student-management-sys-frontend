@@ -15,12 +15,12 @@ declare var $: any;
 export class MainDashboardComponent implements OnInit {
 
   constructor(
-    private authService: AuthService, 
+    public authService: AuthService, 
     public modalService: ModalService, 
     private router: Router, 
     private http: HttpClient,
     private changeDetection: ChangeDetectorRef, 
-    public tableService: TableService) { }
+    public tableService: TableService,) { }
   isLoading: Boolean = true;
   currentUserRole!: String;
 

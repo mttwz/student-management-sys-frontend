@@ -1,4 +1,13 @@
-<section class="h-100" id="mainSection">
+<div class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class=" navbar-collapse justify-content-end">
+        <div class="btnContainer">
+            <button type="button" class="btn btn-danger " (click)="this.authService.logOut()">Log out</button>
+        </div>
+    </div>
+
+</div>
+
+<section id="mainSection">
     <div id="mainContainer">
         <div id="superadminDashboard" *ngIf="this.currentUserRole == 'superadmin'">
             <app-superadmin-dashboard></app-superadmin-dashboard>

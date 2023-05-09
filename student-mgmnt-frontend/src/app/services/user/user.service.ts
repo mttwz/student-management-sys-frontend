@@ -11,6 +11,7 @@ export class UserService {
 
   users: any;
   currentlySelectedUserId!: number;
+  currentlySelectedUserName!: string;
 
 
   getDateFromDateTime(fullDate: String) {

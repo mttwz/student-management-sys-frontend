@@ -397,7 +397,7 @@
 <div id="studentAttendanceLogMenu" *ngIf="this.modalId == 'studentAttendanceLogMenu'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Attendance</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} attendance</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
@@ -417,7 +417,7 @@
             <input [(ngModel)]="leavingInput" class="datePicker form-control addAttendanceDatePicker" type="datetime-local">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
-                (click)="addStudentDailyAttendance(this.userService.currentlySelectedUserId)">Add attendance</button>
+                (click)="addStudentDailyAttendance(this.userService.currentlySelectedUserId)">Add</button>
         </div>
 
         
@@ -468,7 +468,7 @@
 <div id="studentDailyAttendanceMenu" *ngIf="this.modalId == 'studentDailyAttendanceMenu'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Daily schedule</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} daily schedule</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
@@ -525,7 +525,7 @@
 <div id="studentDailyAttendanceInWorkgroupMenu" *ngIf="this.modalId == 'studentDailyAttendanceInWorkgroupMenu'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Attendance</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} attendance</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>

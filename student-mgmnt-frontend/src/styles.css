@@ -19,7 +19,7 @@ display: none;
     width: 80%;
     margin: auto;
     display: grid;
-    margin-top: 25px;
+    
 }
 
 
@@ -243,3 +243,8 @@ a:hover{
     color: rgba(255, 58, 58, 0.539);
     text-decoration: none
 }
+
+#mainContainer{
+    padding-top: 25px;
+}
+

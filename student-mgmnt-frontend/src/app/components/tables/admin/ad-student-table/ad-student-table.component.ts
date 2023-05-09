@@ -29,6 +29,7 @@ export class AdStudentTableComponent implements OnInit {
   openStudentDailyAttendanceModal(user:any){
     this.modalService.changeModal('studentAttendanceLogMenu'); 
     this.userService.currentlySelectedUserId = user.id;
+    this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
     this.AdminModalComponent.resetStatusCode();
     
   }
@@ -36,12 +37,14 @@ export class AdStudentTableComponent implements OnInit {
   openStudentInfoModal(user:any){
     this.modalService.changeModal('userInfoModal'); 
     this.userService.currentlySelectedUserId = user.id;
+    this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
     this.AdminModalComponent.resetStatusCode()
   }
 
   openStudentDailyClassesModal(user:any){
     this.modalService.changeModal('studentDailyAttendanceMenu'); 
     this.userService.currentlySelectedUserId = user.id;
+    this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
     this.AdminModalComponent.resetStatusCode()
   }
 
