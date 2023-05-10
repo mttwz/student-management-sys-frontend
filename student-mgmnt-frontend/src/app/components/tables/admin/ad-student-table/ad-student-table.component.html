@@ -2,18 +2,18 @@
 
     <thead>
         <tr class="align-middle">
-            <th scope="col" (click)="this.tableService.adSortBy('id')">ID</th>
-            <th scope="col" (click)="this.tableService.adSortBy('roleId.roleType')">Role</th>
-            <th scope="col" (click)="this.tableService.adSortBy('firstName')">First name</th>
-            <th scope="col" (click)="this.tableService.adSortBy('lastName')">Last name</th>
-            <th scope="col" (click)="this.tableService.adSortBy('email')">Email</th>
+            <th scope="col" (click)="this.adminTableService.adSortBy('id')">ID</th>
+            <th scope="col" (click)="this.adminTableService.adSortBy('roleId.roleType')">Role</th>
+            <th scope="col" (click)="this.adminTableService.adSortBy('firstName')">First name</th>
+            <th scope="col" (click)="this.adminTableService.adSortBy('lastName')">Last name</th>
+            <th scope="col" (click)="this.adminTableService.adSortBy('email')">Email</th>
             <th style="max-width: 48px;"></th>
 
         </tr>
     </thead>
 
-    <tbody *ngIf="this.tableService.isUsersLoading == false">
-        <ng-container *ngFor="let user of this.tableService.allUsers;">
+    <tbody *ngIf="this.adminTableService.isUsersLoading == false">
+        <ng-container *ngFor="let user of this.adminTableService.allUsers;">
             <tr class="align-middle" *ngIf="user.isDeleted == true">
                 <td style="color: rgba(255, 58, 58, 0.539)">{{user.id}}</td>
                 <td><img class="studentRoleIcon" src="../../../../assets/user-graduate-svgrepo-com.svg" alt=""

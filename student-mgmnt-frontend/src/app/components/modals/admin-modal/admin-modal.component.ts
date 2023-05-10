@@ -8,6 +8,7 @@ import { WorkgroupTableComponent } from '../../tables/superadmin/su-workgroup-ta
 import {formatDate} from '@angular/common';
 import { DateFormatterService } from 'src/app/services/utils/date-formatter.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
+import { AdminTableService } from 'src/app/services/table/admin/admin-table.service';
 declare var $: any;
 
 @Component({
@@ -71,7 +72,7 @@ export class AdminModalComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public tableService: TableService,
+    public adminTablseService: AdminTableService,
     public userService: UserService,
     public workgroupService: WorkgroupService,
     private changeDetection: ChangeDetectorRef,

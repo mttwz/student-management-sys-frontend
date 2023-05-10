@@ -3,8 +3,8 @@
 
     <div class="input-group">
         <select class="form-control filterSelect">
-            <option selected value="dailyClasses" (click)="this.tableService.changeSearchFilter('users')">Daily classes</option>
-            <option value="dailyAttendance" (click)="this.tableService.changeSearchFilter('student')">Daily attendance</option>    
+            <option selected value="dailyClasses" (click)="this.studentTableService.changeSearchFilter('users')">Daily classes</option>
+            <option value="dailyAttendance" (click)="this.studentTableService.changeSearchFilter('student')">Daily attendance</option>    
  
             <!-- <option>Institution</option> -->
         </select>
@@ -16,8 +16,8 @@
     </div>
 
     <div class="pageSelector">
-        <div class="pageBox" *ngFor="let item of this.tableService.createRange();"
-            (click)="tableService.stPageClick(item-1)">
+        <div class="pageBox" *ngFor="let item of this.studentTableService.createRange();"
+            (click)="studentTableService.stPageClick(item-1)">
             {{item}}
         </div>
     </div>

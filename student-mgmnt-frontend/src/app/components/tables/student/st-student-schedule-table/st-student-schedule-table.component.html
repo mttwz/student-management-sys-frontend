@@ -14,9 +14,9 @@
         </tr>
     </thead>
 
-    <tbody *ngIf="this.tableService.isUserScheduleLoading == false">
+    <tbody *ngIf="this.studentTableService.isUserScheduleLoading == false">
         
-        <ng-container *ngFor="let schedule of this.tableService.allUserSchedule;">
+        <ng-container *ngFor="let schedule of this.studentTableService.allUserSchedule;">
 
             <tr class="align-middle">
                 <td>{{schedule.id}}</td>

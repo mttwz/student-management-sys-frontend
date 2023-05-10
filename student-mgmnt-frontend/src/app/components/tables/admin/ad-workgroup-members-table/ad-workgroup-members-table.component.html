@@ -1,6 +1,6 @@
 
 <table class="table table-xl table-striped table-dark mainTable">
-    <div type="button" class="backToWorkgroups" (click)="this.tableService.adminSwitchToWorkgroups()" style="font-size: 15px;">   
+    <div type="button" class="backToWorkgroups" (click)="this.adminTableService.adminSwitchToWorkgroups()" style="font-size: 15px;">   
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
             <path  fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
             </svg>   
@@ -9,18 +9,18 @@
     
     <thead>
         <tr class="align-middle">
-            <th scope="col" (click)="this.tableService.adSortBy('id')">ID</th>
-            <th scope="col" (click)="this.tableService.adSortBy('roleId.roleType')">Role</th>
-            <th scope="col" (click)="this.tableService.adSortBy('firstName')">First name</th>
-            <th scope="col" (click)="this.tableService.adSortBy('lastName')">Last name</th>
-            <th scope="col" (click)="this.tableService.adSortBy('email')">Email</th>
+            <th scope="col" (click)="this.adminTableService.adSortBy('id')">ID</th>
+            <th scope="col" (click)="this.adminTableService.adSortBy('roleId.roleType')">Role</th>
+            <th scope="col" (click)="this.adminTableService.adSortBy('firstName')">First name</th>
+            <th scope="col" (click)="this.adminTableService.adSortBy('lastName')">Last name</th>
+            <th scope="col" (click)="this.adminTableService.adSortBy('email')">Email</th>
             <th style="max-width: 48px;"></th>
             
         </tr>
     </thead>
 
     <tbody>
-        <ng-container *ngFor="let user of this.tableService.allWorkgroupMemebers;">
+        <ng-container *ngFor="let user of this.adminTableService.allWorkgroupMemebers;">
 
             <tr class="align-middle"  *ngIf="user.isDeleted == true">
                 <td style="color: rgba(255, 58, 58, 0.539)">{{user.id}}</td>

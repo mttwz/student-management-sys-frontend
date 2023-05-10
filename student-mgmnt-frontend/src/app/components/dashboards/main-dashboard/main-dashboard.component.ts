@@ -23,7 +23,6 @@ export class MainDashboardComponent implements OnInit {
     private router: Router, 
     private http: HttpClient,
     private changeDetection: ChangeDetectorRef, 
-    public tableService: TableService,
     public superadminTableService: SuperadminTableService,
     public adminTableService: AdminTableService,
     public studentTableService: StudentTableService) { }
@@ -45,7 +44,7 @@ export class MainDashboardComponent implements OnInit {
     })
 
     $(document).on('hidden.bs.modal', '.mainModal', () => {
-      // console.error(this.tableService.searchFilter);
+      
       
       let jwtData = this.authService.parseJwt();
 
@@ -53,7 +52,7 @@ export class MainDashboardComponent implements OnInit {
         this.superadminTableService.searchSuperadmin();
         console.log("superadmin");
       }else if (jwtData.role == "admin"){
-        this.tableService.searchAdmin();
+        this.adminTableService.searchAdmin();
         console.log("admin");
       }
       
@@ -76,7 +75,7 @@ export class MainDashboardComponent implements OnInit {
     );
 
     
-    this.tableService.changeDetectionEmitter.subscribe(
+    this.adminTableService.changeDetectionEmitter.subscribe(
       () => {
         
         this.changeDetection.detectChanges();
@@ -86,7 +85,7 @@ export class MainDashboardComponent implements OnInit {
        console.log(err);
       }
     );
-    this.tableService.changeDetectionEmitter.subscribe(
+    this.studentTableService.changeDetectionEmitter.subscribe(
       () => {
         
         this.changeDetection.detectChanges();
@@ -96,6 +95,10 @@ export class MainDashboardComponent implements OnInit {
        console.log(err);
       }
     );
+
+
+
+    
 
     this.modalService.changeDetectionEmitter.subscribe(
       () => {

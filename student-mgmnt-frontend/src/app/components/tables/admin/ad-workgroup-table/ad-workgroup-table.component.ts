@@ -4,6 +4,7 @@ import { AdminDashboardComponent } from '../../../dashboards/admin-dashboard/adm
 import { AdminModalComponent } from '../../../modals/admin-modal/admin-modal.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
+import { AdminTableService } from 'src/app/services/table/admin/admin-table.service';
 declare var $: any;
 
 @Component({
@@ -14,13 +15,13 @@ declare var $: any;
 export class AdWorkgroupTableComponent implements OnInit {
 
   constructor(
-    public tableService: TableService, 
+    public adminTableService: AdminTableService, 
     public workgroupService: WorkgroupService,
     public modalService: ModalService, 
     ) { }
 
   ngOnInit(): void {
-    this.tableService.searchAdmin();
+    this.adminTableService.searchAdmin();
     
   }
   @ViewChild(AdminModalComponent) AdminModalComponent!: AdminModalComponent;

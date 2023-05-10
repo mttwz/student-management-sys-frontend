@@ -3,6 +3,7 @@ import { TableService } from 'src/app/services/table/table.service';
 import { AdminModalComponent } from '../../../modals/admin-modal/admin-modal.component';
 import { UserService } from 'src/app/services/user/user.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
+import { AdminTableService } from 'src/app/services/table/admin/admin-table.service';
 declare var $: any;
 
 @Component({
@@ -15,7 +16,7 @@ export class AdWorkgroupMembersTableComponent implements OnInit {
   constructor(
     public modalService: ModalService, 
     public userService: UserService, 
-    public tableService: TableService, 
+    public adminTableService: AdminTableService, 
   ) { }
 
   @ViewChild(AdminModalComponent) AdminModalComponent!: AdminModalComponent;

@@ -4,6 +4,7 @@ import { ModalService } from 'src/app/services/modal/modal.service';
 import { TableService } from 'src/app/services/table/table.service';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 import { AdminModalComponent } from '../../modals/admin-modal/admin-modal.component';
+import { AdminTableService } from 'src/app/services/table/admin/admin-table.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -12,12 +13,12 @@ import { AdminModalComponent } from '../../modals/admin-modal/admin-modal.compon
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor(public authService:AuthService,public tableService:TableService, public workgroupService:WorkgroupService, public modalService:ModalService) { }
+  constructor(public authService:AuthService,public adminTablseService:AdminTableService, public workgroupService:WorkgroupService, public modalService:ModalService) { }
 
   @ViewChild(AdminModalComponent) AdminModalComponent!: AdminModalComponent;
 
   ngOnInit(): void {
-    this.tableService.searchFilter = "student"
+    this.adminTablseService.searchFilter = "student"
     
   }
 

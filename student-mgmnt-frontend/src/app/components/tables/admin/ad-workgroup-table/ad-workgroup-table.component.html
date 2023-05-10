@@ -1,13 +1,13 @@
-<div *ngIf="this.tableService.isWorkgroupMembersListed == false">
+<div *ngIf="this.adminTableService.isWorkgroupMembersListed == false">
     <table class="table table-xl table-striped table-dark mainTable">
 
         <thead>
             <tr class="align-middle">
-                <th scope="col" (click)="this.tableService.adSortBy('id')">ID</th>
-                <th scope="col" (click)="this.tableService.adSortBy('groupName')">Workgroup name</th>
-                <th scope="col" (click)="this.tableService.adSortBy('institution')">institution</th>
+                <th scope="col" (click)="this.adminTableService.adSortBy('id')">ID</th>
+                <th scope="col" (click)="this.adminTableService.adSortBy('groupName')">Workgroup name</th>
+                <th scope="col" (click)="this.adminTableService.adSortBy('institution')">institution</th>
                 <th style="max-width: 48px;">
-                    <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
+                    
                     <div id="createWorkgroup" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                         (click)="openCreateWorkgroupModal()">
                         <img class="addWorkgroupImage" src="../../../../assets/addWorkgroup.png" alt="">
@@ -19,8 +19,8 @@
             </tr>
         </thead>
 
-        <tbody *ngIf="this.tableService.isUsersLoading == false">
-            <ng-container *ngFor="let workgroup of this.tableService.allWorkgroup;">
+        <tbody *ngIf="this.adminTableService.isUsersLoading == false">
+            <ng-container *ngFor="let workgroup of this.adminTableService.allWorkgroup;">
 
                 <tr class="align-middle" *ngIf="workgroup.isDeleted == true">
                     <td style="color: rgba(255, 58, 58, 0.539)">{{workgroup.id}}</td>
@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                                 <div class="dropdownButton" type="button"
-                                    (click)="this.tableService.adminSwitchToWorkgroupMembers(workgroup)">
+                                    (click)="this.adminTableService.adminSwitchToWorkgroupMembers(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage"
                                             src="../../../../assets/user-list-svgrepo-com.svg" alt="" srcset="">
@@ -152,7 +152,7 @@
                                     </div>
                                 </div>
                                 <div class="dropdownButton" type="button"
-                                    (click)="this.tableService.adminSwitchToWorkgroupMembers(workgroup)">
+                                    (click)="this.adminTableService.adminSwitchToWorkgroupMembers(workgroup)">
                                     <div class="basicSmallIconContainer">
                                         <img class="basicSmallIconContainerImage"
                                             src="../../../../assets/user-list-svgrepo-com.svg" alt="" srcset="">
@@ -170,7 +170,7 @@
     </table>
 </div>
 
-<div *ngIf="this.tableService.isWorkgroupMembersListed == true">
+<div *ngIf="this.adminTableService.isWorkgroupMembersListed == true">
     <app-ad-workgroup-members-table></app-ad-workgroup-members-table>
 </div>
 

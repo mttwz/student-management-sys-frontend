@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StudentTableService } from 'src/app/services/table/student/student-table.service';
 import { TableService } from 'src/app/services/table/table.service';
 
 @Component({
@@ -8,10 +9,10 @@ import { TableService } from 'src/app/services/table/table.service';
 })
 export class StStudentScheduleTableComponent implements OnInit {
 
-  constructor(public tableService:TableService) { }
+  constructor(public studentTableService:StudentTableService) { }
 
   ngOnInit(): void {
-    this.tableService.getOwnUserSchedule()
+    this.studentTableService.getOwnUserSchedule()
   }
 
 }
