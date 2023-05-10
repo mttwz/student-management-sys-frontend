@@ -394,7 +394,7 @@
 
 <!------------------------------------------------------------------------------------------------->
 <!-- modal for displaying the student daily chekin/checkout -->
-<div id="studentAttendanceLogMenu" *ngIf="this.modalId == 'studentAttendanceLogMenu'">
+<div id="studentAttendanceLogModal" *ngIf="this.modalId == 'studentAttendanceLogModal'">
 
     <div class="modal-header">
         <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} attendance</h5>
@@ -404,7 +404,7 @@
     <div class="modalContainer">
 
         <div class="datePickerContainer">
-            <input class="datePicker form-control" type="date">
+            <input [(ngModel)]="this.selectedDate" class="datePicker form-control" type="date">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="getStudentDailyAttendance(this.userService.currentlySelectedUserId)">Search</button>
@@ -465,7 +465,7 @@
 
 <!------------------------------------------------------------------------------------------------->
 <!-- modal for displaying the student daily classes with lates -->
-<div id="studentDailyAttendanceMenu" *ngIf="this.modalId == 'studentDailyAttendanceMenu'">
+<div id="studentDailyAttendanceModal" *ngIf="this.modalId == 'studentDailyAttendanceModal'">
 
     <div class="modal-header">
         <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} daily schedule</h5>
@@ -475,7 +475,7 @@
     <div class="modalContainer">
 
         <div class="datePickerContainer">
-            <input class="datePicker" type="date">
+            <input [(ngModel)]="this.selectedDate" class="datePicker form-control" type="date">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="getStudentDailyClasses(this.userService.currentlySelectedUserId)">Search</button>
@@ -522,7 +522,7 @@
 
 <!------------------------------------------------------------------------------------------------->
 <!-- modal fot the student daily attendance -->
-<div id="studentDailyAttendanceInWorkgroupMenu" *ngIf="this.modalId == 'studentDailyAttendanceInWorkgroupMenu'">
+<div id="studentDailyAttendanceInWorkgroupModal" *ngIf="this.modalId == 'studentDailyAttendanceInWorkgroupModal'">
 
     <div class="modal-header">
         <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} attendance</h5>
@@ -577,7 +577,7 @@
 
 <!------------------------------------------------------------------------------------------------->
 
-<div id="workgroupDailyClassesMenu" *ngIf="this.modalId == 'workgroupDailyClassesMenu'">
+<div id="workgroupDailyClassesModal" *ngIf="this.modalId == 'workgroupDailyClassesModal'">
 
     <div class="modal-header">
         <h5 class="modal-title" class="mainModalLabel">Classes</h5>

@@ -1,10 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TableService } from 'src/app/services/table/table.service';
 import { UserService } from 'src/app/services/user/user.service';
-import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
-import { WorkgroupTableComponent } from '../../tables/superadmin/su-workgroup-table/su-workgroup-table.component';
 import {formatDate} from '@angular/common';
 import { DateFormatterService } from 'src/app/services/utils/date-formatter.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
@@ -172,7 +169,7 @@ export class SuperadminModalComponent implements OnInit {
       this.userInfoForm.controls['firstName'].setValue(this.userInfo.firstName);
       this.userInfoForm.controls['lastName'].setValue(this.userInfo.lastName);
       this.userInfoForm.controls['phone'].setValue(this.userInfo.phone);
-      this.userInfoForm.controls['birth'].setValue(this.userService.getDateFromDateTime(this.userInfo.birth));
+      this.userInfoForm.controls['birth'].setValue(this.dateUtil.getDateFromDateTime(this.userInfo.birth));
       this.userInfoForm.controls['email'].setValue(this.userInfo.email);
       this.userInfoForm.controls['registeredAt'].setValue(this.dateUtil.dateFormatter(this.userInfo.registeredAt));
       this.userInfoForm.controls['activationCode'].setValue(this.userInfo.activationCode);
@@ -460,8 +457,8 @@ export class SuperadminModalComponent implements OnInit {
     if(this.arrivalInput != undefined && this.arrivalInput != undefined){
       let body = {
         userId: userId,
-        arrival: this.dateUtil.dateFormatterForBackend(this.arrivalInput),
-        leaving: this.dateUtil.dateFormatterForBackend(this.leavingInput)
+        arrival: this.dateUtil.dateTimeFormatterForBackend(this.arrivalInput),
+        leaving: this.dateUtil.dateTimeFormatterForBackend(this.leavingInput)
       };
       console.log(body);
       this.userService.createAttendance(body).subscribe(res=>{

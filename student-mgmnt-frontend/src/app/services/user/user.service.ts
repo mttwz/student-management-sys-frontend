@@ -14,16 +14,7 @@ export class UserService {
   currentlySelectedUserName!: string;
 
 
-  getDateFromDateTime(fullDate: String) {
 
-    if (fullDate != null) {
-      let date = fullDate.split("T")[0];
-      
-      return date;
-    }
-    return "";
-
-  }
 
 
   getAllUser() {
@@ -53,6 +44,10 @@ export class UserService {
 
   getDailyAttendance(body:any){
     return this.http.post<any>(environment.apiEndpoint + "/attendance/get-daily-attendance-by-user-id",body);
+  }
+
+  getOwnDailyAttendanceWithPaging(body:any,pageNumber:number,pageSize:number,sort:string,order:string){
+    return this.http.post<any>(environment.apiEndpoint + "/attendance/get-own-daily-attendance?page="+pageNumber+"&size="+pageSize+"&sort="+sort+","+order,body);
   }
 
   createAttendance(body:any){

@@ -1,10 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TableService } from 'src/app/services/table/table.service';
 import { UserService } from 'src/app/services/user/user.service';
-import { SuperadminDashboardComponent } from '../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
-import { WorkgroupTableComponent } from '../../tables/superadmin/su-workgroup-table/su-workgroup-table.component';
 import {formatDate} from '@angular/common';
 import { DateFormatterService } from 'src/app/services/utils/date-formatter.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
@@ -63,7 +60,7 @@ export class AdminModalComponent implements OnInit {
   id!: number;
 
 
-  defaultDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') + "T00:00:00Z";
+  selectedDate = formatDate(new Date(), 'yyyy-MM-dd', 'en');
 
 
   arrivalInput: any;
@@ -170,7 +167,7 @@ export class AdminModalComponent implements OnInit {
       this.userInfoForm.controls['firstName'].setValue(this.userInfo.firstName);
       this.userInfoForm.controls['lastName'].setValue(this.userInfo.lastName);
       this.userInfoForm.controls['phone'].setValue(this.userInfo.phone);
-      this.userInfoForm.controls['birth'].setValue(this.userService.getDateFromDateTime(this.userInfo.birth));
+      this.userInfoForm.controls['birth'].setValue(this.dateUtil.getDateFromDateTime(this.userInfo.birth));
       this.userInfoForm.controls['email'].setValue(this.userInfo.email);
       this.userInfoForm.controls['registeredAt'].setValue(this.dateUtil.dateFormatter(this.userInfo.registeredAt));
       this.userInfoForm.controls['activationCode'].setValue(this.userInfo.activationCode);
@@ -439,10 +436,9 @@ export class AdminModalComponent implements OnInit {
  
   getStudentDailyAttendance(userId:number){
     this.isEditingEnabled = false;
-    this.changeDate();
     let body = {
       userId: userId,
-      date: this.defaultDate
+      date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
     console.log(body);
     this.userService.getDailyAttendance(body).subscribe(res=>{
@@ -461,8 +457,8 @@ export class AdminModalComponent implements OnInit {
     if(this.arrivalInput != undefined && this.arrivalInput != undefined){
       let body = {
         userId: userId,
-        arrival: this.dateUtil.dateFormatterForBackend(this.arrivalInput),
-        leaving: this.dateUtil.dateFormatterForBackend(this.leavingInput)
+        arrival: this.dateUtil.dateTimeFormatterForBackend(this.arrivalInput),
+        leaving: this.dateUtil.dateTimeFormatterForBackend(this.leavingInput)
       };
       console.log(body);
       this.userService.createAttendance(body).subscribe(res=>{
@@ -479,20 +475,15 @@ export class AdminModalComponent implements OnInit {
   }
 
 
-  changeDate(){
-    if($('.datePicker').val() != ""){
-      let updatedDate = formatDate(new Date($('.datePicker').val()), 'yyyy-MM-dd', 'en') + "T00:00:00Z";
-      this.defaultDate = updatedDate;
-    }
-  }
+
 
 
 
   getStudentDailyClasses(userId:number){
-    this.changeDate();
+
     let body = {
       userId: userId,
-      date: this.defaultDate
+      date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
     console.log(body);
     this.workgroupService.getUserSchedule(body).subscribe(res=>{
@@ -507,11 +498,11 @@ export class AdminModalComponent implements OnInit {
   
 
   getStudentDailyClassesPerWg(userId:number){
-    this.changeDate();
+
     let body = {
       userId: userId,
       workgroupId: this.workgroupService.currentlySelectedWorkgroupId,
-      date: this.defaultDate
+      date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
     
 
@@ -528,10 +519,10 @@ export class AdminModalComponent implements OnInit {
 
 
   getDailyWorkgroupSchedule(){
-    this.changeDate();
+    
     let body = {
       workgroupId: this.workgroupService.currentlySelectedWorkgroupId,
-      start: this.defaultDate
+      start: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
 
     this.workgroupService.getDailyWorkgroupScheduleByWorkgroupId(body).subscribe(res=>{

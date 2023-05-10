@@ -1,0 +1,25 @@
+<table class="table table-xl table-striped table-dark mainTable">
+
+    <thead>
+        <tr class="align-middle">
+            <th>ID</th>
+            <th>Arrival</th>
+            <th>Leaving</th>
+
+        </tr>
+    </thead>
+
+    <tbody *ngIf="this.studentTableService.isDailyAttendanceLoading == false">
+        
+        <ng-container *ngFor="let attendance of this.studentTableService.allUserAttendance;">
+
+            <tr class="align-middle">
+                <td>{{attendance.id}}</td>
+                <td>{{this.dateUtil.dateFormatter(attendance.arrival)}}</td>
+                <td>{{this.dateUtil.dateFormatter(attendance.leaving)}}</td>
+            </tr>
+        </ng-container>
+    </tbody>
+
+
+</table>

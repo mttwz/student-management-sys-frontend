@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { TableService } from 'src/app/services/table/table.service';
 import { SuperadminDashboardComponent } from '../../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { SuperadminModalComponent } from '../../../modals/superadmin-modal/superadmin-modal.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
@@ -70,7 +69,7 @@ export class WorkgroupTableComponent implements OnInit {
   openWorkgroupDailyClasses(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.SuperadminModalComponent.allDailyWorkgroupClasses = [];
-    this.modalService.changeModal('workgroupDailyClassesMenu');
+    this.modalService.changeModal('workgroupDailyClassesModal');
     this.SuperadminModalComponent.resetStatusCode()
   }
   

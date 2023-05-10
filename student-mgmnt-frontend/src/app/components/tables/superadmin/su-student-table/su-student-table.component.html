@@ -45,7 +45,16 @@
                                 <div class="basicSmallIconContainer">
                                     <img class="basicSmallIconContainerImage"
                                         src="../../../../assets/date-range-svgrepo-com.svg" alt="" srcset="">
-                                    <div class="itemText">Daily log</div>
+                                    <div class="itemText">Daily attendance</div>
+                                </div>
+                            </div>
+
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
+                                (click)="openAssignCardModal(user);">
+                                <div class="basicSmallIconContainer">
+                                    <img class="basicSmallIconContainerImage"
+                                        src="../../../../assets/edit-profile-svgrepo-com.svg" alt="" srcset="">
+                                    <div class="itemText">Assign card</div>
                                 </div>
                             </div>
 
@@ -92,9 +101,18 @@
                                 <div class="basicSmallIconContainer">
                                     <img class="basicSmallIconContainerImage"
                                         src="../../../../assets/date-range-svgrepo-com.svg" alt="" srcset="">
-                                    <div class="itemText">Daily log</div>
+                                    <div class="itemText">Daily attendance</div>
                                 </div>
                             </div>
+
+                            <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
+                            (click)="openAssignCardModal(user);">
+                            <div class="basicSmallIconContainer">
+                                <img class="basicSmallIconContainerImage"
+                                    src="../../../../assets/edit-profile-svgrepo-com.svg" alt="" srcset="">
+                                <div class="itemText">Assign card</div>
+                            </div>
+                        </div>
 
                             <div class="dropdownButton" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                                 (click)="openStudentInfoModal(user); this.superadminModal.getUserInfo(user.id);">

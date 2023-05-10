@@ -3,16 +3,24 @@
 
     <div class="input-group">
         <select class="form-control filterSelect">
-            <option selected value="dailyClasses" (click)="this.studentTableService.changeSearchFilter('users')">Daily classes</option>
-            <option value="dailyAttendance" (click)="this.studentTableService.changeSearchFilter('student')">Daily attendance</option>    
+            <option selected value="daily-classes" (click)="this.studentTableService.changeSearchFilter('daily-classes')">Daily classes</option>
+            <option value="daily-attendance" (click)="this.studentTableService.changeSearchFilter('daily-attendance')">Daily attendance</option>    
  
             <!-- <option>Institution</option> -->
         </select>
         <div type="text"
             class="form-control searchBar">{{this.authService.parseJwt().fullName}}</div>
     </div>
-    <div class="tableContainer">
+    <div>
+        <input [(ngModel)]="this.studentTableService.selectedDate" (change)="this.studentTableService.getContent()" class="form-control" type="date">
+    </div>
+
+
+    <div class="tableContainer" *ngIf="this.studentTableService.searchFilter == 'daily-classes'">
         <app-st-student-schedule-table></app-st-student-schedule-table>
+    </div>
+    <div class="tableContainer" *ngIf="this.studentTableService.searchFilter == 'daily-attendance'">
+        <app-st-student-attendance-table></app-st-student-attendance-table>
     </div>
 
     <div class="pageSelector">

@@ -3,16 +3,16 @@ import { StudentTableService } from 'src/app/services/table/student/student-tabl
 import { DateFormatterService } from 'src/app/services/utils/date-formatter.service';
 
 @Component({
-  selector: 'app-st-student-schedule-table',
-  templateUrl: './st-student-schedule-table.component.html',
-  styleUrls: ['./st-student-schedule-table.component.css']
+  selector: 'app-st-student-attendance-table',
+  templateUrl: './st-student-attendance-table.component.html',
+  styleUrls: ['./st-student-attendance-table.component.css']
 })
-export class StStudentScheduleTableComponent implements OnInit {
+export class StStudentAttendanceTableComponent implements OnInit {
 
   constructor(public studentTableService:StudentTableService,public dateUtil:DateFormatterService) { }
 
   ngOnInit(): void {
-    this.studentTableService.getOwnUserSchedule()
+    this.studentTableService.getOwnDailyAttendance();
   }
 
 }

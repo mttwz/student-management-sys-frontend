@@ -1,6 +1,4 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { TableService } from 'src/app/services/table/table.service';
-import { AdminDashboardComponent } from '../../../dashboards/admin-dashboard/admin-dashboard.component';
 import { AdminModalComponent } from '../../../modals/admin-modal/admin-modal.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
@@ -66,7 +64,7 @@ export class AdWorkgroupTableComponent implements OnInit {
   openWorkgroupDailyClasses(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.AdminModalComponent.allDailyWorkgroupClasses = [];
-    this.modalService.changeModal('workgroupDailyClassesMenu');
+    this.modalService.changeModal('workgroupDailyClassesModal');
     this.AdminModalComponent.resetStatusCode()
   }
   

@@ -15,7 +15,22 @@ export class DateFormatterService {
     return date.split("T")[0] +" "+ date.split("T")[1].split("+")[0];
   }
 
-  dateFormatterForBackend(date:string){
+  dateTimeFormatterForBackend(date:string){
     return date+"Z";
+  }
+
+  dateFormatterForBackend(date:string){
+    return date+"T00:00:00Z";
+  }
+
+  getDateFromDateTime(fullDate: String) {
+
+    if (fullDate != null) {
+      let date = fullDate.split("T")[0];
+      
+      return date;
+    }
+    return "";
+
   }
 }

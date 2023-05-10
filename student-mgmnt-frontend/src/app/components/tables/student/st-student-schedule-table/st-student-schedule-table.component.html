@@ -21,8 +21,8 @@
             <tr class="align-middle">
                 <td>{{schedule.id}}</td>
                 <td>{{schedule.name}}</td>
-                <td>{{schedule.start}}</td>
-                <td>{{schedule.end}}</td>
+                <td>{{this.dateUtil.dateFormatter(schedule.start)}}</td>
+                <td>{{this.dateUtil.dateFormatter(schedule.end)}}</td>
                 <td>{{schedule.isStudentPresent}}</td>
                 <td>{{schedule.lateInMinutes}}</td>
                 <td>{{schedule.isOnsite}}</td>

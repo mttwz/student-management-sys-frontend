@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { TableService } from 'src/app/services/table/table.service';
 import { SuperadminDashboardComponent } from '../../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { SuperadminModalComponent } from '../../../modals/superadmin-modal/superadmin-modal.component';
 import { UserService } from 'src/app/services/user/user.service';
@@ -38,7 +37,7 @@ export class WorkgroupMembersTableComponent implements OnInit {
 
 
   openStudentDailyClassesPerWgModal(user:any){
-    this.modalService.changeModal('studentDailyAttendanceInWorkgroupMenu'); 
+    this.modalService.changeModal('studentDailyAttendanceInWorkgroupModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
     this.SuperadminModalComponent.resetStatusCode()

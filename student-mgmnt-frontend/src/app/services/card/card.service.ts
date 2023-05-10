@@ -5,12 +5,13 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminService {
+export class CardService {
 
   constructor(private http: HttpClient) { }
 
 
-  getAllAdmin() {
-    return this.http.get<any>(environment.apiEndpoint + "/user/getalluser");
+
+  getAllAvaliableCard(){
+    return this.http.get<any>(environment.apiEndpoint + "/card/get-all-avaliable-card");
   }
 }

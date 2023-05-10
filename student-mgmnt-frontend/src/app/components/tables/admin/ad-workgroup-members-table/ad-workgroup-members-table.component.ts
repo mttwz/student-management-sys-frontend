@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { TableService } from 'src/app/services/table/table.service';
 import { AdminModalComponent } from '../../../modals/admin-modal/admin-modal.component';
 import { UserService } from 'src/app/services/user/user.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
@@ -24,7 +23,7 @@ export class AdWorkgroupMembersTableComponent implements OnInit {
   }
 
   openStudentDailyClassesPerWgModal(user:any){
-    this.modalService.changeModal('studentDailyAttendanceInWorkgroupMenu'); 
+    this.modalService.changeModal('studentDailyAttendanceInWorkgroupModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
     this.AdminModalComponent.resetStatusCode()

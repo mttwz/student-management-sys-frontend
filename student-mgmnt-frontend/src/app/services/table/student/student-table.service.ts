@@ -1,5 +1,8 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { WorkgroupService } from '../../workgroup/workgroup.service';
+import { UserService } from '../../user/user.service';
+import { formatDate } from '@angular/common';
+import { DateFormatterService } from '../../utils/date-formatter.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +10,7 @@ import { WorkgroupService } from '../../workgroup/workgroup.service';
 export class StudentTableService {
 
   allUserSchedule !: Array<any>;
+  allUserAttendance !: Array<any>;
 
   pageSize: number = 1; // <- erre kikell talalni valamit.   mire? itt adod meg hogy hany szar legyen kilistazva 
   pageNumber: number = 0;
@@ -15,18 +19,21 @@ export class StudentTableService {
   allPages!: number;
 
   isUserScheduleLoading = true;
+  isDailyAttendanceLoading = true;
 
 
+  selectedDate:string = formatDate(new Date(), 'yyyy-MM-dd', 'en');
 
-  searchFilter: string = "users";
+  searchFilter: string = "daily-classes";
 
   changeDetectionEmitter: EventEmitter<void> = new EventEmitter<void>();
+  
 
-  constructor(private workgroupService:WorkgroupService) { }
+  constructor(private workgroupService:WorkgroupService,private userService:UserService,private dateUtil:DateFormatterService) { }
 
   getOwnUserSchedule() {
     let body = {
-      date: "2023-05-09T00:00:00Z"
+      date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
     this.workgroupService.getOwnUserScheduleWithPaging(body,this.pageNumber,this.pageSize,this.sort,this.order).subscribe(res => {
       this.allUserSchedule = res.userScheduleInfoDtoList;
@@ -42,8 +49,19 @@ export class StudentTableService {
     console.log(this.searchFilter)
     console.log(this.pageNumber);
     this.pageNumber = num;
-    alert("asd")
-    this.getOwnUserSchedule();
+    if(this.searchFilter == "daily-classes"){
+      this.getOwnUserSchedule();
+    }else if (this.searchFilter == "daily-attendance"){
+        this.getOwnDailyAttendance();
+    }
+  }
+
+  getContent(){
+    if(this.searchFilter == "daily-classes"){
+      this.getOwnUserSchedule();
+    }else if (this.searchFilter == "daily-attendance"){
+        this.getOwnDailyAttendance();
+    }
   }
 
   createRange() {
@@ -67,6 +85,22 @@ export class StudentTableService {
     this.workgroupService.currentlySelectedWorkgroupName = "";
 
     
+  }
+
+  getOwnDailyAttendance(){
+    let body = {
+      date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
+    };
+    
+    this.userService.getOwnDailyAttendanceWithPaging(body,this.pageNumber,this.pageSize,this.sort,this.order).subscribe(res=>{
+        this.allUserAttendance = res.attendanceDtoList;
+        this.allPages = res.allPages;
+        this.isDailyAttendanceLoading = false;
+        this.changeDetectionEmitter.emit();
+        console.error(res);
+    })
+
+
   }
 
 

@@ -20,7 +20,7 @@ export class AuthService {
 
   register(registerForm:FormGroup) {
     let body = registerForm.value;
-    return this.http.post<any>("http://127.0.0.1:8080/api/v1/student/register-student", body)
+    return this.http.post<any>(environment.apiEndpoint + "student/register-student", body)
   }
 
 

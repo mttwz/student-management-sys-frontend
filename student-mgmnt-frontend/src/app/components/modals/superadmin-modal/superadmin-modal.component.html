@@ -506,7 +506,7 @@
 
 <!------------------------------------------------------------------------------------------------->
 <!-- modal for displaying the student daily chekin/checkout -->
-<div id="studentAttendanceLogMenu" *ngIf="this.modalId == 'studentAttendanceLogMenu'">
+<div id="studentAttendanceLogModal" *ngIf="this.modalId == 'studentAttendanceLogModal'">
 
     <div class="modal-header">
         <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} attendance</h5>
@@ -523,16 +523,18 @@
         </div>
 
         <div class="datePickerContainer">
-            
-            <input [(ngModel)]="arrivalInput" class="datePicker form-control addAttendanceDatePicker" type="datetime-local">
-            
-            <input [(ngModel)]="leavingInput" class="datePicker form-control addAttendanceDatePicker" type="datetime-local">
+
+            <input [(ngModel)]="arrivalInput" class="datePicker form-control addAttendanceDatePicker"
+                type="datetime-local">
+
+            <input [(ngModel)]="leavingInput" class="datePicker form-control addAttendanceDatePicker"
+                type="datetime-local">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="addStudentDailyAttendance(this.userService.currentlySelectedUserId)">Add</button>
         </div>
 
-        
+
 
 
         <table class="table table-xl table-striped table-dark mainTable">
@@ -545,7 +547,7 @@
             </thead>
             <tbody>
                 <ng-container *ngFor="let dailyAttendance of studentDailyAttendance;">
-                   
+
                     <tr>
                         <td>
                             {{dateUtil.dateFormatter(dailyAttendance.arrival)}}
@@ -578,10 +580,11 @@
 
 <!------------------------------------------------------------------------------------------------->
 <!-- modal for displaying the student daily classes with lates -->
-<div id="studentDailyAttendanceMenu" *ngIf="this.modalId == 'studentDailyAttendanceMenu'">
+<div id="studentDailyAttendanceModal" *ngIf="this.modalId == 'studentDailyAttendanceModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} daily schedule</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} daily schedule
+        </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
@@ -635,7 +638,7 @@
 
 <!------------------------------------------------------------------------------------------------->
 <!-- modal fot the student daily attendance -->
-<div id="studentDailyAttendanceInWorkgroupMenu" *ngIf="this.modalId == 'studentDailyAttendanceInWorkgroupMenu'">
+<div id="studentDailyAttendanceInWorkgroupModal" *ngIf="this.modalId == 'studentDailyAttendanceInWorkgroupModal'">
 
     <div class="modal-header">
         <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} attendance</h5>
@@ -690,7 +693,7 @@
 
 <!------------------------------------------------------------------------------------------------->
 
-<div id="workgroupDailyClassesMenu" *ngIf="this.modalId == 'workgroupDailyClassesMenu'">
+<div id="workgroupDailyClassesModal" *ngIf="this.modalId == 'workgroupDailyClassesModal'">
 
     <div class="modal-header">
         <h5 class="modal-title" class="mainModalLabel">Classes</h5>
@@ -724,6 +727,36 @@
                 </ng-container>
             </tbody>
         </table>
+
+
+    </div>
+    <div class="responseTextContainer">
+        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+
+        </div>
+    </div>
+</div>
+
+
+<div id="assignCardModal" *ngIf="this.modalId == 'assignCardModal'">
+
+    <div class="modal-header">
+        <h5 class="modal-title" class="mainModalLabel">Assign card</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+    </div>
+    <div class="modalContainer">
+
+
+        <select class="form-control filterSelect">
+            <!-- <option *ngFor="let title of titleArray" [value]="title.Value"
+                [attr.selected]="passenger.Title==title.Text ? true : null">
+                {{title.Text}}
+            </option> -->
+
+        </select>
+
 
 
     </div>

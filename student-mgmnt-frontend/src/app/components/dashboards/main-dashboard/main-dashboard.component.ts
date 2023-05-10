@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { TableService } from 'src/app/services/table/table.service';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
 import { ModalService } from 'src/app/services/modal/modal.service';
 import { SuperadminTableService } from 'src/app/services/table/superadmin/superadmin-table.service';

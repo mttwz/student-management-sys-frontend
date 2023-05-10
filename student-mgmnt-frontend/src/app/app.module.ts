@@ -27,6 +27,7 @@ import { AdWorkgroupTableComponent } from './components/tables/admin/ad-workgrou
 import { AdWorkgroupMembersTableComponent } from './components/tables/admin/ad-workgroup-members-table/ad-workgroup-members-table.component';
 import { AdStudentTableComponent } from './components/tables/admin/ad-student-table/ad-student-table.component';
 import { StStudentScheduleTableComponent } from './components/tables/student/st-student-schedule-table/st-student-schedule-table.component';
+import { StStudentAttendanceTableComponent } from './components/tables/student/st-student-attendance-table/st-student-attendance-table.component';
 
 
 
@@ -56,6 +57,7 @@ import { StStudentScheduleTableComponent } from './components/tables/student/st-
     AdWorkgroupMembersTableComponent,
     AdStudentTableComponent,
     StStudentScheduleTableComponent,
+    StStudentAttendanceTableComponent,
 
 
   ],
