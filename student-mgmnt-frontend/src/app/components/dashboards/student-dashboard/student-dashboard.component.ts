@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { TableService } from 'src/app/services/table/table.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { TableService } from 'src/app/services/table/table.service';
 })
 export class StudentDashboardComponent implements OnInit {
 
-  constructor(public tableService:TableService) { }
+  constructor(public tableService:TableService,public authService:AuthService) { }
 
   ngOnInit(): void {
   }

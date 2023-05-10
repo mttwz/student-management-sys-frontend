@@ -1,14 +1,23 @@
 <div class="main">
 
 
-
+    <div class="input-group">
+        <select class="form-control filterSelect">
+            <option selected value="dailyClasses" (click)="this.tableService.changeSearchFilter('users')">Daily classes</option>
+            <option value="dailyAttendance" (click)="this.tableService.changeSearchFilter('student')">Daily attendance</option>    
+ 
+            <!-- <option>Institution</option> -->
+        </select>
+        <div type="text"
+            class="form-control searchBar">{{this.authService.parseJwt().fullName}}</div>
+    </div>
     <div class="tableContainer">
         <app-st-student-schedule-table></app-st-student-schedule-table>
     </div>
 
     <div class="pageSelector">
         <div class="pageBox" *ngFor="let item of this.tableService.createRange();"
-            (click)="tableService.pageClick(item-1)">
+            (click)="tableService.stPageClick(item-1)">
             {{item}}
         </div>
     </div>

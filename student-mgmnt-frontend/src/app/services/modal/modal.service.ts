@@ -122,9 +122,15 @@ export class ModalService {
   }
 
 
-  pageClick(num: number) {
+  suPageClick(num: number) {
     this.modalPageNumber = num;
     this.superadminSearchOnlyUsersInModals();
+    this.changeDetectionEmitter.emit();
+  }
+
+  adPageClick(num: number) {
+    this.modalPageNumber = num;
+    this.adminSearchOnlyUsersInModals();
     this.changeDetectionEmitter.emit();
   }
 

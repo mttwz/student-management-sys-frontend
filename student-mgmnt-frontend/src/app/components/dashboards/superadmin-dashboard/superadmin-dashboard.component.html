@@ -36,7 +36,7 @@
 
     <div class="pageSelector">
         <div class="pageBox" *ngFor="let item of this.tableService.createRange();"
-            (click)="tableService.pageClick(item-1)">
+            (click)="tableService.suPageClick(item-1)">
             {{item}}
         </div>
     </div>

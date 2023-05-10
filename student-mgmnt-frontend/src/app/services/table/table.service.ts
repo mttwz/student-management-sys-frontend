@@ -12,15 +12,16 @@ import { AuthService } from '../auth/auth.service';
 })
 export class TableService {
 
+
+  //loading
   isUserScheduleLoading = true;
   isUsersLoading = true;
   isWorkgroupLoading = true;
   isWorkgroupMembersListed = false;
-  asd = false;
   isWorkgroupsListed = true;
 
-  //search data
 
+  //search data
   searchText: string = "";
   searchFilter: string = "users";
   pageSize: number = 1; // <- erre kikell talalni valamit.   mire? itt adod meg hogy hany szar legyen kilistazva 
@@ -54,15 +55,10 @@ export class TableService {
   changeDetectionEmitter: EventEmitter<void> = new EventEmitter<void>();
 
 
-  searchSuperadminWithDebounce(): void {
-    clearTimeout(this.timeoutId);
-    this.timeoutId = setTimeout(() => {
-      this.searchSuperadmin();
-    }, 250); 
-  }
 
 
 
+  //allowed search for superadmins
   searchSuperadmin() {
     if (this.searchFilter == "users") {
       this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
@@ -125,6 +121,15 @@ export class TableService {
 
   }
 
+  searchSuperadminWithDebounce(): void {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      this.searchSuperadmin();
+    }, 250); 
+  }
+
+
+  //allowed search for admins
   searchAdmin() {
     if (this.searchFilter == "student") {
       this.userService.searchAdmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
@@ -169,6 +174,7 @@ export class TableService {
 
 
 
+  //
   getAllWorkgroups() {
     //http://localhost:8080/api/v1/workgroup/get-all-workgroups?page=0 &size=2 &sort=id,asc
 
@@ -213,7 +219,7 @@ export class TableService {
       date: "2023-05-09T00:00:00Z"
     };
     this.workgroupService.getOwnUserScheduleWithPaging(body,this.pageNumber,this.pageSize,this.sort,this.order).subscribe(res => {
-      this.allUserSchedule = res;
+      this.allUserSchedule = res.userScheduleInfoDtoList;
       this.isUserScheduleLoading = false;
       this.allPages = res.allPages;
       this.changeDetectionEmitter.emit();
@@ -241,7 +247,7 @@ export class TableService {
 
 
 
-  sortBy(type: string) {
+  suSortBy(type: string) {
     if (this.sort == type && this.order == 'asc') {
       this.sort = type;
       this.order = 'desc'
@@ -250,15 +256,43 @@ export class TableService {
       this.order = 'asc'
     }
     this.sort = type;
-    this.getContentByFilter();
+    this.suGetContentByFilter();
 
   }
 
-  pageClick(num: number) {
+  adSortBy(type: string) {
+    if (this.sort == type && this.order == 'asc') {
+      this.sort = type;
+      this.order = 'desc'
+    } else if (this.sort == type && this.order == 'desc') {
+      this.sort = type;
+      this.order = 'asc'
+    }
+    this.sort = type;
+    this.adGetContentByFilter();
+
+  }
+
+  suPageClick(num: number) {
     console.log(this.searchFilter)
     console.log(this.pageNumber);
     this.pageNumber = num;
-    this.getContentByFilter();
+    this.suGetContentByFilter();
+  }
+
+  adPageClick(num: number) {
+    console.log(this.searchFilter)
+    console.log(this.pageNumber);
+    this.pageNumber = num;
+    this.adGetContentByFilter();
+  }
+
+  stPageClick(num: number) {
+    console.log(this.searchFilter)
+    console.log(this.pageNumber);
+    this.pageNumber = num;
+    alert("asd")
+    //this.stGetContentByFilter();
   }
 
   createRange() {
@@ -270,7 +304,7 @@ export class TableService {
       .map((n, index) => index + 1);
   }
 
-  getContentByFilter() {
+  suGetContentByFilter() {
     if (this.searchFilter == "users") {
       this.searchSuperadmin();
     } else if (this.searchFilter == "student") {
@@ -283,6 +317,16 @@ export class TableService {
       this.getAllWorkgroups();
     } else if (this.searchFilter == "users-in-workgroup") {
       this.searchSuperadmin();
+    }
+  }
+
+  adGetContentByFilter() {
+    if (this.searchFilter == "student") {
+      this.searchAdmin();
+    } else if (this.searchFilter == "workgroup") {
+      this.searchAdmin();
+    } else if (this.searchFilter == "users-in-workgroup") {
+      this.searchAdmin();
     }
   }
 

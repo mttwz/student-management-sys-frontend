@@ -3,9 +3,9 @@
 
         <thead>
             <tr class="align-middle">
-                <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
-                <th scope="col" (click)="this.tableService.sortBy('groupName')">Workgroup name</th>
-                <th scope="col" (click)="this.tableService.sortBy('institution')">institution</th>
+                <th scope="col" (click)="this.tableService.suSortBy('id')">ID</th>
+                <th scope="col" (click)="this.tableService.suSortBy('groupName')">Workgroup name</th>
+                <th scope="col" (click)="this.tableService.suSortBy('institution')">institution</th>
                 <th style="max-width: 48px;">
                     <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
                     <div id="createWorkgroup" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"

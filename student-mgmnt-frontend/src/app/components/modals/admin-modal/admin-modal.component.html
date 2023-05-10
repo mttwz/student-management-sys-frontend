@@ -207,10 +207,10 @@
 
             <thead>
                 <tr class="align-middle">
-                    <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
-                    <th scope="col" (click)="this.tableService.sortBy('roleId.roleType')">Role</th>
-                    <th scope="col" (click)="this.tableService.sortBy('firstName')">First name</th>
-                    <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
+                    <th scope="col" (click)="this.tableService.adSortBy('id')">ID</th>
+                    <th scope="col" (click)="this.tableService.adSortBy('roleId.roleType')">Role</th>
+                    <th scope="col" (click)="this.tableService.adSortBy('firstName')">First name</th>
+                    <th scope="col" (click)="this.tableService.adSortBy('lastName')">Last name</th>
                     <th style="max-width: 48px;"></th>
 
                 </tr>
@@ -236,7 +236,7 @@
 
         <div class="pageSelector">
             <div class="pageBox" *ngFor="let item of this.modalService.createRange();"
-                (click)="modalService.pageClick(item-1)">
+                (click)="modalService.adPageClick(item-1)">
                 {{item}}
             </div>
         </div>
@@ -268,10 +268,10 @@
 
             <thead>
                 <tr class="align-middle">
-                    <th scope="col" (click)="this.tableService.sortBy('id')">ID</th>
-                    <th scope="col" (click)="this.tableService.sortBy('roleId.roleType')">Role</th>
-                    <th scope="col" (click)="this.tableService.sortBy('firstName')">First name</th>
-                    <th scope="col" (click)="this.tableService.sortBy('lastName')">Last name</th>
+                    <th scope="col" (click)="this.tableService.adSortBy('id')">ID</th>
+                    <th scope="col" (click)="this.tableService.adSortBy('roleId.roleType')">Role</th>
+                    <th scope="col" (click)="this.tableService.adSortBy('firstName')">First name</th>
+                    <th scope="col" (click)="this.tableService.adSortBy('lastName')">Last name</th>
                     <th style="max-width: 48px;"></th>
 
                 </tr>
@@ -296,7 +296,7 @@
 
         <div class="pageSelector">
             <div class="pageBox" *ngFor="let item of this.modalService.createRange();"
-                (click)="modalService.pageClick(item-1)">
+                (click)="modalService.adPageClick(item-1)">
                 {{item}}
             </div>
         </div>
