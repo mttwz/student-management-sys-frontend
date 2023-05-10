@@ -4,6 +4,7 @@ import { SuperadminDashboardComponent } from '../../../dashboards/superadmin-das
 import { SuperadminModalComponent } from '../../../modals/superadmin-modal/superadmin-modal.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
+import { SuperadminTableService } from 'src/app/services/table/superadmin/superadmin-table.service';
 declare var $: any;
 
 @Component({
@@ -14,7 +15,7 @@ declare var $: any;
 export class WorkgroupTableComponent implements OnInit {
 
   constructor(
-    public tableService: TableService, 
+    public superadminTableService: SuperadminTableService, 
     public modalService: ModalService, 
     public workgroupService: WorkgroupService,
     public superadminDashboard: SuperadminDashboardComponent, 
@@ -23,7 +24,7 @@ export class WorkgroupTableComponent implements OnInit {
     
   @ViewChild(SuperadminModalComponent) SuperadminModalComponent!: SuperadminModalComponent;
   ngOnInit(): void {
-    this.tableService.searchSuperadmin();
+    this.superadminTableService.searchSuperadmin();
     
   }
 

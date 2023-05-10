@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { WorkgroupTableComponent } from '../su-workgroup-table/su-workgroup-table.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
+import { SuperadminTableService } from 'src/app/services/table/superadmin/superadmin-table.service';
 declare var $: any;
 
 @Component({
@@ -18,7 +19,7 @@ export class WorkgroupMembersTableComponent implements OnInit {
   selectedWorkgroup!:string;
 
   constructor(
-    public tableService: TableService,
+    public superadminTableService: SuperadminTableService,
     public modalService: ModalService, 
     public workgroupService: WorkgroupService,
     public userService: UserService,

@@ -2,15 +2,15 @@
 
     <thead>
         <tr class="align-middle">
-            <th scope="col" (click)="this.tableService.suSortBy('id')">ID</th>
-            <th scope="col" (click)="this.tableService.suSortBy('roleId.roleType')">Role</th>
-            <th scope="col" (click)="this.tableService.suSortBy('firstName')">First name</th>
-            <th scope="col" (click)="this.tableService.suSortBy('lastName')">Last name</th>
-            <th scope="col" (click)="this.tableService.suSortBy('email')">Email</th>
+            <th scope="col" (click)="this.superadminTableService.suSortBy('id')">ID</th>
+            <th scope="col" (click)="this.superadminTableService.suSortBy('roleId.roleType')">Role</th>
+            <th scope="col" (click)="this.superadminTableService.suSortBy('firstName')">First name</th>
+            <th scope="col" (click)="this.superadminTableService.suSortBy('lastName')">Last name</th>
+            <th scope="col" (click)="this.superadminTableService.suSortBy('email')">Email</th>
             <!-- <th style="max-width: 48px;"></th> -->
             <th style="max-width: 48px;">
 
-                <!--(click)="this.tableService.deleteWorkgroup(workgroup.id)" -->
+                
                 <div id="addUser" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                     (click)="openAddUserModal()">
                     <img class="addUserImage" src="../../../../assets/add-user-svgrepo-com.svg" alt="">
@@ -20,8 +20,8 @@
         </tr>
     </thead>
 
-    <tbody *ngIf="this.tableService.isUsersLoading == false">
-        <ng-container *ngFor="let user of this.tableService.allUsers;">
+    <tbody *ngIf="this.superadminTableService.isUsersLoading == false">
+        <ng-container *ngFor="let user of this.superadminTableService.allUsers;">
 
             <tr class="align-middle" *ngIf="user.isDeleted == true">
                 <td style="color: rgba(255, 58, 58, 0.539)">{{user.id}}</td>

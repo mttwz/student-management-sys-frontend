@@ -8,6 +8,7 @@ import { WorkgroupTableComponent } from '../../tables/superadmin/su-workgroup-ta
 import {formatDate} from '@angular/common';
 import { DateFormatterService } from 'src/app/services/utils/date-formatter.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
+import { SuperadminTableService } from 'src/app/services/table/superadmin/superadmin-table.service';
 declare var $: any;
 
 
@@ -73,7 +74,7 @@ export class SuperadminModalComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public tableService: TableService,
+    public superadminTableService: SuperadminTableService,
     public userService: UserService,
     public workgroupService: WorkgroupService,
     private changeDetection: ChangeDetectorRef,
@@ -388,7 +389,6 @@ export class SuperadminModalComponent implements OnInit {
 
     this.workgroupService.getWorkgroupInfo(id).subscribe(res => {
       this.workgroupInfo = res;
-      console.log(res + "aaaaaaaa getWorkgroupInfo");
       this.isWorkgroupInfoLoading = false;
 
       this.workgroupInfoForm.controls['id'].setValue(this.workgroupInfo.id);

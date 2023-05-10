@@ -5,6 +5,9 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { TableService } from 'src/app/services/table/table.service';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
 import { ModalService } from 'src/app/services/modal/modal.service';
+import { SuperadminTableService } from 'src/app/services/table/superadmin/superadmin-table.service';
+import { AdminTableService } from 'src/app/services/table/admin/admin-table.service';
+import { StudentTableService } from 'src/app/services/table/student/student-table.service';
 declare var $: any;
 
 @Component({
@@ -20,7 +23,10 @@ export class MainDashboardComponent implements OnInit {
     private router: Router, 
     private http: HttpClient,
     private changeDetection: ChangeDetectorRef, 
-    public tableService: TableService,) { }
+    public tableService: TableService,
+    public superadminTableService: SuperadminTableService,
+    public adminTableService: AdminTableService,
+    public studentTableService: StudentTableService) { }
   isLoading: Boolean = true;
   currentUserRole!: String;
 
@@ -44,7 +50,7 @@ export class MainDashboardComponent implements OnInit {
       let jwtData = this.authService.parseJwt();
 
       if(jwtData.role == "superadmin"){
-        this.tableService.searchSuperadmin();
+        this.superadminTableService.searchSuperadmin();
         console.log("superadmin");
       }else if (jwtData.role == "admin"){
         this.tableService.searchAdmin();
@@ -58,6 +64,28 @@ export class MainDashboardComponent implements OnInit {
     })
    
     
+    this.superadminTableService.changeDetectionEmitter.subscribe(
+      () => {
+        
+        this.changeDetection.detectChanges();
+      
+      },
+      (err) => {
+       console.log(err);
+      }
+    );
+
+    
+    this.tableService.changeDetectionEmitter.subscribe(
+      () => {
+        
+        this.changeDetection.detectChanges();
+      
+      },
+      (err) => {
+       console.log(err);
+      }
+    );
     this.tableService.changeDetectionEmitter.subscribe(
       () => {
         

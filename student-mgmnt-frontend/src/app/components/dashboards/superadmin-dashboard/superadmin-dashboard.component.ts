@@ -7,6 +7,7 @@ import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadm
 import { MainDashboardComponent } from '../main-dashboard/main-dashboard.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
+import { SuperadminTableService } from 'src/app/services/table/superadmin/superadmin-table.service';
 declare var $: any;
 
 
@@ -27,7 +28,7 @@ export class SuperadminDashboardComponent implements OnInit {
     public workgroupService: WorkgroupService, 
     public authService: AuthService, 
     private changeDetection: ChangeDetectorRef, 
-    public tableService: TableService,
+    public superadminTableService: SuperadminTableService,
     public mainDashboard: MainDashboardComponent) { 
 
   

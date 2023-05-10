@@ -2,41 +2,41 @@
 
     <div class="input-group">
         <select class="form-control filterSelect">
-            <option selected value="users" (click)="this.tableService.changeSearchFilter('users')">All users</option>
-            <option value="student" (click)="this.tableService.changeSearchFilter('student')">Student</option>    
-            <option value="admin" (click)="this.tableService.changeSearchFilter('admin')">Admin</option>
-            <option value="super-admin" (click)="this.tableService.changeSearchFilter('super-admin')">Superadmin</option>
-            <option value="workgroup" (click)="this.tableService.changeSearchFilter('workgroup')">Workgroup ( {{this.workgroupService.currentlySelectedWorkgroupName}} ) </option>
+            <option selected value="users" (click)="this.superadminTableService.changeSearchFilter('users')">All users</option>
+            <option value="student" (click)="this.superadminTableService.changeSearchFilter('student')">Student</option>    
+            <option value="admin" (click)="this.superadminTableService.changeSearchFilter('admin')">Admin</option>
+            <option value="super-admin" (click)="this.superadminTableService.changeSearchFilter('super-admin')">Superadmin</option>
+            <option value="workgroup" (click)="this.superadminTableService.changeSearchFilter('workgroup')">Workgroup ( {{this.workgroupService.currentlySelectedWorkgroupName}} ) </option>
             <!-- <option>Institution</option> -->
         </select>
-        <input [(ngModel)]="this.tableService.searchText"  [ngModelOptions]="{standalone: true}" (keyup)="this.tableService.searchSuperadminWithDebounce()" type="text"
+        <input [(ngModel)]="this.superadminTableService.searchText"  [ngModelOptions]="{standalone: true}" (keyup)="this.superadminTableService.searchSuperadminWithDebounce()" type="text"
             class="form-control searchBar" placeholder="Type to search...">
     </div>
 
-    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'users'">
+    <div class="tableContainer" *ngIf="this.superadminTableService.searchFilter == 'users'">
         <app-su-user-table></app-su-user-table>
     </div>
 
-    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'student'">
+    <div class="tableContainer" *ngIf="this.superadminTableService.searchFilter == 'student'">
         <app-su-student-table></app-su-student-table>
     </div>
 
-    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'admin'">
+    <div class="tableContainer" *ngIf="this.superadminTableService.searchFilter == 'admin'">
         <app-su-admin-table></app-su-admin-table>
     </div>
 
-    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'super-admin'">
+    <div class="tableContainer" *ngIf="this.superadminTableService.searchFilter == 'super-admin'">
         <app-su-superadmin-table></app-su-superadmin-table>
     </div>
 
 
-    <div class="tableContainer" *ngIf="this.tableService.searchFilter == 'workgroup' || this.tableService.searchFilter == 'users-in-workgroup'">
+    <div class="tableContainer" *ngIf="this.superadminTableService.searchFilter == 'workgroup' || this.superadminTableService.searchFilter == 'users-in-workgroup'">
         <app-su-workgroup-table></app-su-workgroup-table>
     </div>
 
     <div class="pageSelector">
-        <div class="pageBox" *ngFor="let item of this.tableService.createRange();"
-            (click)="tableService.suPageClick(item-1)">
+        <div class="pageBox" *ngFor="let item of this.superadminTableService.createRange();"
+            (click)="superadminTableService.suPageClick(item-1)">
             {{item}}
         </div>
     </div>

@@ -58,75 +58,7 @@ export class TableService {
 
 
 
-  //allowed search for superadmins
-  searchSuperadmin() {
-    if (this.searchFilter == "users") {
-      this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
-        this.allUsers = res.userInfoDtoList;
-        this.isUsersLoading = false;
-        this.allPages = res.allPages;
-        this.changeDetectionEmitter.emit();
-      }, err => {
-        console.log(err)
-      })
-    } else if (this.searchFilter == "student") {
-      this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
-        this.allUsers = res.userInfoDtoList;
-        this.isUsersLoading = false;
-        this.allPages = res.allPages;
-        this.changeDetectionEmitter.emit();
-      }, err => {
-        console.log(err)
-      })
-    } else if (this.searchFilter == "admin") {
-      this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
-        this.allUsers = res.userInfoDtoList;
-        this.isUsersLoading = false;
-        this.allPages = res.allPages;
-        this.changeDetectionEmitter.emit();
-      }, err => {
-        console.log(err)
-      })
-    } else if (this.searchFilter == "super-admin") {
-      this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
-        this.allUsers = res.userInfoDtoList;
-        this.isUsersLoading = false;
-        this.allPages = res.allPages;
-        this.changeDetectionEmitter.emit();
-      }, err => {
-        console.log(err)
-      })
-    } else if (this.searchFilter == "workgroup") {
-      this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
-        this.allWorkgroup = res.workgroupDtoList;
-        this.isUsersLoading = false;
-        this.allPages = res.allPages;
-        this.changeDetectionEmitter.emit();
-      }, err => {
-        console.log(err)
-      })
-    } else if (this.searchFilter == 'users-in-workgroup') {
-      // console.error(this.groupName);
-      this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, "users-in-workgroup", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
-        this.allWorkgroupMemebers = res.userInfoDtoList;
-        this.isUsersLoading = false;
-        this.allPages = res.allPages;
-        console.log(this.allWorkgroupMemebers);
-        this.changeDetectionEmitter.emit();
 
-      }, err => {
-        console.log(err)
-      })
-    }
-
-  }
-
-  searchSuperadminWithDebounce(): void {
-    clearTimeout(this.timeoutId);
-    this.timeoutId = setTimeout(() => {
-      this.searchSuperadmin();
-    }, 250); 
-  }
 
 
   //allowed search for admins
@@ -247,18 +179,7 @@ export class TableService {
 
 
 
-  suSortBy(type: string) {
-    if (this.sort == type && this.order == 'asc') {
-      this.sort = type;
-      this.order = 'desc'
-    } else if (this.sort == type && this.order == 'desc') {
-      this.sort = type;
-      this.order = 'asc'
-    }
-    this.sort = type;
-    this.suGetContentByFilter();
 
-  }
 
   adSortBy(type: string) {
     if (this.sort == type && this.order == 'asc') {
@@ -273,12 +194,7 @@ export class TableService {
 
   }
 
-  suPageClick(num: number) {
-    console.log(this.searchFilter)
-    console.log(this.pageNumber);
-    this.pageNumber = num;
-    this.suGetContentByFilter();
-  }
+
 
   adPageClick(num: number) {
     console.log(this.searchFilter)
@@ -304,21 +220,7 @@ export class TableService {
       .map((n, index) => index + 1);
   }
 
-  suGetContentByFilter() {
-    if (this.searchFilter == "users") {
-      this.searchSuperadmin();
-    } else if (this.searchFilter == "student") {
-      this.searchSuperadmin();
-    } else if (this.searchFilter == "admin") {
-      this.searchSuperadmin();
-    } else if (this.searchFilter == "super-admin") {
-      this.searchSuperadmin();
-    } else if (this.searchFilter == "workgroup") {
-      this.getAllWorkgroups();
-    } else if (this.searchFilter == "users-in-workgroup") {
-      this.searchSuperadmin();
-    }
-  }
+  
 
   adGetContentByFilter() {
     if (this.searchFilter == "student") {
@@ -341,41 +243,10 @@ export class TableService {
   }
 
 
-  superadminSwitchToWorkgroupMembers(group:any){
-    
-    this.searchFilter = 'users-in-workgroup';
-    this.isWorkgroupMembersListed = true; 
-    
-    this.searchText = ''; 
-    this.workgroupService.currentlySelectedWorkgroupName = group.groupName;
-    this.workgroupService.currentlySelectedWorkgroupId = group.id;
-    
-    this.tempPageNumber = this.pageNumber;
-    this.pageNumber = 0;
-
-    this.tempSort = this.sort;
-    this.sort = "id";
-
-    
-    this.searchSuperadmin();
-    
-
-  }
 
 
-  superadminSwitchToWorkgroups(){
 
-    this.searchFilter = 'workgroup';
-    this.searchText = '';
-    this.isWorkgroupMembersListed = false;
-    this.workgroupService.currentlySelectedWorkgroupName = "";
-    this.pageNumber = this.tempPageNumber;
 
-    this.sort = this.tempSort;
-
-    this.searchSuperadmin(); 
-    
-  }
 
 
 
