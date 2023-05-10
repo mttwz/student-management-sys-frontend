@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { AdminModalComponent } from '../../../modals/admin-modal/admin-modal.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
-import { ModalService } from 'src/app/services/modal/modal.service';
 import { AdminTableService } from 'src/app/services/table/admin/admin-table.service';
+import { AdminModalService } from 'src/app/services/modal/admin/admin-modal.service';
 declare var $: any;
 
 @Component({
@@ -15,7 +15,7 @@ export class AdWorkgroupTableComponent implements OnInit {
   constructor(
     public adminTableService: AdminTableService, 
     public workgroupService: WorkgroupService,
-    public modalService: ModalService, 
+    public adminModalService: AdminModalService, 
     ) { }
 
   ngOnInit(): void {
@@ -26,14 +26,14 @@ export class AdWorkgroupTableComponent implements OnInit {
 
   openWorkgroupInfoModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.changeModal('workgroupInfoModal'); 
+    this.adminModalService.changeModal('workgroupInfoModal'); 
     this.AdminModalComponent.resetStatusCode()
   }
 
   openAddUserToWorkgroupModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.adminSearchOnlyUsersInModals();
-    this.modalService.changeModal('addUserToWorkgroupModal'); 
+    this.adminModalService.adminSearchOnlyUsersInModals();
+    this.adminModalService.changeModal('addUserToWorkgroupModal'); 
     this.AdminModalComponent.resetStatusCode()
 
 
@@ -41,8 +41,8 @@ export class AdWorkgroupTableComponent implements OnInit {
 
   openRemoverUserFromWorkgroupModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.adminSearchOnlyUsersInWorkgroupInModals();
-    this.modalService.changeModal('removeUserFromWorkgroupModal'); 
+    this.adminModalService.adminSearchOnlyUsersInWorkgroupInModals();
+    this.adminModalService.changeModal('removeUserFromWorkgroupModal'); 
     this.AdminModalComponent.resetStatusCode()
 
 
@@ -50,21 +50,21 @@ export class AdWorkgroupTableComponent implements OnInit {
 
   openCreateWorkgroupSceduleModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.changeModal('createWorkgroupScheduleModal'); 
+    this.adminModalService.changeModal('createWorkgroupScheduleModal'); 
     this.AdminModalComponent.resetStatusCode()
   }
 
  
 
   openCreateWorkgroupModal(){
-    this.modalService.changeModal('createWorkgroupModal');
+    this.adminModalService.changeModal('createWorkgroupModal');
     this.AdminModalComponent.resetStatusCode();
   }
 
   openWorkgroupDailyClasses(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.AdminModalComponent.allDailyWorkgroupClasses = [];
-    this.modalService.changeModal('workgroupDailyClassesModal');
+    this.adminModalService.changeModal('workgroupDailyClassesModal');
     this.AdminModalComponent.resetStatusCode()
   }
   

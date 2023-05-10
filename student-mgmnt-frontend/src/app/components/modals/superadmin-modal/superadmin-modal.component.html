@@ -308,9 +308,9 @@
     <div class="modalContainer">
 
 
-        <input [(ngModel)]="this.modalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
+        <input [(ngModel)]="this.superadminModalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
             class="form-control searchBar" placeholder="Type to search..."
-            (keyup)="this.modalService.superadminSearchOnlyUsersInModalsWithDebounce()">
+            (keyup)="this.superadminModalService.superadminSearchOnlyUsersInModalsWithDebounce()">
 
 
         <table class="table table-xl table-striped table-dark mainTable">
@@ -329,7 +329,7 @@
             </thead>
 
             <tbody>
-                <ng-container *ngFor="let user of this.modalService.allUsersModal;">
+                <ng-container *ngFor="let user of this.superadminModalService.allUsersModal;">
                     <tr class="align-middle">
                         <td>{{user.id}}</td>
                         <td>{{user.roleName}}</td>
@@ -347,8 +347,8 @@
         </table>
 
         <div class="pageSelector">
-            <div class="pageBox" *ngFor="let item of this.modalService.createRange();"
-                (click)="modalService.suPageClick(item-1)">
+            <div class="pageBox" *ngFor="let item of this.superadminModalService.createRange();"
+                (click)="superadminModalService.suPageClick(item-1)">
                 {{item}}
             </div>
         </div>
@@ -369,9 +369,9 @@
     <div class="modalContainer">
 
 
-        <input [(ngModel)]="this.modalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
+        <input [(ngModel)]="this.superadminModalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
             class="form-control searchBar" placeholder="Type to search..."
-            (keyup)="this.modalService.superadminSearchOnlyUsersInWorkgroupInModalsWithDebounce()">
+            (keyup)="this.superadminModalService.superadminSearchOnlyUsersInWorkgroupInModalsWithDebounce()">
 
 
         <table class="table table-xl table-striped table-dark mainTable">
@@ -390,7 +390,7 @@
             </thead>
 
             <tbody>
-                <ng-container *ngFor="let user of this.modalService.allUsersModal;">
+                <ng-container *ngFor="let user of this.superadminModalService.allUsersModal;">
                     <tr class="align-middle">
                         <td>{{user.id}}</td>
                         <td>{{user.roleName}}</td>
@@ -407,8 +407,8 @@
         </table>
 
         <div class="pageSelector">
-            <div class="pageBox" *ngFor="let item of this.modalService.createRange();"
-                (click)="modalService.suPageClick(item-1)">
+            <div class="pageBox" *ngFor="let item of this.superadminModalService.createRange();"
+                (click)="superadminModalService.suPageClick(item-1)">
                 {{item}}
             </div>
         </div>

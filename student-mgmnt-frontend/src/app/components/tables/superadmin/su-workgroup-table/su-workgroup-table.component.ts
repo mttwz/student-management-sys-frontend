@@ -2,8 +2,8 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { SuperadminDashboardComponent } from '../../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { SuperadminModalComponent } from '../../../modals/superadmin-modal/superadmin-modal.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
-import { ModalService } from 'src/app/services/modal/modal.service';
 import { SuperadminTableService } from 'src/app/services/table/superadmin/superadmin-table.service';
+import { SuperadminModalService } from 'src/app/services/modal/superadmin/superadmin-modal.service';
 declare var $: any;
 
 @Component({
@@ -15,7 +15,7 @@ export class WorkgroupTableComponent implements OnInit {
 
   constructor(
     public superadminTableService: SuperadminTableService, 
-    public modalService: ModalService, 
+    public superadminModalService: SuperadminModalService, 
     public workgroupService: WorkgroupService,
     public superadminDashboard: SuperadminDashboardComponent, 
     private changeDetection: ChangeDetectorRef,
@@ -30,15 +30,15 @@ export class WorkgroupTableComponent implements OnInit {
 
   openWorkgroupInfoModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.changeModal('workgroupInfoModal'); 
+    this.superadminModalService.changeModal('workgroupInfoModal'); 
     this.SuperadminModalComponent.resetStatusCode()
 
   }
 
   openAddUserToWorkgroupModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.superadminSearchOnlyUsersInModals();
-    this.modalService.changeModal('addUserToWorkgroupModal'); 
+    this.superadminModalService.superadminSearchOnlyUsersInModals();
+    this.superadminModalService.changeModal('addUserToWorkgroupModal'); 
     this.SuperadminModalComponent.resetStatusCode()
 
 
@@ -46,8 +46,8 @@ export class WorkgroupTableComponent implements OnInit {
 
   openRemoverUserFromWorkgroupModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.superadminSearchOnlyUsersInWorkgroupInModals();
-    this.modalService.changeModal('removeUserFromWorkgroupModal'); 
+    this.superadminModalService.superadminSearchOnlyUsersInWorkgroupInModals();
+    this.superadminModalService.changeModal('removeUserFromWorkgroupModal'); 
     this.SuperadminModalComponent.resetStatusCode()
 
 
@@ -55,21 +55,21 @@ export class WorkgroupTableComponent implements OnInit {
 
   openCreateWorkgroupSceduleModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.modalService.changeModal('createWorkgroupScheduleModal'); 
+    this.superadminModalService.changeModal('createWorkgroupScheduleModal'); 
     this.SuperadminModalComponent.resetStatusCode()
   }
 
  
 
   openCreateWorkgroupModal(){
-    this.modalService.changeModal('createWorkgroupModal');
+    this.superadminModalService.changeModal('createWorkgroupModal');
     this.SuperadminModalComponent.resetStatusCode();
   }
 
   openWorkgroupDailyClasses(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.SuperadminModalComponent.allDailyWorkgroupClasses = [];
-    this.modalService.changeModal('workgroupDailyClassesModal');
+    this.superadminModalService.changeModal('workgroupDailyClassesModal');
     this.SuperadminModalComponent.resetStatusCode()
   }
   

@@ -4,8 +4,8 @@ import { SuperadminModalComponent } from '../../../modals/superadmin-modal/super
 import { UserService } from 'src/app/services/user/user.service';
 import { WorkgroupTableComponent } from '../su-workgroup-table/su-workgroup-table.component';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
-import { ModalService } from 'src/app/services/modal/modal.service';
 import { SuperadminTableService } from 'src/app/services/table/superadmin/superadmin-table.service';
+import { SuperadminModalService } from 'src/app/services/modal/superadmin/superadmin-modal.service';
 declare var $: any;
 
 @Component({
@@ -19,7 +19,7 @@ export class WorkgroupMembersTableComponent implements OnInit {
 
   constructor(
     public superadminTableService: SuperadminTableService,
-    public modalService: ModalService, 
+    public superadminModalService: SuperadminModalService,  
     public workgroupService: WorkgroupService,
     public userService: UserService,
     public superadminDashboard: SuperadminDashboardComponent,
@@ -37,7 +37,7 @@ export class WorkgroupMembersTableComponent implements OnInit {
 
 
   openStudentDailyClassesPerWgModal(user:any){
-    this.modalService.changeModal('studentDailyAttendanceInWorkgroupModal'); 
+    this.superadminModalService.changeModal('studentDailyAttendanceInWorkgroupModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
     this.SuperadminModalComponent.resetStatusCode()

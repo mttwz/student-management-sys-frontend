@@ -4,8 +4,8 @@ import { UserService } from 'src/app/services/user/user.service';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
 import {formatDate} from '@angular/common';
 import { DateFormatterService } from 'src/app/services/utils/date-formatter.service';
-import { ModalService } from 'src/app/services/modal/modal.service';
 import { AdminTableService } from 'src/app/services/table/admin/admin-table.service';
+import { AdminModalService } from 'src/app/services/modal/admin/admin-modal.service';
 declare var $: any;
 
 @Component({
@@ -74,7 +74,7 @@ export class AdminModalComponent implements OnInit {
     public workgroupService: WorkgroupService,
     private changeDetection: ChangeDetectorRef,
     public dateUtil: DateFormatterService,
-    public modalService: ModalService) { }
+    public adminModalService: AdminModalService) { }
 
   ngOnInit(): void {
 
@@ -264,7 +264,7 @@ export class AdminModalComponent implements OnInit {
     this.workgroupService.removeUserFromWorkgroup(body).subscribe(res => {
       this.isSuccessful = true;
       
-      this.modalService.adminSearchOnlyUsersInWorkgroupInModals();
+      this.adminModalService.adminSearchOnlyUsersInWorkgroupInModals();
       
     }, err => {
       this.resStatus = err.status;

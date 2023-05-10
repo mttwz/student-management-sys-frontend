@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { SuperadminDashboardComponent } from '../../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { SuperadminModalComponent } from '../../../modals/superadmin-modal/superadmin-modal.component';
-import { ModalService } from 'src/app/services/modal/modal.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { SuperadminTableService } from 'src/app/services/table/superadmin/superadmin-table.service';
+import { SuperadminModalService } from 'src/app/services/modal/superadmin/superadmin-modal.service';
 declare var $: any;
 
 @Component({
@@ -15,7 +15,7 @@ export class SuperadminTableComponent implements OnInit {
 
   constructor(
     public superadminTableService: SuperadminTableService,
-    public modalService: ModalService, 
+    public superadminModalService: SuperadminModalService,  
     public userService: UserService, 
     public superadminDashboard: SuperadminDashboardComponent,
     private changeDetection: ChangeDetectorRef) { }
@@ -28,7 +28,7 @@ export class SuperadminTableComponent implements OnInit {
   }
 
   openUserInfoModal(user:any){
-    this.modalService.changeModal('userInfoModal'); 
+    this.superadminModalService.changeModal('userInfoModal'); 
     this.SuperadminModalComponent.resetStatusCode(); 
     this.userService.currentlySelectedUserId=user.id
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;

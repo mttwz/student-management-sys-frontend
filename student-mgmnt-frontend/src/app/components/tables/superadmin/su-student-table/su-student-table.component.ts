@@ -2,8 +2,8 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { SuperadminDashboardComponent } from '../../../dashboards/superadmin-dashboard/superadmin-dashboard.component';
 import { SuperadminModalComponent } from '../../../modals/superadmin-modal/superadmin-modal.component';
 import { UserService } from 'src/app/services/user/user.service';
-import { ModalService } from 'src/app/services/modal/modal.service';
 import { SuperadminTableService } from 'src/app/services/table/superadmin/superadmin-table.service';
+import { SuperadminModalService } from 'src/app/services/modal/superadmin/superadmin-modal.service';
 declare var $: any;
 
 @Component({
@@ -15,7 +15,7 @@ export class StudentTableComponent implements OnInit {
 
   constructor(
     public superadminTableService: SuperadminTableService, 
-    public modalService: ModalService, 
+    public superadminModalService: SuperadminModalService, 
     public userService: UserService, 
     public superadminDashboard: SuperadminDashboardComponent, 
     private changeDetection: ChangeDetectorRef) { }
@@ -27,7 +27,7 @@ export class StudentTableComponent implements OnInit {
   }
 
   openStudentDailyAttendanceModal(user:any){
-    this.modalService.changeModal('studentAttendanceLogModal'); 
+    this.superadminModalService.changeModal('studentAttendanceLogModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
     this.SuperadminModalComponent.resetStatusCode();
@@ -35,21 +35,21 @@ export class StudentTableComponent implements OnInit {
   }
 
   openStudentInfoModal(user:any){
-    this.modalService.changeModal('userInfoModal'); 
+    this.superadminModalService.changeModal('userInfoModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
     this.SuperadminModalComponent.resetStatusCode()
   }
 
   openStudentDailyClassesModal(user:any){
-    this.modalService.changeModal('studentDailyAttendanceModal'); 
+    this.superadminModalService.changeModal('studentDailyAttendanceModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
     this.SuperadminModalComponent.resetStatusCode()
   }
 
   openAssignCardModal(user:any){
-    this.modalService.changeModal('assignCardModal'); 
+    this.superadminModalService.changeModal('assignCardModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
     this.SuperadminModalComponent.resetStatusCode()

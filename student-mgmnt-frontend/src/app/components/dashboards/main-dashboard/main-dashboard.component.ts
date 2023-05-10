@@ -3,10 +3,11 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild, OnDestroy } from '@ang
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { SuperadminModalComponent } from '../../modals/superadmin-modal/superadmin-modal.component';
-import { ModalService } from 'src/app/services/modal/modal.service';
 import { SuperadminTableService } from 'src/app/services/table/superadmin/superadmin-table.service';
 import { AdminTableService } from 'src/app/services/table/admin/admin-table.service';
 import { StudentTableService } from 'src/app/services/table/student/student-table.service';
+import { AdminModalService } from 'src/app/services/modal/admin/admin-modal.service';
+import { SuperadminModalService } from 'src/app/services/modal/superadmin/superadmin-modal.service';
 declare var $: any;
 
 @Component({
@@ -18,7 +19,8 @@ export class MainDashboardComponent implements OnInit {
 
   constructor(
     public authService: AuthService, 
-    public modalService: ModalService, 
+    public adminModalService: AdminModalService, 
+    public superadminModalService: SuperadminModalService, 
     private router: Router, 
     private http: HttpClient,
     private changeDetection: ChangeDetectorRef, 
@@ -99,7 +101,17 @@ export class MainDashboardComponent implements OnInit {
 
     
 
-    this.modalService.changeDetectionEmitter.subscribe(
+    this.superadminModalService.changeDetectionEmitter.subscribe(
+      () => {
+        this.changeDetection.detectChanges();
+      },
+      (err) => {
+       console.log(err);
+      }
+    );
+
+
+    this.adminModalService.changeDetectionEmitter.subscribe(
       () => {
         this.changeDetection.detectChanges();
       },
@@ -109,6 +121,8 @@ export class MainDashboardComponent implements OnInit {
     );
     this.modalFix();
   }
+
+  
 
 
     modalFix() {

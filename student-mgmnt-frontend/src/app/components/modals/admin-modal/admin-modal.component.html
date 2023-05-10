@@ -196,9 +196,9 @@
     <div class="modalContainer">
 
 
-        <input [(ngModel)]="this.modalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
+        <input [(ngModel)]="this.adminModalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
             class="form-control searchBar" placeholder="Type to search..."
-            (keyup)="this.modalService.adminSearchOnlyUsersInModalsWithDebounce()">
+            (keyup)="this.adminModalService.adminSearchOnlyUsersInModalsWithDebounce()">
 
 
         <table class="table table-xl table-striped table-dark mainTable">
@@ -217,7 +217,7 @@
             </thead>
 
             <tbody>
-                <ng-container *ngFor="let user of this.modalService.allUsersModal;">
+                <ng-container *ngFor="let user of this.adminModalService.allUsersModal;">
                     <tr class="align-middle">
                         <td>{{user.id}}</td>
                         <td>{{user.roleName}}</td>
@@ -235,8 +235,8 @@
         </table>
 
         <div class="pageSelector">
-            <div class="pageBox" *ngFor="let item of this.modalService.createRange();"
-                (click)="modalService.adPageClick(item-1)">
+            <div class="pageBox" *ngFor="let item of this.adminModalService.createRange();"
+                (click)="adminModalService.adPageClick(item-1)">
                 {{item}}
             </div>
         </div>
@@ -257,9 +257,9 @@
     <div class="modalContainer">
 
 
-        <input [(ngModel)]="this.modalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
+        <input [(ngModel)]="this.adminModalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
             class="form-control searchBar" placeholder="Type to search..."
-            (keyup)="this.modalService.adminSearchOnlyUsersInWorkgroupInModalsWithDebounce()">
+            (keyup)="this.adminModalService.adminSearchOnlyUsersInWorkgroupInModalsWithDebounce()">
 
 
         <table class="table table-xl table-striped table-dark mainTable">
@@ -278,7 +278,7 @@
             </thead>
 
             <tbody>
-                <ng-container *ngFor="let user of this.modalService.allUsersModal;">
+                <ng-container *ngFor="let user of this.adminModalService.allUsersModal;">
                     <tr class="align-middle">
                         <td>{{user.id}}</td>
                         <td>{{user.roleName}}</td>
@@ -295,8 +295,8 @@
         </table>
 
         <div class="pageSelector">
-            <div class="pageBox" *ngFor="let item of this.modalService.createRange();"
-                (click)="modalService.adPageClick(item-1)">
+            <div class="pageBox" *ngFor="let item of this.adminModalService.createRange();"
+                (click)="adminModalService.adPageClick(item-1)">
                 {{item}}
             </div>
         </div>
