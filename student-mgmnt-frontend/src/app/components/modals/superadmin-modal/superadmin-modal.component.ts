@@ -62,7 +62,7 @@ export class SuperadminModalComponent implements OnInit {
   id!: number;
 
 
-  defaultDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') + "T00:00:00Z";
+  selectedDate = formatDate(new Date(), 'yyyy-MM-dd', 'en');
 
   arrivalInput: any;
   leavingInput: any;
@@ -436,10 +436,10 @@ export class SuperadminModalComponent implements OnInit {
  
   getStudentDailyAttendance(userId:number){
     
-    this.changeDate();
+    
     let body = {
       userId: userId,
-      date: this.defaultDate
+      date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
     console.log(body);
     this.userService.getDailyAttendance(body).subscribe(res=>{
@@ -475,20 +475,15 @@ export class SuperadminModalComponent implements OnInit {
   }
 
 
-  changeDate(){
-    if($('.datePicker').val() != ""){
-      let updatedDate = formatDate(new Date($('.datePicker').val()), 'yyyy-MM-dd', 'en') + "T00:00:00Z";
-      this.defaultDate = updatedDate;
-    }
-  }
+
 
 
 
   getStudentDailyClasses(userId:number){
-    this.changeDate();
+    
     let body = {
       userId: userId,
-      date: this.defaultDate
+      date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
     console.log(body);
     this.workgroupService.getUserSchedule(body).subscribe(res=>{
@@ -503,11 +498,11 @@ export class SuperadminModalComponent implements OnInit {
   
 
   getStudentDailyClassesPerWg(userId:number){
-    this.changeDate();
+    
     let body = {
       userId: userId,
       workgroupId: this.workgroupService.currentlySelectedWorkgroupId,
-      date: this.defaultDate
+      date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
     
 
@@ -524,10 +519,10 @@ export class SuperadminModalComponent implements OnInit {
 
 
   getDailyWorkgroupSchedule(){
-    this.changeDate();
+    
     let body = {
       workgroupId: this.workgroupService.currentlySelectedWorkgroupId,
-      start: this.defaultDate
+      start: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
 
     this.workgroupService.getDailyWorkgroupScheduleByWorkgroupId(body).subscribe(res=>{
