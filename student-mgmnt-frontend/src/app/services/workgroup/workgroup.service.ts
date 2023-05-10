@@ -77,13 +77,22 @@ export class WorkgroupService {
     return this.http.post<any>(environment.apiEndpoint + "/workgroup/remove-user-from-workgroup", body);
   }
 
-  getUserSchedule(pageNumber:number, pageSize:number, sort:string, order:string){
+  getUserSchedule(body: any){
       // http://localhost:8080/api/v1/workgroupschedule/get-user-schedule/?page=0&size=2&sort=start,asc
-      return this.http.get<any>(environment.apiEndpoint + "/workgroupschedule/get-user-schedule/?page=" + pageNumber + "&size=" + pageSize + "&sort=" + sort + "," + order);
+      return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-user-schedule" ,body);
   }
 
-  getOwnUserSchedule(pageNumber:number, pageSize:number, sort:string, order:string){
-    return this.http.get<any>(environment.apiEndpoint + "/workgroupschedule/get-own-user-schedule/?page=" + pageNumber + "&size=" + pageSize + "&sort=" + sort + "," + order);
+  getUserScheduleWithPaging(body: any, pageNumber:number, pageSize:number, sort:string, order:string){
+    // http://localhost:8080/api/v1/workgroupschedule/get-user-schedule/?page=0&size=2&sort=start,asc
+    return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-user-schedule/?page=" + pageNumber + "&size=" + pageSize + "&sort=" + sort + "," + order,body);
+}
+
+  getOwnUserSchedule(body: any){
+    return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-own-user-schedule",body);
+}
+
+getOwnUserScheduleWithPaging(body: any, pageNumber:number, pageSize:number, sort:string, order:string){
+  return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-own-user-schedule/?page=" + pageNumber + "&size=" + pageSize + "&sort=" + sort + "," + order,body);
 }
 
   getWorkgroupScheduleByUserId(userId:number, pageNumber:number, pageSize:number,){

@@ -13,7 +13,7 @@ export class ModalService {
 
   modalSearchtext:string = "";
   modalPageNumber:number = 0;
-  modalPageSize:number = 99;
+  modalPageSize:number = 1;
   modalSort:string = "id";
   modalOrder:string = "asc";
   modalAllPages!:number;

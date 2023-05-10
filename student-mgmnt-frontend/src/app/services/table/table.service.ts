@@ -12,6 +12,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class TableService {
 
+  isUserScheduleLoading = true;
   isUsersLoading = true;
   isWorkgroupLoading = true;
   isWorkgroupMembersListed = false;
@@ -22,7 +23,7 @@ export class TableService {
 
   searchText: string = "";
   searchFilter: string = "users";
-  pageSize: number = 99; // <- erre kikell talalni valamit.   mire? itt adod meg hogy hany szar legyen kilistazva 
+  pageSize: number = 1; // <- erre kikell talalni valamit.   mire? itt adod meg hogy hany szar legyen kilistazva 
   pageNumber: number = 0;
   tempPageNumber!: number;
   allPages!: number;
@@ -34,6 +35,7 @@ export class TableService {
   allWorkgroup !: Array<any>;
   allWorkgroupMemebers !: Array<any>; // sub table
   allWorkgroupScheduleByUserId !: Array<any>;
+  allUserSchedule !: Array<any>;
   allWorkgroupScheduleByWorkgroupId !: Array<any>;
 
   allWorkgroupMembersId !: Array<any>;
@@ -198,6 +200,22 @@ export class TableService {
       this.allWorkgroupScheduleByUserId = res.workgroupscheduleDtoList;
       this.isUsersLoading = false;
       console.log(res.workgroupscheduleDtoList);
+      this.changeDetectionEmitter.emit();
+    }, err => {
+      console.log(err);
+    })
+  }
+
+
+
+  getOwnUserSchedule() {
+    let body = {
+      date: "2023-05-09T00:00:00Z"
+    };
+    this.workgroupService.getOwnUserScheduleWithPaging(body,this.pageNumber,this.pageSize,this.sort,this.order).subscribe(res => {
+      this.allUserSchedule = res;
+      this.isUserScheduleLoading = false;
+      this.allPages = res.allPages;
       this.changeDetectionEmitter.emit();
     }, err => {
       console.log(err);

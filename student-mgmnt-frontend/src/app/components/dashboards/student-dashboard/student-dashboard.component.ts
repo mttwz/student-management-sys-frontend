@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TableService } from 'src/app/services/table/table.service';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(public tableService:TableService) { }
 
   ngOnInit(): void {
   }

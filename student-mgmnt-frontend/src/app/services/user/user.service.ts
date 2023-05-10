@@ -59,9 +59,9 @@ export class UserService {
     return this.http.post<any>(environment.apiEndpoint + "/attendance/create-attendance",body);
   }
 
-  getDailyClasses(body:any){
-    return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-user-schedule",body);
-  }
+  // getDailyClasses(body:any){
+  //   return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-user-schedule",body);
+  // }
 
   getDailyClassesInWorkgroup(body:any){
     return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-user-schedule-in-workgroup",body);

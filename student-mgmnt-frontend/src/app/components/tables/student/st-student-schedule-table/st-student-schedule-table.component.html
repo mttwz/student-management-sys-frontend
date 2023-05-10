@@ -1,0 +1,35 @@
+<table class="table table-xl table-striped table-dark mainTable">
+
+    <thead>
+        <tr class="align-middle">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>isStudentPresent</th>
+            <th>lateInMinutes</th>
+            <th>isOnsite</th>
+           
+
+        </tr>
+    </thead>
+
+    <tbody *ngIf="this.tableService.isUserScheduleLoading == false">
+        
+        <ng-container *ngFor="let schedule of this.tableService.allUserSchedule;">
+
+            <tr class="align-middle">
+                <td>{{schedule.id}}</td>
+                <td>{{schedule.name}}</td>
+                <td>{{schedule.start}}</td>
+                <td>{{schedule.end}}</td>
+                <td>{{schedule.isStudentPresent}}</td>
+                <td>{{schedule.lateInMinutes}}</td>
+                <td>{{schedule.isOnsite}}</td>
+  
+            </tr>
+        </ng-container>
+    </tbody>
+
+
+</table>

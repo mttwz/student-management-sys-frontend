@@ -1,0 +1,56 @@
+/* type to search searchbar */
+.searchBar {
+    width: 280px;
+    border-bottom-right-radius: 0px;
+}
+
+
+/* filter selector */
+.filterSelect {
+    max-width: 600px;
+    min-width: 300px;
+    border-bottom-left-radius: 0px;
+}
+
+
+
+/* for the form control correct desing */
+.form-control:focus {
+    box-shadow: none;
+
+
+}
+
+.form-control {
+    border-color: #212529;
+    color: aliceblue;
+}
+
+.input-group {
+    width: 100%;
+
+}
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+    .mainTable {
+        overflow: scroll;
+    }
+}
+
+
+@media only screen and (max-width: 723px) {
+    .mainTable {
+        overflow: scroll;
+    }
+
+    .form-control {
+        /* border: none; */
+        border-radius: 0px;
+        border-color: #212529;
+        color: aliceblue;
+    }
+}

@@ -494,7 +494,7 @@ export class AdminModalComponent implements OnInit {
       date: this.defaultDate
     };
     console.log(body);
-    this.userService.getDailyClasses(body).subscribe(res=>{
+    this.workgroupService.getUserSchedule(body).subscribe(res=>{
 
         this.studentDailyClasses = res;
         this.isdailyClassesLoading = false;
