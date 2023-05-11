@@ -10,7 +10,7 @@
             <!-- <th></th> -->
             <th>
 
-                
+
                 <div id="addUser" type="button" data-bs-toggle="modal" data-bs-target=".mainModal"
                     (click)="openAddUserModal()">
                     <img class="addUserImage" src="../../../../assets/add-user-svgrepo-com.svg" alt="">
@@ -20,7 +20,7 @@
         </tr>
     </thead>
 
-    <tbody *ngIf="this.superadminTableService.isUsersLoading == false">
+    <tbody class="desktopView" *ngIf="this.superadminTableService.isUsersLoading == false">
         <ng-container *ngFor="let user of this.superadminTableService.allUsers;">
 
             <tr class="align-middle" *ngIf="user.isDeleted == true">
@@ -49,7 +49,7 @@
                                     <div class="itemText">User info</div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </td>
@@ -81,15 +81,13 @@
                                     <div class="itemText">User info</div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </td>
             </tr>
         </ng-container>
     </tbody>
-
-
 </table>
 
 <div class="modal fade mainModal" tabindex="2" aria-labelledby="myModalLabel" aria-hidden="true">

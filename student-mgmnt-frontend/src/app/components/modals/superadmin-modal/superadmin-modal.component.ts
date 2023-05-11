@@ -6,6 +6,7 @@ import {formatDate} from '@angular/common';
 import { DateFormatterService } from 'src/app/services/utils/date-formatter.service';
 import { SuperadminTableService } from 'src/app/services/table/superadmin/superadmin-table.service';
 import { SuperadminModalService } from 'src/app/services/modal/superadmin/superadmin-modal.service';
+import { CardService } from 'src/app/services/card/card.service';
 declare var $: any;
 
 
@@ -40,6 +41,7 @@ export class SuperadminModalComponent implements OnInit {
   selectedUserRole!: String;
   isEditingEnabled: Boolean = false;
   allWorkgroups !: Array<any>;
+  allAvaliableCard !: Array<any>;
   studentDailyAttendance !: Array<any>;
   studentDailyClasses !: Array<any>;
 
@@ -53,6 +55,8 @@ export class SuperadminModalComponent implements OnInit {
   isdailyClassesLoading: Boolean = true;
 
   allWorkgroupScheduleByUserId !: any;
+
+  selectedCardId!:number;
 
 
 
@@ -76,7 +80,8 @@ export class SuperadminModalComponent implements OnInit {
     public workgroupService: WorkgroupService,
     private changeDetection: ChangeDetectorRef,
     public dateUtil: DateFormatterService,
-    public superadminModalService: SuperadminModalService) { }
+    public superadminModalService: SuperadminModalService,
+    private cardService:CardService) { }
 
   ngOnInit(): void {
 
@@ -535,7 +540,16 @@ export class SuperadminModalComponent implements OnInit {
 
   }
 
-  // userid osszehasonlitasa, van e a wgbe olyan userid.
+  getAllAvaliableCard(){
+    
+    this.cardService.getAllAvaliableCard().subscribe(res=>{
+      this.allAvaliableCard = res
+      this.changeDetection.detectChanges();
+    }, err =>{
+      console.log(err);
+    })
+
+  }
 
 
 

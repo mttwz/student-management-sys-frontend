@@ -63,7 +63,7 @@ select:disabled {
 
 
 
-.datePickerContainer{
+.datePickerContainer, .cardPickerContainer{
     display: flex;
     
 }
@@ -71,12 +71,14 @@ select:disabled {
 .datePicker{
     max-width: 500px;
 }
-.getStudentDailyAttendanceButton{
+.getStudentDailyAttendanceButton, .assignCardButton{
     width: 100%;
     max-width: 100px;
     margin-left: auto;
+    height: min-content;
     
 }
+
 
 .userInfoTable{
     color: white;

@@ -23,6 +23,7 @@ th {
 
 th:last-child, td:last-child {
     width: 10px;
+    
 
 }
 
@@ -217,6 +218,9 @@ tr td {
 }
 
 /* container for different tables eg: user, admin etc.. */
+
+
+
 
 
 

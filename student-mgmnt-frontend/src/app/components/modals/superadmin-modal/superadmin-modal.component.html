@@ -739,23 +739,29 @@
 </div>
 
 
-<div id="assignCardModal" *ngIf="this.modalId == 'assignCardModal'">
+
+
+<div id="cardInfoModal" *ngIf="this.modalId == 'cardInfoModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Assign card</h5>
+        <h5 class="modal-title" class="mainModalLabel">Card info</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
     <div class="modalContainer">
 
-
-        <select class="form-control filterSelect">
-            <!-- <option *ngFor="let title of titleArray" [value]="title.Value"
-                [attr.selected]="passenger.Title==title.Text ? true : null">
-                {{title.Text}}
-            </option> -->
-
-        </select>
+        <div class="cardPickerContainer">
+            <select [(ngModel)]="this.selectedCardId" class="form-control filterSelect">
+                <option disabled placeholder>qasd</option>
+                <option *ngFor="let card of this.allAvaliableCard">
+                    {{card.id}}--({{this.dateUtil.dateFormatter(card.createdAt)}})
+                </option>
+    
+            </select>
+            <button class="btn btn-success assignCardButton"
+                    (click)="(this.superadminModalService.assignCardToStudent())">Add</button>
+        </div>
+        
 
 
 

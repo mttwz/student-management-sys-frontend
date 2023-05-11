@@ -48,8 +48,9 @@ export class StudentTableComponent implements OnInit {
     this.SuperadminModalComponent.resetStatusCode()
   }
 
-  openAssignCardModal(user:any){
-    this.superadminModalService.changeModal('assignCardModal'); 
+  opencardInfoModal(user:any){
+    this.superadminModalService.changeModal('cardInfoModal'); 
+    this.SuperadminModalComponent.getAllAvaliableCard();
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
     this.SuperadminModalComponent.resetStatusCode()

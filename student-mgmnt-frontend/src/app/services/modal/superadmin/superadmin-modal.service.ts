@@ -7,6 +7,7 @@ import { WorkgroupService } from '../../workgroup/workgroup.service';
 })
 export class SuperadminModalService {
 
+
   currentlySelectedModal!:String;
 
   modalSearchtext:string = "";
