@@ -516,7 +516,7 @@
     <div class="modalContainer">
 
         <div class="datePickerContainer">
-            <input class="datePicker form-control" type="date">
+            <input [(ngModel)]="this.selectedDate" class="datePicker form-control" type="date">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="getStudentDailyAttendance(this.userService.currentlySelectedUserId)">Search</button>
@@ -591,7 +591,7 @@
     <div class="modalContainer">
 
         <div class="datePickerContainer">
-            <input class="datePicker" type="date">
+            <input [(ngModel)]="this.selectedDate" class="datePicker form-control" type="date">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="getStudentDailyClasses(this.userService.currentlySelectedUserId)">Search</button>
@@ -637,7 +637,7 @@
 
 
 <!------------------------------------------------------------------------------------------------->
-<!-- modal fot the student daily attendance -->
+<!-- modal for the student daily attendance -->
 <div id="studentDailyAttendanceInWorkgroupModal" *ngIf="this.modalId == 'studentDailyAttendanceInWorkgroupModal'">
 
     <div class="modal-header">
@@ -648,7 +648,7 @@
     <div class="modalContainer">
 
         <div class="datePickerContainer">
-            <input class="datePicker" type="date">
+            <input [(ngModel)]="this.selectedDate" class="datePicker form-control" type="date">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="getStudentDailyClassesPerWg(this.userService.currentlySelectedUserId)">Search</button>
@@ -703,7 +703,7 @@
     <div class="modalContainer">
 
         <div class="datePickerContainer">
-            <input class="datePicker" type="date">
+            <input [(ngModel)]="this.selectedDate" class="datePicker form-control" type="date">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="getDailyWorkgroupSchedule()">Search</button>
