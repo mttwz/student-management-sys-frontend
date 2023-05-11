@@ -88,20 +88,6 @@ tr td {
 
 
 
-
-
-
-
-.basicSmallIconContainerImage, .studentRoleIcon {
-    height: 16px;
-    width: 32px;
-    display: block;
-    filter: invert(1);
-    flex-direction: row-reverse;
-}
-
-
-
 .table{
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;

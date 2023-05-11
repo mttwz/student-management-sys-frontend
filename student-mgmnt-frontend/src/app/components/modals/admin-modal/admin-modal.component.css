@@ -60,22 +60,7 @@ select:disabled {
     padding-left: 13.6em;
 }
 
-.basicSmallIconContainer {
-    height: 16px;
-    width: 32px;
-    display: flex;
-    position: sticky;
-    right: 0;
 
-}
-
-.basicSmallIconContainerImage {
-    height: 16px;
-    width: 32px;
-    display: block;
-    filter: invert(1);
-    flex-direction: row-reverse;
-}
 
 
 .datePickerContainer{

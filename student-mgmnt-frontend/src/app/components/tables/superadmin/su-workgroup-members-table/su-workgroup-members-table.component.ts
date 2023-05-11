@@ -11,7 +11,7 @@ declare var $: any;
 @Component({
   selector: 'app-su-workgroup-members-table',
   templateUrl: './su-workgroup-members-table.component.html',
-  styleUrls: ['./su-workgroup-members-table.component.css']
+  styleUrls: ['../../../../../assets/table-style.css', './su-workgroup-members-table.component.css']
 })
 export class WorkgroupMembersTableComponent implements OnInit {
 

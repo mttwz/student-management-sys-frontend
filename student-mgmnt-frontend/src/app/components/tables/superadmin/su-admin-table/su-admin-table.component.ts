@@ -9,7 +9,7 @@ declare var $: any;
 @Component({
   selector: 'app-su-admin-table',
   templateUrl: './su-admin-table.component.html',
-  styleUrls: ['./su-admin-table.component.css']
+  styleUrls: ['../../../../../assets/table-style.css','./su-admin-table.component.css']
 })
 export class AdminTableComponent implements OnInit {
 
