@@ -20,52 +20,11 @@ display: none;
     margin: auto;
     display: grid;
     
+    
 }
 
-
-/* container for different tables eg: user, admin etc.. */
 .tableContainer{
-    overflow: scroll;
-    max-width: 100%;
-}
-
-
-/* text for the dropdown menu items */
-.itemText{
-    color: white;
-    margin-top: -5px;
-    margin-left: 10px;
-    min-width: 250px;
-
-}
-
-
-/* image for the dropdown menu info item asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd */
-.basicSmallIconContainer {
-    height: 16px;
-    width: 32px;
-    display: flex;
-    position: sticky;
-    right: 0;
-    padding-left: 5px;
-    
-
-}
-
-.dropdown-menu{
-   width: 300px;
-   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.389);
-   border: solid #202020 1px;
-}
-.dropdownButton{
-    
-    cursor: pointer;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.dropdownButton:hover{
-    background-color: #212529;
+    overflow-x: scroll;
 }
 
 
@@ -75,16 +34,7 @@ display: none;
 
 }
 
-.custom-select{
-    background-color: #2c3034;
-    color: white;
-    display: block;
-    border-radius: 5px;
-    border: solid #ced4da 1px;
-    height: 38px;
-    width: 100%;
-    
-}
+
 
 
 .modal{
@@ -246,5 +196,25 @@ a:hover{
 
 #mainContainer{
     padding-top: 25px;
+    min-width: none;
 }
 
+.custom-select{
+    background-color: #2c3034;
+    color: white;
+    display: block;
+    border-radius: 5px;
+    border: solid #ced4da 1px;
+    height: 38px;
+    width: 100%;
+    
+}
+
+
+
+  
+
+
+
+  
+  

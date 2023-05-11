@@ -8,7 +8,7 @@ declare var $: any;
 @Component({
   selector: 'app-ad-student-table',
   templateUrl: './ad-student-table.component.html',
-  styleUrls: ['./ad-student-table.component.css']
+  styleUrls: ['../../../../../assets/table-style.css','./ad-student-table.component.css']
 })
 export class AdStudentTableComponent implements OnInit {
 

@@ -9,7 +9,7 @@ declare var $: any;
 @Component({
   selector: 'app-su-student-table',
   templateUrl: './su-student-table.component.html',
-  styleUrls: ['./su-student-table.component.css']
+  styleUrls: ['../../../../../assets/table-style.css', './su-student-table.component.css']
 })
 export class StudentTableComponent implements OnInit {
 

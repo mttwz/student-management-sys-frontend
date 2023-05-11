@@ -9,7 +9,7 @@ declare var $: any;
 @Component({
   selector: 'app-su-workgroup-table',
   templateUrl: './su-workgroup-table.component.html',
-  styleUrls: ['./su-workgroup-table.component.css']
+  styleUrls: ['../../../../../assets/table-style.css', './su-workgroup-table.component.css']
 })
 export class WorkgroupTableComponent implements OnInit {
 

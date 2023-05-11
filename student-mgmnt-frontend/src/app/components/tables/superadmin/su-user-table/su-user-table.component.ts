@@ -9,7 +9,7 @@ declare var $: any;
 @Component({
   selector: 'app-su-user-table',
   templateUrl: './su-user-table.component.html',
-  styleUrls: ['./su-user-table.component.css']
+  styleUrls: ['../../../../../assets/table-style.css', './su-user-table.component.css']
 })
 export class UserTableComponent implements OnInit {
 

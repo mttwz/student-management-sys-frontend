@@ -9,7 +9,7 @@ declare var $: any;
 @Component({
   selector: 'app-su-superadmin-table',
   templateUrl: './su-superadmin-table.component.html',
-  styleUrls: ['./su-superadmin-table.component.css']
+  styleUrls: ['../../../../../assets/table-style.css', './su-superadmin-table.component.css']
 })
 export class SuperadminTableComponent implements OnInit {
 
