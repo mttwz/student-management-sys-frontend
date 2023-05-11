@@ -1,7 +1,9 @@
+
 thead{
     position: sticky; 
     top: 0;
     z-index: 1;
+    overflow: scroll;
 }
 
 
@@ -37,6 +39,8 @@ td:nth-child(1){
 
 td, th{
     height: 60px;
+    font-size: 16px;
+    font-weight: 400;
    
 }
 
@@ -65,7 +69,9 @@ tr td {
     background-color: #212529;
 
     height: 80vh;
-    overflow: scroll;
+    min-width: 100px;
+    
+    
     
 
 
@@ -176,12 +182,13 @@ tr td {
     color: rgb(39, 87, 195);
 }
 
-td:not(:last-child) {
+
+/* td:not(:last-child) {
     max-width: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
+  } */
 
 
   .dropdown-menu{
@@ -210,21 +217,11 @@ td:not(:last-child) {
 }
 
 /* container for different tables eg: user, admin etc.. */
-.tableContainer{
-    overflow: scroll;
-    max-width: 100%;
-}
 
-.custom-select{
-    background-color: #2c3034;
-    color: white;
-    display: block;
-    border-radius: 5px;
-    border: solid #ced4da 1px;
-    height: 38px;
-    width: 100%;
-    
-}
+
+
+
+
   
 
 

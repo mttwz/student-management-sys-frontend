@@ -36,16 +36,12 @@
 
 
 @media only screen and (max-width: 600px) {
-    .mainTable {
-        overflow: scroll;
-    }
+    
 }
 
 
 @media only screen and (max-width: 723px) {
-    .mainTable {
-        overflow: scroll;
-    }
+
 
     .form-control {
         /* border: none; */

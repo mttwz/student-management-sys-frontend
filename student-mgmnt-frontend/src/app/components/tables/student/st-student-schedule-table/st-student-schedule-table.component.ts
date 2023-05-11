@@ -5,7 +5,7 @@ import { DateFormatterService } from 'src/app/services/utils/date-formatter.serv
 @Component({
   selector: 'app-st-student-schedule-table',
   templateUrl: './st-student-schedule-table.component.html',
-  styleUrls: ['./st-student-schedule-table.component.css']
+  styleUrls: ['./st-student-schedule-table.component.css','../../../../../assets/table-style.css']
 })
 export class StStudentScheduleTableComponent implements OnInit {
 

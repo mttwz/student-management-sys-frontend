@@ -20,8 +20,12 @@ display: none;
     margin: auto;
     display: grid;
     
+    
 }
 
+.tableContainer{
+    overflow-x: scroll;
+}
 
 
 .modalContainer{
@@ -192,7 +196,20 @@ a:hover{
 
 #mainContainer{
     padding-top: 25px;
+    min-width: none;
 }
+
+.custom-select{
+    background-color: #2c3034;
+    color: white;
+    display: block;
+    border-radius: 5px;
+    border: solid #ced4da 1px;
+    height: 38px;
+    width: 100%;
+    
+}
+
 
 
   
