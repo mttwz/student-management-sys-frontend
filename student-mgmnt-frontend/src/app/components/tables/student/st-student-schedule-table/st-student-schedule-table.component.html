@@ -23,9 +23,9 @@
                 <td>{{schedule.name}}</td>
                 <td>{{this.dateUtil.dateFormatter(schedule.start)}}</td>
                 <td>{{this.dateUtil.dateFormatter(schedule.end)}}</td>
-                <td>{{schedule.isStudentPresent}}</td>
-                <td>{{schedule.lateInMinutes}}</td>
-                <td>{{schedule.isOnsite}}</td>
+                <td>{{schedule.isStudentPresent ? "Present" : "Missing"}}</td>
+                <td>{{schedule.lateInMinutes}} min</td>
+                <td>{{schedule.isOnsite ? "Yes" : "No"}}</td>
   
             </tr>
         </ng-container>
