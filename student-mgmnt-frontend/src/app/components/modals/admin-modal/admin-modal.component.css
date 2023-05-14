@@ -55,21 +55,15 @@ select:disabled {
 
 }
 
-.form-switch{
-    /* width: 500px; */
-    padding-left: 13.6em;
-}
-
-
-
 
 .datePickerContainer{
     display: flex;
-    
+    margin: 1rem;
 }
 
 .datePicker{
     max-width: 500px;
+    margin-right: 1rem;
 }
 .getStudentDailyAttendanceButton{
     width: 100%;
