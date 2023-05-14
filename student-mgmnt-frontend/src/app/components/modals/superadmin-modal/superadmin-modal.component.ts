@@ -253,8 +253,7 @@ export class SuperadminModalComponent implements OnInit {
     this.workgroupService.addUserToWorkgroup(body).subscribe(res => {
       this.isSuccessful = true;
       this.resStatus = res.status;
-      
-      // console.log(this.addedUserId )
+      this.superadminModalService.superadminSearchAddableUsersInModals();
     }, err => {
       this.resStatus = err.status;
       this.isSuccessful = false;
@@ -551,6 +550,20 @@ export class SuperadminModalComponent implements OnInit {
 
   }
 
+  assignCardToStudent(){
+    
+    let body = {
+      userId: this.userService.currentlySelectedUserId,
+      cardId: parseInt(this.selectedCardId.toString().split("--")[0])
+    };
+    this.cardService.assignCardToStudent(body).subscribe(res=>{
+      this.allAvaliableCard = res
+      this.changeDetection.detectChanges();
+    }, err =>{
+      console.log(err);
+    })
+
+  }
 
 
 

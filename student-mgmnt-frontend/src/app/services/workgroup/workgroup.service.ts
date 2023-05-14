@@ -64,7 +64,7 @@ export class WorkgroupService {
     return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-own-user-schedule/?page=" + pageNumber + "&size=" + pageSize + "&sort=" + sort + "," + order, body);
   }
 
-  getWorkgroupScheduleByUserId(userId: number, pageNumber: number, pageSize: number,) {
+  getWorkgroupScheduleByUserId(userId: number, pageNumber: number, pageSize: number) {
     // http://localhost:8080/api/v1/workgroupschedule/get-workgroup-schedule-by-user-id/2?page=0&size=1
     return this.http.get<any>(environment.apiEndpoint + "/workgroupschedule/get-workgroup-schedule-by-user-id/" + userId + "?page=" + pageNumber + "&size=" + pageSize);
   }
@@ -75,13 +75,18 @@ export class WorkgroupService {
   }
 
   getWorkgroupInfo(workgroupId: number) {
-    //http://localhost:8080/api/v1/workgroup/get-workgroup-info/1
+
     return this.http.get<any>(environment.apiEndpoint + "/workgroup/get-workgroup-info/" + workgroupId);
   }
 
   editWorkgroupInfo(workgroupId: number, body: any) {
-    //http://localhost:8080/api/v1/workgroup/edit-workgroup-info/1
+
     return this.http.post<any>(environment.apiEndpoint + "/workgroup/edit-workgroup-info/" + workgroupId, body);
+  }
+
+  searchAddableUsers(workgroupId: number, q: string,pageNumber: number, pageSize: number) {
+
+    return this.http.get<any>(environment.apiEndpoint + "/workgroup/search-addable-users/" + workgroupId + "?q=" + q + "&page=" + pageNumber + "&size=" + pageSize);
   }
 
 }

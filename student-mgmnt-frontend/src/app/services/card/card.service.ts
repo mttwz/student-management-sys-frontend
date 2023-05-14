@@ -14,4 +14,8 @@ export class CardService {
   getAllAvaliableCard(){
     return this.http.get<any>(environment.apiEndpoint + "/card/get-all-avaliable-card");
   }
+
+  assignCardToStudent(body:any){
+    return this.http.post<any>(environment.apiEndpoint + "/card/assign-card-to-student",body);
+  }
 }

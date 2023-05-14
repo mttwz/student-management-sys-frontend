@@ -310,7 +310,7 @@
 
         <input [(ngModel)]="this.superadminModalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
             class="form-control searchBar" placeholder="Type to search..."
-            (keyup)="this.superadminModalService.superadminSearchOnlyUsersInModalsWithDebounce()">
+            (keyup)="this.superadminModalService.superadminSearchAddableUsersWithDebounce()">
 
 
         <table class="table table-xl table-striped table-dark mainTable">
@@ -348,7 +348,7 @@
 
         <div class="pageSelector">
             <div class="pageBox" *ngFor="let item of this.superadminModalService.createRange();"
-                (click)="superadminModalService.suPageClick(item-1)">
+                (click)="superadminModalService.suPageClick(item-1,'add')">
                 {{item}}
             </div>
         </div>
@@ -362,7 +362,7 @@
 <!-- modal for removing user from a workgroup -->
 <div id="removeUserFromWorkgroupModal" *ngIf="this.modalId == 'removeUserFromWorkgroupModal'">
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Add user to workgroup</h5>
+        <h5 class="modal-title" class="mainModalLabel">Remove user from workgroup</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
@@ -408,7 +408,7 @@
 
         <div class="pageSelector">
             <div class="pageBox" *ngFor="let item of this.superadminModalService.createRange();"
-                (click)="superadminModalService.suPageClick(item-1)">
+                (click)="superadminModalService.suPageClick(item-1,'remove')">
                 {{item}}
             </div>
         </div>
@@ -752,14 +752,15 @@
 
         <div class="cardPickerContainer">
             <select [(ngModel)]="this.selectedCardId" class="form-control filterSelect">
-                <option disabled placeholder>qasd</option>
+                <option selected ></option>
                 <option *ngFor="let card of this.allAvaliableCard">
                     {{card.id}}--({{this.dateUtil.dateFormatter(card.createdAt)}})
                 </option>
     
             </select>
+            {{this.selectedCardId}}
             <button class="btn btn-success assignCardButton"
-                    (click)="(this.superadminModalService.assignCardToStudent())">Add</button>
+                    (click)="(this.assignCardToStudent())">Add</button>
         </div>
         
 

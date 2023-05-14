@@ -77,12 +77,41 @@ export class SuperadminModalService {
   }
 
 
+  superadminSearchAddableUsersInModals(){
+    
+    this.workgroupService.searchAddableUsers(this.workgroupService.currentlySelectedWorkgroupId,this.modalSearchtext,this.modalPageNumber,this.modalPageSize).subscribe(res => {
+      this.allUsersModal = res.userInfoDtoList;
+      this.isModalUsersLoading = false;
+      this.modalAllPages = res.allPages;
+      this.changeDetectionEmitter.emit();
+    }, err => {
+      console.log(err)
+    })
 
-  suPageClick(num: number) {
+  }
+
+
+  superadminSearchAddableUsersWithDebounce(): void {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      this.superadminSearchAddableUsersInModals();
+    }, 250); 
+  }
+
+  
+
+
+
+  suPageClick(num: number,func:string) {
     this.modalPageNumber = num;
-    this.superadminSearchOnlyUsersInModals();
+    if(func == "add"){
+      this.superadminSearchAddableUsersInModals();
+    }else if (func == "remove"){
+      this.superadminSearchOnlyUsersInWorkgroupInModalsWithDebounce();
+    }
     this.changeDetectionEmitter.emit();
   }
+
 
 
   createRange() {
