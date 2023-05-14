@@ -2,6 +2,7 @@
 .searchBar {
     width: 280px;
     border-bottom-right-radius: 0px;
+    
 }
 
 
@@ -12,6 +13,9 @@
     border-bottom-left-radius: 0px;
 }
 
+.dateRow{
+    border-radius: 0px;
+}
 
 
 /* for the form control correct desing */
