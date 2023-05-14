@@ -12,7 +12,7 @@ export class StudentTableService {
   allUserSchedule !: Array<any>;
   allUserAttendance !: Array<any>;
 
-  pageSize: number = 1; // <- erre kikell talalni valamit.   mire? itt adod meg hogy hany szar legyen kilistazva 
+  pageSize: number = 10;
   pageNumber: number = 0;
   sort: string = "id";
   order: string = "asc";

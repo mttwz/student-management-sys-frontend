@@ -55,13 +55,6 @@ select:disabled {
 
 }
 
-.form-switch{
-    /* width: 500px; */
-    padding-left: 13.6em;
-}
-
-
-
 
 .datePickerContainer, .cardPickerContainer{
     display: flex;

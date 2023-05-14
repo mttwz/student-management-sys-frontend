@@ -2,7 +2,7 @@
 
     <thead>
         <tr class="align-middle">
-            <th>ID</th>
+            <!-- <th>ID</th> -->
             <th>Arrival</th>
             <th>Leaving</th>
 
@@ -14,7 +14,7 @@
         <ng-container *ngFor="let attendance of this.studentTableService.allUserAttendance;">
 
             <tr class="align-middle">
-                <td>{{attendance.id}}</td>
+                <!-- <td>{{attendance.id}}</td> -->
                 <td>{{this.dateUtil.dateFormatter(attendance.arrival)}}</td>
                 <td>{{this.dateUtil.dateFormatter(attendance.leaving)}}</td>
             </tr>

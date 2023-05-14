@@ -12,7 +12,7 @@
             class="form-control searchBar">{{this.authService.parseJwt().fullName}}</div>
     </div>
     <div>
-        <input [(ngModel)]="this.studentTableService.selectedDate" (change)="this.studentTableService.getContent()" class="form-control" type="date">
+        <input [(ngModel)]="this.studentTableService.selectedDate" (change)="this.studentTableService.getContent()" class="form-control dateRow" type="date">
     </div>
 
 
