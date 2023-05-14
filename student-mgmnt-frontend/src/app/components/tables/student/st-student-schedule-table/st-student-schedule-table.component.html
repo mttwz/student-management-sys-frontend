@@ -2,13 +2,13 @@
 
     <thead>
         <tr class="align-middle">
-            <th>ID</th>
+            <!-- <th>ID</th> -->
             <th>Name</th>
             <th>Start</th>
             <th>End</th>
-            <th>isStudentPresent</th>
-            <th>lateInMinutes</th>
-            <th>isOnsite</th>
+            <th>Present</th>
+            <th>Late</th>
+            <th>On-site</th>
            
 
         </tr>
@@ -19,7 +19,7 @@
         <ng-container *ngFor="let schedule of this.studentTableService.allUserSchedule;">
 
             <tr class="align-middle">
-                <td>{{schedule.id}}</td>
+                <!-- <td>{{schedule.id}}</td> -->
                 <td>{{schedule.name}}</td>
                 <td>{{this.dateUtil.dateFormatter(schedule.start)}}</td>
                 <td>{{this.dateUtil.dateFormatter(schedule.end)}}</td>
