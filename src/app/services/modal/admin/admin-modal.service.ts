@@ -11,7 +11,7 @@ export class AdminModalService {
 
   modalSearchtext:string = "";
   modalPageNumber:number = 0;
-  modalPageSize:number = 1;
+  modalPageSize:number = 9;
   modalSort:string = "id";
   modalOrder:string = "asc";
   modalAllPages!:number;

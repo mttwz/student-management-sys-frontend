@@ -9,7 +9,7 @@ export class SuperadminTableService {
 
   searchText: string = "";
   searchFilter: string = "users";
-  pageSize: number = 99; // <- erre kikell talalni valamit.   mire? itt adod meg hogy hany szar legyen kilistazva 
+  pageSize: number = 10; // <- erre kikell talalni valamit.   mire? itt adod meg hogy hany szar legyen kilistazva 
   pageNumber: number = 0;
   tempPageNumber!: number;
   allPages!: number;
