@@ -7,7 +7,7 @@ import { last, Observable } from 'rxjs';
 })
 export class TokeninterceptorService implements HttpInterceptor {
 
-  tokenIgnore: String[] = ["login", "register-student", "validate-jwt"]
+  tokenIgnore: String[] = ["login", "register-student", "validate-jwt","set-user-is-activated"]
   
 
   constructor() { }

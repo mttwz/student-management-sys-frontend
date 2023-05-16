@@ -4,7 +4,7 @@
     min-height: 100vh;
 }
 
-#loginCardContainer{
+#activationCardContainer{
     max-width: 75vh;
     min-width: 300px;
 }
@@ -15,7 +15,17 @@
     
 }
 
-.invalidLoginText{
+
+.inputText{
+    text-align: center;
+    font-variant: small-caps;
+    color: rgb(183, 178, 178);
+}
+
+.formInput{
+    padding: 3px;
+}
+.invalidActivationText{
     height: 30px;
     color: red;
     width: 100%;
@@ -24,13 +34,14 @@
    
 }
 
+
 .registerBtn{
     font-variant: small-caps;
     background-color: white;
     color: rgb(26, 25, 25);
 }
 
-.loginButton{
+.activationButton{
     font-variant: small-caps;
     background-color: white;
     color: rgb(26, 25, 25);
