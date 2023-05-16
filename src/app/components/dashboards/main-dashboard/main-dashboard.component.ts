@@ -51,16 +51,11 @@ export class MainDashboardComponent implements OnInit {
 
       if(jwtData.role == "superadmin"){
         this.superadminTableService.searchSuperadmin();
-        console.log("superadmin");
       }else if (jwtData.role == "admin"){
         this.adminTableService.searchAdmin();
-        console.log("admin");
       }
       
       this.changeDetection.detectChanges();  
-      
-      
-
     })
    
     
@@ -71,7 +66,6 @@ export class MainDashboardComponent implements OnInit {
       
       },
       (err) => {
-       console.log(err);
       }
     );
 
@@ -83,7 +77,7 @@ export class MainDashboardComponent implements OnInit {
       
       },
       (err) => {
-       console.log(err);
+
       }
     );
     this.studentTableService.changeDetectionEmitter.subscribe(
@@ -93,20 +87,16 @@ export class MainDashboardComponent implements OnInit {
       
       },
       (err) => {
-       console.log(err);
+
       }
     );
-
-
-
-    
 
     this.superadminModalService.changeDetectionEmitter.subscribe(
       () => {
         this.changeDetection.detectChanges();
       },
       (err) => {
-       console.log(err);
+
       }
     );
 
@@ -116,7 +106,6 @@ export class MainDashboardComponent implements OnInit {
         this.changeDetection.detectChanges();
       },
       (err) => {
-       console.log(err);
       }
     );
     this.modalFix();

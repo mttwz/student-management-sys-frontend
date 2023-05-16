@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.validateJwt().subscribe(res => {
-      console.log(res);
       if (res == true) {
         this.router.navigate(["dashboard"])
         this.isLoading = false;

@@ -32,7 +32,6 @@ export class AuthService {
 
   setUserIsActivated(activationForm:FormGroup){
     let body = activationForm.value;
-    console.log(body)
     return this.http.post<any>(environment.apiEndpoint + "/user/set-user-is-activated", body);
    
   }

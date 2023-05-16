@@ -44,7 +44,7 @@ export class SuperadminModalService {
       this.modalAllPages = res.allPages;
       this.changeDetectionEmitter.emit();
     }, err => {
-      console.log(err)
+
     })
   }
 
@@ -64,7 +64,7 @@ export class SuperadminModalService {
       this.modalAllPages = res.allPages;
       this.changeDetectionEmitter.emit();
     }, err => {
-      console.log(err)
+
     })
 
   }
@@ -85,7 +85,7 @@ export class SuperadminModalService {
       this.modalAllPages = res.allPages;
       this.changeDetectionEmitter.emit();
     }, err => {
-      console.log(err)
+
     })
 
   }

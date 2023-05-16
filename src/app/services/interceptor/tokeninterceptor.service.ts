@@ -16,11 +16,8 @@ export class TokeninterceptorService implements HttpInterceptor {
     let apiPath :String = req.url.toString().split("api")[1];
 
     let target :String = apiPath.split("/")[3];
-    console.log(apiPath)
-    console.log(target)
 
     if (!this.tokenIgnore.includes(target)) {
-      console.log(this.tokenIgnore.includes(target))
     
       let localStorageObj = JSON.parse(localStorage.getItem("credentials") || "{ }");
       const userToken = localStorageObj.jwt;

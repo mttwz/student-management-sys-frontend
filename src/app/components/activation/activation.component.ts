@@ -40,12 +40,12 @@ export class ActivationComponent implements OnInit {
 setUserIsActivated() {
 
   this.authService.setUserIsActivated(this.activationForm).subscribe(
-    (res) => {
-      // Log the response
-      console.log(res);
-
+    res => {
       // Navigate the user to the login page
       this.router.navigate(["login"]);
+    }, err =>{
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
     }
   );
 }

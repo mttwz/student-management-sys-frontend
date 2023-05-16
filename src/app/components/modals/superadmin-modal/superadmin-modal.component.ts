@@ -58,9 +58,6 @@ export class SuperadminModalComponent implements OnInit {
 
   selectedCardId!:number;
 
-
-
-  // pageSize: number = 90; // <- erre kikell talalni valamit
   pageNumber: number = 0;
 
   id!: number;
@@ -175,7 +172,7 @@ export class SuperadminModalComponent implements OnInit {
       this.isEditingEnabled = false;
       this.changeDetection.detectChanges();
     }, err => {
-      console.log(err);
+
     });
   }
 
@@ -342,7 +339,7 @@ export class SuperadminModalComponent implements OnInit {
       this.isSuccessful = true;
 
     }, err => {
-      console.log(err);
+
       this.resStatus = err.status;
       this.isSuccessful = false;
     });
@@ -403,7 +400,7 @@ export class SuperadminModalComponent implements OnInit {
 
 
     }, err => {
-      console.log(err);
+
     });
   }
 
@@ -425,7 +422,7 @@ export class SuperadminModalComponent implements OnInit {
 
         this.isSuccessful = true;
     }, err => {
-      console.log(err);
+
       this.resStatus = err.status;
       this.isSuccessful = false;
     });
@@ -449,7 +446,6 @@ export class SuperadminModalComponent implements OnInit {
         this.studentDailyAttendance = res;
         this.isdailyAttendanceLoading = false;
         this.changeDetection.detectChanges();
-        console.error(res);
     })
 
 
@@ -471,7 +467,6 @@ export class SuperadminModalComponent implements OnInit {
           this.isdailyAttendanceLoading = false;
           this.changeDetection.detectChanges();
           this.getStudentDailyAttendance(this.userService.currentlySelectedUserId);
-          console.error(res);
       })
     }
     
@@ -497,7 +492,6 @@ export class SuperadminModalComponent implements OnInit {
         this.studentDailyClasses = res;
         this.isdailyClassesLoading = false;
         this.changeDetection.detectChanges();
-        console.error(res.length);
     })
   }
 
@@ -534,7 +528,7 @@ export class SuperadminModalComponent implements OnInit {
       this.isWorkgroupClassesLoading = false;
       this.changeDetection.detectChanges();
     }, err =>{
-      console.log(err);
+
     })
 
   }
@@ -545,7 +539,7 @@ export class SuperadminModalComponent implements OnInit {
       this.allAvaliableCard = res
       this.changeDetection.detectChanges();
     }, err =>{
-      console.log(err);
+
     })
 
   }
@@ -560,7 +554,7 @@ export class SuperadminModalComponent implements OnInit {
       this.allAvaliableCard = res
       this.changeDetection.detectChanges();
     }, err =>{
-      console.log(err);
+
     })
 
   }
