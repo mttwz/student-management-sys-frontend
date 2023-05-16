@@ -15,21 +15,6 @@
     
 }
 
-.registerText{
-    font-variant: small-caps;
-    letter-spacing: -1px;
-    color: rgb(183, 178, 178);
-}
-
-.inputText{
-    text-align: center;
-    font-variant: small-caps;
-    color: rgb(183, 178, 178);
-}
-
-.formInput{
-    padding: 3px;
-}
 .invalidLoginText{
     height: 30px;
     color: red;
@@ -38,7 +23,6 @@
     text-align: center;
    
 }
-
 
 .registerBtn{
     font-variant: small-caps;
