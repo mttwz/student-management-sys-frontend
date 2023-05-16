@@ -14,19 +14,27 @@ export class AuthService {
 
   public registerForm !: FormGroup;
 
+
   saveToken(obj: Object) {
     localStorage.setItem('credentials', JSON.stringify(obj));
   }
 
   register(registerForm:FormGroup) {
     let body = registerForm.value;
-    return this.http.post<any>(environment.apiEndpoint + "student/register-student", body)
+    return this.http.post<any>(environment.apiEndpoint + "/student/register-student", body);
   }
 
 
   login(loginForm:FormGroup){
     let body = loginForm.value;
-    return this.http.post<any>(environment.apiEndpoint + "/auth/login", body)
+    return this.http.post<any>(environment.apiEndpoint + "/auth/login", body);
+  }
+
+  setUserIsActivated(activationForm:FormGroup){
+    let body = activationForm.value;
+    console.log(body)
+    return this.http.post<any>(environment.apiEndpoint + "/user/set-user-is-activated", body);
+   
   }
 
   logOut() {
@@ -49,6 +57,8 @@ export class AuthService {
     }).join(''));
     return JSON.parse(jsonPayload);
   }
+
+
 
 
 }

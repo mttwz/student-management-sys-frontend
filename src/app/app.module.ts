@@ -28,6 +28,7 @@ import { AdWorkgroupMembersTableComponent } from './components/tables/admin/ad-w
 import { AdStudentTableComponent } from './components/tables/admin/ad-student-table/ad-student-table.component';
 import { StStudentScheduleTableComponent } from './components/tables/student/st-student-schedule-table/st-student-schedule-table.component';
 import { StStudentAttendanceTableComponent } from './components/tables/student/st-student-attendance-table/st-student-attendance-table.component';
+import { ActivationComponent } from './components/activation/activation.component';
 
 
 
@@ -58,6 +59,7 @@ import { StStudentAttendanceTableComponent } from './components/tables/student/s
     AdStudentTableComponent,
     StStudentScheduleTableComponent,
     StStudentAttendanceTableComponent,
+    ActivationComponent,
 
 
   ],
