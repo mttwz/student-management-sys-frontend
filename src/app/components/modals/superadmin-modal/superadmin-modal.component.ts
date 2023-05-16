@@ -85,17 +85,6 @@ export class SuperadminModalComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
-    // $(document).on('hidden.bs.modal', '#mainModal', () => {
-
-    //   this.resetStatusCode();
-    //   this.changeDetection.detectChanges();
-       
-      
-    // })
-
-
     this.addUserForm = this.formBuilder.group({
       roleName: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -163,11 +152,10 @@ export class SuperadminModalComponent implements OnInit {
 
 
 
-
+//Get user infor with userid
   getUserInfo(id: number) {
     this.userService.getUserInfo(id).subscribe(res => {
       this.userInfo = res;
-      console.log(res);
       this.isUserInfoLoading = false;
       this.userInfoForm.controls['id'].setValue(this.userInfo.id);
       this.userInfoForm.controls['roleName'].setValue(this.userInfo.roleName);
@@ -191,6 +179,8 @@ export class SuperadminModalComponent implements OnInit {
     });
   }
 
+
+//Add user manual
   addUser() {
     if (this.addUserForm.value.birth.length > 0 && !this.addUserForm.value.birth.includes("T00:00:00Z")) {
       this.addUserForm.value.birth = this.addUserForm.value.birth + "T00:00:00Z";
@@ -198,7 +188,6 @@ export class SuperadminModalComponent implements OnInit {
 
     this.userService.addUser(this.addUserForm.value).subscribe(res => {
       this.addUserForm.reset();
-      console.log(res.status)
       this.isSuccessful = true;
       this.resStatus = res.status;
 
@@ -208,42 +197,46 @@ export class SuperadminModalComponent implements OnInit {
     });
   }
 
+    //Logical, non-permanent deletion of the user by userid
   deleteUser(userId:number) {
     this.userService.deleteUser(userId).subscribe(res => {
-      console.log(res.status)
+
     }, err => {
      
 
     });
   }
 
+    //Restore deleted user by userid
   restoreDeletedUser(userId:number) {
     this.userService.restoreDeletetUser(userId).subscribe(res => {
-      console.log(res.status)
+
     }, err => {
      
     });
   }
 
+  //Logical, non-permanent deletion of workgroup by workgroupid
   deleteWorkgroup(workgroupId:number) {
     this.workgroupService.deleteWorkgroup(workgroupId).subscribe(res => {
-      console.log(res.status)
+
     }, err => {
      
 
     });
   }
 
+  //Restore deleted workgroup
   restoreDeletedWorkgroup(workgroupId:number) {
     this.workgroupService.restoreDeletedWorkgroup(workgroupId).subscribe(res => {
-      console.log(res.status)
+
     }, err => {
      
     });
   }
 
 
-
+//Add user to workgroup by userid.
   addUserToWorkgroup(userId:number) {
 
     let body = {
@@ -261,6 +254,7 @@ export class SuperadminModalComponent implements OnInit {
     });
   }
 
+    //Remove user from workgroup by userid
   removeUserFromWorkgroup(userId:number) {
 
     let body = {
@@ -281,7 +275,7 @@ export class SuperadminModalComponent implements OnInit {
 
 
 
-
+//Create workgroup manual
   createWorkgroup() {
   
     this.workgroupService.createWorkgroup(this.createWorkgroupForm.value).subscribe(res => {
@@ -294,6 +288,8 @@ export class SuperadminModalComponent implements OnInit {
     });
   }
 
+
+   //Create workgroup schedule
   createWorkgroupSchedule() {
     if (!this.createWorkgroupScheduleForm.value.end.includes(":00Z") && !this.createWorkgroupScheduleForm.value.start.includes(":00Z")) {
       this.createWorkgroupScheduleForm.value.start = this.createWorkgroupScheduleForm.value.start + ":00Z";
@@ -313,13 +309,13 @@ export class SuperadminModalComponent implements OnInit {
 
   }
 
-
+//Reset status code
   resetStatusCode() {
     this.resStatus = 0;
     this.isSuccessful = null;
   }
 
-
+ //Edit user info
   editUserInfo() {
     this.isEditingEnabled = true;
     this.changeDetection.detectChanges();
@@ -332,6 +328,8 @@ export class SuperadminModalComponent implements OnInit {
     this.userInfoForm.controls['roleName'].enable();
   }
 
+
+  //Save edited user info
   saveUserInfo() {
     this.userInfoForm.controls['id'].enable();
     this.userInfoForm.value;
@@ -339,9 +337,8 @@ export class SuperadminModalComponent implements OnInit {
     if (this.userInfoForm.value.birth.length > 0 && !this.userInfoForm.value.birth.includes("T00:00:00Z")) {
       this.userInfoForm.value.birth = this.userInfoForm.value.birth + "T00:00:00Z";
     };
-
     this.userService.editUserInfo(this.userInfoForm.value.id, this.userInfoForm.value).subscribe(res => {
-      console.log(res);
+
       this.isSuccessful = true;
 
     }, err => {
@@ -385,7 +382,7 @@ export class SuperadminModalComponent implements OnInit {
 
   }
 
-
+//Get workgroup info by workgroupid
   getWorkgroupInfo(id: number) {
 
     this.workgroupService.getWorkgroupInfo(id).subscribe(res => {
@@ -411,6 +408,7 @@ export class SuperadminModalComponent implements OnInit {
   }
 
 
+   //Edit workgroup name and/or institution.
   editWorkgroupInfo() {
     this.isEditingEnabled = true;
     this.changeDetection.detectChanges();
@@ -418,12 +416,13 @@ export class SuperadminModalComponent implements OnInit {
     this.workgroupInfoForm.controls['institution'].enable();
   }
 
+   //Save edited workgroupinfo
   saveWorkgroupInfo(){
     this.workgroupInfoForm.controls['id'].enable();
     this.workgroupInfoForm.value;
 
     this.workgroupService.editWorkgroupInfo(this.workgroupInfoForm.value.id, this.workgroupInfoForm.value).subscribe(res=>{
-        console.log(res);
+
         this.isSuccessful = true;
     }, err => {
       console.log(err);
@@ -437,7 +436,7 @@ export class SuperadminModalComponent implements OnInit {
   }
 
 
- 
+ //Get student daily attendance by userid
   getStudentDailyAttendance(userId:number){
     
     
@@ -445,7 +444,7 @@ export class SuperadminModalComponent implements OnInit {
       userId: userId,
       date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
-    console.log(body);
+
     this.userService.getDailyAttendance(body).subscribe(res=>{
         this.studentDailyAttendance = res;
         this.isdailyAttendanceLoading = false;
@@ -456,6 +455,8 @@ export class SuperadminModalComponent implements OnInit {
 
   }
 
+
+  //Add student daily attendance by userid
   addStudentDailyAttendance(userId:number){
     
     if(this.arrivalInput != undefined && this.arrivalInput != undefined){
@@ -464,7 +465,7 @@ export class SuperadminModalComponent implements OnInit {
         arrival: this.dateUtil.dateTimeFormatterForBackend(this.arrivalInput),
         leaving: this.dateUtil.dateTimeFormatterForBackend(this.leavingInput)
       };
-      console.log(body);
+
       this.userService.createAttendance(body).subscribe(res=>{
           this.studentDailyAttendance = res;
           this.isdailyAttendanceLoading = false;
@@ -483,13 +484,14 @@ export class SuperadminModalComponent implements OnInit {
 
 
 
+//Get student daily classes by userid
   getStudentDailyClasses(userId:number){
     
     let body = {
       userId: userId,
       date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
-    console.log(body);
+
     this.workgroupService.getUserSchedule(body).subscribe(res=>{
 
         this.studentDailyClasses = res;
@@ -515,8 +517,6 @@ export class SuperadminModalComponent implements OnInit {
         this.studentDailyClasses = res;
         this.isdailyClassesLoading = false;
         this.changeDetection.detectChanges();
-        console.error(res.length);
-        console.log(res);
     })
     
   }
