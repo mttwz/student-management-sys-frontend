@@ -18,7 +18,7 @@
 
 .inputText{
     text-align: center;
-    font-variant: small-caps;
+
     color: rgb(183, 178, 178);
 }
 
@@ -36,13 +36,13 @@
 
 
 .registerBtn{
-    font-variant: small-caps;
+
     background-color: white;
     color: rgb(26, 25, 25);
 }
 
 .activationButton{
-    font-variant: small-caps;
+
     background-color: white;
     color: rgb(26, 25, 25);
 }

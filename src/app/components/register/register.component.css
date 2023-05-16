@@ -14,24 +14,20 @@
 
 .card{
     background: #212529;
-    
 }
 
 .registerText{
-    font-variant: small-caps;
     letter-spacing: -1px;
     color: rgb(183, 178, 178);
 }
 
 
 .registerBtn{
-    font-variant: small-caps;
     background-color: white;
     color: rgb(26, 25, 25);
 }
 
 .loginButton{
-    font-variant: small-caps;
     background-color: white;
     color: rgb(26, 25, 25);
 }

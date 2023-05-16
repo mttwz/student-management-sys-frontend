@@ -31,7 +31,7 @@ export class ActivationComponent implements OnInit {
   }
 
 
-  activated() {
+  setUserIsActivated() {
     this.authService.setUserIsActivated(this.activationForm).subscribe(res =>{
         console.log(res);
         this.router.navigate(["login"]);
