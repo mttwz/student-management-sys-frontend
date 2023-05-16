@@ -4,9 +4,12 @@
     min-height: 100vh;
     min-width: 375px;
     display: block;
-
-    
-
-    
 }
 
+.navbarText{
+    margin-left: 1rem;
+}
+
+.btnContainer{
+    margin-right: 1rem;
+}
