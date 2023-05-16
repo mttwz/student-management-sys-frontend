@@ -35,6 +35,7 @@
 
 
 
+/*  Responsive Web Design  */
 @media only screen and (max-width: 600px) {
     .mainTable {
         overflow: scroll;
