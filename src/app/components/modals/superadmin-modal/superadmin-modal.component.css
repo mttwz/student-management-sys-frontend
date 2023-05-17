@@ -81,6 +81,8 @@ select:disabled {
     padding: 5px;
 }
 
+
+/*  Responsive Web Design  */
 @media (max-width: 575px) {
     label{
         width: 100%;

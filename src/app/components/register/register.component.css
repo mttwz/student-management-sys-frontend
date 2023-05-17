@@ -5,35 +5,24 @@
     min-height: 100vh;
 }
 
+
+/*  Card design  */
 #registerCardContainer{
     max-width: 75vh;
     min-width: 300px;
     
 }
 
-
 .card{
     background: #212529;
-    
 }
 
+
+
+/* for the form control correct desing */
 .registerText{
-    font-variant: small-caps;
     letter-spacing: -1px;
     color: rgb(183, 178, 178);
-}
-
-
-.registerBtn{
-    font-variant: small-caps;
-    background-color: white;
-    color: rgb(26, 25, 25);
-}
-
-.loginButton{
-    font-variant: small-caps;
-    background-color: white;
-    color: rgb(26, 25, 25);
 }
 
 .invalidRegisterText{
@@ -44,3 +33,15 @@
     text-align: center;
    
 }
+
+/* for the button correct desing */
+.registerBtn{
+    background-color: white;
+    color: rgb(26, 25, 25);
+}
+
+.loginButton{
+    background-color: white;
+    color: rgb(26, 25, 25);
+}
+

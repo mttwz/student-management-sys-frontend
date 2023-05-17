@@ -22,21 +22,33 @@ export class ActivationComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-  
+
     this.activationForm = this.formBuilder.group({
       activationCode: ['', Validators.required],
       password: ['', Validators.required]
     })
-    
+
   }
 
 
-  activated() {
-    this.authService.setUserIsActivated(this.activationForm).subscribe(res =>{
-        console.log(res);
-        this.router.navigate(["login"]);
-    })
-  }
+  /**
+ * Sets the user as activated.
+ *
+ * This method sends a request to the authentication service to activate the user using the provided activation form.
+ * If the activation is successful, it logs the response and navigates the user to the login page.
+ */
+setUserIsActivated() {
+
+  this.authService.setUserIsActivated(this.activationForm).subscribe(
+    res => {
+      // Navigate the user to the login page
+      this.router.navigate(["login"]);
+    }, err =>{
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
+    }
+  );
+}
 
 
 

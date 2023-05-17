@@ -9,7 +9,7 @@ export class SuperadminTableService {
 
   searchText: string = "";
   searchFilter: string = "users";
-  pageSize: number = 10; // <- erre kikell talalni valamit.   mire? itt adod meg hogy hany szar legyen kilistazva 
+  pageSize: number = 10; 
   pageNumber: number = 0;
   tempPageNumber!: number;
   allPages!: number;
@@ -25,7 +25,7 @@ export class SuperadminTableService {
   allWorkgroup !: Array<any>;
   isWorkgroupLoading = true;
 
-  allWorkgroupMemebers !: Array<any>; // sub table
+  allWorkgroupMemebers !: Array<any>;
   isWorkgroupMembersListed = false;
 
 
@@ -46,7 +46,7 @@ export class SuperadminTableService {
           this.allPages = res.allPages;
           this.changeDetectionEmitter.emit();
         }, err => {
-          console.log(err)
+
         })
       } else if (this.searchFilter == "student") {
         this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
@@ -55,7 +55,7 @@ export class SuperadminTableService {
           this.allPages = res.allPages;
           this.changeDetectionEmitter.emit();
         }, err => {
-          console.log(err)
+
         })
       } else if (this.searchFilter == "admin") {
         this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
@@ -64,7 +64,7 @@ export class SuperadminTableService {
           this.allPages = res.allPages;
           this.changeDetectionEmitter.emit();
         }, err => {
-          console.log(err)
+
         })
       } else if (this.searchFilter == "super-admin") {
         this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
@@ -73,7 +73,7 @@ export class SuperadminTableService {
           this.allPages = res.allPages;
           this.changeDetectionEmitter.emit();
         }, err => {
-          console.log(err)
+
         })
       } else if (this.searchFilter == "workgroup") {
         this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
@@ -82,19 +82,19 @@ export class SuperadminTableService {
           this.allPages = res.allPages;
           this.changeDetectionEmitter.emit();
         }, err => {
-          console.log(err)
+
         })
       } else if (this.searchFilter == 'users-in-workgroup') {
-        // console.error(this.groupName);
+
         this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, "users-in-workgroup", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
           this.allWorkgroupMemebers = res.userInfoDtoList;
           this.isUsersLoading = false;
           this.allPages = res.allPages;
-          console.log(this.allWorkgroupMemebers);
+
           this.changeDetectionEmitter.emit();
   
         }, err => {
-          console.log(err)
+
         })
       }
   
@@ -125,17 +125,14 @@ export class SuperadminTableService {
     }
     
 
-      //
   getAllWorkgroups() {
-    //http://localhost:8080/api/v1/workgroup/get-all-workgroups?page=0 &size=2 &sort=id,asc
-
     this.workgroupService.getAllWorkgroup(this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
       this.allWorkgroup = res.workgroupDtoList;
       this.isUsersLoading = false;
       this.allPages = res.allPages;
       this.changeDetectionEmitter.emit();
     }, err => {
-      console.log(err)
+
     })
   }
 
@@ -153,8 +150,6 @@ export class SuperadminTableService {
   }
 
   suPageClick(num: number) {
-    console.log(this.searchFilter)
-    console.log(this.pageNumber);
     this.pageNumber = num;
     this.suGetContentByFilter();
   }

@@ -19,7 +19,6 @@ export class AdminModalComponent implements OnInit {
   public addUserForm !: FormGroup;
   public userInfoForm !: FormGroup;
 
-  // public workgroupMembersForm !: FormGroup;
   public createWorkgroupForm !: FormGroup;
   public createWorkgroupScheduleForm !: FormGroup;
   public workgroupInfoForm !: FormGroup;
@@ -53,8 +52,6 @@ export class AdminModalComponent implements OnInit {
   allWorkgroupScheduleByUserId !: any;
 
 
-
-  // pageSize: number = 90; // <- erre kikell talalni valamit
   pageNumber: number = 0;
 
   id!: number;
@@ -79,25 +76,6 @@ export class AdminModalComponent implements OnInit {
   ngOnInit(): void {
 
 
-
-    // $(document).on('hidden.bs.modal', '#mainModal', () => {
-
-    //   this.resetStatusCode();
-    //   this.changeDetection.detectChanges();
-       
-      
-    // })
-
-
-    this.addUserForm = this.formBuilder.group({
-      roleName: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      phone: ['', Validators.required],
-      birth: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-    })
 
     this.userInfoForm = this.formBuilder.group({
       id: ['', Validators.required],
@@ -156,11 +134,10 @@ export class AdminModalComponent implements OnInit {
 
 
 
-
+//Get user infor with userid
   getUserInfo(id: number) {
     this.userService.getUserInfo(id).subscribe(res => {
       this.userInfo = res;
-      console.log(res);
       this.isUserInfoLoading = false;
       this.userInfoForm.controls['id'].setValue(this.userInfo.id);
       this.userInfoForm.controls['roleName'].setValue(this.userInfo.roleName);
@@ -180,63 +157,32 @@ export class AdminModalComponent implements OnInit {
       this.isEditingEnabled = false;
       this.changeDetection.detectChanges();
     }, err => {
-      console.log(err);
-    });
-  }
-
-  addUser() {
-    if (this.addUserForm.value.birth.length > 0 && !this.addUserForm.value.birth.includes("T00:00:00Z")) {
-      this.addUserForm.value.birth = this.addUserForm.value.birth + "T00:00:00Z";
-    };
-
-    this.userService.addUser(this.addUserForm.value).subscribe(res => {
-      this.addUserForm.reset();
-      console.log(res.status)
-      this.isSuccessful = true;
-      this.resStatus = res.status;
-
-    }, err => {
-      this.resStatus = err.status;
-      this.isSuccessful = false;
-    });
-  }
-
-  deleteUser(userId:number) {
-    this.userService.deleteUser(userId).subscribe(res => {
-      console.log(res.status)
-    }, err => {
-     
 
     });
   }
 
-  restoreDeletedUser(userId:number) {
-    this.userService.restoreDeletetUser(userId).subscribe(res => {
-      console.log(res.status)
-    }, err => {
-     
-    });
-  }
-
+  
+  //Logical, non-permanent deletion of workgroup
   deleteWorkgroup(workgroupId:number) {
     this.workgroupService.deleteWorkgroup(workgroupId).subscribe(res => {
-      console.log(res.status)
+
     }, err => {
      
 
     });
   }
 
+  //Restore deleted workgroup
   restoreDeletedWorkgroup(workgroupId:number) {
     this.workgroupService.restoreDeletedWorkgroup(workgroupId).subscribe(res => {
-      console.log(res.status)
+
     }, err => {
      
     });
   }
 
 
-
+//Add user to workgroup by userid.
   addUserToWorkgroup(userId:number) {
 
     let body = {
@@ -246,8 +192,7 @@ export class AdminModalComponent implements OnInit {
     this.workgroupService.addUserToWorkgroup(body).subscribe(res => {
       this.isSuccessful = true;
       this.resStatus = res.status;
-      
-      // console.log(this.addedUserId )
+
     }, err => {
       this.resStatus = err.status;
       this.isSuccessful = false;
@@ -255,6 +200,7 @@ export class AdminModalComponent implements OnInit {
     });
   }
 
+  //Remove user from workgroup by userid
   removeUserFromWorkgroup(userId:number) {
 
     let body = {
@@ -276,7 +222,7 @@ export class AdminModalComponent implements OnInit {
 
 
 
-
+//Create workgroup manual
   createWorkgroup() {
   
     this.workgroupService.createWorkgroup(this.createWorkgroupForm.value).subscribe(res => {
@@ -289,6 +235,7 @@ export class AdminModalComponent implements OnInit {
     });
   }
 
+  //Create workgroup schedule
   createWorkgroupSchedule() {
     if (!this.createWorkgroupScheduleForm.value.end.includes(":00Z") && !this.createWorkgroupScheduleForm.value.start.includes(":00Z")) {
       this.createWorkgroupScheduleForm.value.start = this.createWorkgroupScheduleForm.value.start + ":00Z";
@@ -308,58 +255,13 @@ export class AdminModalComponent implements OnInit {
 
   }
 
-
+//Reset status code
   resetStatusCode() {
     this.resStatus = 0;
     this.isSuccessful = null;
   }
 
 
-  editUserInfo() {
-    this.isEditingEnabled = true;
-    this.changeDetection.detectChanges();
-    this.userInfoForm.controls['firstName'].enable();
-    this.userInfoForm.controls['lastName'].enable();
-    this.userInfoForm.controls['birth'].enable();
-    this.userInfoForm.controls['email'].enable();
-    this.userInfoForm.controls['phone'].enable();
-    this.userInfoForm.controls['email'].enable();
-    this.userInfoForm.controls['roleName'].enable();
-  }
-
-  saveUserInfo() {
-    this.userInfoForm.controls['id'].enable();
-    this.userInfoForm.value;
-
-    if (this.userInfoForm.value.birth.length > 0 && !this.userInfoForm.value.birth.includes("T00:00:00Z")) {
-      this.userInfoForm.value.birth = this.userInfoForm.value.birth + "T00:00:00Z";
-    };
-
-    this.userService.editUserInfo(this.userInfoForm.value.id, this.userInfoForm.value).subscribe(res => {
-      console.log(res);
-      this.isSuccessful = true;
-
-    }, err => {
-      console.log(err);
-      this.resStatus = err.status;
-      this.isSuccessful = false;
-    });
-
-    this.userInfoForm.disable();
-    this.isEditingEnabled = false;
-    this.changeDetection.detectChanges();
-  }
-
-  cancelSaveUserInfo() {
-    this.userInfoForm.disable();
-    this.isEditingEnabled = false;
-
-  }
-
-  cancelAddUser() {
-    this.addUserForm.reset();
-
-  }
 
   cancelEdit() {
     this.isEditingEnabled = false;
@@ -380,12 +282,11 @@ export class AdminModalComponent implements OnInit {
 
   }
 
-
+//Get workgroup info by workgroupid
   getWorkgroupInfo(id: number) {
 
     this.workgroupService.getWorkgroupInfo(id).subscribe(res => {
       this.workgroupInfo = res;
-      console.log(res + "aaaaaaaa getWorkgroupInfo");
       this.isWorkgroupInfoLoading = false;
 
       this.workgroupInfoForm.controls['id'].setValue(this.workgroupInfo.id);
@@ -402,11 +303,12 @@ export class AdminModalComponent implements OnInit {
 
 
     }, err => {
-      console.log(err);
+
     });
   }
 
 
+  //Edit workgroup name and/or institution.
   editWorkgroupInfo() {
     this.isEditingEnabled = true;
     this.changeDetection.detectChanges();
@@ -414,15 +316,17 @@ export class AdminModalComponent implements OnInit {
     this.workgroupInfoForm.controls['institution'].enable();
   }
 
+
+  //Save edited workgroupinfo
   saveWorkgroupInfo(){
     this.workgroupInfoForm.controls['id'].enable();
     this.workgroupInfoForm.value;
 
     this.workgroupService.editWorkgroupInfo(this.workgroupInfoForm.value.id, this.workgroupInfoForm.value).subscribe(res=>{
-        console.log(res);
+
         this.isSuccessful = true;
     }, err => {
-      console.log(err);
+
       this.resStatus = err.status;
       this.isSuccessful = false;
     });
@@ -434,24 +338,24 @@ export class AdminModalComponent implements OnInit {
 
 
  
+  //Get student daily attendance by userid
   getStudentDailyAttendance(userId:number){
     this.isEditingEnabled = false;
     let body = {
       userId: userId,
       date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
-    console.log(body);
     this.userService.getDailyAttendance(body).subscribe(res=>{
         this.studentDailyAttendance = res;
         this.isdailyAttendanceLoading = false;
         this.changeDetection.detectChanges();
-        console.error(res);
+
     })
 
 
   }
 
-
+//Add student daily attendance by userid
   addStudentDailyAttendance(userId:number){
     
     if(this.arrivalInput != undefined && this.arrivalInput != undefined){
@@ -460,13 +364,13 @@ export class AdminModalComponent implements OnInit {
         arrival: this.dateUtil.dateTimeFormatterForBackend(this.arrivalInput),
         leaving: this.dateUtil.dateTimeFormatterForBackend(this.leavingInput)
       };
-      console.log(body);
+
       this.userService.createAttendance(body).subscribe(res=>{
           this.studentDailyAttendance = res;
           this.isdailyAttendanceLoading = false;
           this.changeDetection.detectChanges();
           this.getStudentDailyAttendance(this.userService.currentlySelectedUserId);
-          console.error(res);
+
       })
     }
     
@@ -475,23 +379,20 @@ export class AdminModalComponent implements OnInit {
   }
 
 
-
-
-
-
+//Get student daily classes by userid
   getStudentDailyClasses(userId:number){
 
     let body = {
       userId: userId,
       date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
-    console.log(body);
+
     this.workgroupService.getUserSchedule(body).subscribe(res=>{
 
         this.studentDailyClasses = res;
         this.isdailyClassesLoading = false;
         this.changeDetection.detectChanges();
-        console.error(res.length);
+
     })
   }
 
@@ -511,8 +412,6 @@ export class AdminModalComponent implements OnInit {
         this.studentDailyClasses = res;
         this.isdailyClassesLoading = false;
         this.changeDetection.detectChanges();
-        console.error(res.length);
-        console.log(res);
     })
     
   }
@@ -530,14 +429,10 @@ export class AdminModalComponent implements OnInit {
       this.isWorkgroupClassesLoading = false;
       this.changeDetection.detectChanges();
     }, err =>{
-      console.log(err);
+
     })
 
   }
-
-  // userid osszehasonlitasa, van e a wgbe olyan userid.
-
-
 
 
 }

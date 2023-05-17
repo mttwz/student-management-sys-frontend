@@ -44,7 +44,7 @@ export class AdminTableService {
         this.allPages = res.allPages;
         this.changeDetectionEmitter.emit();
       }, err => {
-        console.log(err)
+
       })
     } else if (this.searchFilter == "workgroup") {
       this.userService.searchAdmin(this.workgroupService.currentlySelectedWorkgroupId, this.searchFilter, this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
@@ -53,19 +53,18 @@ export class AdminTableService {
         this.allPages = res.allPages;
         this.changeDetectionEmitter.emit();
       }, err => {
-        console.log(err)
+
       })
     } else if (this.searchFilter == 'users-in-workgroup') {
-      // console.error(this.groupName);
+
       this.userService.searchAdmin(this.workgroupService.currentlySelectedWorkgroupId, "users-in-workgroup", this.searchText, this.pageNumber, this.pageSize, this.sort, this.order).subscribe(res => {
         this.allWorkgroupMemebers = res.userInfoDtoList;
         this.isUsersLoading = false;
         this.allPages = res.allPages;
-        console.log(this.allWorkgroupMemebers);
         this.changeDetectionEmitter.emit();
 
       }, err => {
-        console.log(err)
+
       })
     }
 
@@ -89,8 +88,6 @@ export class AdminTableService {
   }
 
   adPageClick(num: number) {
-    console.log(this.searchFilter)
-    console.log(this.pageNumber);
     this.pageNumber = num;
     this.adGetContentByFilter();
   }

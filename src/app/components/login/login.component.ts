@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.validateJwt().subscribe(res => {
-      console.log(res);
       if (res == true) {
         this.router.navigate(["dashboard"])
         this.isLoading = false;
@@ -41,23 +40,40 @@ export class LoginComponent implements OnInit {
   }
 
 
-  login() {
-    this.authService.login(this.loginFormGroup);
-    this.authService.login(this.loginFormGroup).subscribe(res => {
-      this.authService.saveToken(res)
+
+/**
+ * Logs in the user.
+ *
+ * This method sends a login request to the authentication service using the provided login form group.
+ * If the login is successful, it saves the authentication token and navigates the user to the dashboard.
+ * If there is an error during the login process, it extracts the error code from the response and assigns it to the errorCode property.
+ */
+login() {
+  // Call the login method of the authService to initiate the login process
+  this.authService.login(this.loginFormGroup);
+
+  // Subscribe to the login request observable
+  this.authService.login(this.loginFormGroup).subscribe(
+    (res) => {
+      // If login is successful, save the authentication token
+      this.authService.saveToken(res);
+
+      // Navigate the user to the dashboard
       this.router.navigate(["dashboard"]);
-    }, err => {
+    },
+    (err) => {
+      // If there is an error during login, extract the error code from the response
       let str: keyof typeof ErrorCodes = err.error.apiError;
       this.errorCode = ErrorCodes[str];
-    });
-  }
+    }
+  );
+}
 
+
+  //Navigated to the register component.
   register() {
     this.router.navigate(["/register"]);
   }
 
-  test() {
-    console.log("aaaa")
-  }
 
 }

@@ -41,13 +41,10 @@ export class StudentTableService {
       this.allPages = res.allPages;
       this.changeDetectionEmitter.emit();
     }, err => {
-      console.log(err);
     })
   }
 
   stPageClick(num: number) {
-    console.log(this.searchFilter)
-    console.log(this.pageNumber);
     this.pageNumber = num;
     if(this.searchFilter == "daily-classes"){
       this.getOwnUserSchedule();
@@ -97,7 +94,6 @@ export class StudentTableService {
         this.allPages = res.allPages;
         this.isDailyAttendanceLoading = false;
         this.changeDetectionEmitter.emit();
-        console.error(res);
     })
 
 

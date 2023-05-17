@@ -44,7 +44,7 @@ export class AdminModalService {
       this.modalAllPages = res.allPages;
       this.changeDetectionEmitter.emit();
     }, err => {
-      console.log(err)
+
     })
   }
 
@@ -63,7 +63,7 @@ export class AdminModalService {
       this.modalAllPages = res.allPages;
       this.changeDetectionEmitter.emit();
     }, err => {
-      console.log(err)
+
     })
 
   }

@@ -4,49 +4,44 @@
     min-height: 100vh;
 }
 
+/*  Card design  */
 #activationCardContainer{
     max-width: 75vh;
     min-width: 300px;
 }
 
-
 .card{
     background: #212529;
-    
 }
 
 
-.inputText{
-    text-align: center;
-    font-variant: small-caps;
-    color: rgb(183, 178, 178);
-}
+/* for the form control correct desing */
 
 .formInput{
     padding: 3px;
 }
+
 .invalidActivationText{
     height: 30px;
     color: red;
     width: 100%;
     margin: auto;
     text-align: center;
-   
-}
-
-
-.registerBtn{
-    font-variant: small-caps;
-    background-color: white;
-    color: rgb(26, 25, 25);
-}
-
-.activationButton{
-    font-variant: small-caps;
-    background-color: white;
-    color: rgb(26, 25, 25);
 }
 
 .passwordText{
     color: rgb(188, 182, 182);
 }
+
+/* for the button correct desing */
+.registerBtn{
+    background-color: white;
+    color: rgb(26, 25, 25);
+}
+
+.activationButton{
+
+    background-color: white;
+    color: rgb(26, 25, 25);
+}
+
