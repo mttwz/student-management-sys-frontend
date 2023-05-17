@@ -212,10 +212,10 @@
 
             <thead>
                 <tr class="align-middle">
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('id')">ID</th>
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('roleId.roleType')">Role</th>
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('firstName')">First name</th>
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('lastName')">Last name</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('id')">ID</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('roleId.roleType')">Role</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('firstName')">First name</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('lastName')">Last name</th>
                     <th></th>
 
                 </tr>
@@ -280,10 +280,10 @@
 
             <thead>
                 <tr class="align-middle">
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('id')">ID</th>
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('roleId.roleType')">Role</th>
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('firstName')">First name</th>
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('lastName')">Last name</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('id')">ID</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('roleId.roleType')">Role</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('firstName')">First name</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('lastName')">Last name</th>
                     <th></th>
 
                 </tr>
@@ -515,7 +515,7 @@
     <div class="modalContainer">
 
         <div class="datePickerContainer">
-            <input class="datePicker" type="date">
+            <input [(ngModel)]="this.selectedDate" class="datePicker form-control" type="date">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="getStudentDailyClassesPerWg(this.userService.currentlySelectedUserId)">Search</button>
@@ -570,7 +570,7 @@
     <div class="modalContainer">
 
         <div class="datePickerContainer">
-            <input class="datePicker" type="date">
+            <input [(ngModel)]="this.selectedDate" class="datePicker form-control" type="date">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="getDailyWorkgroupSchedule()">Search</button>

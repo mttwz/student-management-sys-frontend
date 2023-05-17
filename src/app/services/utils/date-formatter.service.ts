@@ -12,7 +12,7 @@ export class DateFormatterService {
     if(date == null){
       return "";
     }
-    return date.split("T")[0] +" "+ date.split("T")[1].split("+")[0];
+    return date.split("T")[0] +" "+ date.split("T")[1].split("+")[0].slice(0,-1);
   }
 
   dateTimeFormatterForBackend(date:string){

@@ -2,6 +2,8 @@
 
 This Readme document provides instructions on how to run your Angular app using two different methods. Before proceeding, please ensure you have the necessary dependencies installed, which include `npm` and `Docker`.
 
+
+
 ## Method 1: Running with `ng serve`
 
 1. Install Node.js and `npm` if you haven't already. You can download and install Node.js from the official website: [https://nodejs.org](https://nodejs.org)

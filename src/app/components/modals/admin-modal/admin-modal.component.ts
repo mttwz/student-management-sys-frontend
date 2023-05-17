@@ -66,7 +66,7 @@ export class AdminModalComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public adminTablseService: AdminTableService,
+    public adminTableService: AdminTableService,
     public userService: UserService,
     public workgroupService: WorkgroupService,
     private changeDetection: ChangeDetectorRef,

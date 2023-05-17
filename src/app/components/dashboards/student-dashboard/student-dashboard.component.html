@@ -2,9 +2,9 @@
 
 
     <div class="input-group">
-        <select class="form-control filterSelect">
-            <option selected value="daily-classes" (click)="this.studentTableService.changeSearchFilter('daily-classes')">Daily classes</option>
-            <option value="daily-attendance" (click)="this.studentTableService.changeSearchFilter('daily-attendance')">Daily attendance</option>    
+        <select #selectList class="form-control filterSelect" (change)="this.studentTableService.changeSearchFilter(selectList.value)">
+            <option selected value="daily-classes">Daily classes</option>
+            <option value="daily-attendance">Daily attendance</option>    
  
             <!-- <option>Institution</option> -->
         </select>

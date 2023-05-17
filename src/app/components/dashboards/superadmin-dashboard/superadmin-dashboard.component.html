@@ -1,18 +1,19 @@
 <div class="main">
 
     <div class="input-group">
-        <select class="form-control filterSelect">
-            <option selected value="users" (click)="this.superadminTableService.changeSearchFilter('users')">All users</option>
-            <option value="student" (click)="this.superadminTableService.changeSearchFilter('student')">Student</option>    
-            <option value="admin" (click)="this.superadminTableService.changeSearchFilter('admin')">Admin</option>
-            <option value="super-admin" (click)="this.superadminTableService.changeSearchFilter('super-admin')">Superadmin</option>
-            <option value="workgroup" (click)="this.superadminTableService.changeSearchFilter('workgroup')">Workgroup ( {{this.workgroupService.currentlySelectedWorkgroupName}} ) </option>
+        <select #selectList class="form-control filterSelect" (change)="this.superadminTableService.changeSearchFilter(selectList.value)">
+            <option selected value="users">All users</option>
+            <option value="student">Student</option>    
+            <option value="admin">Admin</option>
+            <option value="super-admin">Superadmin</option>
+            <option value="workgroup">Workgroup ( {{this.workgroupService.currentlySelectedWorkgroupName}} ) </option>
             <!-- <option>Institution</option> -->
         </select>
         <input [(ngModel)]="this.superadminTableService.searchText"  [ngModelOptions]="{standalone: true}" (keyup)="this.superadminTableService.searchSuperadminWithDebounce()" type="text"
             class="form-control searchBar" placeholder="Type to search...">
+            
     </div>
-
+    
     <div class="tableContainer" *ngIf="this.superadminTableService.searchFilter == 'users'">
         <app-su-user-table></app-su-user-table>
     </div>
@@ -40,7 +41,7 @@
             {{item}}
         </div>
     </div>
-
+   
 </div>
 
 
