@@ -27,14 +27,12 @@ export class AdWorkgroupTableComponent implements OnInit {
   openWorkgroupInfoModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.adminModalService.changeModal('workgroupInfoModal'); 
-    this.AdminModalComponent.resetStatusCode()
   }
 
   openAddUserToWorkgroupModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.adminModalService.adminSearchOnlyUsersInModals();
     this.adminModalService.changeModal('addUserToWorkgroupModal'); 
-    this.AdminModalComponent.resetStatusCode()
 
 
   }
@@ -43,7 +41,6 @@ export class AdWorkgroupTableComponent implements OnInit {
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.adminModalService.adminSearchOnlyUsersInWorkgroupInModals();
     this.adminModalService.changeModal('removeUserFromWorkgroupModal'); 
-    this.AdminModalComponent.resetStatusCode()
 
 
   }
@@ -51,21 +48,18 @@ export class AdWorkgroupTableComponent implements OnInit {
   openCreateWorkgroupSceduleModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.adminModalService.changeModal('createWorkgroupScheduleModal'); 
-    this.AdminModalComponent.resetStatusCode()
   }
 
  
 
   openCreateWorkgroupModal(){
     this.adminModalService.changeModal('createWorkgroupModal');
-    this.AdminModalComponent.resetStatusCode();
   }
 
   openWorkgroupDailyClasses(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.AdminModalComponent.allDailyWorkgroupClasses = [];
     this.adminModalService.changeModal('workgroupDailyClassesModal');
-    this.AdminModalComponent.resetStatusCode()
   }
   
 }

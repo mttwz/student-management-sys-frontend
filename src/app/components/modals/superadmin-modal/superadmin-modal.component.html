@@ -73,8 +73,9 @@
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+            {{this.errorCode}}
 
         </div>
     </div>
@@ -167,9 +168,9 @@
 
 
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-            fassss
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+            {{this.errorCode}}
         </div>
     </div>
     <div class="modalButtonContainer">
@@ -212,8 +213,8 @@
             </div>
         </form>
         <div class="responseTextContainer">
-            <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-            <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
 
             </div>
         </div>
@@ -276,22 +277,21 @@
     </div>
 
 
-    <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
 
-        </div>
-    </div>
     <div class="modalButtonContainer">
         <button type="button" class="btn btn-danger cancelButton" data-bs-dismiss="modal"
             (click)="this.cancelCreateWorkgroupSchedule()">
             Cancel
         </button>
-        <button type="button" class="btn btn-success saveButton" (click)="this.createWorkgroupSchedule()">
+        <button type="button" class="btn btn-success saveButton" (click)="createWorkgroupSchedule()">
             Save
         </button>
-
-
+    </div>
+    <div class="responseTextContainer">
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+            {{this.errorCode}}
+        </div>
     </div>
 
 </div>
@@ -350,6 +350,13 @@
             <div class="pageBox" *ngFor="let item of this.superadminModalService.createRange();"
                 (click)="superadminModalService.suPageClick(item-1,'add')">
                 {{item}}
+            </div>
+        </div>
+        <div class="responseTextContainer">
+            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+                {{this.errorCode}}
+    
             </div>
         </div>
 
@@ -412,6 +419,13 @@
                 {{item}}
             </div>
         </div>
+        <div class="responseTextContainer">
+            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+                {{this.errorCode}}
+    
+            </div>
+        </div>
 
     </div>
 
@@ -467,8 +481,8 @@
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
 
         </div>
     </div>
@@ -533,6 +547,12 @@
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="addStudentDailyAttendance(this.userService.currentlySelectedUserId)">Add</button>
         </div>
+        <div class="responseTextContainer">
+            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+                {{this.errorCode}}
+            </div>
+        </div>
 
 
 
@@ -567,12 +587,6 @@
         </table>
 
 
-    </div>
-    <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
-        </div>
     </div>
 </div>
 
@@ -626,8 +640,8 @@
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
 
         </div>
     </div>
@@ -683,8 +697,8 @@
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
 
         </div>
     </div>
@@ -731,8 +745,8 @@
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
 
         </div>
     </div>
@@ -760,7 +774,7 @@
             </select>
             {{this.selectedCardId}}
             <button class="btn btn-success assignCardButton"
-                    (click)="(this.assignCardToStudent())">Add</button>
+                    (click)="(assignCardToStudent())">Add</button>
         </div>
         
 
@@ -768,9 +782,9 @@
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+            {{this.errorCode}}
         </div>
     </div>
 </div>

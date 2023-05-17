@@ -21,6 +21,8 @@ export class SuperadminModalService {
 
   isModalUsersLoading = true;
 
+  isSuccessfull!: boolean | undefined;
+
   private timeoutId!: any;
 
   constructor(

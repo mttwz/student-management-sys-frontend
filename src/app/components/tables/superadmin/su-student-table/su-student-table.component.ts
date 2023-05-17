@@ -30,7 +30,6 @@ export class StudentTableComponent implements OnInit {
     this.superadminModalService.changeModal('studentAttendanceLogModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
-    this.SuperadminModalComponent.resetStatusCode();
     
   }
 
@@ -38,14 +37,12 @@ export class StudentTableComponent implements OnInit {
     this.superadminModalService.changeModal('userInfoModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
-    this.SuperadminModalComponent.resetStatusCode()
   }
 
   openStudentDailyClassesModal(user:any){
     this.superadminModalService.changeModal('studentDailyAttendanceModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
-    this.SuperadminModalComponent.resetStatusCode()
   }
 
   opencardInfoModal(user:any){
@@ -53,7 +50,6 @@ export class StudentTableComponent implements OnInit {
     this.SuperadminModalComponent.getAllAvaliableCard();
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
-    this.SuperadminModalComponent.resetStatusCode()
   }
 
 

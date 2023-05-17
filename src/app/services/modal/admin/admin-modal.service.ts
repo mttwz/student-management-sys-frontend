@@ -20,6 +20,8 @@ export class AdminModalService {
 
   isModalUsersLoading = true;
 
+  isSuccessfull!: boolean | undefined;
+
   private timeoutId!: any;
 
   constructor(

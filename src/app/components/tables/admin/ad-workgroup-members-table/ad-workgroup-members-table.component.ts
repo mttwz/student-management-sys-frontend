@@ -26,6 +26,5 @@ export class AdWorkgroupMembersTableComponent implements OnInit {
     this.adminModalService.changeModal('studentDailyAttendanceInWorkgroupModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
-    this.AdminModalComponent.resetStatusCode()
   }
 }
