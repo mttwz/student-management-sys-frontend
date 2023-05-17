@@ -14,6 +14,7 @@ export enum ErrorCodes {
   FORM_002_ERR = 'The ID is invalid.',
   FORM_003_ERR = 'One or more fields are null.',
   FORM_004_ERR = 'One or more values are invalid',
+  FORM_005_ERR = 'The provided password is too short',
 
   PWR_001_ERR = 'User does not has any valid reset code.',
   PWR_002_ERR = 'User\'s reset code has been expired.',

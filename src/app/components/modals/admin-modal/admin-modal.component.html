@@ -175,10 +175,15 @@
             (click)="this.cancelCreateWorkgroupSchedule()">
             Cancel
         </button>
-        <button type="button" class="btn btn-success saveButton" (click)="this.createWorkgroupSchedule()">
+        <button type="button" class="btn btn-success saveButton" (click)="createWorkgroupSchedule()">
             Save
         </button>
-
+        <div class="responseTextContainer">
+            <div class="successfulRes" *ngIf="this.adminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.adminModalService.isSuccessfull == false">
+                {{this.errorCode}}
+            </div>
+        </div>
 
     </div>
 

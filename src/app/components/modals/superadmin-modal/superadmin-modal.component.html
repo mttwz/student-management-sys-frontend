@@ -14,7 +14,7 @@
                 <label>ID:</label>
                 <input class="form-control userId" formControlName="id" type="text">
             </div>
-            <div *ngIf="this.isEditingEnabled == true" class="text-danger">(if you change a role then all the previous attendance data will be unavaliable)</div>
+            <div *ngIf="this.isEditingEnabled == true" class="text-danger">(if you change a role then all the previously assigned attendance data will be unavaliable)</div>
             <label for="roleSelect">Role:</label>
             <select class="custom-select roleSelect" formControlName="roleName">
                 <option value="" selected disabled hidden placeholder></option>

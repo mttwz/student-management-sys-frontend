@@ -107,7 +107,7 @@ export class AdminModalComponent implements OnInit {
       name: ['', Validators.required],
       start: ['', Validators.required],
       end: ['', Validators.required],
-      isOnsite: ['', Validators.required],
+      isOnsite: [false, Validators.required],
       workgroupId: ['', Validators.required]
     })
 
@@ -249,6 +249,8 @@ export class AdminModalComponent implements OnInit {
       this.createWorkgroupScheduleForm.reset();
       this.adminModalService.isSuccessfull = true;
     }, err => {
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
       this.adminModalService.isSuccessfull = false;
     });
 
