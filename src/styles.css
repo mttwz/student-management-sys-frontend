@@ -215,6 +215,9 @@ a:hover{
     overflow: scroll;
 }
   
+.navbar{
+    height: 60px;
+}
 
 
 

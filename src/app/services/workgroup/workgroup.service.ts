@@ -38,7 +38,6 @@ export class WorkgroupService {
   }
 
   addUserToWorkgroup(body: any) {
-    // http://localhost:8080/api/v1/workgroup/add-user-to-workgroup
     return this.http.post<any>(environment.apiEndpoint + "/workgroup/add-user-to-workgroup", body);
   }
 
@@ -47,12 +46,10 @@ export class WorkgroupService {
   }
 
   getUserSchedule(body: any) {
-    // http://localhost:8080/api/v1/workgroupschedule/get-user-schedule/?page=0&size=2&sort=start,asc
     return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-user-schedule", body);
   }
 
   getUserScheduleWithPaging(body: any, pageNumber: number, pageSize: number, sort: string, order: string) {
-    // http://localhost:8080/api/v1/workgroupschedule/get-user-schedule/?page=0&size=2&sort=start,asc
     return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-user-schedule/?page=" + pageNumber + "&size=" + pageSize + "&sort=" + sort + "," + order, body);
   }
 
@@ -65,27 +62,22 @@ export class WorkgroupService {
   }
 
   getWorkgroupScheduleByUserId(userId: number, pageNumber: number, pageSize: number) {
-    // http://localhost:8080/api/v1/workgroupschedule/get-workgroup-schedule-by-user-id/2?page=0&size=1
     return this.http.get<any>(environment.apiEndpoint + "/workgroupschedule/get-workgroup-schedule-by-user-id/" + userId + "?page=" + pageNumber + "&size=" + pageSize);
   }
 
   getDailyWorkgroupScheduleByWorkgroupId(body: any) {
-    // http://localhost:8080/api/v1/workgroupschedule/get-workgroup-schedule-by-workgroup-id/1
     return this.http.post<any>(environment.apiEndpoint + "/workgroupschedule/get-daily-workgroup-schedule-by-workgroup-id", body);
   }
 
   getWorkgroupInfo(workgroupId: number) {
-
     return this.http.get<any>(environment.apiEndpoint + "/workgroup/get-workgroup-info/" + workgroupId);
   }
 
   editWorkgroupInfo(workgroupId: number, body: any) {
-
     return this.http.post<any>(environment.apiEndpoint + "/workgroup/edit-workgroup-info/" + workgroupId, body);
   }
 
   searchAddableUsers(workgroupId: number, q: string,pageNumber: number, pageSize: number) {
-
     return this.http.get<any>(environment.apiEndpoint + "/workgroup/search-addable-users/" + workgroupId + "?q=" + q + "&page=" + pageNumber + "&size=" + pageSize);
   }
 
