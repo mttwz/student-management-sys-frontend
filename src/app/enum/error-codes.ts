@@ -3,7 +3,7 @@ export enum ErrorCodes {
 
   CARD_001_ERR= 'Card not created.',
   CARD_002_ERR = 'This card not exist.',
-  CARD_003_ERR = 'Card not sssigned.',
+  CARD_003_ERR = 'Card not asssigned.',
   CARD_004_ERR = 'This card already deleted.',
   CARD_005_ERR = 'This card already assigned.',
   CARD_006_ERR = 'Card not deleted.',
