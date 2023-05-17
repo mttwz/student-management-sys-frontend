@@ -40,7 +40,7 @@ This Readme document provides instructions on how to run your Angular app using 
 
 4. Once the Docker image is built successfully, you can run a container based on this image using the following command:
    ```
-   docker run --rm --name frontend -p 4200:4200 app
+   docker run -p 4200:4200 app
    ```
 
    This command will start a Docker container and map the container's port `4200` to the host's port `4200`.

@@ -18,4 +18,12 @@ export class CardService {
   assignCardToStudent(body:any){
     return this.http.post<any>(environment.apiEndpoint + "/card/assign-card-to-student",body);
   }
+
+  unassignCardFromStudent(userId:number){
+    return this.http.post<any>(environment.apiEndpoint + "/card/unassign-card-from-student/" + userId,null);
+  }
+
+  getCardByUserId(userId:number){
+    return this.http.get<any>(environment.apiEndpoint + "/card/get-card-by-user-id/" + userId);
+  }
 }

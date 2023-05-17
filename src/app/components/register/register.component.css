@@ -21,8 +21,8 @@
 
 /* for the form control correct desing */
 .registerText{
-    letter-spacing: -1px;
-    color: rgb(183, 178, 178);
+   
+    color: white
 }
 
 .invalidRegisterText{

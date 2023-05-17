@@ -754,7 +754,7 @@
 <div id="cardInfoModal" *ngIf="this.modalId == 'cardInfoModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Card info</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s card info</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
@@ -772,7 +772,13 @@
             <button class="btn btn-success assignCardButton"
                     (click)="(assignCardToStudent())">Add</button>
         </div>
-        
+
+        <div class="cardIdContainer">
+            Current card: {{this.personalCardId}}
+            
+        </div>
+        <button class="btn btn-danger"
+            (click)="(unassignCardFromStudent())">Remove card</button>
 
 
 

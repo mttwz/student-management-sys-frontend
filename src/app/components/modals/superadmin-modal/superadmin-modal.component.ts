@@ -65,6 +65,8 @@ export class SuperadminModalComponent implements OnInit {
 
   id!: number;
 
+  personalCardId!: string;
+
 
   selectedDate = formatDate(new Date(), 'yyyy-MM-dd', 'en');
 
@@ -556,6 +558,16 @@ export class SuperadminModalComponent implements OnInit {
 
   }
 
+  getCardByUserId(){
+    this.personalCardId = "";
+    this.cardService.getCardByUserId(this.userService.currentlySelectedUserId).subscribe(res => {
+      this.personalCardId = res.id;
+      this.changeDetection.detectChanges();
+    }, err => {
+      
+    })
+  }
+
   assignCardToStudent() {
 
     let body = {
@@ -567,12 +579,21 @@ export class SuperadminModalComponent implements OnInit {
       this.allAvaliableCard = res
       this.getAllAvaliableCard();
       this.changeDetection.detectChanges();
+      this.getCardByUserId();
     }, err => {
       this.superadminModalService.isSuccessfull = false;
       let str: keyof typeof ErrorCodes = err.error.apiError;
       this.errorCode = ErrorCodes[str];
     })
 
+  }
+
+  unassignCardFromStudent() {
+    this.cardService.unassignCardFromStudent(this.userService.currentlySelectedUserId).subscribe(res => {
+      this.getAllAvaliableCard();
+      this.getCardByUserId();
+      this.changeDetection.detectChanges();
+    })
   }
 
 

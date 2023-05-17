@@ -53,13 +53,11 @@ export class SuperadminModalService {
   superadminSearchOnlyUsersInModalsWithDebounce(): void {
     clearTimeout(this.timeoutId);
     this.timeoutId = setTimeout(() => {
-      console.error("miafasz")
       this.superadminSearchOnlyUsersInModals();
     }, 250); 
   }
 
   superadminSearchOnlyUsersInWorkgroupInModals(){
-    
     this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, "users-in-workgroup", this.modalSearchtext, this.modalPageNumber, this.modalPageSize, this.modalSort, this.modalOrder).subscribe(res => {
       this.allUsersModal = res.userInfoDtoList;
       this.isModalUsersLoading = false;
