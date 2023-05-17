@@ -37,8 +37,8 @@ export class AuthService {
   }
 
   logOut() {
-   localStorage.removeItem('credentials'); 
-   this.router.navigate(["/login"]);
+   localStorage.removeItem('credentials');
+   this.router.navigate(["/"]);
   }
 
   validateJwt(){

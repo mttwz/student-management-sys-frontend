@@ -33,7 +33,7 @@ This Readme document provides instructions on how to run your Angular app using 
 
 3. Build the Docker image using the following command:
    ```
-   docker build -t app .
+   docker build --no-cache -t app .
    ```
 
    This command will build a Docker image named `frontend-app` based on the instructions defined in the `Dockerfile`.
