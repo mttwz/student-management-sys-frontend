@@ -31,7 +31,7 @@ export class AdWorkgroupTableComponent implements OnInit {
 
   openAddUserToWorkgroupModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
-    this.adminModalService.adminSearchOnlyUsersInModals();
+    this.adminModalService.adminSearchAddableUsersInModals();
     this.adminModalService.changeModal('addUserToWorkgroupModal'); 
 
 

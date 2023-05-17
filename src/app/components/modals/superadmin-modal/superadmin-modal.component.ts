@@ -125,7 +125,7 @@ export class SuperadminModalComponent implements OnInit {
       name: ['', Validators.required],
       start: ['', Validators.required],
       end: ['', Validators.required],
-      isOnsite: ['', Validators.required],
+      isOnsite: [false, Validators.required],
       workgroupId: ['', Validators.required]
     })
 
@@ -283,6 +283,8 @@ export class SuperadminModalComponent implements OnInit {
       this.superadminModalService.isSuccessfull = true;
     }, err => {
       this.superadminModalService.isSuccessfull = false;
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
     });
   }
 
@@ -418,11 +420,11 @@ export class SuperadminModalComponent implements OnInit {
     this.workgroupInfoForm.value;
 
     this.workgroupService.editWorkgroupInfo(this.workgroupInfoForm.value.id, this.workgroupInfoForm.value).subscribe(res => {
-
       this.superadminModalService.isSuccessfull = true;
     }, err => {
-
       this.superadminModalService.isSuccessfull = false;
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
     });
 
     this.workgroupInfoForm.disable();
@@ -498,6 +500,10 @@ export class SuperadminModalComponent implements OnInit {
       this.studentDailyClasses = res;
       this.isdailyClassesLoading = false;
       this.changeDetection.detectChanges();
+    },err=>{
+        this.superadminModalService.isSuccessfull = false;
+        let str: keyof typeof ErrorCodes = err.error.apiError;
+        this.errorCode = ErrorCodes[str];
     })
   }
 

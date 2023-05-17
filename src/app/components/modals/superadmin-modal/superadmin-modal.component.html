@@ -14,6 +14,7 @@
                 <label>ID:</label>
                 <input class="form-control userId" formControlName="id" type="text">
             </div>
+            <div *ngIf="this.isEditingEnabled == true" class="text-danger">(if you change a role then all the previous attendance data will be unavaliable)</div>
             <label for="roleSelect">Role:</label>
             <select class="custom-select roleSelect" formControlName="roleName">
                 <option value="" selected disabled hidden placeholder></option>
@@ -21,6 +22,8 @@
                 <option value="admin">admin</option>
                 <option value="student">student</option>
             </select>
+            
+
             <div class="inputText formInput">
                 <label>First name:</label>
                 <input class="form-control firstName" formControlName="firstName" type="text">
@@ -215,7 +218,7 @@
         <div class="responseTextContainer">
             <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
             <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
-
+                {{this.errorCode}}
             </div>
         </div>
         <div class="modalButtonContainer">
@@ -223,7 +226,7 @@
                 (click)="this.cancelCreateWorkgroup()">
                 Cancel
             </button>
-            <button type="button" class="btn btn-success saveButton" (click)="this.createWorkgroup()">
+            <button type="button" class="btn btn-success saveButton" (click)="createWorkgroup()">
                 Save
             </button>
 
@@ -483,7 +486,7 @@
     <div class="responseTextContainer">
         <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
         <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
-
+            {{this.errorCode}}
         </div>
     </div>
     <div class="modalButtonContainer">
@@ -498,9 +501,10 @@
         </button>
 
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
-            (click)="this.saveWorkgroupInfo()">
+            (click)="saveWorkgroupInfo()">
             Save
         </button>
+
     </div>
 
     <div class="modalDeleteRestoreButtonContainer">
@@ -642,7 +646,7 @@
     <div class="responseTextContainer">
         <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
         <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
-
+            {{this.errorCode}}
         </div>
     </div>
 </div>
@@ -652,10 +656,10 @@
 
 <!------------------------------------------------------------------------------------------------->
 <!-- modal for the student daily attendance -->
-<div id="studentDailyAttendanceInWorkgroupModal" *ngIf="this.modalId == 'studentDailyAttendanceInWorkgroupModal'">
+<div id="studentDailyClassesInWorkgroupModal" *ngIf="this.modalId == 'studentDailyClassesInWorkgroupModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s attendance</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s schedule</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
@@ -695,12 +699,6 @@
         </table>
 
 
-    </div>
-    <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
-
-        </div>
     </div>
 </div>
 

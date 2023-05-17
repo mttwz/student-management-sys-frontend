@@ -12,7 +12,7 @@ export class SuperadminModalService {
 
   modalSearchtext:string = "";
   modalPageNumber:number = 0;
-  modalPageSize:number = 1;
+  modalPageSize:number = 10;
   modalSort:string = "id";
   modalOrder:string = "asc";
   modalAllPages!:number;
