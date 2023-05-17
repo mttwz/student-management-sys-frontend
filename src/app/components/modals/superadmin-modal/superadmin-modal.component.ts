@@ -191,6 +191,7 @@ export class SuperadminModalComponent implements OnInit {
     }, err => {
       this.resStatus = err.status;
       this.isSuccessful = false;
+      
     });
   }
 

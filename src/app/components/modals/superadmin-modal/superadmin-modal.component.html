@@ -110,7 +110,7 @@
 <!-- modal for addding a new user -->
 <div id="addUserModal" *ngIf="this.modalId == 'addUserModal'">
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Add user {{this.userService.currentlySelectedUserId}}</h5>
+        <h5 class="modal-title" class="mainModalLabel">Add user</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
@@ -509,7 +509,7 @@
 <div id="studentAttendanceLogModal" *ngIf="this.modalId == 'studentAttendanceLogModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} attendance</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s attendance</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
@@ -540,8 +540,8 @@
         <table class="table table-xl table-striped table-dark mainTable">
             <thead>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td>Arrival</td>
+                    <td>Late</td>
 
                 </tr>
             </thead>
@@ -583,7 +583,7 @@
 <div id="studentDailyAttendanceModal" *ngIf="this.modalId == 'studentDailyAttendanceModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} daily schedule
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s daily schedule
         </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
@@ -601,11 +601,11 @@
 
             <thead>
                 <tr>
-                    <td>name</td>
-                    <td>start</td>
-                    <td>end</td>
-                    <td>isStudentPresent</td>
-                    <td>lateInMinutes</td>
+                    <td>Name</td>
+                    <td>Start</td>
+                    <td>End</td>
+                    <td>Present</td>
+                    <td>Late</td>
 
 
                 </tr>
@@ -616,7 +616,7 @@
                         <td>{{dailyClass.name}}</td>
                         <td>{{dateUtil.dateFormatter(dailyClass.start)}}</td>
                         <td>{{dateUtil.dateFormatter(dailyClass.end)}}</td>
-                        <td>{{dailyClass.isStudentPresent}}</td>
+                        <td>{{dailyClass.isStudentPresent ? "Present" : "Missing"}}</td>
                         <td>{{dailyClass.lateInMinutes}}</td>
                     </tr>
                 </ng-container>
@@ -641,7 +641,7 @@
 <div id="studentDailyAttendanceInWorkgroupModal" *ngIf="this.modalId == 'studentDailyAttendanceInWorkgroupModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} attendance</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s attendance</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
@@ -658,11 +658,11 @@
 
             <thead>
                 <tr>
-                    <td>name</td>
-                    <td>start</td>
-                    <td>end</td>
-                    <td>isStudentPresent</td>
-                    <td>lateInMinutes</td>
+                    <td>Name</td>
+                    <td>Start</td>
+                    <td>End</td>
+                    <td>Present</td>
+                    <td>Late</td>
 
 
                 </tr>
@@ -673,7 +673,7 @@
                         <td>{{dailyClass.name}}</td>
                         <td>{{dateUtil.dateFormatter(dailyClass.start)}}</td>
                         <td>{{dateUtil.dateFormatter(dailyClass.end)}}</td>
-                        <td>{{dailyClass.isStudentPresent}}</td>
+                        <td>{{dailyClass.isStudentPresent? "Present" : "Missing"}}</td>
                         <td>{{dailyClass.lateInMinutes}}</td>
                     </tr>
                 </ng-container>
