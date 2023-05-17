@@ -26,7 +26,6 @@ This Readme document provides instructions on how to run your Angular app using 
 
 ## Method 2: Running with Docker
 
-### I DONT RECCOMEND THIS OPTION, CURRENTLY LITTLE BIT BUGGY
 
 1. Ensure that Docker is installed on your machine. You can download and install Docker Desktop from the official website: [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
 
