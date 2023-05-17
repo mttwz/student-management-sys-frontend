@@ -565,7 +565,7 @@
             <thead>
                 <tr>
                     <td>Arrival</td>
-                    <td>Late</td>
+                    <td>Leave</td>
 
                 </tr>
             </thead>
@@ -575,12 +575,10 @@
                     <tr>
                         <td>
                             {{dateUtil.dateFormatter(dailyAttendance.arrival)}}
-                            {{dateUtil.dateFormatter(dailyAttendance.leaving)}}
+                            
                         </td>
-
-
                         <td>
-                            EDITPLACEHOLDER
+                            {{dateUtil.dateFormatter(dailyAttendance.leaving)}}
                         </td>
                     </tr>
 
@@ -635,7 +633,7 @@
                         <td>{{dateUtil.dateFormatter(dailyClass.start)}}</td>
                         <td>{{dateUtil.dateFormatter(dailyClass.end)}}</td>
                         <td>{{dailyClass.isStudentPresent ? "Present" : "Missing"}}</td>
-                        <td>{{dailyClass.lateInMinutes}}</td>
+                        <td>{{dailyClass.lateInMinutes}} min</td>
                     </tr>
                 </ng-container>
             </tbody>
@@ -692,7 +690,7 @@
                         <td>{{dateUtil.dateFormatter(dailyClass.start)}}</td>
                         <td>{{dateUtil.dateFormatter(dailyClass.end)}}</td>
                         <td>{{dailyClass.isStudentPresent? "Present" : "Missing"}}</td>
-                        <td>{{dailyClass.lateInMinutes}}</td>
+                        <td>{{dailyClass.lateInMinutes}} min</td>
                     </tr>
                 </ng-container>
             </tbody>
