@@ -211,9 +211,17 @@ a:hover{
     
 }
 
-
-
+.modalContainer{
+    overflow: scroll;
+}
   
+.navbar{
+    height: 60px;
+}
+
+.cardIdContainer{
+    color: white;
+}
 
 
 

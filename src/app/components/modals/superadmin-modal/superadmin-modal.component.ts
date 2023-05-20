@@ -2,11 +2,12 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user/user.service';
 import { WorkgroupService } from 'src/app/services/workgroup/workgroup.service';
-import {formatDate} from '@angular/common';
+import { formatDate } from '@angular/common';
 import { DateFormatterService } from 'src/app/services/utils/date-formatter.service';
 import { SuperadminTableService } from 'src/app/services/table/superadmin/superadmin-table.service';
 import { SuperadminModalService } from 'src/app/services/modal/superadmin/superadmin-modal.service';
 import { CardService } from 'src/app/services/card/card.service';
+import { ErrorCodes } from 'src/app/enum/error-codes';
 declare var $: any;
 
 
@@ -18,7 +19,7 @@ declare var $: any;
 export class SuperadminModalComponent implements OnInit {
 
   @Input() modalId!: String;
-  
+
   public addUserForm !: FormGroup;
   public userInfoForm !: FormGroup;
 
@@ -30,8 +31,10 @@ export class SuperadminModalComponent implements OnInit {
 
   public getWorkgroupScheduleByUserIdForm !: FormGroup;
 
-  public isSuccessful: any;
-  public resStatus : any;
+
+
+
+  errorCode!: any;
 
 
 
@@ -56,11 +59,13 @@ export class SuperadminModalComponent implements OnInit {
 
   allWorkgroupScheduleByUserId !: any;
 
-  selectedCardId!:number;
+  selectedCardId!: number;
 
   pageNumber: number = 0;
 
   id!: number;
+
+  personalCardId!: string;
 
 
   selectedDate = formatDate(new Date(), 'yyyy-MM-dd', 'en');
@@ -78,7 +83,7 @@ export class SuperadminModalComponent implements OnInit {
     private changeDetection: ChangeDetectorRef,
     public dateUtil: DateFormatterService,
     public superadminModalService: SuperadminModalService,
-    private cardService:CardService) { }
+    private cardService: CardService) { }
 
   ngOnInit(): void {
 
@@ -122,7 +127,7 @@ export class SuperadminModalComponent implements OnInit {
       name: ['', Validators.required],
       start: ['', Validators.required],
       end: ['', Validators.required],
-      isOnsite: ['', Validators.required],
+      isOnsite: [false, Validators.required],
       workgroupId: ['', Validators.required]
     })
 
@@ -149,7 +154,7 @@ export class SuperadminModalComponent implements OnInit {
 
 
 
-//Get user infor with userid
+  //Get user infor with userid
   getUserInfo(id: number) {
     this.userService.getUserInfo(id).subscribe(res => {
       this.userInfo = res;
@@ -177,7 +182,7 @@ export class SuperadminModalComponent implements OnInit {
   }
 
 
-//Add user manual
+  //Add user manual
   addUser() {
     if (this.addUserForm.value.birth.length > 0 && !this.addUserForm.value.birth.includes("T00:00:00Z")) {
       this.addUserForm.value.birth = this.addUserForm.value.birth + "T00:00:00Z";
@@ -185,108 +190,108 @@ export class SuperadminModalComponent implements OnInit {
 
     this.userService.addUser(this.addUserForm.value).subscribe(res => {
       this.addUserForm.reset();
-      this.isSuccessful = true;
-      this.resStatus = res.status;
+      this.superadminModalService.isSuccessfull = true;
 
     }, err => {
-      this.resStatus = err.status;
-      this.isSuccessful = false;
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
+      this.superadminModalService.isSuccessfull = false;
+
     });
   }
 
-    //Logical, non-permanent deletion of the user by userid
-  deleteUser(userId:number) {
+  //Logical, non-permanent deletion of the user by userid
+  deleteUser(userId: number) {
     this.userService.deleteUser(userId).subscribe(res => {
 
     }, err => {
-     
+
 
     });
   }
 
-    //Restore deleted user by userid
-  restoreDeletedUser(userId:number) {
+  //Restore deleted user by userid
+  restoreDeletedUser(userId: number) {
     this.userService.restoreDeletetUser(userId).subscribe(res => {
 
     }, err => {
-     
+
     });
   }
 
   //Logical, non-permanent deletion of workgroup by workgroupid
-  deleteWorkgroup(workgroupId:number) {
+  deleteWorkgroup(workgroupId: number) {
     this.workgroupService.deleteWorkgroup(workgroupId).subscribe(res => {
 
     }, err => {
-     
+
 
     });
   }
 
   //Restore deleted workgroup
-  restoreDeletedWorkgroup(workgroupId:number) {
+  restoreDeletedWorkgroup(workgroupId: number) {
     this.workgroupService.restoreDeletedWorkgroup(workgroupId).subscribe(res => {
 
     }, err => {
-     
+
     });
   }
 
 
-//Add user to workgroup by userid.
-  addUserToWorkgroup(userId:number) {
-
+  //Add user to workgroup by userid.
+  addUserToWorkgroup(userId: number) {
     let body = {
       userId: userId,
       workgroupId: this.workgroupService.currentlySelectedWorkgroupId
     };
     this.workgroupService.addUserToWorkgroup(body).subscribe(res => {
-      this.isSuccessful = true;
-      this.resStatus = res.status;
+      this.superadminModalService.isSuccessfull = true;
       this.superadminModalService.superadminSearchAddableUsersInModals();
     }, err => {
-      this.resStatus = err.status;
-      this.isSuccessful = false;
-     
+      this.superadminModalService.isSuccessfull = false;
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
     });
   }
 
-    //Remove user from workgroup by userid
-  removeUserFromWorkgroup(userId:number) {
+  //Remove user from workgroup by userid
+  removeUserFromWorkgroup(userId: number) {
 
     let body = {
       userId: userId,
       workgroupId: this.workgroupService.currentlySelectedWorkgroupId
     };
     this.workgroupService.removeUserFromWorkgroup(body).subscribe(res => {
-      this.isSuccessful = true;
+      this.superadminModalService.isSuccessfull = true;
       this.superadminModalService.superadminSearchOnlyUsersInWorkgroupInModals();
-      
+
     }, err => {
-      this.resStatus = err.status;
-      this.isSuccessful = false;
-     
+      this.superadminModalService.isSuccessfull = false;
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
+
     });
   }
 
 
 
 
-//Create workgroup manual
+  //Create workgroup manual
   createWorkgroup() {
-  
+
     this.workgroupService.createWorkgroup(this.createWorkgroupForm.value).subscribe(res => {
       this.createWorkgroupForm.reset();
-      this.isSuccessful = true;
-      this.resStatus = res.status;
+      this.superadminModalService.isSuccessfull = true;
     }, err => {
-      this.resStatus = err.status;
-      this.isSuccessful = false;
+      this.superadminModalService.isSuccessfull = false;
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
     });
   }
 
 
-   //Create workgroup schedule
+  //Create workgroup schedule
   createWorkgroupSchedule() {
     if (!this.createWorkgroupScheduleForm.value.end.includes(":00Z") && !this.createWorkgroupScheduleForm.value.start.includes(":00Z")) {
       this.createWorkgroupScheduleForm.value.start = this.createWorkgroupScheduleForm.value.start + ":00Z";
@@ -297,22 +302,18 @@ export class SuperadminModalComponent implements OnInit {
 
     this.workgroupService.createWorkgroupSchedule(this.createWorkgroupScheduleForm.value).subscribe(res => {
       this.createWorkgroupScheduleForm.reset();
-      this.isSuccessful = true;
-      this.resStatus = res.status;
+      this.superadminModalService.isSuccessfull = true;
     }, err => {
-      this.resStatus = err.status;
-      this.isSuccessful = false;
+      this.superadminModalService.isSuccessfull = false;
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
     });
 
   }
 
-//Reset status code
-  resetStatusCode() {
-    this.resStatus = 0;
-    this.isSuccessful = null;
-  }
 
- //Edit user info
+
+  //Edit user info
   editUserInfo() {
     this.isEditingEnabled = true;
     this.changeDetection.detectChanges();
@@ -336,12 +337,14 @@ export class SuperadminModalComponent implements OnInit {
     };
     this.userService.editUserInfo(this.userInfoForm.value.id, this.userInfoForm.value).subscribe(res => {
 
-      this.isSuccessful = true;
+      this.superadminModalService.isSuccessfull = true;
 
     }, err => {
 
-      this.resStatus = err.status;
-      this.isSuccessful = false;
+      this.superadminModalService.isSuccessfull = false;
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
+
     });
 
     this.userInfoForm.disable();
@@ -379,7 +382,7 @@ export class SuperadminModalComponent implements OnInit {
 
   }
 
-//Get workgroup info by workgroupid
+  //Get workgroup info by workgroupid
   getWorkgroupInfo(id: number) {
 
     this.workgroupService.getWorkgroupInfo(id).subscribe(res => {
@@ -405,7 +408,7 @@ export class SuperadminModalComponent implements OnInit {
   }
 
 
-   //Edit workgroup name and/or institution.
+  //Edit workgroup name and/or institution.
   editWorkgroupInfo() {
     this.isEditingEnabled = true;
     this.changeDetection.detectChanges();
@@ -413,18 +416,17 @@ export class SuperadminModalComponent implements OnInit {
     this.workgroupInfoForm.controls['institution'].enable();
   }
 
-   //Save edited workgroupinfo
-  saveWorkgroupInfo(){
+  //Save edited workgroupinfo
+  saveWorkgroupInfo() {
     this.workgroupInfoForm.controls['id'].enable();
     this.workgroupInfoForm.value;
 
-    this.workgroupService.editWorkgroupInfo(this.workgroupInfoForm.value.id, this.workgroupInfoForm.value).subscribe(res=>{
-
-        this.isSuccessful = true;
+    this.workgroupService.editWorkgroupInfo(this.workgroupInfoForm.value.id, this.workgroupInfoForm.value).subscribe(res => {
+      this.superadminModalService.isSuccessfull = true;
     }, err => {
-
-      this.resStatus = err.status;
-      this.isSuccessful = false;
+      this.superadminModalService.isSuccessfull = false;
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
     });
 
     this.workgroupInfoForm.disable();
@@ -433,19 +435,19 @@ export class SuperadminModalComponent implements OnInit {
   }
 
 
- //Get student daily attendance by userid
-  getStudentDailyAttendance(userId:number){
-    
-    
+  //Get student daily attendance by userid
+  getStudentDailyAttendance(userId: number) {
+
+
     let body = {
       userId: userId,
       date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
 
-    this.userService.getDailyAttendance(body).subscribe(res=>{
-        this.studentDailyAttendance = res;
-        this.isdailyAttendanceLoading = false;
-        this.changeDetection.detectChanges();
+    this.userService.getDailyAttendance(body).subscribe(res => {
+      this.studentDailyAttendance = res;
+      this.isdailyAttendanceLoading = false;
+      this.changeDetection.detectChanges();
     })
 
 
@@ -453,23 +455,31 @@ export class SuperadminModalComponent implements OnInit {
 
 
   //Add student daily attendance by userid
-  addStudentDailyAttendance(userId:number){
-    
-    if(this.arrivalInput != undefined && this.arrivalInput != undefined){
+  addStudentDailyAttendance(userId: number) {
+
+    if (this.arrivalInput != undefined && this.arrivalInput != undefined) {
       let body = {
         userId: userId,
         arrival: this.dateUtil.dateTimeFormatterForBackend(this.arrivalInput),
         leaving: this.dateUtil.dateTimeFormatterForBackend(this.leavingInput)
       };
 
-      this.userService.createAttendance(body).subscribe(res=>{
-          this.studentDailyAttendance = res;
-          this.isdailyAttendanceLoading = false;
-          this.changeDetection.detectChanges();
-          this.getStudentDailyAttendance(this.userService.currentlySelectedUserId);
+      this.userService.createAttendance(body).subscribe(res => {
+        this.studentDailyAttendance = res;
+        this.isdailyAttendanceLoading = false;
+        this.changeDetection.detectChanges();
+        this.getStudentDailyAttendance(this.userService.currentlySelectedUserId);
+        this.superadminModalService.isSuccessfull = true;
+
+      },err =>{
+        this.superadminModalService.isSuccessfull = false;
+        let str: keyof typeof ErrorCodes = err.error.apiError;
+        this.errorCode = ErrorCodes[str];
+
+        
       })
     }
-    
+
 
 
   }
@@ -479,84 +489,111 @@ export class SuperadminModalComponent implements OnInit {
 
 
 
-//Get student daily classes by userid
-  getStudentDailyClasses(userId:number){
-    
+  //Get student daily classes by userid
+  getStudentDailyClasses(userId: number) {
+
     let body = {
       userId: userId,
       date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
 
-    this.workgroupService.getUserSchedule(body).subscribe(res=>{
+    this.workgroupService.getUserSchedule(body).subscribe(res => {
 
-        this.studentDailyClasses = res;
-        this.isdailyClassesLoading = false;
-        this.changeDetection.detectChanges();
+      this.studentDailyClasses = res;
+      this.isdailyClassesLoading = false;
+      this.changeDetection.detectChanges();
+    },err=>{
+        this.superadminModalService.isSuccessfull = false;
+        let str: keyof typeof ErrorCodes = err.error.apiError;
+        this.errorCode = ErrorCodes[str];
     })
   }
 
-  
 
-  getStudentDailyClassesPerWg(userId:number){
-    
+
+  getStudentDailyClassesPerWg(userId: number) {
+
     let body = {
       userId: userId,
       workgroupId: this.workgroupService.currentlySelectedWorkgroupId,
       date: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
-    
 
-    this.userService.getDailyClassesInWorkgroup(body).subscribe(res=>{
 
-        this.studentDailyClasses = res;
-        this.isdailyClassesLoading = false;
-        this.changeDetection.detectChanges();
+    this.userService.getDailyClassesInWorkgroup(body).subscribe(res => {
+
+      this.studentDailyClasses = res;
+      this.isdailyClassesLoading = false;
+      this.changeDetection.detectChanges();
     })
-    
+
   }
 
 
-  getDailyWorkgroupSchedule(){
-    
+  getDailyWorkgroupSchedule() {
+
     let body = {
       workgroupId: this.workgroupService.currentlySelectedWorkgroupId,
       start: this.dateUtil.dateFormatterForBackend(this.selectedDate)
     };
 
-    this.workgroupService.getDailyWorkgroupScheduleByWorkgroupId(body).subscribe(res=>{
+    this.workgroupService.getDailyWorkgroupScheduleByWorkgroupId(body).subscribe(res => {
       this.allDailyWorkgroupClasses = res.workgroupscheduleDtoList;
       this.isWorkgroupClassesLoading = false;
       this.changeDetection.detectChanges();
-    }, err =>{
+    }, err => {
 
     })
 
   }
 
-  getAllAvaliableCard(){
-    
-    this.cardService.getAllAvaliableCard().subscribe(res=>{
+  getAllAvaliableCard() {
+
+    this.cardService.getAllAvaliableCard().subscribe(res => {
       this.allAvaliableCard = res
       this.changeDetection.detectChanges();
-    }, err =>{
+    }, err => {
 
     })
 
   }
 
-  assignCardToStudent(){
-    
+  getCardByUserId(){
+    this.personalCardId = "";
+    this.cardService.getCardByUserId(this.userService.currentlySelectedUserId).subscribe(res => {
+      this.personalCardId = res.id;
+      this.changeDetection.detectChanges();
+    }, err => {
+      
+    })
+  }
+
+  assignCardToStudent() {
+
     let body = {
       userId: this.userService.currentlySelectedUserId,
       cardId: parseInt(this.selectedCardId.toString().split("--")[0])
     };
-    this.cardService.assignCardToStudent(body).subscribe(res=>{
+    this.cardService.assignCardToStudent(body).subscribe(res => {
+      this.superadminModalService.isSuccessfull = true;
       this.allAvaliableCard = res
+      this.getAllAvaliableCard();
       this.changeDetection.detectChanges();
-    }, err =>{
-
+      this.getCardByUserId();
+    }, err => {
+      this.superadminModalService.isSuccessfull = false;
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
     })
 
+  }
+
+  unassignCardFromStudent() {
+    this.cardService.unassignCardFromStudent(this.userService.currentlySelectedUserId).subscribe(res => {
+      this.getAllAvaliableCard();
+      this.getCardByUserId();
+      this.changeDetection.detectChanges();
+    })
   }
 
 

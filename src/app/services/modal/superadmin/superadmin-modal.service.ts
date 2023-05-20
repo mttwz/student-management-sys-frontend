@@ -12,7 +12,7 @@ export class SuperadminModalService {
 
   modalSearchtext:string = "";
   modalPageNumber:number = 0;
-  modalPageSize:number = 1;
+  modalPageSize:number = 10;
   modalSort:string = "id";
   modalOrder:string = "asc";
   modalAllPages!:number;
@@ -20,6 +20,8 @@ export class SuperadminModalService {
   allUsersModal!:any;
 
   isModalUsersLoading = true;
+
+  isSuccessfull!: boolean | undefined;
 
   private timeoutId!: any;
 
@@ -51,13 +53,11 @@ export class SuperadminModalService {
   superadminSearchOnlyUsersInModalsWithDebounce(): void {
     clearTimeout(this.timeoutId);
     this.timeoutId = setTimeout(() => {
-      console.error("miafasz")
       this.superadminSearchOnlyUsersInModals();
     }, 250); 
   }
 
   superadminSearchOnlyUsersInWorkgroupInModals(){
-    
     this.userService.searchSuperadmin(this.workgroupService.currentlySelectedWorkgroupId, "users-in-workgroup", this.modalSearchtext, this.modalPageNumber, this.modalPageSize, this.modalSort, this.modalOrder).subscribe(res => {
       this.allUsersModal = res.userInfoDtoList;
       this.isModalUsersLoading = false;

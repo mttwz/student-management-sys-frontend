@@ -23,9 +23,8 @@ export class AdWorkgroupMembersTableComponent implements OnInit {
   }
 
   openStudentDailyClassesPerWgModal(user:any){
-    this.adminModalService.changeModal('studentDailyAttendanceInWorkgroupModal'); 
+    this.adminModalService.changeModal('studentDailyClassesInWorkgroupModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
-    this.AdminModalComponent.resetStatusCode()
   }
 }

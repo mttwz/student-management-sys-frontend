@@ -31,7 +31,6 @@ export class WorkgroupTableComponent implements OnInit {
   openWorkgroupInfoModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.superadminModalService.changeModal('workgroupInfoModal'); 
-    this.SuperadminModalComponent.resetStatusCode()
 
   }
 
@@ -39,7 +38,6 @@ export class WorkgroupTableComponent implements OnInit {
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.superadminModalService.superadminSearchAddableUsersInModals();
     this.superadminModalService.changeModal('addUserToWorkgroupModal'); 
-    this.SuperadminModalComponent.resetStatusCode()
 
 
   }
@@ -48,7 +46,6 @@ export class WorkgroupTableComponent implements OnInit {
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.superadminModalService.superadminSearchOnlyUsersInWorkgroupInModals();
     this.superadminModalService.changeModal('removeUserFromWorkgroupModal'); 
-    this.SuperadminModalComponent.resetStatusCode()
 
 
   }
@@ -56,21 +53,20 @@ export class WorkgroupTableComponent implements OnInit {
   openCreateWorkgroupSceduleModal(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.superadminModalService.changeModal('createWorkgroupScheduleModal'); 
-    this.SuperadminModalComponent.resetStatusCode()
   }
 
  
 
   openCreateWorkgroupModal(){
     this.superadminModalService.changeModal('createWorkgroupModal');
-    this.SuperadminModalComponent.resetStatusCode();
+    
   }
 
   openWorkgroupDailyClasses(workgroup:any){
     this.workgroupService.currentlySelectedWorkgroupId = workgroup.id;
     this.SuperadminModalComponent.allDailyWorkgroupClasses = [];
     this.superadminModalService.changeModal('workgroupDailyClassesModal');
-    this.SuperadminModalComponent.resetStatusCode()
+    
   }
   
 

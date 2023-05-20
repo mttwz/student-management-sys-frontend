@@ -11,7 +11,7 @@ export class AdminModalService {
 
   modalSearchtext:string = "";
   modalPageNumber:number = 0;
-  modalPageSize:number = 1;
+  modalPageSize:number = 10;
   modalSort:string = "id";
   modalOrder:string = "asc";
   modalAllPages!:number;
@@ -19,6 +19,8 @@ export class AdminModalService {
   allUsersModal!:any;
 
   isModalUsersLoading = true;
+
+  isSuccessfull!: boolean | undefined;
 
   private timeoutId!: any;
 
@@ -72,6 +74,27 @@ export class AdminModalService {
     clearTimeout(this.timeoutId);
     this.timeoutId = setTimeout(() => {
       this.adminSearchOnlyUsersInWorkgroupInModals();
+    }, 250); 
+  }
+
+  adminSearchAddableUsersInModals(){
+    
+    this.workgroupService.searchAddableUsers(this.workgroupService.currentlySelectedWorkgroupId,this.modalSearchtext,this.modalPageNumber,this.modalPageSize).subscribe(res => {
+      this.allUsersModal = res.userInfoDtoList;
+      this.isModalUsersLoading = false;
+      this.modalAllPages = res.allPages;
+      this.changeDetectionEmitter.emit();
+    }, err => {
+
+    })
+
+  }
+
+
+  adminSearchAddableUsersWithDebounce(): void {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      this.adminSearchAddableUsersInModals();
     }, 250); 
   }
 

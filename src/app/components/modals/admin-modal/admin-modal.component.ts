@@ -6,6 +6,7 @@ import {formatDate} from '@angular/common';
 import { DateFormatterService } from 'src/app/services/utils/date-formatter.service';
 import { AdminTableService } from 'src/app/services/table/admin/admin-table.service';
 import { AdminModalService } from 'src/app/services/modal/admin/admin-modal.service';
+import { ErrorCodes } from 'src/app/enum/error-codes';
 declare var $: any;
 
 @Component({
@@ -25,9 +26,6 @@ export class AdminModalComponent implements OnInit {
 
 
   public getWorkgroupScheduleByUserIdForm !: FormGroup;
-
-  public isSuccessful: any;
-  public resStatus : any;
 
 
 
@@ -64,9 +62,11 @@ export class AdminModalComponent implements OnInit {
   leavingInput: any;
 
 
+  errorCode!:any
+
   constructor(
     private formBuilder: FormBuilder,
-    public adminTablseService: AdminTableService,
+    public adminTableService: AdminTableService,
     public userService: UserService,
     public workgroupService: WorkgroupService,
     private changeDetection: ChangeDetectorRef,
@@ -107,7 +107,7 @@ export class AdminModalComponent implements OnInit {
       name: ['', Validators.required],
       start: ['', Validators.required],
       end: ['', Validators.required],
-      isOnsite: ['', Validators.required],
+      isOnsite: [false, Validators.required],
       workgroupId: ['', Validators.required]
     })
 
@@ -190,13 +190,12 @@ export class AdminModalComponent implements OnInit {
       workgroupId: this.workgroupService.currentlySelectedWorkgroupId
     };
     this.workgroupService.addUserToWorkgroup(body).subscribe(res => {
-      this.isSuccessful = true;
-      this.resStatus = res.status;
-
+      this.adminModalService.isSuccessfull = true;
+      this.adminModalService.adminSearchAddableUsersInModals();
     }, err => {
-      this.resStatus = err.status;
-      this.isSuccessful = false;
-     
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
+      this.adminModalService.isSuccessfull = false;
     });
   }
 
@@ -208,13 +207,14 @@ export class AdminModalComponent implements OnInit {
       workgroupId: this.workgroupService.currentlySelectedWorkgroupId
     };
     this.workgroupService.removeUserFromWorkgroup(body).subscribe(res => {
-      this.isSuccessful = true;
+      this.adminModalService.isSuccessfull = true;
       
       this.adminModalService.adminSearchOnlyUsersInWorkgroupInModals();
       
     }, err => {
-      this.resStatus = err.status;
-      this.isSuccessful = false;
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
+      this.adminModalService.isSuccessfull = false;
      
     });
   }
@@ -227,11 +227,12 @@ export class AdminModalComponent implements OnInit {
   
     this.workgroupService.createWorkgroup(this.createWorkgroupForm.value).subscribe(res => {
       this.createWorkgroupForm.reset();
-      this.isSuccessful = true;
-      this.resStatus = res.status;
+      this.adminModalService.isSuccessfull = true;
+      this.adminModalService.isSuccessfull = true;
     }, err => {
-      this.resStatus = err.status;
-      this.isSuccessful = false;
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
+      this.adminModalService.isSuccessfull = false;
     });
   }
 
@@ -246,20 +247,16 @@ export class AdminModalComponent implements OnInit {
 
     this.workgroupService.createWorkgroupSchedule(this.createWorkgroupScheduleForm.value).subscribe(res => {
       this.createWorkgroupScheduleForm.reset();
-      this.isSuccessful = true;
-      this.resStatus = res.status;
+      this.adminModalService.isSuccessfull = true;
     }, err => {
-      this.resStatus = err.status;
-      this.isSuccessful = false;
+      let str: keyof typeof ErrorCodes = err.error.apiError;
+      this.errorCode = ErrorCodes[str];
+      this.adminModalService.isSuccessfull = false;
     });
 
   }
 
-//Reset status code
-  resetStatusCode() {
-    this.resStatus = 0;
-    this.isSuccessful = null;
-  }
+
 
 
 
@@ -324,11 +321,10 @@ export class AdminModalComponent implements OnInit {
 
     this.workgroupService.editWorkgroupInfo(this.workgroupInfoForm.value.id, this.workgroupInfoForm.value).subscribe(res=>{
 
-        this.isSuccessful = true;
+        this.adminModalService.isSuccessfull = true;
     }, err => {
 
-      this.resStatus = err.status;
-      this.isSuccessful = false;
+      this.adminModalService.isSuccessfull = false;
     });
 
     this.workgroupInfoForm.disable();
@@ -370,7 +366,12 @@ export class AdminModalComponent implements OnInit {
           this.isdailyAttendanceLoading = false;
           this.changeDetection.detectChanges();
           this.getStudentDailyAttendance(this.userService.currentlySelectedUserId);
+          this.adminModalService.isSuccessfull = true;
 
+      },err =>{
+        let str: keyof typeof ErrorCodes = err.error.apiError;
+        this.errorCode = ErrorCodes[str];
+        this.adminModalService.isSuccessfull = false;
       })
     }
     

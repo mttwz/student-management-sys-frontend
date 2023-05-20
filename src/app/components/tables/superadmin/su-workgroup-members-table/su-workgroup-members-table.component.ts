@@ -37,10 +37,9 @@ export class WorkgroupMembersTableComponent implements OnInit {
 
 
   openStudentDailyClassesPerWgModal(user:any){
-    this.superadminModalService.changeModal('studentDailyAttendanceInWorkgroupModal'); 
+    this.superadminModalService.changeModal('studentDailyClassesInWorkgroupModal'); 
     this.userService.currentlySelectedUserId = user.id;
     this.userService.currentlySelectedUserName = user.firstName + " " + user.lastName;
-    this.SuperadminModalComponent.resetStatusCode()
   }
 
 

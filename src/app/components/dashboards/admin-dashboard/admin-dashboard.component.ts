@@ -12,12 +12,12 @@ import { AdminModalService } from 'src/app/services/modal/admin/admin-modal.serv
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor(public authService:AuthService,public adminTablseService:AdminTableService, public workgroupService:WorkgroupService, public adminModalService:AdminModalService) { }
+  constructor(public authService:AuthService,public adminTableService:AdminTableService, public workgroupService:WorkgroupService, public adminModalService:AdminModalService) { }
 
   @ViewChild(AdminModalComponent) AdminModalComponent!: AdminModalComponent;
 
   ngOnInit(): void {
-    this.adminTablseService.searchFilter = "student"
+    this.adminTableService.searchFilter = "student"
     
   }
 

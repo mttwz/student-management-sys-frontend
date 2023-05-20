@@ -14,6 +14,7 @@
                 <label>ID:</label>
                 <input class="form-control userId" formControlName="id" type="text">
             </div>
+            <div *ngIf="this.isEditingEnabled == true" class="text-danger">(if you change a role then all the previously assigned attendance data will be unavaliable)</div>
             <label for="roleSelect">Role:</label>
             <select class="custom-select roleSelect" formControlName="roleName">
                 <option value="" selected disabled hidden placeholder></option>
@@ -21,6 +22,8 @@
                 <option value="admin">admin</option>
                 <option value="student">student</option>
             </select>
+            
+
             <div class="inputText formInput">
                 <label>First name:</label>
                 <input class="form-control firstName" formControlName="firstName" type="text">
@@ -73,8 +76,9 @@
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+            {{this.errorCode}}
 
         </div>
     </div>
@@ -110,7 +114,7 @@
 <!-- modal for addding a new user -->
 <div id="addUserModal" *ngIf="this.modalId == 'addUserModal'">
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Add user {{this.userService.currentlySelectedUserId}}</h5>
+        <h5 class="modal-title" class="mainModalLabel">Add user</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
@@ -167,9 +171,9 @@
 
 
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-            fassss
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+            {{this.errorCode}}
         </div>
     </div>
     <div class="modalButtonContainer">
@@ -212,9 +216,9 @@
             </div>
         </form>
         <div class="responseTextContainer">
-            <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-            <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
+            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+                {{this.errorCode}}
             </div>
         </div>
         <div class="modalButtonContainer">
@@ -222,7 +226,7 @@
                 (click)="this.cancelCreateWorkgroup()">
                 Cancel
             </button>
-            <button type="button" class="btn btn-success saveButton" (click)="this.createWorkgroup()">
+            <button type="button" class="btn btn-success saveButton" (click)="createWorkgroup()">
                 Save
             </button>
 
@@ -276,22 +280,21 @@
     </div>
 
 
-    <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
 
-        </div>
-    </div>
     <div class="modalButtonContainer">
         <button type="button" class="btn btn-danger cancelButton" data-bs-dismiss="modal"
             (click)="this.cancelCreateWorkgroupSchedule()">
             Cancel
         </button>
-        <button type="button" class="btn btn-success saveButton" (click)="this.createWorkgroupSchedule()">
+        <button type="button" class="btn btn-success saveButton" (click)="createWorkgroupSchedule()">
             Save
         </button>
-
-
+    </div>
+    <div class="responseTextContainer">
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+            {{this.errorCode}}
+        </div>
     </div>
 
 </div>
@@ -350,6 +353,13 @@
             <div class="pageBox" *ngFor="let item of this.superadminModalService.createRange();"
                 (click)="superadminModalService.suPageClick(item-1,'add')">
                 {{item}}
+            </div>
+        </div>
+        <div class="responseTextContainer">
+            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+                {{this.errorCode}}
+    
             </div>
         </div>
 
@@ -412,6 +422,13 @@
                 {{item}}
             </div>
         </div>
+        <div class="responseTextContainer">
+            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+                {{this.errorCode}}
+    
+            </div>
+        </div>
 
     </div>
 
@@ -467,9 +484,9 @@
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+            {{this.errorCode}}
         </div>
     </div>
     <div class="modalButtonContainer">
@@ -484,9 +501,10 @@
         </button>
 
         <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
-            (click)="this.saveWorkgroupInfo()">
+            (click)="saveWorkgroupInfo()">
             Save
         </button>
+
     </div>
 
     <div class="modalDeleteRestoreButtonContainer">
@@ -509,7 +527,7 @@
 <div id="studentAttendanceLogModal" *ngIf="this.modalId == 'studentAttendanceLogModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} attendance</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s attendance</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
@@ -533,6 +551,12 @@
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="addStudentDailyAttendance(this.userService.currentlySelectedUserId)">Add</button>
         </div>
+        <div class="responseTextContainer">
+            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+                {{this.errorCode}}
+            </div>
+        </div>
 
 
 
@@ -540,8 +564,8 @@
         <table class="table table-xl table-striped table-dark mainTable">
             <thead>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td>Arrival</td>
+                    <td>Leave</td>
 
                 </tr>
             </thead>
@@ -551,12 +575,10 @@
                     <tr>
                         <td>
                             {{dateUtil.dateFormatter(dailyAttendance.arrival)}}
-                            {{dateUtil.dateFormatter(dailyAttendance.leaving)}}
+                            
                         </td>
-
-
                         <td>
-                            EDITPLACEHOLDER
+                            {{dateUtil.dateFormatter(dailyAttendance.leaving)}}
                         </td>
                     </tr>
 
@@ -568,12 +590,6 @@
 
 
     </div>
-    <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
-        </div>
-    </div>
 </div>
 
 
@@ -583,7 +599,7 @@
 <div id="studentDailyAttendanceModal" *ngIf="this.modalId == 'studentDailyAttendanceModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} daily schedule
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s daily schedule
         </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
@@ -601,11 +617,11 @@
 
             <thead>
                 <tr>
-                    <td>name</td>
-                    <td>start</td>
-                    <td>end</td>
-                    <td>isStudentPresent</td>
-                    <td>lateInMinutes</td>
+                    <td>Name</td>
+                    <td>Start</td>
+                    <td>End</td>
+                    <td>Present</td>
+                    <td>Late</td>
 
 
                 </tr>
@@ -616,8 +632,8 @@
                         <td>{{dailyClass.name}}</td>
                         <td>{{dateUtil.dateFormatter(dailyClass.start)}}</td>
                         <td>{{dateUtil.dateFormatter(dailyClass.end)}}</td>
-                        <td>{{dailyClass.isStudentPresent}}</td>
-                        <td>{{dailyClass.lateInMinutes}}</td>
+                        <td>{{dailyClass.isStudentPresent ? "Present" : "Missing"}}</td>
+                        <td>{{dailyClass.lateInMinutes}} min</td>
                     </tr>
                 </ng-container>
             </tbody>
@@ -626,9 +642,9 @@
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+            {{this.errorCode}}
         </div>
     </div>
 </div>
@@ -638,10 +654,10 @@
 
 <!------------------------------------------------------------------------------------------------->
 <!-- modal for the student daily attendance -->
-<div id="studentDailyAttendanceInWorkgroupModal" *ngIf="this.modalId == 'studentDailyAttendanceInWorkgroupModal'">
+<div id="studentDailyClassesInWorkgroupModal" *ngIf="this.modalId == 'studentDailyClassesInWorkgroupModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} attendance</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s schedule</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
@@ -658,11 +674,11 @@
 
             <thead>
                 <tr>
-                    <td>name</td>
-                    <td>start</td>
-                    <td>end</td>
-                    <td>isStudentPresent</td>
-                    <td>lateInMinutes</td>
+                    <td>Name</td>
+                    <td>Start</td>
+                    <td>End</td>
+                    <td>Present</td>
+                    <td>Late</td>
 
 
                 </tr>
@@ -673,20 +689,14 @@
                         <td>{{dailyClass.name}}</td>
                         <td>{{dateUtil.dateFormatter(dailyClass.start)}}</td>
                         <td>{{dateUtil.dateFormatter(dailyClass.end)}}</td>
-                        <td>{{dailyClass.isStudentPresent}}</td>
-                        <td>{{dailyClass.lateInMinutes}}</td>
+                        <td>{{dailyClass.isStudentPresent? "Present" : "Missing"}}</td>
+                        <td>{{dailyClass.lateInMinutes}} min</td>
                     </tr>
                 </ng-container>
             </tbody>
         </table>
 
 
-    </div>
-    <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
-        </div>
     </div>
 </div>
 
@@ -731,8 +741,8 @@
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
 
         </div>
     </div>
@@ -744,7 +754,7 @@
 <div id="cardInfoModal" *ngIf="this.modalId == 'cardInfoModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Card info</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s card info</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
@@ -758,19 +768,24 @@
                 </option>
     
             </select>
-            {{this.selectedCardId}}
             <button class="btn btn-success assignCardButton"
-                    (click)="(this.assignCardToStudent())">Add</button>
+                    (click)="(assignCardToStudent())">Add</button>
         </div>
-        
+
+        <div class="cardIdContainer">
+            Current card: {{this.personalCardId}}
+            
+        </div>
+        <button class="btn btn-danger"
+            (click)="(unassignCardFromStudent())">Remove card</button>
 
 
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
+        <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
+            {{this.errorCode}}
         </div>
     </div>
 </div>

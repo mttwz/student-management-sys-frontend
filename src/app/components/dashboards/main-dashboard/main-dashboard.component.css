@@ -1,7 +1,7 @@
 #mainSection{
     background: rgb(2,0,36);
     background: linear-gradient(144deg, rgba(2,0,36,1) 0%, rgba(255,6,237,1) 0%, rgba(29,0,255,1) 100%);
-    min-height: 100vh;
+    min-height: calc(100vh - 60px);
     min-width: 375px;
     display: block;
 }

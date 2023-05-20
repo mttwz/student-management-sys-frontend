@@ -11,7 +11,7 @@ export class AdminTableService {
   //search data
   searchText: string = "";
   searchFilter: string = "users";
-  pageSize: number = 1; // <- erre kikell talalni valamit.   mire? itt adod meg hogy hany szar legyen kilistazva 
+  pageSize: number = 10;
   pageNumber: number = 0;
   tempPageNumber!: number;
   allPages!: number;

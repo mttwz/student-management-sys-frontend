@@ -8,6 +8,7 @@ import { AdminTableService } from 'src/app/services/table/admin/admin-table.serv
 import { StudentTableService } from 'src/app/services/table/student/student-table.service';
 import { AdminModalService } from 'src/app/services/modal/admin/admin-modal.service';
 import { SuperadminModalService } from 'src/app/services/modal/superadmin/superadmin-modal.service';
+import { AdminModalComponent } from '../../modals/admin-modal/admin-modal.component';
 declare var $: any;
 
 @Component({
@@ -61,7 +62,7 @@ export class MainDashboardComponent implements OnInit {
     
     this.superadminTableService.changeDetectionEmitter.subscribe(
       () => {
-        
+        this.superadminModalService.isSuccessfull = undefined;
         this.changeDetection.detectChanges();
       
       },
@@ -72,7 +73,7 @@ export class MainDashboardComponent implements OnInit {
     
     this.adminTableService.changeDetectionEmitter.subscribe(
       () => {
-        
+        this.adminModalService.isSuccessfull = undefined;
         this.changeDetection.detectChanges();
       
       },

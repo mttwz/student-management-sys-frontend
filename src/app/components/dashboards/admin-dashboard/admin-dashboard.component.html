@@ -1,26 +1,26 @@
 <div class="main">
 
     <div class="input-group">
-        <select class="form-control filterSelect">
-            <option value="student" (click)="this.adminTablseService.changeSearchFilter('student')">Student</option>    
-            <option value="workgroup" (click)="this.adminTablseService.changeSearchFilter('workgroup')">Workgroup ( {{this.workgroupService.currentlySelectedWorkgroupName}} ) </option>
+        <select #selectList class="form-control filterSelect" (change)="this.adminTableService.changeSearchFilter(selectList.value)">
+            <option value="student">Student</option>    
+            <option value="workgroup">Workgroup ( {{this.workgroupService.currentlySelectedWorkgroupName}} ) </option>
             
         </select>
-        <input [(ngModel)]="this.adminTablseService.searchText"  [ngModelOptions]="{standalone: true}" (keyup)="this.adminTablseService.searchAdminWithDebounce()" type="text"
+        <input [(ngModel)]="this.adminTableService.searchText"  [ngModelOptions]="{standalone: true}" (keyup)="this.adminTableService.searchAdminWithDebounce()" type="text"
             class="form-control searchBar" placeholder="Type to search...">
     </div>
 
-    <div class="tableContainer" *ngIf="this.adminTablseService.searchFilter == 'student'">
+    <div class="tableContainer" *ngIf="this.adminTableService.searchFilter == 'student'">
         <app-ad-student-table></app-ad-student-table>
     </div>
-    <div class="tableContainer" *ngIf="this.adminTablseService.searchFilter == 'workgroup' || this.adminTablseService.searchFilter == 'users-in-workgroup'">
+    <div class="tableContainer" *ngIf="this.adminTableService.searchFilter == 'workgroup' || this.adminTableService.searchFilter == 'users-in-workgroup'">
         <app-ad-workgroup-table></app-ad-workgroup-table>
     </div>
 
 
     <div class="pageSelector">
-        <div class="pageBox" *ngFor="let item of this.adminTablseService.createRange();"
-            (click)="adminTablseService.adPageClick(item-1)">
+        <div class="pageBox" *ngFor="let item of this.adminTableService.createRange();"
+            (click)="adminTableService.adPageClick(item-1)">
             {{item}}
         </div>
     </div>

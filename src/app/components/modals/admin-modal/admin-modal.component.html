@@ -100,9 +100,9 @@
             </div>
         </form>
         <div class="responseTextContainer">
-            <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-            <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
+            <div class="successfulRes" *ngIf="this.adminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.adminModalService.isSuccessfull == false">
+                {{this.errorCode}}
             </div>
         </div>
         <div class="modalButtonContainer">
@@ -110,7 +110,7 @@
                 (click)="this.cancelCreateWorkgroup()">
                 Cancel
             </button>
-            <button type="button" class="btn btn-success saveButton" (click)="this.createWorkgroup()">
+            <button type="button" class="btn btn-success saveButton" (click)="createWorkgroup()">
                 Save
             </button>
 
@@ -165,8 +165,8 @@
 
 
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+        <div class="successfulRes" *ngIf="this.adminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.adminModalService.isSuccessfull == false">
 
         </div>
     </div>
@@ -175,10 +175,15 @@
             (click)="this.cancelCreateWorkgroupSchedule()">
             Cancel
         </button>
-        <button type="button" class="btn btn-success saveButton" (click)="this.createWorkgroupSchedule()">
+        <button type="button" class="btn btn-success saveButton" (click)="createWorkgroupSchedule()">
             Save
         </button>
-
+        <div class="responseTextContainer">
+            <div class="successfulRes" *ngIf="this.adminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.adminModalService.isSuccessfull == false">
+                {{this.errorCode}}
+            </div>
+        </div>
 
     </div>
 
@@ -189,7 +194,7 @@
 <!-- modal for adding user to a workgroup -->
 <div id="addUserToWorkgroupModal" *ngIf="this.modalId == 'addUserToWorkgroupModal'">
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Add user to workgroup admin</h5>
+        <h5 class="modal-title" class="mainModalLabel">Add user to workgroup</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
@@ -198,7 +203,7 @@
 
         <input [(ngModel)]="this.adminModalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
             class="form-control searchBar" placeholder="Type to search..."
-            (keyup)="this.adminModalService.adminSearchOnlyUsersInModalsWithDebounce()">
+            (keyup)="this.adminModalService.adminSearchAddableUsersWithDebounce()">
 
 
         <table class="table table-xl table-striped table-dark mainTable">
@@ -207,10 +212,10 @@
 
             <thead>
                 <tr class="align-middle">
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('id')">ID</th>
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('roleId.roleType')">Role</th>
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('firstName')">First name</th>
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('lastName')">Last name</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('id')">ID</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('roleId.roleType')">Role</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('firstName')">First name</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('lastName')">Last name</th>
                     <th></th>
 
                 </tr>
@@ -240,6 +245,13 @@
                 {{item}}
             </div>
         </div>
+        <div class="responseTextContainer">
+            <div class="successfulRes" *ngIf="this.adminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.adminModalService.isSuccessfull == false">
+                {{this.errorCode}}
+    
+            </div>
+        </div>
 
     </div>
 
@@ -250,7 +262,7 @@
 <!-- modal for removing user from a workgroup -->
 <div id="removeUserFromWorkgroupModal" *ngIf="this.modalId == 'removeUserFromWorkgroupModal'">
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">Remve user from workgroup</h5>
+        <h5 class="modal-title" class="mainModalLabel">Remove user from workgroup</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
@@ -268,10 +280,10 @@
 
             <thead>
                 <tr class="align-middle">
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('id')">ID</th>
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('roleId.roleType')">Role</th>
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('firstName')">First name</th>
-                    <th scope="col" (click)="this.adminTablseService.adSortBy('lastName')">Last name</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('id')">ID</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('roleId.roleType')">Role</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('firstName')">First name</th>
+                    <th scope="col" (click)="this.adminTableService.adSortBy('lastName')">Last name</th>
                     <th></th>
 
                 </tr>
@@ -298,6 +310,13 @@
             <div class="pageBox" *ngFor="let item of this.adminModalService.createRange();"
                 (click)="adminModalService.adPageClick(item-1)">
                 {{item}}
+            </div>
+        </div>
+        <div class="responseTextContainer">
+            <div class="successfulRes" *ngIf="this.adminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.adminModalService.isSuccessfull == false">
+                {{this.errorCode}}
+    
             </div>
         </div>
 
@@ -354,40 +373,7 @@
 
 
     </div>
-    <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
-        </div>
-    </div>
-    <div class="modalButtonContainer">
-        <button *ngIf="this.isEditingEnabled == false" type="button" class="btn btn-warning editButton"
-            (click)="this.editWorkgroupInfo()">
-            Edit
-        </button>
-
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton"
-            (click)="cancelEdit()">
-            Cancel
-        </button>
-
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
-            (click)="this.saveWorkgroupInfo()">
-            Save
-        </button>
-    </div>
-
-    <div class="modalDeleteRestoreButtonContainer">
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-danger cancelButton"
-            (click)="deleteWorkgroup(this.workgroupService.currentlySelectedWorkgroupId)" data-bs-dismiss="modal">
-            DELETE
-        </button>
-        <button *ngIf="this.isEditingEnabled == true" type="button" class="btn btn-success saveButton"
-            (click)="restoreDeletedWorkgroup(this.workgroupService.currentlySelectedWorkgroupId)"
-            data-bs-dismiss="modal">
-            Restore
-        </button>
-    </div>
+    
 </div>
 
 
@@ -397,7 +383,7 @@
 <div id="studentAttendanceLogModal" *ngIf="this.modalId == 'studentAttendanceLogModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} attendance</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s attendance</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
@@ -419,7 +405,12 @@
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="addStudentDailyAttendance(this.userService.currentlySelectedUserId)">Add</button>
         </div>
-
+        <div class="responseTextContainer">
+            <div class="successfulRes" *ngIf="this.adminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="unSuccessfulRes" *ngIf="this.adminModalService.isSuccessfull == false">
+                {{this.errorCode}}
+            </div>
+        </div>
         
 
 
@@ -452,12 +443,6 @@
 
 
     </div>
-    <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
-
-        </div>
-    </div>
 </div>
 
 
@@ -466,7 +451,7 @@
 <div id="studentDailyAttendanceModal" *ngIf="this.modalId == 'studentDailyAttendanceModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} daily schedule</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s daily schedule</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
@@ -508,8 +493,8 @@
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+        <div class="successfulRes" *ngIf="this.adminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.adminModalService.isSuccessfull == false">
 
         </div>
     </div>
@@ -520,17 +505,17 @@
 
 <!------------------------------------------------------------------------------------------------->
 <!-- modal fot the student daily attendance -->
-<div id="studentDailyAttendanceInWorkgroupModal" *ngIf="this.modalId == 'studentDailyAttendanceInWorkgroupModal'">
+<div id="studentDailyClassesInWorkgroupModal" *ngIf="this.modalId == 'studentDailyClassesInWorkgroupModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}} attendance</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s schedule</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
     <div class="modalContainer">
 
         <div class="datePickerContainer">
-            <input class="datePicker" type="date">
+            <input [(ngModel)]="this.selectedDate" class="datePicker form-control" type="date">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="getStudentDailyClassesPerWg(this.userService.currentlySelectedUserId)">Search</button>
@@ -565,8 +550,8 @@
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+        <div class="successfulRes" *ngIf="this.adminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.adminModalService.isSuccessfull == false">
 
         </div>
     </div>
@@ -585,7 +570,7 @@
     <div class="modalContainer">
 
         <div class="datePickerContainer">
-            <input class="datePicker" type="date">
+            <input [(ngModel)]="this.selectedDate" class="datePicker form-control" type="date">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="getDailyWorkgroupSchedule()">Search</button>
@@ -613,8 +598,8 @@
 
     </div>
     <div class="responseTextContainer">
-        <div class="successfulRes" *ngIf="this.isSuccessful == true">Successfully saved</div>
-        <div class="unSuccessfulRes" *ngIf="this.isSuccessful == false">
+        <div class="successfulRes" *ngIf="this.adminModalService.isSuccessfull == true">Successfully saved</div>
+        <div class="unSuccessfulRes" *ngIf="this.adminModalService.isSuccessfull == false">
 
         </div>
     </div>

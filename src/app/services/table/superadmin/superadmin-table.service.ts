@@ -9,7 +9,7 @@ export class SuperadminTableService {
 
   searchText: string = "";
   searchFilter: string = "users";
-  pageSize: number = 99; 
+  pageSize: number = 10; 
   pageNumber: number = 0;
   tempPageNumber!: number;
   allPages!: number;
@@ -197,6 +197,7 @@ export class SuperadminTableService {
     return new Array(this.allPages).fill(0)
       .map((n, index) => index + 1);
   }
+
 
 
   changeSearchFilter(filter: string) {

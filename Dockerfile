@@ -1,12 +1,19 @@
-FROM node:18
+FROM node:18-alpine as build-stage
 
 WORKDIR /app
 
 COPY package*.json ./
+RUN npm install
 
-RUN npm ci --only=production
+COPY . .
+RUN npm run build --prod
 
-COPY dist/student-mgmnt-frontend/ .
+# Start a new stage
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY --from=build-stage /app/dist/student-mgmnt-frontend/ .
 
 # Install the http-server globally
 RUN npm install -g http-server

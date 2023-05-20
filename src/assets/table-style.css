@@ -70,8 +70,8 @@ tr td {
     scrollbar-width: none;
     /* Firefox */
     background-color: #212529;
-
-    height: 80vh;
+    
+    height: 670px;
     min-width: 100px;
 
 }
