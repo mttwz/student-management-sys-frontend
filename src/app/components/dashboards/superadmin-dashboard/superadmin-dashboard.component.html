@@ -38,7 +38,8 @@
     <div class="pageSelector">
         <div class="pageBox" *ngFor="let item of this.superadminTableService.createRange();"
             (click)="superadminTableService.suPageClick(item-1)">
-            {{item}}
+            <div class="selectedPage" *ngIf="this.superadminTableService.pageNumber == item-1">{{item}}</div>
+            <div *ngIf="this.superadminTableService.pageNumber != item-1">{{item}}</div>
         </div>
     </div>
    

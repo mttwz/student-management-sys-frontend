@@ -223,6 +223,11 @@ a:hover{
     color: white;
 }
 
+.selectedPage{
+    background-color: #33383c;
+    border-radius: 5px;
+}
+
 
 
   

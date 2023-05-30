@@ -47,6 +47,8 @@ export class MainDashboardComponent implements OnInit {
 
     $(document).on('hidden.bs.modal', '.mainModal', () => {
       
+      this.adminModalService.modalPageNumber = 0;
+      this.superadminModalService.modalPageNumber = 0;
       
       let jwtData = this.authService.parseJwt();
 

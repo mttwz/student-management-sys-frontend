@@ -1,7 +1,7 @@
 <!---------------------------------------------------------------------------------------------->
 <!-- modal for thisplay the user info -->
 <div id="userInfoModal" *ngIf="this.modalId == 'userInfoModal'">
-    
+
     <div class="modal-header">
         <h5 class="modal-title" class="mainModalLabel">Info</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -242,14 +242,15 @@
         <div class="pageSelector">
             <div class="pageBox" *ngFor="let item of this.adminModalService.createRange();"
                 (click)="adminModalService.adPageClick(item-1)">
-                {{item}}
+                <div class="selectedPage" *ngIf="this.adminModalService.modalPageNumber == item-1">{{item}}</div>
+                <div *ngIf="this.adminModalService.modalPageNumber != item-1">{{item}}</div>
             </div>
         </div>
         <div class="responseTextContainer">
             <div class="successfulRes" *ngIf="this.adminModalService.isSuccessfull == true">Successfully saved</div>
             <div class="unSuccessfulRes" *ngIf="this.adminModalService.isSuccessfull == false">
                 {{this.errorCode}}
-    
+
             </div>
         </div>
 
@@ -309,14 +310,15 @@
         <div class="pageSelector">
             <div class="pageBox" *ngFor="let item of this.adminModalService.createRange();"
                 (click)="adminModalService.adPageClick(item-1)">
-                {{item}}
+                <div class="selectedPage" *ngIf="this.adminModalService.modalPageNumber == item-1">{{item}}</div>
+                <div *ngIf="this.adminModalService.modalPageNumber != item-1">{{item}}</div>
             </div>
         </div>
         <div class="responseTextContainer">
             <div class="successfulRes" *ngIf="this.adminModalService.isSuccessfull == true">Successfully saved</div>
             <div class="unSuccessfulRes" *ngIf="this.adminModalService.isSuccessfull == false">
                 {{this.errorCode}}
-    
+
             </div>
         </div>
 
@@ -373,7 +375,7 @@
 
 
     </div>
-    
+
 </div>
 
 
@@ -397,10 +399,12 @@
         </div>
 
         <div class="datePickerContainer">
-            
-            <input [(ngModel)]="arrivalInput" class="datePicker form-control addAttendanceDatePicker" type="datetime-local">
-            
-            <input [(ngModel)]="leavingInput" class="datePicker form-control addAttendanceDatePicker" type="datetime-local">
+
+            <input [(ngModel)]="arrivalInput" class="datePicker form-control addAttendanceDatePicker"
+                type="datetime-local">
+
+            <input [(ngModel)]="leavingInput" class="datePicker form-control addAttendanceDatePicker"
+                type="datetime-local">
 
             <button class="btn btn-success getStudentDailyAttendanceButton"
                 (click)="addStudentDailyAttendance(this.userService.currentlySelectedUserId)">Add</button>
@@ -411,7 +415,7 @@
                 {{this.errorCode}}
             </div>
         </div>
-        
+
 
 
         <table class="table table-xl table-striped table-dark mainTable">
@@ -424,11 +428,11 @@
             </thead>
             <tbody>
                 <ng-container *ngFor="let dailyAttendance of studentDailyAttendance;">
-                   
+
                     <tr>
                         <td>
                             {{dateUtil.dateFormatter(dailyAttendance.arrival)}}
-                            
+
                         </td>
                         <td>
                             {{dateUtil.dateFormatter(dailyAttendance.leaving)}}
@@ -451,7 +455,8 @@
 <div id="studentDailyAttendanceModal" *ngIf="this.modalId == 'studentDailyAttendanceModal'">
 
     <div class="modal-header">
-        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s daily schedule</h5>
+        <h5 class="modal-title" class="mainModalLabel">{{this.userService.currentlySelectedUserName}}'s daily schedule
+        </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 
     </div>
@@ -472,7 +477,7 @@
                     <td>Start</td>
                     <td>End</td>
                     <td>Present</td>
-                    <td>Late</td>
+                    <td>Missing</td>
 
 
                 </tr>
@@ -529,7 +534,7 @@
                     <td>Start</td>
                     <td>End</td>
                     <td>Present</td>
-                    <td>Late</td>
+                    <td>Missing</td>
 
 
                 </tr>

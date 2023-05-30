@@ -14,7 +14,8 @@
                 <label>ID:</label>
                 <input class="form-control userId" formControlName="id" type="text">
             </div>
-            <div *ngIf="this.isEditingEnabled == true" class="text-danger">(if you change a role then all the previously assigned attendance data will be unavaliable)</div>
+            <div *ngIf="this.isEditingEnabled == true" class="text-danger">(if you change a role then all the previously
+                assigned attendance data will be unavaliable)</div>
             <label for="roleSelect">Role:</label>
             <select class="custom-select roleSelect" formControlName="roleName">
                 <option value="" selected disabled hidden placeholder></option>
@@ -22,7 +23,7 @@
                 <option value="admin">admin</option>
                 <option value="student">student</option>
             </select>
-            
+
 
             <div class="inputText formInput">
                 <label>First name:</label>
@@ -216,7 +217,8 @@
             </div>
         </form>
         <div class="responseTextContainer">
-            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved
+            </div>
             <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
                 {{this.errorCode}}
             </div>
@@ -311,8 +313,8 @@
     <div class="modalContainer">
 
 
-        <input [(ngModel)]="this.superadminModalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
-            class="form-control searchBar" placeholder="Type to search..."
+        <input [(ngModel)]="this.superadminModalService.modalSearchtext" [ngModelOptions]="{standalone: true}"
+            type="text" class="form-control searchBar" placeholder="Type to search..."
             (keyup)="this.superadminModalService.superadminSearchAddableUsersWithDebounce()">
 
 
@@ -352,14 +354,16 @@
         <div class="pageSelector">
             <div class="pageBox" *ngFor="let item of this.superadminModalService.createRange();"
                 (click)="superadminModalService.suPageClick(item-1,'add')">
-                {{item}}
+                <div class="selectedPage" *ngIf="this.superadminModalService.modalPageNumber == item-1">{{item}}</div>
+                <div *ngIf="this.superadminModalService.modalPageNumber != item-1">{{item}}</div>
             </div>
         </div>
         <div class="responseTextContainer">
-            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved
+            </div>
             <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
                 {{this.errorCode}}
-    
+
             </div>
         </div>
 
@@ -379,8 +383,8 @@
     <div class="modalContainer">
 
 
-        <input [(ngModel)]="this.superadminModalService.modalSearchtext" [ngModelOptions]="{standalone: true}" type="text"
-            class="form-control searchBar" placeholder="Type to search..."
+        <input [(ngModel)]="this.superadminModalService.modalSearchtext" [ngModelOptions]="{standalone: true}"
+            type="text" class="form-control searchBar" placeholder="Type to search..."
             (keyup)="this.superadminModalService.superadminSearchOnlyUsersInWorkgroupInModalsWithDebounce()">
 
 
@@ -419,14 +423,16 @@
         <div class="pageSelector">
             <div class="pageBox" *ngFor="let item of this.superadminModalService.createRange();"
                 (click)="superadminModalService.suPageClick(item-1,'remove')">
-                {{item}}
+                <div class="selectedPage" *ngIf="this.superadminModalService.modalPageNumber == item-1">{{item}}</div>
+                <div *ngIf="this.superadminModalService.modalPageNumber != item-1">{{item}}</div>
             </div>
         </div>
         <div class="responseTextContainer">
-            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved
+            </div>
             <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
                 {{this.errorCode}}
-    
+
             </div>
         </div>
 
@@ -552,7 +558,8 @@
                 (click)="addStudentDailyAttendance(this.userService.currentlySelectedUserId)">Add</button>
         </div>
         <div class="responseTextContainer">
-            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved</div>
+            <div class="successfulRes" *ngIf="this.superadminModalService.isSuccessfull == true">Successfully saved
+            </div>
             <div class="unSuccessfulRes" *ngIf="this.superadminModalService.isSuccessfull == false">
                 {{this.errorCode}}
             </div>
@@ -575,7 +582,7 @@
                     <tr>
                         <td>
                             {{dateUtil.dateFormatter(dailyAttendance.arrival)}}
-                            
+
                         </td>
                         <td>
                             {{dateUtil.dateFormatter(dailyAttendance.leaving)}}
@@ -621,7 +628,7 @@
                     <td>Start</td>
                     <td>End</td>
                     <td>Present</td>
-                    <td>Late</td>
+                    <td>Missing</td>
 
 
                 </tr>
@@ -678,7 +685,7 @@
                     <td>Start</td>
                     <td>End</td>
                     <td>Present</td>
-                    <td>Late</td>
+                    <td>Missing</td>
 
 
                 </tr>
@@ -762,22 +769,20 @@
 
         <div class="cardPickerContainer">
             <select [(ngModel)]="this.selectedCardId" class="form-control filterSelect">
-                <option selected ></option>
+                <option selected></option>
                 <option *ngFor="let card of this.allAvaliableCard">
                     {{card.id}}--({{this.dateUtil.dateFormatter(card.createdAt)}})
                 </option>
-    
+
             </select>
-            <button class="btn btn-success assignCardButton"
-                    (click)="(assignCardToStudent())">Add</button>
+            <button class="btn btn-success assignCardButton" (click)="(assignCardToStudent())">Add</button>
         </div>
 
         <div class="cardIdContainer">
             Current card: {{this.personalCardId}}
-            
+
         </div>
-        <button class="btn btn-danger"
-            (click)="(unassignCardFromStudent())">Remove card</button>
+        <button class="btn btn-danger" (click)="(unassignCardFromStudent())">Remove card</button>
 
 
 

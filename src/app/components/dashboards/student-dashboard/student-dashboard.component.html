@@ -26,7 +26,8 @@
     <div class="pageSelector">
         <div class="pageBox" *ngFor="let item of this.studentTableService.createRange();"
             (click)="studentTableService.stPageClick(item-1)">
-            {{item}}
+            <div class="selectedPage" *ngIf="this.studentTableService.pageNumber == item-1">{{item}}</div>
+            <div *ngIf="this.studentTableService.pageNumber != item-1">{{item}}</div>
         </div>
     </div>
 

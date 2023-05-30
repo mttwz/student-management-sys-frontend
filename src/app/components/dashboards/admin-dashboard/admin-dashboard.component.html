@@ -21,7 +21,8 @@
     <div class="pageSelector">
         <div class="pageBox" *ngFor="let item of this.adminTableService.createRange();"
             (click)="adminTableService.adPageClick(item-1)">
-            {{item}}
+            <div class="selectedPage" *ngIf="this.adminTableService.pageNumber == item-1">{{item}}</div>
+            <div *ngIf="this.adminTableService.pageNumber != item-1">{{item}}</div>
         </div>
     </div>
 
